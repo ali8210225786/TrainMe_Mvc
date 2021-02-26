@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"_01_register", "_00_init.config", "mail"})  // 有controller的套件要加入
+@ComponentScan({"_01_register", "_00_init","_04_money","_09_trainerCourse","_10_studentCourse","mail"})
 public class WebAppConfig implements WebMvcConfigurer {
 	
 	@Bean

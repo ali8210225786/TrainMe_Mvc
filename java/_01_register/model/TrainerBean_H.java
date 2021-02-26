@@ -2,6 +2,8 @@ package _01_register.model;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -17,6 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
+import _04_money.model.MoneyBean_H;
+import _04_money.model.TrainerAccountBean_H;
+import _09_trainerCourse.model.RatingsBean_H;
+import _09_trainerCourse.model.TrainerCourseBean_H;
+import _09_trainerCourse.model.TrainerOffBean_H;
+import _11_orderProcess.model.OrdersBean_H;
 
 
 
@@ -33,7 +42,7 @@ public class TrainerBean_H extends MemberBean_H {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	@Column(columnDefinition = "INT Default 2")
-	Integer type;
+	Integer target_type;
 	String name;
 	String phone;
 	Date birthday;
@@ -57,6 +66,7 @@ public class TrainerBean_H extends MemberBean_H {
 	GymBean_H gym;
 	@Transient
 	Integer gympassword;
+	String profile_image;
 	Integer is_delete;
 	String hash;
 	String nickname;
@@ -64,28 +74,39 @@ public class TrainerBean_H extends MemberBean_H {
 	String course;
 	String introduction;
 	
-	Blob image;
-	String fileName;
+	private Blob image;
+	private String fileName;
 	@Transient
 	MultipartFile productImage;
 	@Transient
     public boolean hasError = false;
 	
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<RatingsBean_H> ratingsBean_H = new LinkedHashSet<>();
 	
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<TrainerAccountBean_H> trainerAccountBean_H = new LinkedHashSet<>();
+
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<MoneyBean_H> moneyBean_H = new LinkedHashSet<>();
+
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<TrainerCourseBean_H> trainerCourseBean_H = new LinkedHashSet<>();
+
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<OrdersBean_H> ordersBean_H = new LinkedHashSet<>();
 	
-
-
-
-
-
-	public TrainerBean_H(Integer id, Integer type, String name, String phone, Date birthday, String email, String password,
-			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String hash) {
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<TrainerOffBean_H> trainerOffBean_H = new LinkedHashSet<>();
+	
+	public TrainerBean_H(Integer id, Integer type, String name, String phone, Date birth, String email, String password,
+			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash) {
 		super();
 		this.id = id;
-		this.type = type;
+		this.target_type = type;
 		this.name = name;
 		this.phone = phone;
-		this.birthday = birthday;
+		this.birthday = birth;
 		this.email = email;
 		this.password = password;
 		this.id_number = id_number;
@@ -93,7 +114,7 @@ public class TrainerBean_H extends MemberBean_H {
 		this.verification = verification;
 		this.gym = gym;
 		this.is_delete = is_delete;
-		this.hash = hash;
+		this.hash = myHash;
 	}
 
 
@@ -104,7 +125,7 @@ public class TrainerBean_H extends MemberBean_H {
 	}
 
 
-	
+
 
 	public Integer getId() {
 		return id;
@@ -120,15 +141,15 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public Integer getType() {
-		return type;
+	public Integer getTarget_type() {
+		return target_type;
 	}
 
 
 
 
-	public void setType(Integer type) {
-		this.type = type;
+	public void setTarget_type(Integer target_type) {
+		this.target_type = target_type;
 	}
 
 
@@ -162,20 +183,6 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public String getEmail() {
-		return email;
-	}
-
-
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-
-
 	public Date getBirthday() {
 		return birthday;
 	}
@@ -190,6 +197,20 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+
 	public String getPassword() {
 		return password;
 	}
@@ -199,6 +220,20 @@ public class TrainerBean_H extends MemberBean_H {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+
+
+	public String getPasswordcheck() {
+		return passwordcheck;
+	}
+
+
+
+
+	public void setPasswordcheck(String passwordcheck) {
+		this.passwordcheck = passwordcheck;
 	}
 
 
@@ -313,6 +348,37 @@ public class TrainerBean_H extends MemberBean_H {
 		this.gym = gym;
 	}
 
+
+
+
+	public Integer getGympassword() {
+		return gympassword;
+	}
+
+
+
+
+	public void setGympassword(Integer gympassword) {
+		this.gympassword = gympassword;
+	}
+
+
+
+
+	public String getProfile_image() {
+		return profile_image;
+	}
+
+
+
+
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
+
+
+
+
 	public Integer getIs_delete() {
 		return is_delete;
 	}
@@ -327,23 +393,9 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public String getPasswordcheck() {
-		return passwordcheck;
-	}
-
-
-
-
-	public void setPasswordcheck(String passwordcheck) {
-		this.passwordcheck = passwordcheck;
-	}
-
-
-
-
 	public String getHash() {
 		return hash;
-	}	
+	}
 
 
 
@@ -411,15 +463,43 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public Integer getGympassword() {
-		return gympassword;
+	public Set<RatingsBean_H> getRatingsBean_H() {
+		return ratingsBean_H;
 	}
 
 
 
 
-	public void setGympassword(Integer gympassword) {
-		this.gympassword = gympassword;
+	public void setRatingsBean_H(Set<RatingsBean_H> ratingsBean_H) {
+		this.ratingsBean_H = ratingsBean_H;
+	}
+
+
+
+
+	public Set<TrainerAccountBean_H> getTrainerAccountBean_H() {
+		return trainerAccountBean_H;
+	}
+
+
+
+
+	public void setTrainerAccountBean_H(Set<TrainerAccountBean_H> trainerAccountBean_H) {
+		this.trainerAccountBean_H = trainerAccountBean_H;
+	}
+
+
+
+
+	public Set<MoneyBean_H> getMoneyBean_H() {
+		return moneyBean_H;
+	}
+
+
+
+
+	public void setMoneyBean_H(Set<MoneyBean_H> moneyBean_H) {
+		this.moneyBean_H = moneyBean_H;
 	}
 
 
@@ -467,7 +547,7 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public boolean getHasError() {
+	public boolean isHasError() {
 		return hasError;
 	}
 
@@ -477,10 +557,48 @@ public class TrainerBean_H extends MemberBean_H {
 	public void setHasError(boolean hasError) {
 		this.hasError = hasError;
 	}
-	
-	
-	
-	
+
+
+
+
+	public Set<TrainerCourseBean_H> getTrainerCourseBean_H() {
+		return trainerCourseBean_H;
+	}
+
+
+
+
+	public void setTrainerCourseBean_H(Set<TrainerCourseBean_H> trainerCourseBean_H) {
+		this.trainerCourseBean_H = trainerCourseBean_H;
+	}
+
+
+
+
+	public Set<OrdersBean_H> getOrdersBean_H() {
+		return ordersBean_H;
+	}
+
+
+
+
+	public void setOrdersBean_H(Set<OrdersBean_H> ordersBean_H) {
+		this.ordersBean_H = ordersBean_H;
+	}
+
+
+
+
+	public Set<TrainerOffBean_H> getTrainerOffBean_H() {
+		return trainerOffBean_H;
+	}
+
+
+
+
+	public void setTrainerOffBean_H(Set<TrainerOffBean_H> trainerOffBean_H) {
+		this.trainerOffBean_H = trainerOffBean_H;
+	}
 
 
 }

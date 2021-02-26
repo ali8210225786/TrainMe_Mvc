@@ -3,6 +3,8 @@ package _01_register.model;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -18,6 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
+import _03_memberData.model.StudentDataBean_H;
+import _04_money.model.MoneyBean_H;
+import _09_trainerCourse.model.RatingsBean_H;
+import _09_trainerCourse.model.TrainerOffBean_H;
+import _10_studentCourse.model.StudentCourseBean_H;
+import _11_orderProcess.model.OrdersBean_H;
 
 
 
@@ -30,53 +39,64 @@ public class StudentBean_H extends MemberBean_H {
 //-----會員資料--------
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id;
+	private Integer id;
 	@Column(columnDefinition = "INT Default 1")
-	Integer type;
-	String name;
-	String phone;
-	String email;  
-	Date birthday;
-	String password;
+	private Integer target_type;
+	private String name;
+	private String phone;
+	private String email;  
+	private Date birthday;
+	private String password;
 	@Transient
-	String passwordcheck;
-	String id_number;
-	String sex;
+	private String passwordcheck;
+	private String id_number;
+	private String sex;
 	@Column(columnDefinition = "INT Default 0")
-	Integer verification;
+	private Integer verification;
 	
 	
 	
 //-----個人資料--------
 	@ManyToOne
 	@JoinColumn(name="city_id")
-	City_H city;
+	private City_H city;
 	@ManyToOne
 	@JoinColumn(name="area_id")
-	Area_H area;
-	String address;
-	Double heigth;
-	Double weight;
-	
-	String nickname;
+	private Area_H area;
+	private String address;
+	private Double heigth;
+	private Double weight;
+	private String profile_image;
+	private String nickname;
 	@Column(columnDefinition = "INT Default 0")
-	Integer is_delete;
-	String hash;
-	String introduction;
+	private Integer is_delete;
+	private String hash;
+	private String introduction;
 	
-	Blob image;
-	String fileName;
+	private Blob image;
+	private String fileName;
 	@Transient
 	MultipartFile productImage;
 	@Transient
     public boolean hasError = false;
 	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<MoneyBean_H> moneyBean_H = new LinkedHashSet<>();
 	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<RatingsBean_H> ratingsBean_H = new LinkedHashSet<>();
 	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<StudentCourseBean_H> studentCourseBean_H = new LinkedHashSet<>();
 	
-	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<OrdersBean_H> ordersBean_H = new LinkedHashSet<>();
 
-	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<TrainerOffBean_H> trainerOffBean_H = new LinkedHashSet<>();
+
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<StudentDataBean_H> studentDataBean_H = new LinkedHashSet<>();
 
 	public StudentBean_H(String name, String phone, String email, Date birthday, String password, String id_number,
 			String sex, String hash) {
@@ -103,12 +123,12 @@ public class StudentBean_H extends MemberBean_H {
 		this.id = id;
 	}
 
-	public Integer getType() {
-		return type;
+	public Integer getTarget_type() {
+		return target_type;
 	}
 
-	public void setType(Integer type) {
-		this.type = type;
+	public void setTarget_type(Integer target_type) {
+		this.target_type = target_type;
 	}
 
 	public String getName() {
@@ -135,8 +155,6 @@ public class StudentBean_H extends MemberBean_H {
 		this.email = email;
 	}
 
-	
-
 	public Date getBirthday() {
 		return birthday;
 	}
@@ -151,6 +169,14 @@ public class StudentBean_H extends MemberBean_H {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPasswordcheck() {
+		return passwordcheck;
+	}
+
+	public void setPasswordcheck(String passwordcheck) {
+		this.passwordcheck = passwordcheck;
 	}
 
 	public String getId_number() {
@@ -169,6 +195,29 @@ public class StudentBean_H extends MemberBean_H {
 		this.sex = sex;
 	}
 
+	public Integer getVerification() {
+		return verification;
+	}
+
+	public void setVerification(Integer verification) {
+		this.verification = verification;
+	}
+
+	public City_H getCity() {
+		return city;
+	}
+
+	public void setCity(City_H city) {
+		this.city = city;
+	}
+
+	public Area_H getArea() {
+		return area;
+	}
+
+	public void setArea(Area_H area) {
+		this.area = area;
+	}
 
 	public String getAddress() {
 		return address;
@@ -194,7 +243,13 @@ public class StudentBean_H extends MemberBean_H {
 		this.weight = weight;
 	}
 
-	
+	public String getProfile_image() {
+		return profile_image;
+	}
+
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
 
 	public String getNickname() {
 		return nickname;
@@ -204,38 +259,12 @@ public class StudentBean_H extends MemberBean_H {
 		this.nickname = nickname;
 	}
 
-	
-	
-	public Integer getVerification() {
-		return verification;
-	}
-
-	public void setVerification(Integer verification) {
-		this.verification = verification;
-	}
-
 	public Integer getIs_delete() {
 		return is_delete;
 	}
 
 	public void setIs_delete(Integer is_delete) {
 		this.is_delete = is_delete;
-	}
-
-	public City_H getCity_id() {
-		return city;
-	}
-
-	public void setCity_id(City_H city_id) {
-		this.city = city_id;
-	}
-
-	public Area_H getArea_id() {
-		return area;
-	}
-
-	public void setArea_id(Area_H area_id) {
-		this.area = area_id;
 	}
 
 	public String getHash() {
@@ -254,28 +283,28 @@ public class StudentBean_H extends MemberBean_H {
 		this.introduction = introduction;
 	}
 
-	public String getPasswordcheck() {
-		return passwordcheck;
+	public Set<MoneyBean_H> getMoneyBean_H() {
+		return moneyBean_H;
 	}
 
-	public void setPasswordcheck(String passwordcheck) {
-		this.passwordcheck = passwordcheck;
+	public void setMoneyBean_H(Set<MoneyBean_H> moneyBean_H) {
+		this.moneyBean_H = moneyBean_H;
 	}
 
-	public City_H getCity() {
-		return city;
+	public Set<RatingsBean_H> getRatingsBean_H() {
+		return ratingsBean_H;
 	}
 
-	public void setCity(City_H city) {
-		this.city = city;
+	public void setRatingsBean_H(Set<RatingsBean_H> ratingsBean_H) {
+		this.ratingsBean_H = ratingsBean_H;
 	}
 
-	public Area_H getArea() {
-		return area;
+	public Set<StudentCourseBean_H> getStudentCourseBean_H() {
+		return studentCourseBean_H;
 	}
 
-	public void setArea(Area_H area) {
-		this.area = area;
+	public void setStudentCourseBean_H(Set<StudentCourseBean_H> studentCourseBean_H) {
+		this.studentCourseBean_H = studentCourseBean_H;
 	}
 
 	public Blob getImage() {
@@ -302,7 +331,7 @@ public class StudentBean_H extends MemberBean_H {
 		this.productImage = productImage;
 	}
 
-	public boolean getHasError() {
+	public boolean isHasError() {
 		return hasError;
 	}
 
@@ -310,16 +339,29 @@ public class StudentBean_H extends MemberBean_H {
 		this.hasError = hasError;
 	}
 
-	
+	public Set<OrdersBean_H> getOrdersBean_H() {
+		return ordersBean_H;
+	}
 
+	public void setOrdersBean_H(Set<OrdersBean_H> ordersBean_H) {
+		this.ordersBean_H = ordersBean_H;
+	}
 
+	public Set<TrainerOffBean_H> getTrainerOffBean_H() {
+		return trainerOffBean_H;
+	}
 
-	
-	
-	
-	
-	
-	
-	
+	public void setTrainerOffBean_H(Set<TrainerOffBean_H> trainerOffBean_H) {
+		this.trainerOffBean_H = trainerOffBean_H;
+	}
+
+	public Set<StudentDataBean_H> getStudentDataBean_H() {
+		return studentDataBean_H;
+	}
+
+	public void setStudentDataBean_H(Set<StudentDataBean_H> studentDataBean_H) {
+		this.studentDataBean_H = studentDataBean_H;
+	}
+
 
 }
