@@ -81,6 +81,7 @@ public class RegisterController {
 		st_validator.validate(studentBean, result);
 		if (result.hasErrors()) {
 			errorResponseSt(studentBean, model);
+			return "index";
 			
 		}
 		studentBean.setPassword(GlobalService.getMD5Endocing(
@@ -90,6 +91,7 @@ public class RegisterController {
 		if (memberService.idExists_H(studentBean.getEmail())) {
 			result.rejectValue("email", "", "帳號已存在，請重新輸入");
 			errorResponseSt(studentBean, model);
+			return "index";
 			
 		}
 		
@@ -97,6 +99,7 @@ public class RegisterController {
 		if (memberService.idNumberExists_H(studentBean.getId_number())) {
 			result.rejectValue("id_number", "", "此身分證已經使用過囉");
 			errorResponseSt(studentBean, model);
+			return "index";
 			
 		}
 		
@@ -129,13 +132,13 @@ public class RegisterController {
 	}
 	
 	// 當有錯誤時的處理 - 學員
-	public String errorResponseSt(StudentBean_H studentBean, Model model) {
+	public void errorResponseSt(StudentBean_H studentBean, Model model) {
 		TrainerBean_H trainerBean = new TrainerBean_H();
 		LoginBean loginBean = new LoginBean();
 		studentBean.setHasError(true);
 		model.addAttribute("trainerBean",trainerBean);
 		model.addAttribute("loginBean",loginBean);
-		return "index";
+		
 	}
 	
 	
@@ -153,7 +156,7 @@ public class RegisterController {
 		tr_validator.validate(trainerBean, result);
 		if (result.hasErrors()) {
 			errorResponseTr(trainerBean, model);
-			
+			return "index";
 		}
 		trainerBean.setPassword(GlobalService.getMD5Endocing(
 				GlobalService.encryptString(trainerBean.getPassword())));
@@ -162,14 +165,14 @@ public class RegisterController {
 		if (memberService.idExists_H(trainerBean.getEmail())) {
 			result.rejectValue("email", "", "帳號已存在，請重新輸入");
 			errorResponseTr(trainerBean, model);
-			
+			return "index";
 		}
 		
 		// 檢查身分證是否已經存在
 		if (memberService.idNumberExists_H(trainerBean.getId_number())) {
 			result.rejectValue("id_number", "", "此身分證已經使用過囉");
 			errorResponseTr(trainerBean, model);
-			
+			return "index";
 		}
 		
 		try {
@@ -187,7 +190,7 @@ public class RegisterController {
 			System.out.println(ex.getClass().getName() + ", ex.getMessage()=" + ex.getMessage());
 			result.rejectValue("email", "", "發生異常，請通知系統人員...");
 			errorResponseTr(trainerBean, model);
-			
+			return "index";
 		}
 		
 		// 寄驗證信
@@ -201,13 +204,13 @@ public class RegisterController {
 	}
 	
 	// 當有錯誤時的處理 - 教練
-	public String errorResponseTr(TrainerBean_H trainerBean, Model model) {
+	public void errorResponseTr(TrainerBean_H trainerBean, Model model) {
 		StudentBean_H studentBean = new StudentBean_H();
 		LoginBean loginBean = new LoginBean();
 		trainerBean.setHasError(true);
 		model.addAttribute("studentBean",studentBean);
 		model.addAttribute("loginBean",loginBean);
-		return "index";
+		
 	}
 	
 	// 驗證信
@@ -232,56 +235,63 @@ public class RegisterController {
 	}
 	
 	@PostMapping()
-//	public String Login(
-//			@ModelAttribute("loginBean") LoginBean loginBean,
-//			BindingResult result, Model model,
-//			HttpServletRequest request, HttpServletResponse response) {
-//		
-//		String password =loginBean.getPassword();
-//		MemberBean_H mb = null;
-//		StudentBean_H sb = null;
-//		TrainerBean_H tb = null;
-//
-//		try {
-//			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),GlobalService.getMD5Endocing(GlobalService.encryptString(password)));
-//			
-//			
-//			
-//			if (mb != null) {
-//				
-//				if (mb instanceof TrainerBean_H){
-//					tb = (TrainerBean_H) mb;
-//					
-//					if(memberService.checkPass( )) {
-//						
-//					}
-//				}
-//				
-//				
-//				// OK, 登入成功, 將mb物件放入Session範圍內，識別字串為"LoginOK"
-//				model.addAttribute("LoginOK", mb);
-//			} else {
-//				// NG, 登入失敗, userid與密碼的組合錯誤，放相關的錯誤訊息到 errorMsgMap 之內
-//				result.rejectValue("invalidCredentials", "", "該帳號不存在或密碼錯誤");
-//				errorResponseLg( loginBean,  model);
-//			}
-//			
-//		} catch (RuntimeException ex) {
-//			result.rejectValue("invalidCredentials", "", ex.getMessage());
-//			ex.printStackTrace();
-//			errorResponseLg( loginBean,  model);
-//		}
-//		HttpSession session = request.getSession();
-//		
-//		String nextPath = (String)session.getAttribute("requestURI");
-//		if (nextPath == null) {
-//			nextPath = request.getContextPath();
-//		}
-//		
-//	
-//		return "";
-//	}
-//	
+	public String Login(
+			@ModelAttribute("loginBean") LoginBean loginBean,
+			BindingResult result, Model model,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		String password =loginBean.getPassword();
+		MemberBean_H mb = null;
+		StudentBean_H sb = null;
+		TrainerBean_H tb = null;
+
+		try {
+			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),GlobalService.getMD5Endocing(GlobalService.encryptString(password)));
+			
+			
+			
+			if (mb != null) {
+				
+				if (mb instanceof TrainerBean_H){
+					tb = (TrainerBean_H) mb;					
+					if(memberService.checkPass(tb.getType(), tb.getEmail())) {							
+						// OK, 登入成功, 將tb物件放入Session範圍內，識別字串為"LoginOK"
+						model.addAttribute("LoginOK", tb);						
+					}else {
+						result.rejectValue("userEmail", "", "帳號尚未通過信箱驗證");
+					}
+				}
+				
+				if (mb instanceof StudentBean_H){
+					sb = (StudentBean_H) mb;					
+					if(memberService.checkPass(sb.getType(), sb.getEmail())) {		
+						// OK, 登入成功, 將sb物件放入Session範圍內，識別字串為"LoginOK"
+						model.addAttribute("LoginOK", sb);	
+					}else {
+						result.rejectValue("userEmail", "", "帳號尚未通過信箱驗證");
+					}
+				}
+				
+				
+				
+				
+			} else {
+				// NG, 登入失敗, userid與密碼的組合錯誤，放相關的錯誤訊息到 errorMsgMap 之內
+				result.rejectValue("invalidCredentials", "", "該帳號不存在或密碼錯誤");
+				errorResponseLg(loginBean,  model);
+			}
+			
+		} catch (RuntimeException ex) {
+			result.rejectValue("invalidCredentials", "", ex.getMessage());
+			ex.printStackTrace();
+			errorResponseLg( loginBean,  model);
+		}
+		
+		
+	
+		return "index";
+	}
+	
 	// 當有錯誤時的處理 - 登入
 		public String errorResponseLg(LoginBean loginBean, Model model) {
 			StudentBean_H studentBean = new StudentBean_H();
