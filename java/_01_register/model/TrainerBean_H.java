@@ -547,7 +547,7 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public boolean isHasError() {
+	public boolean getHasError() {
 		return hasError;
 	}
 

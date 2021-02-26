@@ -331,7 +331,7 @@ public class StudentBean_H extends MemberBean_H {
 		this.productImage = productImage;
 	}
 
-	public boolean isHasError() {
+	public boolean getHasError() {
 		return hasError;
 	}
 
