@@ -41,7 +41,7 @@ public class StudentBean_H extends MemberBean_H {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(columnDefinition = "INT Default 1")
-	private Integer target_type;
+	private Integer type;
 	private String name;
 	private String phone;
 	private String email;  
@@ -123,12 +123,12 @@ public class StudentBean_H extends MemberBean_H {
 		this.id = id;
 	}
 
-	public Integer getTarget_type() {
-		return target_type;
+	public Integer getType() {
+		return type;
 	}
 
-	public void setTarget_type(Integer target_type) {
-		this.target_type = target_type;
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 	public String getName() {

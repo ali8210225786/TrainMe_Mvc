@@ -42,7 +42,7 @@ public class TrainerBean_H extends MemberBean_H {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	@Column(columnDefinition = "INT Default 2")
-	Integer target_type;
+	Integer type;
 	String name;
 	String phone;
 	Date birthday;
@@ -103,7 +103,7 @@ public class TrainerBean_H extends MemberBean_H {
 			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash) {
 		super();
 		this.id = id;
-		this.target_type = type;
+		this.type = type;
 		this.name = name;
 		this.phone = phone;
 		this.birthday = birth;
@@ -141,15 +141,15 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public Integer getTarget_type() {
-		return target_type;
+	public Integer getType() {
+		return type;
 	}
 
 
 
 
-	public void setTarget_type(Integer target_type) {
-		this.target_type = target_type;
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 
