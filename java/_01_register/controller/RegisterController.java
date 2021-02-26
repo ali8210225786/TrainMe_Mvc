@@ -232,56 +232,56 @@ public class RegisterController {
 	}
 	
 	@PostMapping()
-	public String Login(
-			@ModelAttribute("loginBean") LoginBean loginBean,
-			BindingResult result, Model model,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		String password =loginBean.getPassword();
-		MemberBean_H mb = null;
-		StudentBean_H sb = null;
-		TrainerBean_H tb = null;
-
-		try {
-			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),GlobalService.getMD5Endocing(GlobalService.encryptString(password)));
-			
-			
-			
-			if (mb != null) {
-				
-				if (mb instanceof TrainerBean_H){
-					tb = (TrainerBean_H) mb;
-					
-					if(memberService.checkPass( )) {
-						
-					}
-				}
-				
-				
-				// OK, 登入成功, 將mb物件放入Session範圍內，識別字串為"LoginOK"
-				model.addAttribute("LoginOK", mb);
-			} else {
-				// NG, 登入失敗, userid與密碼的組合錯誤，放相關的錯誤訊息到 errorMsgMap 之內
-				result.rejectValue("invalidCredentials", "", "該帳號不存在或密碼錯誤");
-				errorResponseLg( loginBean,  model);
-			}
-			
-		} catch (RuntimeException ex) {
-			result.rejectValue("invalidCredentials", "", ex.getMessage());
-			ex.printStackTrace();
-			errorResponseLg( loginBean,  model);
-		}
-		HttpSession session = request.getSession();
-		
-		String nextPath = (String)session.getAttribute("requestURI");
-		if (nextPath == null) {
-			nextPath = request.getContextPath();
-		}
-		
-	
-		return "";
-	}
-	
+//	public String Login(
+//			@ModelAttribute("loginBean") LoginBean loginBean,
+//			BindingResult result, Model model,
+//			HttpServletRequest request, HttpServletResponse response) {
+//		
+//		String password =loginBean.getPassword();
+//		MemberBean_H mb = null;
+//		StudentBean_H sb = null;
+//		TrainerBean_H tb = null;
+//
+//		try {
+//			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),GlobalService.getMD5Endocing(GlobalService.encryptString(password)));
+//			
+//			
+//			
+//			if (mb != null) {
+//				
+//				if (mb instanceof TrainerBean_H){
+//					tb = (TrainerBean_H) mb;
+//					
+//					if(memberService.checkPass( )) {
+//						
+//					}
+//				}
+//				
+//				
+//				// OK, 登入成功, 將mb物件放入Session範圍內，識別字串為"LoginOK"
+//				model.addAttribute("LoginOK", mb);
+//			} else {
+//				// NG, 登入失敗, userid與密碼的組合錯誤，放相關的錯誤訊息到 errorMsgMap 之內
+//				result.rejectValue("invalidCredentials", "", "該帳號不存在或密碼錯誤");
+//				errorResponseLg( loginBean,  model);
+//			}
+//			
+//		} catch (RuntimeException ex) {
+//			result.rejectValue("invalidCredentials", "", ex.getMessage());
+//			ex.printStackTrace();
+//			errorResponseLg( loginBean,  model);
+//		}
+//		HttpSession session = request.getSession();
+//		
+//		String nextPath = (String)session.getAttribute("requestURI");
+//		if (nextPath == null) {
+//			nextPath = request.getContextPath();
+//		}
+//		
+//	
+//		return "";
+//	}
+//	
 	// 當有錯誤時的處理 - 登入
 		public String errorResponseLg(LoginBean loginBean, Model model) {
 			StudentBean_H studentBean = new StudentBean_H();
