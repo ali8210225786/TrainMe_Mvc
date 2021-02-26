@@ -70,6 +70,7 @@ public class MemberDaoImpl_H implements MemberDao_H {
 	            	if(mb.size() != 0) {
 	            		
 	    				exist = true;
+	    				return exist;
 	    			} 
 
 	    			
@@ -251,8 +252,7 @@ public class MemberDaoImpl_H implements MemberDao_H {
 		String hql1 = "SELECT verification From " + MemType + " WHERE email= :memail ";
 		
     	int n = (int) session.createQuery(hql1)
-					.setParameter("memail", email)			               						
-					.setParameter("mverification", 1)			               						
+					.setParameter("memail", email)			               							               						
 					.getSingleResult();
     	
     	
