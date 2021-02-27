@@ -19,9 +19,9 @@
                     <li><a href="#">購物商城</a></li>
                     <li><a href="#">運動論壇</a></li>
                 </div>
-            <li>
-                <button class="nav_btn" id="logout_btn" >登出</button>
-            </li>    
+<!--             <li> -->
+<!--                 <button class="nav_btn" id="logout_btn" >登出</button> -->
+<!--             </li>     -->
 
        
             <li class="member">
