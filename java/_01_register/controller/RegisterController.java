@@ -310,7 +310,6 @@ public class RegisterController {
 		model.addAttribute("studentBean",new StudentBean_H());
 		model.addAttribute("trainerBean",new TrainerBean_H());
 		model.addAttribute("loginBean",new LoginBean());
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		return "redirect:/"; 
 
 		
