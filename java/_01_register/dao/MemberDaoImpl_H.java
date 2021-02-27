@@ -24,7 +24,6 @@ public class MemberDaoImpl_H implements MemberDao_H {
 	SessionFactory factory;
 
 	public MemberDaoImpl_H() {
-		System.out.println("dao==============================================================");
 	}
 
 	// 儲存StudentBean物件，將參數sb新增到Student表格內。
