@@ -121,7 +121,7 @@
 	</div>
 
 	<div id="lf" class="loginform">
-		<form:form method="POST" class="login_area" modelAttribute="loginBean"
+		<form:form method="POST" action="/TrainMe/login" class="login_area" modelAttribute="loginBean"
 			enctype='multipart/form-data'>
 			<div class="login_logo">
 				<img

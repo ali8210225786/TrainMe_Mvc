@@ -231,7 +231,7 @@ public class RegisterController {
 
 	}
 
-	@PostMapping
+	@PostMapping("/login")
 	public String Login(@ModelAttribute("loginBean") LoginBean loginBean, BindingResult result, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 
