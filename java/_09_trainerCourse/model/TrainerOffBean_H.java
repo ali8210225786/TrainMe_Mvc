@@ -44,15 +44,21 @@ public class TrainerOffBean_H extends MemberBean_H {
 	@JoinColumn(name="st_id")
 	private StudentBean_H studentBean_H;
 	
-	public TrainerOffBean_H(Integer id, TrainerBean_H trainerBean_H, Date date, Integer time,
-			StudentBean_H studentBean_H) {
+	public TrainerOffBean_H() {
+	}
+	
+	public TrainerOffBean_H(Integer id, TrainerBean_H trainerBean_H, Date date, Integer time) {
 		super();
 		this.id = id;
 		this.trainerBean_H = trainerBean_H;
 		this.date = date;
 		this.time = time;
-		this.studentBean_H = studentBean_H;
 	}
+	
+	
+
+
+
 	public Integer getId() {
 		return id;
 	}
