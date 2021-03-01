@@ -45,26 +45,28 @@
                     <p>您在 Train Me 服務使用的基本資訊</p>
                 </div>
                 <div class="setting_area">
-                        <form:form  action="/trainme/St_accountSet" method="post" modelAttribute="studentBean" enctype="multipart/form-data">
+                        <form:form  action="/TrainMe/updateStData/${studentBean.id}" method="post" modelAttribute="studentBean" enctype="multipart/form-data">
+                        
+                           
                             <div class="setting_box">
-                                <label>姓名</label><p>${LoginOK.name}</p>
+                                <label>姓名</label><p>${studentBean.name}</p>
                             </div>
                             <div class="setting_box">
-                                <label>Email</label><p>${LoginOK.email}</p>
+                                <label>Email</label><p>${studentBean.email}</p>
                             </div>
                             <div class="setting_box">
                                 <label>密碼</label><a href="<c:url value='/_03MemberData/passwordUpdate.jsp' />">修改密碼</a>
                             </div>
                             <div class="setting_box">
-                                <label>生日</label><p>${LoginOK.birthday}</p>
+                                <label>生日</label><p>${studentBean.birthday}</p>
                             </div>
                             <div class="setting_box">
                                 <label>手機</label>
-                                <form:input path='phone'  value="${LoginOK.phone}" />
+                                <form:input path='phone'  value="${studentBean.phone}" />
                             </div>
                             <div class="setting_box">
                                 <label>顯示暱稱</label>
-                                <form:input path='nickname'  value="${LoginOK.nickname}" />
+                                <form:input path='nickname'  value="${studentBean.nickname}" />
                             </div>
 
                             <div class="setting_box address">
@@ -77,10 +79,10 @@
                                 
                                 <form:select path='area.id' placeholder="選擇地區">
                                	    <form:option value="-1" label="選擇縣市" />
-<%-- 									<form:options items="" id="areaList" />                                     --%>
+									<form:options items="${areaList}"  />                                    
                                 </form:select>
                             
-                                <input type="text" name="address" placeholder="地址" value="${LoginOK.address}">
+                                <input type="text" name="address" placeholder="地址" value="${studentBean.address}">
                             </div>
 
                             <div class="setting_box upload_file">
@@ -89,14 +91,14 @@
                                 <div class="upload_file_area">
                                     <div id="imgbox" class="ufl_box upload_imgbox">
                                     
-<%--                                		 <c:choose> --%>
-<%-- 									    <c:when test="${empty  LoginOK.photo}"> --%>
-<!-- 									       <img id="photo"  src="../images/_03_MemberData/upimage.png"> -->
-<%-- 									    </c:when>     --%>
-<%-- 									    <c:otherwise> --%>
-<%-- 									       <img id="photo"  src="/upload/${LoginOK.photo}"> --%>
-<%-- 									    </c:otherwise> --%>
-<%-- 									</c:choose> --%>
+                               		 <c:choose>
+									    <c:when test="${empty  studentBean.profile_image}">
+									       <img id="photo" name="photo"  src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+									    </c:when>    
+									    <c:otherwise>
+									       <img id="photo" name="photo" src="/upload/${studentBean.profile_image}">
+									    </c:otherwise>
+									</c:choose>
                                     
                                     
                                     </div>
@@ -127,6 +129,7 @@
         </div>
     
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <script>
 
     // 非正方形圖檔置中待解決or是否要有裁切功能
@@ -149,49 +152,11 @@
 //     }
 //     window.addEventListener('load',doFirst);
     
-    
-    var cityList = document.getElementById('city');
-    var areaList = document.getElementById('area');
-//     var cityId = ${LoginOK.city_id};
-
-//     axios.get("/trainme/CityList")
-//     .then(function (res) {
-//         var citys = res.data;
-//         for(city of citys){
-			
-//             var option = document.createElement("option");
-          
-//             option.value = city.id;
-//             option.innerHTML = city.name;
-//             cityList.appendChild(option);
-//         }
-       
-//         cityList.value = cityId;
-       
-//     })
-    
+    console.log(${studentBean.city.id});
+// 	getAreaList(${studentBean.city.id});
+	
         
-//     axios.get("/trainme/AreaList", {
-//     	    params: {
-//     	    	cityId: cityId
-//     	    }})
-// 	    .then(function (res) {
-// 	        var areas = res.data;
-// // 	        console.log(area);
-// 	        for(area of areas){
-
-//             var option = document.createElement("option");
-//             option.value = area.id;
-//             option.innerHTML = area.name;
-//             areaList.appendChild(option);
-//         }
-        
-//         areaList.value = ${LoginOK.area_id};
-// //         console.log(areaList.value);
-
-//     })
-        
-
+	
    
 // 縣市列表
 	var cityList = document.getElementById('city.id')
@@ -220,7 +185,7 @@
 	        var areas = res.data;
 // 	        console.log(areas);
 	        for(area of areas){
-// 	        console.log(area);
+// 	        	  console.log(area);
 	            var option = document.createElement("option");
 	            option.value = area.id;
 	            option.innerHTML = area.name;
@@ -236,7 +201,7 @@
     
 // 照片處理
 	
-    const theFile = document.getElementById('theFile');
+    const theFile = document.getElementById('studentImage');
 
 
     
