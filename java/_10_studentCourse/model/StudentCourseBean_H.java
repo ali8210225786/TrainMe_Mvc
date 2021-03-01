@@ -23,7 +23,7 @@ import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 
 @Entity
-@Table(name="Student_course_H")
+@Table(name="Student_course")
 public class StudentCourseBean_H implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
