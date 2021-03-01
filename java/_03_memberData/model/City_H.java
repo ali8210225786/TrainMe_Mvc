@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class City_H {
 	Integer id;
 	String name;
 	
-	@OneToMany(mappedBy = "city_H")
+	@OneToMany(mappedBy = "city_H", fetch = FetchType.EAGER)
 	private Set<Area_H> area_H = new LinkedHashSet<>();
 	
 	public Integer getId() {

@@ -38,5 +38,14 @@ public class AddressDao {
 					  .setParameter("cityId", cityId)
 					  .getResultList();
 	}
+	
+	public City_H  getCityById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(City_H.class, id);	
+	}
+	public Area_H  getAreaById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(Area_H.class, id);	
+	}
 
 }

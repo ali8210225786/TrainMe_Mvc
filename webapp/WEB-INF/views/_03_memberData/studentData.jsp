@@ -105,7 +105,9 @@
                                             最佳大小為 250 x 250 px</p>    
                                         <button type="button" class="upload_button">
                                             <label>
-                                                <input type="file" accept="image/*" id="theFile" name="photo" /> <!-- accept : 限制上傳檔案類型 --> 	
+  <!--                                                 <input type="file" accept="image/*" id="theFile" name="theFile" /> accept : 限制上傳檔案類型 	 -->
+											   <form:input path="studentImage" type='file' class="theFile"/>
+	   	  	 								   <form:errors path="studentImage"  cssClass="error" />
                                                 上傳檔案
                                             </label>
                                         </button>
@@ -192,39 +194,44 @@
 
    
 // 縣市列表
+	var cityList = document.getElementById('city.id')
+	var areaList = document.getElementById('area.id')
     cityList.addEventListener("change",function (e) {
     	
 		const cityId = e.target.value;
-		 console.log(cityId);
+// 		 console.log(cityId);
         var areaList = document.getElementById('area.id');
         if(areaList.firstChild){
         	areaList.innerHTML = "";
         }
 
-//         getAreaList(cityId);
+        getAreaList(cityId);
         
     })
     
 // 行政區列表
-//     function getAreaList(cityId) {
-		
-//         axios.get("/trainme/areaList", {
-//     	    params: {
-//     	    	cityId: cityId
-//     	    }})
-// 	    .then(function (res) {
-// 	        var areas = res.data;
+    function getAreaList(cityId) {
+// 		 console.log(cityId);
+        axios.get("/TrainMe/areaList", {
+    	    params: {
+    	    	cityId: cityId
+    	    }})
+	    .then(function (res) {
+	        var areas = res.data;
+// 	        console.log(areas);
+	        for(area of areas){
 // 	        console.log(area);
-// 	        for(area of areas){
-// 	        	  console.log(area);
-// 	            var option = document.createElement("option");
-// 	            option.value = area.id;
-// 	            option.innerHTML = area.name;
-// 	            areaList.appendChild(option);
-//       	    }
+	            var option = document.createElement("option");
+	            option.value = area.id;
+	            option.innerHTML = area.name;
+	            areaList.appendChild(option);
+      	    }
 
-//    		 })
-// 	}
+   		 })
+
+		
+
+	}
     
     
 // 照片處理

@@ -18,7 +18,7 @@ public class Area_H {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	String name;
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST )
 	@JoinColumn(name="city_id")
 	private City_H city_H;
 	

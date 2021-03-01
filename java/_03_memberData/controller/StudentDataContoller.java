@@ -31,6 +31,19 @@ public class StudentDataContoller {
 	public String studentData(Model model) {
 //		StudentBean_H studentBean = new StudentBean_H();
 //		model.addAttribute("studentBean", studentBean);
+		StudentBean_H studentBean = memberDataService.getStudentById(id);
+		System.out.println("abc "+studentBean.getCity().getId());
+		if(studentBean.getCity().getId() != null) {
+			List<Area_H> areas = addressService.listAreas(studentBean.getCity().getId());
+			Map<Integer, String> areaMap = new HashMap<>();
+			for (Area_H area : areas) {
+				areaMap.put(area.getId(), area.getName());
+			}
+			model.addAttribute("areaList", areaMap);
+		}
+		
+		
+		model.addAttribute("studentBean", studentBean);		
 		return "/_03_memberData/studentData";
 	}
 	
