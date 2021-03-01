@@ -56,11 +56,9 @@ public class StudentDataContoller {
 	
 	@GetMapping("/studentData/{id}")
 	public String studentData(Model model, 	@PathVariable("id") Integer id) {
-//		StudentBean_H studentBean = new StudentBean_H();
 		
 		StudentBean_H studentBean = memberDataService.getStudentById(id);
-		System.out.println("abc "+studentBean.getCity().getId());
-		if(studentBean.getCity().getId() != null) {
+		if (studentBean.getCity() != null) {
 			List<Area_H> areas = addressService.listAreas(studentBean.getCity().getId());
 			Map<Integer, String> areaMap = new HashMap<>();
 			for (Area_H area : areas) {
