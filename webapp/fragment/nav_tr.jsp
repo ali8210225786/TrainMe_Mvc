@@ -19,9 +19,9 @@
                     <li><a href="#">購物商城</a></li>
                     <li><a href="#">運動論壇</a></li>
                 </div>
-            <li>
-                <button class="nav_btn" id="logout_btn">登出</button>
-            </li>     
+<!--             <li> -->
+<!--                 <button class="nav_btn" id="logout_btn">登出</button> -->
+<!--             </li>      -->
             <li class="member">
                 <a href="#">
                         <img src="${pageContext.request.contextPath}/images/index/member.jpg">
@@ -36,7 +36,7 @@
                         <li><a href="#">訂單查詢</a></li>
                         <li><a href="<c:url value='/_03MemberData/trainerData.jsp' />">帳號設定</a></li>
                         <hr>
-                        <li><a href="#">登出</a></li>
+                        <li><a href="<c:url value='/logout' />">登出</a></li>
                     </div>
                 </ul>
             </li>

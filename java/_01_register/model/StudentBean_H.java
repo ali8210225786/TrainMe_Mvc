@@ -76,7 +76,7 @@ public class StudentBean_H extends MemberBean_H {
 	private Blob image;
 	private String fileName;
 	@Transient
-	MultipartFile productImage;
+	MultipartFile studentImage;
 	@Transient
     public boolean hasError = false;
 	
@@ -323,12 +323,12 @@ public class StudentBean_H extends MemberBean_H {
 		this.fileName = fileName;
 	}
 
-	public MultipartFile getProductImage() {
-		return productImage;
+	public MultipartFile getStudentImage() {
+		return studentImage;
 	}
 
-	public void setProductImage(MultipartFile productImage) {
-		this.productImage = productImage;
+	public void setStudentImage(MultipartFile studentImage) {
+		this.studentImage = studentImage;
 	}
 
 	public boolean getHasError() {

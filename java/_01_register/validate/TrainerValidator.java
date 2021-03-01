@@ -58,10 +58,15 @@ public class TrainerValidator implements Validator {
 		}
 		
 		if (tb.getBirthday() == null) {
-			errors.rejectValue("birthday", "trainerBean.birthday", "生日欄位格式不正確");
+			errors.rejectValue("birthday", "trainerBean.birthday", "生日欄位必須輸入");
 		}
 		if (tb.getSex() == null) {
-			errors.rejectValue("sex", "trainerBean.sex", "性別欄位格式不正確");
+			errors.rejectValue("sex", "trainerBean.sex", "性別欄位必須輸入");
+		}
+		
+		
+		if (!(tb.getGympassword() instanceof Integer )) {
+			errors.rejectValue("gympassword", "trainerBean.gympassword", "此攔位必須輸入數字");
 		}
 
 

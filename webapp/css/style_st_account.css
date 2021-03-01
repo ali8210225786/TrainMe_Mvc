@@ -101,7 +101,7 @@
     height: 45px;
     cursor: pointer;
 }
-#theFile{
+.theFile{
     display: none;
 }
 
