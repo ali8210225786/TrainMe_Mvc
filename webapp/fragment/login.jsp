@@ -1,16 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登入&註冊 pop up</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登入 註冊 pop up</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/popup_t1.css"> --%>
 <%--     <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />"> --%>
-
-<!-- 登入 -->
 
     <!-- 遮罩 -->
     <div id="overlay" class="hide" onclick="Hide();"></div>
@@ -20,84 +19,100 @@
 
         <div id="sform_tr" class="tr signupform">
             <h2>教練註冊</h2>
-             <form:form method="POST" action="/TrainMe/tr_register" calss="from" modelAttribute="trainerBean" enctype='multipart/form-data' >
+            <form:form method="POST" action="/TrainMe/tr_register" calss="from"
+			modelAttribute="trainerBean" enctype='multipart/form-data'>
                 <div class="wrap">
                     <div class="box">
                         <div class="group">
                             <label>姓名</label><br>
                             <form:input path='name' class="input_field" placeholder="請輸入您的姓名" required="required" />
-                            <div class="errorMsg">
-                            	<form:errors path="name" cssClass="error"  /> 
-                            </div>
                         </div>
+                        <div class="msgbox">
+							<form:errors path="name" cssClass="error" />
+                        </div>
+
                         <div class="group">
                             <label>e-mail</label><br>
-                            <form:input path="email" class="input_field" placeholder="請輸入您的e-mail信箱" required="required"  />
-                            <div class="errorMsg">
-                          	  <form:errors path="email" cssClass="error" />         
-                            </div>
+                            <form:input path="email" class="input_field" placeholder="請輸入您的e-mail信箱" required="required" />
                         </div>
+                        <div class="msgbox">
+							<form:errors path="email" cssClass="error" />
+                        </div>
+
                         <div class="group">
                             <label>密碼</label><br>
-                            <form:input path="password" class="input_field" placeholder="請輸入您的密碼" required="required" />
-                       		<div class="errorMsg">
-                       			<form:errors path="password" cssClass="error" /> 
-                       		</div>
+                            <form:input path="password" class="input_field pw" placeholder="請輸入您的密碼" required="required" />
+                        </div>
+                        <div class="msgbox">
+							<form:errors path="password" cssClass="error" />
                         </div>
                         <div class="group">
                             <label>確認密碼</label><br>
-                            <form:input path="passwordcheck" class="input_field" placeholder="請再次輸入您的密碼" required="required" />
-                       		<div class="errorMsg">
-	                       		<form:errors path="passwordcheck" cssClass="error" /> 
-                       		</div>
+                            <form:input path="passwordcheck" class="input_field pw"	placeholder="請再次輸入您的密碼" required="required" />
                         </div>
+                        <div class="msgbox">
+							<form:errors path="passwordcheck" cssClass="error" />
+                        </div>
+
                         <div class="group">
                             <label>手機</label><br>
                             <form:input path="phone" class="input_field" placeholder="請輸入您的手機" required="required" />
-                       		<div class="errorMsg">
-	                       		<form:errors path="phone" cssClass="error" /> 
-                       		</div>
                         </div>
+                       <div class="msgbox">
+							<form:errors path="phone" cssClass="error" />                
+                        </div>
+
                     </div>
                     <div class="box">
-	                        <div class="group">                         
-	                                <label>所屬健身房</label><br>
-									<form:select path="gym.id">
-										<form:option value="-1" label="請挑選" />
-										<form:options items="${gymList}" /> 								
-									</form:select>                             
-	                        </div>
-	                        <div class="group">
-	                            
-	                                <label>健身房驗證碼</label><br>
-	                                <form:input path="gympassword" class="input_field " placeholder="請輸入健身房驗證碼" required="required" />
-	                            	<div class="errorMsg">
-	                            		<form:errors path="gympassword" cssClass="error" /> 
-	                            	</div>
-	                        </div>
-	                        <div class="group">
-	                            <label>身分證字號</label><br>
-	                            <form:input path="id_number" class="input_field" placeholder="請輸入您的身分證字號" required="required" />
-	                           	<div class="errorMsg">
-		                           	<form:errors path="id_number" cssClass="error" /> 
-	                           	</div>
-	                        </div>
-	                        <div class="group">
-	                            <label>生日</label><br>
-	                            <form:input path="birthday" type="date" class="input_field birthday" required="required" />
-	                            <div class="errorMsg">
-	                       		     <form:errors path="birthday" cssClass="error" /> 
-	                            </div>
-	                        </div>
-	                        <div class="group">
-	                            <div class="radio">
-	                                <label>性別</label><br>
-	                                <form:radiobuttons path="sex" items='${sexMap}'/>
-	                                <div class="errorMsg">
-	                              	  <form:errors path="sex"  cssClass="error" />
-	                                </div>
-	                            </div>
-	                        </div>
+                        <div class="group">                            
+                                <label>所屬健身房</label><br>
+                                <form:select path="gym.id" class="input_field">
+                                    <form:option value="-1" label="請挑選" />
+                                    <form:options items="${gymList}" />
+                                </form:select>
+                        </div>
+                        <div class="msgbox">
+                            
+                        </div>
+
+                        <div class="group">
+                            
+                                <label>健身房驗證碼</label><br>
+                                <form:input path="gympassword" class="input_field" type="number" placeholder="請輸入健身房驗證碼" required="required" />
+                        </div>
+                        <div class="msgbox">
+							<form:errors path="gympassword" cssClass="error" />
+                        </div>
+
+                        <div class="group">
+                            <label>身分證字號</label><br>
+                            <form:input path="id_number" class="input_field"
+							placeholder="請輸入您的身分證字號" required="required" />
+                        </div>
+                        <div class="msgbox">
+							<form:errors path="id_number" cssClass="error" />
+                        </div>
+
+                        <div class="group">
+                            <label>生日</label><br>
+                            <form:input path="birthday" type="date"
+							class="input_field birthday" required="required" />
+                        </div>
+                        <div class="msgbox">
+							<form:errors path="birthday" cssClass="error" />                            
+                        </div>
+
+                        <div class="group">
+                            <div class="radio">
+                                <label>性別</label><br>
+                                <div class="sex">
+                                    <form:radiobuttons path="sex" items='${sexMap}' />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="msgbox">
+                            <form:errors path="sex" cssClass="error" />
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn">註冊</button>
@@ -109,35 +124,41 @@
         </div>
 
         <div id="lf" class="loginform">
-            <form:form method="POST" class="login_area"  modelAttribute="loginBean" enctype='multipart/form-data' >                         
+            <form:form method="POST" action="/TrainMe/login" class="login_area" modelAttribute="loginBean"
+			enctype='multipart/form-data'>
                 <div class="login_logo">
-                    <img src="${pageContext.request.contextPath}/images/index/logo_black.png" alt="Train Me" title="Train Me">
+                    <img
+					src="${pageContext.request.contextPath}/images/index/logo_black.png"
+					alt="Train Me" title="Train Me">
                 </div>
 
                 <h2>歡迎回來!</h2>
 
                 <div class="group">
                     <label>帳號</label><br>
-                    <form:input path="userEmail" class="input_field" placeholder="E-mail信箱" required="required" />
-               		<div class="errorMsg">
-               			<form:errors  path="userEmail" cssClass="error" /><br>
-               		</div>
+                    <form:input path="userEmail" class="input_field"
+					placeholder="E-mail信箱" required="required" />
                 </div>
                 <div class="group">
                     <label>密碼</label><br>
-                    <form:input  type="password"  path="password" class="input_field" placeholder="密碼" required="required" />
-               		<div class="errorMsg">
-               			<form:errors  path="password" cssClass="error" />
-               		</div>
+                    <form:input type="password" path="password" class="input_field pw"
+					placeholder="密碼" required="required" />
                 </div>
-                <div class="check">
-                    <input type="checkbox" class="check_box"> 記住密碼</span>
+                <div class="check_area">
+                    <div class="check">
+                        <input type="checkbox" class="check_box"> 記住密碼
+                    </div>
+                    <a href="#">忘記密碼</a>
                 </div>
+                <div class="msgbox">
+                	<form:errors path="userEmail" cssClass="error" />
+					<form:errors path="password" cssClass="error" />  
+                </div>
+                
                 <div class="btn_group">
                     <button type="submit" class="btn">登入</button>
                 </div>
             </form:form>
-           
             <div class="ask_signup">
                 <div class="ask_area">
                     <p>還不是會員嗎？</p>
@@ -162,69 +183,79 @@
 
         <div id="sform_st" class="st signupform">
             <h2>學員註冊</h2>
-             <form:form method="POST" class="form" action="/TrainMe/st_register" modelAttribute="studentBean" enctype='multipart/form-data' >
+            <form:form method="POST" class="form" action="/TrainMe/st_register"
+			modelAttribute="studentBean" enctype='multipart/form-data'>
                 <div class="wrap">
 
                     <div class="box">
                         <div class="group">
                             <label>姓名</label><br>
-                            <form:input path="name" class="input_field" placeholder="請輸入您的姓名" required="required"  />
-                       		<div class="errorMsg">
-                       			 <form:errors path="name" cssClass="error" /> 
-                       		</div>
+                            <form:input path="name" class="input_field" placeholder="請輸入您的姓名"
+							required="required" />
+                        </div>
+                        <div class="msgbox">
+							<form:errors path="name" cssClass="error" />
                         </div>
                         <div class="group">
                             <label>e-mail</label><br>
-                            <form:input path="email" class="input_field" placeholder="請輸入您的e-mail信箱" required="required"  />
-                            <div class="errorMsg">
-                          		  <form:errors path="email" cssClass="error" />  
-                            </div>     
+                            <form:input path="email" class="input_field"
+							placeholder="請輸入您的e-mail信箱" required="required" />                           
+                        </div>
+                        <div class="msgbox">
+                            <form:errors path="email" cssClass="error" />
                         </div>
                         <div class="group">
                             <label>密碼</label><br>
-                            <form:input path="password" class="input_field" placeholder="請輸入您的密碼" required="required" />
-                       		<div class="errorMsg">
-	                       		<form:errors path="password" cssClass="error" /> 
-                       		</div>
+                            <form:input path="password" class="input_field pw"
+							placeholder="請輸入您的密碼" required="required" />
+                        </div>
+                        <div class="msgbox">
+							<form:errors path="password" cssClass="error" />
                         </div>
                         <div class="group">
                             <label>確認密碼</label><br>
-                            <form:input path="passwordcheck" class="input_field" placeholder="請再次輸入您的密碼" required="required" />
-                       		<div class="errorMsg">
-                       			<form:errors path="passwordcheck" cssClass="error" /> 
-                       		</div>
+                            <form:input path="passwordcheck" class="input_field pw"
+							placeholder="請再次輸入您的密碼" required="required" />
                         </div>
-                </div>
-                <div class="box">
+                        <div class="msgbox">
+							<form:errors path="passwordcheck" cssClass="error" />
+                        </div>
+                    </div>
+                    <div class="box">
                         <div class="group">
                             <label>手機</label><br>
-                            <form:input path="phone" class="input_field" placeholder="請輸入您的手機" required="required" />
-                       		<div class="errorMsg">
-                       			<form:errors path="phone" cssClass="error" /> 
-                       		</div>
+                            <form:input path="phone" class="input_field" placeholder="請輸入您的手機"
+							required="required" />
                         </div>
-                       <div class="group">
+                        <div class="msgbox">
+							<form:errors path="phone" cssClass="error" />
+                        </div>
+                        <div class="group">
                             <label>身分證字號</label><br>
-                            <form:input path="id_number" class="input_field" placeholder="請輸入您的身分證字號" required="required" />
-                           	<div class="errorMsg">
-                           	<form:errors path="id_number" cssClass="error" /> 
-                           	</div>
+                            <form:input path="id_number" class="input_field"
+							placeholder="請輸入您的身分證字號" required="required" />
+                        </div>
+                        <div class="msgbox">
+							<form:errors path="id_number" cssClass="error" />
                         </div>
                         <div class="group">
                             <label>生日</label><br>
-                            <form:input path="birthday" type="date" class="input_field birthday" required="required" />
-                           	<div class="errorMsg">
-                            	<form:errors path="birthday" cssClass="error" /> 
-                           	</div>
+                            <form:input path="birthday" type="date"
+							class="input_field birthday" required="required" />
+                        </div>
+                        <div class="msgbox">
+							<form:errors path="birthday" cssClass="error" />
                         </div>
                         <div class="group">
                             <div class="radio">
                                 <label>性別</label><br>
-                                <form:radiobuttons path="sex" items='${sexMap}'/>
-                                <div class="errorMsg">
-                                	<form:errors path="sex"  cssClass="error" />
+                                <div class="sex">
+                                    <form:radiobuttons path="sex" items='${sexMap}' />
                                 </div>
                             </div>
+                        </div>
+                        <div class="msgbox">
+								<form:errors path="sex" cssClass="error" />
                         </div>
                     </div>
                 </div>
@@ -235,60 +266,77 @@
             </form:form>
 
         </div>
+
+
+
     </div>
-    </div>
+
 
 <!--     <script src="../js/jquery-3.5.1.js"></script> -->
-    <script>
-        // 顯示登入框
-        function Show() {
-            document.getElementById('popup_form').classList.remove('hide');
-            document.getElementById('overlay').classList.remove('hide');
-            $("#popup_form").css("display", "block");
-            document.documentElement.style.overflow = 'hidden';//電腦端禁止滑動
-            document.body.style.overflow = 'hidden';//手機端禁止滑動
-            login()
-        }
-        // 隱藏登入框
-        function Hide() {
-            document.getElementById('popup_form').classList.add('hide');
-            document.getElementById('overlay').classList.add('hide');
-            $("#popup_form").css("display", "none");
-            document.documentElement.style.overflow = 'auto';//電腦端可以滑動
-            document.body.style.overflow = 'auto';//手機端可以滑動
-        }
+<script>
+	
 
-        var a = document.getElementById('popup_form');
-        var x = document.getElementById("lf");
-        var y = document.getElementById("sform_st");
-        var z = document.getElementById("sform_tr");
+	// 顯示登入框
+	function Show() {
+		document.getElementById('popup_form').classList.remove('hide');
+		document.getElementById('overlay').classList.remove('hide');
+		$("#popup_form").css("display", "block");
+		document.documentElement.style.overflow = 'hidden';//電腦端禁止滑動
+		document.body.style.overflow = 'hidden';//手機端禁止滑動
+		login()
+	}
+	// 隱藏登入框
+	function Hide() {
+		document.getElementById('popup_form').classList.add('hide');
+		document.getElementById('overlay').classList.add('hide');
+		$("#popup_form").css("display", "none");
+		document.documentElement.style.overflow = 'auto';//電腦端可以滑動
+		document.body.style.overflow = 'auto';//手機端可以滑動
+	}
 
-        // 顯示登入框
-        function register_st() {
-            x.style.left = "-800px";
-            y.style.left = "0px";
-            z.style.left = "-800px";
-        }
+	var a = document.getElementById('popup_form');
+	var x = document.getElementById("lf");
+	var y = document.getElementById("sform_st");
+	var z = document.getElementById("sform_tr");
 
-        // 註冊教練
-        function register_tr() {
-            x.style.left = "800px";
-            y.style.left = "800px";
-            z.style.left = "0px";
-            a.style.height = "560px";
+	// 顯示登入框
+	function register_st() {
+		x.style.left = "-800px";
+		y.style.left = "0px";
+		z.style.left = "-800px";
+	}
 
-            // 外框與註冊教練頁的滑動速度
-            document.getElementById("popup_form").classList.add('transition');
-            document.getElementById("sform_tr").classList.add('transition');
-        }
+	// 註冊教練
+	function register_tr() {
+		x.style.left = "800px";
+		y.style.left = "800px";
+		z.style.left = "0px";
+		a.style.height = "560px";
 
-        // 回到登入
-        function login() {
-            x.style.left = "0px";
-            y.style.left = "800px";
-            z.style.left = "-800px";
-            a.style.height = "500px";
-            document.getElementById("popup_form").classList.remove('transition'); 
-        }
+		// 外框與註冊教練頁的滑動速度
+		document.getElementById("popup_form").classList.add('transition');
+		document.getElementById("sform_tr").classList.add('transition');
+	}
 
-    </script>
+	// 回到登入
+	function login() {
+		x.style.left = "0px";
+		y.style.left = "800px";
+		z.style.left = "-800px";
+		a.style.height = "500px";
+		document.getElementById("popup_form").classList.remove('transition');
+	}
+	
+	//清空密碼攔位
+	function resetPassword() {
+		var pwInputs = document.getElementsByClassName('pw');
+		for(const pwInput of pwInputs){
+			pwInput.value = "";
+		}	
+	}
+	
+	resetPassword();
+	
+	
+	
+</script>

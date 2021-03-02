@@ -6,7 +6,8 @@
     font-size: 100%;
     list-style: none;
     box-sizing: border-box;
-    
+    line-height: 0.8;
+
     }
 
 .form,.ask_area,h2,label{
@@ -38,7 +39,7 @@
     overflow: hidden;
 }
 
-/* ÁôªÂÖ•Ê°Ü */
+/* µn§JÆÿ */
 
 .loginform{
     position: absolute;
@@ -75,7 +76,7 @@
     width: 100%;
 }
 
-/* Ë®ªÂÜäÊ°Ü */
+/* µ˘•UÆÿ */
 
 .wrap{
     /* border: 1px solid #f00; */
@@ -92,18 +93,17 @@
     width: 50%;
 }
 
-/* Â≠∏Âì°ÂçÄÂ°ä */
+
+/* æ«≠˚∞œ∂Ù */
 .st{
     position: absolute;
     width: 100%;
-    min-height: 500px;
+    height: 500px;
     left: 800px;
     transition: .3s;
-    padding:5px;
-
 }
 
-/* ÊïôÁ∑¥ÂçÄÂ°ä */
+/* ±–Ωm∞œ∂Ù */
 .tr{
     position: absolute;
     width: 100%;
@@ -116,10 +116,16 @@
     font-size: 13px;
     margin: 0px  30px 0px 0px;
 }
-.radio input:last-child{
-    margin: 0px 0px 0px 15px;
+.radio label{
+    margin-bottom: 8px;
 }
-
+.radio .sex span{
+	display: inline-flex;
+    justify-content: space-between;
+}
+.radio .sex span:last-child{
+    margin: 0px 0px 0px 10px;
+}
 .signupform .btn{
     width: 30%;
     text-align: center;
@@ -132,7 +138,6 @@
 .ask_login{
     text-align: center;
     font-size: 13px;
-
 }
 .ask_login span{
     color: #999;
@@ -147,6 +152,7 @@
     display: block;
     width: 320px;
     margin: 20px 90px;
+ 
 }
 .login_logo,h2,.group,.check,.btn{
     margin: 8px auto;
@@ -158,30 +164,40 @@
 .login_logo img{
     width: 100%;
 }
-h2{
+.popup_box h2{
     display: block;
     width: 72px;
     text-align: center;
     font-weight: 500;
     margin: 15px auto ;
-    box-shadow: 0 2px #21d4a7;
+    box-shadow: 0 3px #21d4a7;
     padding-bottom:5px;
+    font-size: 16px;
+}
+.st h2, .tr h2{
+    margin-top: 20px;
+
 }
 
-/* label{ */
-/*     display: block; */
-/*     font-size: 14px; */
-/*     font-weight: 500; */
-/*     margin-bottom: -15px; */
-/* } */
+label{
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: -3px;
+}
 .group{
+    line-height: 0.5;
     width: 100%;
-    padding: 5px;
+    padding: 10px;
+    /* margin-bottom: 20px; */
+    /* border: 1px solid red; */
+
 }
 .signupform .group{
     margin: 0px 0px 0px 0px;
 }
 .input_field{
+    /* border: 1px solid red; */
     width: 300px;
     border-radius: 3px;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
@@ -191,13 +207,27 @@ h2{
 .signupform .input_field{
     width: 250px;
 }
-
-.check{
-    margin: 0px 10px 40px;
+.check_area{
+    /* border: 1px solid red; */
+    width: 310px;
+    display: flex;
     font-size: 13px;
+    align-items: center;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+.check_area a{
+    color: #21d4a7;
+}
+.check{
+    /* border: 1px solid red; */
+    margin-left: 8px;
 }
 .check_box{
     vertical-align: sub;
+}
+.birthday{
+    line-height: normal;
 }
 .btn_group{
     display: flex;
@@ -207,7 +237,7 @@ h2{
     height: 40px;
     border-radius: 50px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 400;
     color: #fff;
     background-image: linear-gradient(120deg, #21d4a7, #5dffd1);
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
@@ -232,7 +262,7 @@ h2{
     width: 80%;
     transform: .5;
 }
-/* Èö±Ëóè */
+/* ¡Ù¬√ */
 .hide {
     display: none;
   }
@@ -240,9 +270,25 @@ h2{
 .transition{
     transition: .5s;
 }
-.errorMsg{
-	font-size: 5px;
-    color: orange;
-    width: 260px;
-    margin-top: 3px;
+/* ¿À¨d∞TÆß */
+.msgbox{
+    /* border: 1px solid red; */
+    color: red;
+    font-size: 8px;
+    height: 15px;
+    margin-top: -4px;
+    margin-bottom: 3px;
+    padding: 0px 0px 12px 10px;
+    height: 8px;
+}
+.box:last-child .msgbox:last-child{
+    margin-top: -2px;
+}
+
+.tr .box:last-child .group:nth-child(1) .input_field{
+    padding: 7px;
+}
+
+.st .box:last-child .group:nth-child(5) .input_field, .tr .box:last-child .group:nth-child(7) .input_field{
+    padding: 6px;
 }
