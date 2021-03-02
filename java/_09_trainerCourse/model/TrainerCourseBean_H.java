@@ -25,7 +25,7 @@ public class TrainerCourseBean_H {
 	@JoinColumn(name="tr_id")
 	private TrainerBean_H trainerBean_H;
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="skill_id")
+	@JoinColumn(name="sk_id")
 	private SkillBean_H skillBean_H;
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="skill_type_id")
