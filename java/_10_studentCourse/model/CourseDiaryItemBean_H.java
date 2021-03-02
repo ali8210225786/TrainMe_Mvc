@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="course_diary_item_H")
+@Table(name="course_diary_item")
 public class CourseDiaryItemBean_H {
 	private static final long serialVersionUID = 1L;
 	
@@ -20,7 +20,7 @@ public class CourseDiaryItemBean_H {
 	private Integer cdi_id;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="FK_Student_course_H_Id")
+	@JoinColumn(name="course_id")
 	private StudentCourseBean_H studentCourseBean_H;
 	
 	private String action;
