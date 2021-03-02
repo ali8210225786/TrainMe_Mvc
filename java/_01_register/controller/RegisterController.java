@@ -123,7 +123,7 @@ public class RegisterController {
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
-		return "index";
+		return "redirect:/";
 	}
 
 	// 當有錯誤時的處理 - 學員
@@ -197,7 +197,7 @@ public class RegisterController {
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("loginBean", loginBean);
-		return "index";
+		return "redirect:/";
 	}
 
 	// 當有錯誤時的處理 - 教練
