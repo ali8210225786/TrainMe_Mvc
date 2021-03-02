@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>導覽列</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style_nav.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"> --%>
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css"> --%>
 <header id="navbar">
 	<ul>
 		<li class="logo"><a href="<c:url value='/' />"><img
@@ -39,12 +39,12 @@
 			<ul class="dropdown">
 				<div class="triangle"></div>
 				<div class="dropdown_box">
-					<li><a href="#">個人資料</a></li>
+					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人資料</a></li>
 					<li><a href="#">學員列表</a></li>
 					<li><a href="<c:url value='/TimeOff/${LoginOK.id}' />">課程管理</a></li>
 					<li><a href="#">帳戶查詢</a></li>
 					<li><a href="#">訂單查詢</a></li>
-					<li><a href="<c:url value='/_03MemberData/trainerData.jsp' />">帳號設定</a></li>
+					<li><a href="<c:url value='/trainerData/${LoginOK.id}' />">帳號設定</a></li>
 					<hr>
 					<li><a href="<c:url value='/logout' />">登出</a></li>
 				</div>
