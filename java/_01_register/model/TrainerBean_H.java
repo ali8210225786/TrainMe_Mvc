@@ -77,7 +77,7 @@ public class TrainerBean_H extends MemberBean_H {
 	private Blob image;
 	private String fileName;
 	@Transient
-	MultipartFile productImage;
+	MultipartFile trainerImage;
 	@Transient
     public boolean hasError = false;
 	
@@ -99,14 +99,14 @@ public class TrainerBean_H extends MemberBean_H {
 	@OneToMany(mappedBy = "trainerBean_H")
 	private Set<TrainerOffBean_H> trainerOffBean_H = new LinkedHashSet<>();
 	
-	public TrainerBean_H(Integer id, Integer type, String name, String phone, Date birth, String email, String password,
+	public TrainerBean_H(Integer id, Integer type, String name, String phone, Date birthday, String email, String password,
 			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.name = name;
 		this.phone = phone;
-		this.birthday = birth;
+		this.birthday = birthday;
 		this.email = email;
 		this.password = password;
 		this.id_number = id_number;
@@ -533,15 +533,15 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public MultipartFile getProductImage() {
-		return productImage;
+	public MultipartFile getTrainerImage() {
+		return trainerImage;
 	}
 
 
 
 
-	public void setProductImage(MultipartFile productImage) {
-		this.productImage = productImage;
+	public void setTrainerImage(MultipartFile trainerImage) {
+		this.trainerImage = trainerImage;
 	}
 
 
