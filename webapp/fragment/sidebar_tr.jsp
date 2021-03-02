@@ -11,6 +11,6 @@
         <li><a href="<c:url value='/_05_trainSchedule/timeOff.jsp' />"><i class="far fa-list-alt"></i></i>課程管理</a></li>
         <li><a href="#"><i class="fas fa-coins"></i>帳戶查詢</a></li>
         <li><a href="#"><i class="fas fa-shopping-cart"></i>訂單查詢</a></li>
-        <li><a id="a" href="<c:url value='/_03MemberData/trainerData.jsp' />"><i class="fas fa-tools"></i>帳號設定</a></li>
+        <li><a id="a" href="<c:url value='/trainerData/${LoginOK.id}' />"><i class="fas fa-tools"></i>帳號設定</a></li>
 	</ul>
 </div>
