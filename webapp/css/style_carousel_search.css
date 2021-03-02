@@ -1,16 +1,5 @@
-.slider {
+.carousel {
   position: relative;
-}
-
-.banner {
-  position: relative;
-  background-image: url("/TrainMe_UD/images/banner_192002.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 600px;
-  width: 100vw;
-  margin: auto;
-  /* max-height: 600px; */
 }
 
 .slider .ad {
@@ -19,7 +8,6 @@
   left: 20%;
   top: 30%;
   color: #fff;
-  /* background-color: white; */
 }
 .slider h3 {
   padding: 0 0 10px;
@@ -59,6 +47,9 @@
   text-align: center;
   vertical-align: baseline;
 }
+.search_btn {
+  padding: 20px 30px; 
+}
 .search_trainer .search_input {
   width: 200px;
 }
@@ -70,7 +61,7 @@
   cursor: pointer;
 }
 .search_trainer .search_btn:hover {
-  padding: 14px 29px;
+  padding: 19px 29px;
   color: rgb(5, 230, 192);
   background-color: #fff;
   border: 1px solid #59ddb8;
