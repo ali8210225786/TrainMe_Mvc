@@ -66,8 +66,12 @@ public class StudentDataContoller {
 		}
 
 		model.addAttribute("studentBean", studentBean);
+		model.addAttribute("LoginOK", studentBean);
 		return "/_03_memberData/studentData";
 	}
+	
+
+	
 
 	@GetMapping("/areaList")
 	public @ResponseBody List<Area_H> getAreaList(Model model, @RequestParam Integer cityId) {

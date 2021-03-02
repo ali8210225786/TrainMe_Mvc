@@ -11,12 +11,20 @@
 
 <%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    --%>
     <link rel="stylesheet" href="<c:url value='/css/style.css' />">   
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+    crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
-
+    
 <%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css">    --%>
     <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">   
     <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
+    <link rel="stylesheet" href="<c:url value='/css/style_carousel_search.css' />">   
+
     
     <style>
 /* 	       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');  */
@@ -26,7 +34,7 @@
         .hot_trainer{
             text-align: center; 
             display:block;
-            margin: 20px 0px -10px;
+            margin: 20px 0px 0px 0px;
         }
         .hot_trainer h3{
             font-size: 18px;
@@ -131,156 +139,7 @@
         }
 
 
-        /*nav*/
-
-        /* #navbar {
-            overflow: hidden;
-        }
-
-        .sticky {
-            position: fixed;
-            top: 0;
-            width: 100%;
-        } */
-
-        header{
-            position: fixed; /* Make it stick/fixed */
-            top: 0; /* Stay on top */
-            width: 100%; /* Full width */
-            transition: top 0.3s; /* Transition effect when sliding down (and up) */
-            background-color: #fff;
-            border-bottom: 1px solid  #eee;
-            padding: 10px 100px 10px 100px;
-            z-index: 1;
-        }
-        header ul{
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .items{
-            display: inline-flex;
-            padding: 0 25px;
-        }
-        .items li{
-            font-size: 14px;
-            margin: 0 20px;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-        .items li a{
-            color: #333;
-            transition: .3s;
-        }
-        .items li a:hover{
-            color: #59ddb8;
-            box-shadow: 0 2px #21d4a7;
-            padding-bottom:8px;
-        }
-        .logo{
-            flex: 1;
-        }
-        .logo img{
-            vertical-align: bottom;
-            width: 200px;
-
-        }
-        .login_btn{
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            background-color: #59ddb8;
-            cursor: pointer;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-        .login_btn:hover{
-            padding:9px 19px;
-            color: rgb(5, 230, 192);
-            background-color:#fff;
-            border: 1px solid #59ddb8;
-        }
-        .slider{
-            position: relative;
-        }
-
-
-        .banner{
-            position: relative;
-            background-image: url('./images/index/banner_192001.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 600px;
-            width: 100vw;
-            margin: auto;
-            /* max-height: 600px; */
-        }
-
-        .slider .ad{
-            width: 500px;
-            position: absolute;
-            left: 20%;
-            top: 30%;
-            color: #fff
-            /* background-color: white; */
-        }
-        .slider h3{
-            padding: 0 0 10px;
-            font-size: 30px;
-            line-height: 35px;
-            color:#00ffb7;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-        .slider p{
-            padding: 3px;
-            line-height: 22px;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-
-        /*搜尋*/
-        .search_trainer{
-            position: absolute;
-            top: 70%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        .search_trainer li{
-            margin: 0px 10px;
-        }
-        .search_trainer select{
-            width: 150px;
-        }
-        .search_trainer select,.search_input,.search_btn{
-            padding: 15px 30px;
-            border-radius: 10px;
-            border: none;
-            font-size: 16px;
-            font-family: 'Noto Sans TC', sans-serif;
-            text-align: center;
-            vertical-align: baseline;
-        }
-        .search_trainer .search_input{
-            width: 200px;
-        }
-        .search_trainer .search_btn{
-            background-color: #59ddb8;
-            color: #fff;
-            /* font-weight: bold; */
-            font-family: 'Noto Sans TC', sans-serif;
-            cursor: pointer;
-        }
-        .search_trainer .search_btn:hover{
-            padding: 14px 29px;
-            color: rgb(5, 230, 192);
-            background-color:#fff;
-            border: 1px solid #59ddb8;
-        }
-
-
+        
         /* footer */
 
         footer{
@@ -377,21 +236,7 @@
 <body>
 
 <c:if test="${LoginOK == null}">
-    <header id="navbar">
-        <ul>
-            <li class="logo">
-                <a href="#"><img src="${pageContext.request.contextPath}/images/index/logo_black.png"></a>
-            </li>
-            <div class="items">
-                <li><a href="#">關於我們</a></li>
-                <li><a href="#">尋找教練</a></li>
-                <li><a href="#">購物商城</a></li>
-                <li><a href="#">運動論壇</a></li>
-            </div>
-            <li>
-                <button class="login_btn" onclick="Show();">登入/註冊</button>
-            </li>            
-    </header>
+    <jsp:include page="/fragment/nav.jsp"/>  
 </c:if>
 
 <c:if test="${LoginOK.type == 1}">
@@ -402,40 +247,86 @@
 	<jsp:include page="/fragment/nav_tr.jsp"/>  
 </c:if>
 
-    <div class="slider">
-        <div class="banner">
-        
-        <div class="ad">
-            <h3>健身教練與學員的<br>專屬媒合平台</h3>
-            <p>教練課程價錢、時段公開透明<br>
-            省去詢問時間，免於被健身業務打擾<br>
-            透過評價系統，讓您篩選最適合自己的教練！
-            </p>
-        </div>
-     
-            <form class="search_trainer" action="#">
-                <li>    
-                    <select name="" class="lesson">
-                        
-                        <option value="0">課程種類</option>
-                        <option value="1">增肌</option>
-                        <option value="2">減脂</option>
-                    </select>
-                </li>
-                <li>
-                    
-                    <select name="" class="location">
-                        <option value="0">地點</option>
-                        <option value="1">台北市</option>
-                        <option value="2">新北市</option>
-                    </select>
-                </li>
-                <li><input type="search" placeholder="輸入關鍵字" class="search_input">    </li>
-                <li><button class="search_btn">搜尋教練</button>    </li>
-            </form>
-        </div>
-    </div>
 
+    <!-- 橫幅/搜尋 -->
+
+<div class="carousel">
+
+    <div class="slider">
+        
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <!-- <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol> -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="${pageContext.request.contextPath}/images/index/banner_25001.jpg" class="d-block w-100" alt="...">
+                    <div class="ad">
+                        <h3>健身教練與學員的專屬媒合平台</h3>
+                        <p>教練課程價錢、時段公開透明<br>
+                        省去詢問時間，免於被健身業務打擾<br>
+                        透過評價系統，讓您篩選最適合自己的教練！
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="${pageContext.request.contextPath}/images/index/banner_25002.jpg" class="d-block w-100" alt="...">
+                    <div class="ad">
+                        <h3>健身教練與學員的專屬媒合平台</h3>
+                        <p>教練課程價錢、時段公開透明<br>
+                        省去詢問時間，免於被健身業務打擾<br>
+                        透過評價系統，讓您篩選最適合自己的教練！
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="${pageContext.request.contextPath}/images/index/banner_25003.jpg" class="d-block w-100" alt="...">
+                    <div class="ad">
+                        <h3>健身教練與學員的專屬媒合平台</h3>
+                        <p>教練課程價錢、時段公開透明<br>
+                        省去詢問時間，免於被健身業務打擾<br>
+                        透過評價系統，讓您篩選最適合自己的教練！
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>    
+
+    </div>
+    <form class="search_trainer" action="#">
+        <li>    
+            <select name="" class="lesson">
+                
+                <option value="0">課程種類</option>
+                <option value="1">增肌</option>
+                <option value="2">減脂</option>
+            </select>
+        </li>
+        <li>
+            
+            <select name="" class="location">
+                <option value="0">地點</option>
+                <option value="1">台北市</option>
+                <option value="2">新北市</option>
+            </select>
+        </li>
+        <li><input type="search" placeholder="輸入關鍵字" class="search_input">    </li>
+        <li><button class="search_btn">搜尋教練</button>    </li>
+    </form>
+</div>        
+
+
+   
     <!-- 人氣教練 -->
 
     <span class="hot_trainer">
@@ -620,6 +511,13 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>			 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
@@ -634,7 +532,7 @@
         if (prevScrollpos > currentScrollPos) {
             document.getElementById("navbar").style.top = "0";
         } else {
-            document.getElementById("navbar").style.top = "-60px";
+            document.getElementById("navbar").style.top = "-90px";
         }
         prevScrollpos = currentScrollPos;
         } 
