@@ -45,7 +45,8 @@
 				<div class="dropdown_box">
 					<li><a href="<c:url value='/student_info/${LoginOK.id}' />">個人資料</a></li>
 					<li><a href="#">我的課程</a></li>
-					<li><a href="<c:url value='/_06_st_point/st_point.jsp' />">我的點數</a></li>
+					<li><a href="<c:url value='/studentMoney/{LoginOK.id}' />">我的點數</a></li>
+					
 					<li><a href="#">訂單查詢</a></li>
 					<li><a href="<c:url value='/studentData/${LoginOK.id}' />">帳號設定</a></li>
 					<hr>
