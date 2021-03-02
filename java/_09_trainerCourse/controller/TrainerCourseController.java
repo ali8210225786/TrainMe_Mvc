@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.google.gson.Gson;
 import com.google.protobuf.TextFormat.ParseException;
 
+import _09_trainerCourse.model.CloseHour;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
 

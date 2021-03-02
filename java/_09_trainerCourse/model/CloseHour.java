@@ -1,4 +1,4 @@
-package _09_trainerCourse.controller;
+package _09_trainerCourse.model;
 
 import java.util.List;
 

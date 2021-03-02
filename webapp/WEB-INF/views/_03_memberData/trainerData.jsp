@@ -284,7 +284,7 @@
 	}
 
  //  顯示資料庫內gym_id對應的健身房
-    	axios.get("/trainme/Gymlist")
+    	axios.get("/TrainMe/Gymlist")
         .then(function (res) {   //若有抓到資料則執行這個function
           var gyms = res.data;
 	        console.log(gyms.id);
