@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import _01_register.model.StudentBean_H;
+import _07_memberInfo.model.StudentDataBean_H;
 
 @Repository
 public class StudentInfoDao {
@@ -13,9 +14,10 @@ public class StudentInfoDao {
 	@Autowired
 	SessionFactory factory;
 	
-	public void updateBody(StudentBean_H sb) {
+	
+	public void saveWeightData(StudentDataBean_H sdb) {
 		Session session = factory.getCurrentSession();
-		session.update(sb);
+		session.save(sdb);
 	}
 	
 	
