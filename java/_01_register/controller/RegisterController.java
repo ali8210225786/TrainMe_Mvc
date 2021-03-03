@@ -32,11 +32,13 @@ import _01_register.service.MemberService_H;
 import _01_register.validate.StudentValidator;
 import _01_register.validate.TrainerValidator;
 import _02_login.model.LoginBean;
+import _04_money.model.MoneyBean_H;
+import _04_money.service.MemPointService;
 import mail.model.SendingEmail;
 import mail.service.MailService;
 
 @Controller
-@SessionAttributes({ "LoginOK" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean" }) // 此處有LoginOK的識別字串
 public class RegisterController {
 
 	@Autowired
@@ -53,6 +55,9 @@ public class RegisterController {
 
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+	MemPointService memPointService;
 
 	@GetMapping("/")
 	public String index(Model model) {
@@ -262,6 +267,8 @@ public class RegisterController {
 					if (memberService.checkPass(sb.getType(), sb.getEmail())) {
 						// OK, 登入成功, 將sb物件放入Session範圍內，識別字串為"LoginOK"
 						model.addAttribute("LoginOK", sb);
+						List<MoneyBean_H> money =memPointService.getMoneyDetail(sb.getId());
+						model.addAttribute("MoneyBean", money);
 					} else {
 						result.rejectValue("userEmail", "", "帳號尚未通過信箱驗證");
 						errorResponseLg(loginBean, model);

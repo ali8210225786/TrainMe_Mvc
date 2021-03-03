@@ -113,7 +113,16 @@
 
 			<div class="balance">
 				<p>
-					<i class="fas fa-coins"></i> 目前餘額 : <span>${MoneyBean.get((MoneyBean.size()-1)).total_amount}</span> 點
+					<i class="fas fa-coins"></i> 目前餘額 : <span>
+					<c:choose>
+						<c:when test="${MoneyBean.size() == 0}">
+							0
+						</c:when>
+						<c:otherwise>
+								${MoneyBean.get((MoneyBean.size()-1)).total_amount}			
+						</c:otherwise>
+					</c:choose>
+					</span> 點
 				</p>
 <!-- 				<button class="df_btn"><a href="st_add_point.jsp">我要儲值</a></button> -->
 			</div>
@@ -134,34 +143,34 @@
 					</thead>
 					<tbody class="tr_height">
 					
-						<c:forEach varStatus="i" begin="0" end="${MoneyBean.size()-1}">
-							<tr>
-								<td>${MoneyBean.get(i.current).change_time}</td>
-								<c:if test="${MoneyBean.get(i.current).change_amount>0}">
+<%-- 						<c:forEach varStatus="i" begin="0" end="${MoneyBean.size()-1}"> --%>
+<!-- 							<tr> -->
+<%-- 								<td>${MoneyBean.get(i.current).change_time}</td> --%>
+<%-- 								<c:if test="${MoneyBean.get(i.current).change_amount>0}"> --%>
 
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>儲值點數</td>
-									<td>-</td>
-									<td>${MoneyBean.get(i.current).change_amount}</td>
-								</c:if>
+<!-- 									<td>-</td> -->
+<!-- 									<td>-</td> -->
+<!-- 									<td>-</td> -->
+<!-- 									<td>儲值點數</td> -->
+<!-- 									<td>-</td> -->
+<%-- 									<td>${MoneyBean.get(i.current).change_amount}</td> --%>
+<%-- 								</c:if> --%>
 
-								<c:if test="${MoneyBean.get(i.current).change_amount < 0}">
+<%-- 								<c:if test="${MoneyBean.get(i.current).change_amount < 0}"> --%>
 								
-									<td>${MoneyBean.get(i.current).getStudentCourseBean_H().getDate()}</td>
-									<td>${MoneyBean.get(i.current).getStudentCourseBean_H().getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
-									<td>${MoneyBean.get(i.current).getStudentCourseBean_H().getTrainerCourseBean_H().getTrainerBean_H().getName()}</td>
-									<td>購買課程</td>
-									<td>${MoneyBean.get(i.current).change_amount}</td>
-									<td>-</td>
+<%-- 									<td>${MoneyBean.get(i.current).getStudentCourseBean_H().getDate()}</td> --%>
+<%-- 									<td>${MoneyBean.get(i.current).getStudentCourseBean_H().getTrainerCourseBean_H().getSkillBean_H().getName()}</td> --%>
+<%-- 									<td>${MoneyBean.get(i.current).getStudentCourseBean_H().getTrainerCourseBean_H().getTrainerBean_H().getName()}</td> --%>
+<!-- 									<td>購買課程</td> -->
+<%-- 									<td>${MoneyBean.get(i.current).change_amount}</td> --%>
+<!-- 									<td>-</td> -->
 									
 								
-								</c:if>
+<%-- 								</c:if> --%>
 
 
-							</tr>
-						</c:forEach>
+<!-- 							</tr> -->
+<%-- 						</c:forEach> --%>
 					</tbody>
 
 				</table>
