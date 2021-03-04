@@ -93,33 +93,33 @@ public class TrainerDataContoller {
 		oldBean.setArea(newBean.getArea());
 		oldBean.setAddress(newBean.getAddress());
 		oldBean.setBank_account(newBean.getBank_account());
-		// 圖片處理
-		MultipartFile picture = newBean.getTrainerImage(); // 圖片本人
-		String originalFilename = picture.getOriginalFilename(); // 圖片的檔名
-		if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
-			oldBean.setProfile_image("profile_photo/trainer/" + id + "/" + originalFilename); // 將檔名存入資料庫
-		}
-		// 將圖片存入資料夾
-		String folderPath = String
-				.format("C:/_TraineMe/workspace/TrainMe_springMVC/src/main/webapp/images/profile_photo/trainer/%s", id);
-		File theDir = new File(folderPath);
-		if (!theDir.exists()) {
-			theDir.mkdirs();
-		}
-
-		try (InputStream in = picture.getInputStream();
-				OutputStream out = new FileOutputStream(folderPath + "/" + originalFilename)) {
-
-			byte[] buffer = new byte[1024];
-			int len = -1;
-			while ((len = in.read(buffer)) != -1) {
-				out.write(buffer, 0, len);
-
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		// 圖片處理
+//		MultipartFile picture = newBean.getTrainerImage(); // 圖片本人
+//		String originalFilename = picture.getOriginalFilename(); // 圖片的檔名
+//		if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
+//			oldBean.setProfile_image("profile_photo/trainer/" + id + "/" + originalFilename); // 將檔名存入資料庫
+//		}
+//		// 將圖片存入資料夾
+//		String folderPath = String
+//				.format("C:/_TraineMe/workspace/TrainMe_springMVC/src/main/webapp/images/profile_photo/trainer/%s", id);
+//		File theDir = new File(folderPath);
+//		if (!theDir.exists()) {
+//			theDir.mkdirs();
+//		}
+//
+//		try (InputStream in = picture.getInputStream();
+//				OutputStream out = new FileOutputStream(folderPath + "/" + originalFilename)) {
+//
+//			byte[] buffer = new byte[1024];
+//			int len = -1;
+//			while ((len = in.read(buffer)) != -1) {
+//				out.write(buffer, 0, len);
+//
+//			}
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
 		memberDataService.updateTrainer(oldBean);
 		return "redirect:/trainerData/" + id;

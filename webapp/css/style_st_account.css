@@ -73,6 +73,10 @@
 	 width: 150px;
      height: 150px;
 }
+.upload_videobox{
+	width: 450px;
+    height: 300px;
+}
 .upload_file{
     display: flex;
 }
