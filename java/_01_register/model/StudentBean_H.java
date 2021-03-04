@@ -21,8 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
-import _03_memberData.model.StudentDataBean_H;
 import _04_money.model.MoneyBean_H;
+import _07_memberInfo.model.StudentDataBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
@@ -72,9 +72,9 @@ public class StudentBean_H extends MemberBean_H {
 	private Integer is_delete;
 	private String hash;
 	private String introduction;
+	private Integer activity;
 	
-	private Blob image;
-	private String fileName;
+
 	@Transient
 	MultipartFile studentImage;
 	@Transient
@@ -307,21 +307,6 @@ public class StudentBean_H extends MemberBean_H {
 		this.studentCourseBean_H = studentCourseBean_H;
 	}
 
-	public Blob getImage() {
-		return image;
-	}
-
-	public void setImage(Blob image) {
-		this.image = image;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
 
 	public MultipartFile getStudentImage() {
 		return studentImage;
@@ -363,5 +348,14 @@ public class StudentBean_H extends MemberBean_H {
 		this.studentDataBean_H = studentDataBean_H;
 	}
 
+	public Integer getActivity() {
+		return activity;
+	}
+
+	public void setActivity(Integer activity) {
+		this.activity = activity;
+	}
+
+	
 
 }

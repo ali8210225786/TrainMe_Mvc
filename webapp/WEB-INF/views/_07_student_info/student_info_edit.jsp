@@ -47,34 +47,35 @@
 				<p>您所填寫的資料將反映到BMI、BMR與TDEE的數據上。</p>
 			</div>
 			<div class="edit_area">
-				<form:form action="/student_info_edit/${studentBean.id}"
+				<form:form action="/TrainMe/student_bodyData_update/${studentBean.id}"
 					method="post" modelAttribute="studentBean"
 					enctype="multipart/form-data">
 
 					<div class="edit_box">
-						<label>身高(cm)</label><br> <form:input type="number" path="heigth"
-							required />
+						<label>身高(cm)</label><br>
+						<form:input type="number" path="heigth" />
 					</div>
 					<div class="edit_box">
-						<label>體重(kg)</label><br> <form:input type="number" path="weight"
-							required />
+						<label>體重(kg)</label><br>
+						<form:input type="number" path="weight" />
 					</div>
 					<div class="edit_box">
-						<label>活動量程度</label><br> <form:select path="activity"
-							class="select_activity" required >
-							<form:option value=0 label="久坐（很少或完全沒運動）" />
-							<form:option value=1 label="輕度活動量（偶爾運動 / 每周運動1~3天）" />
-							<form:option value=2 label="中度活動量（適度運動 / 每周運動3~5天）" />
-							<form:option value=3 label="高度活動量（積極運動 / 每周運動6~7天）" />
-							<form:option value=4 label="超高度活動量（加強鍛鍊 / 密集運動、從事體力工作或高度身體訓練）" />
-						</form:select>
+						<label>活動量程度</label><br> <select id="activity"
+							name="activity" class="select_activity"  >
+							<option value=0 label="久坐（很少或完全沒運動）" />
+							<option value=1 label="輕度活動量（偶爾運動 / 每周運動1~3天）" />
+							<option value=2 label="中度活動量（適度運動 / 每周運動3~5天）" />
+							<option value=3 label="高度活動量（積極運動 / 每周運動6~7天）" />
+							<option value=4 label="超高度活動量（加強鍛鍊 / 密集運動、從事體力工作或高度身體訓練）" />
+						</select>
+
 					</div>
 					<div class="edit_box">
 						<label>自我介紹（150字以內）</label><br>
 						<div class="explain">
 							<p>教練將藉由自我介紹了解您。您可以在此填寫平常的運動習慣、是否有過健身經驗、目前的身體狀態或飲食習慣等資訊。</p>
 						</div>
-						<textarea name="" id="" cols="41" rows="10"></textarea>
+						<form:textarea path="introduction" cols="41" rows="10" />
 					</div>
 					<div class="edit_box e_button">
 						<button class="cancel" id="cancel_btn">取消</button>
@@ -88,41 +89,39 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 	<script>
-		var save = document.getElementById('save_btn');
-		var heigth = document.getElementById('heigth');
-		var weight = document.getElementById('weight');
-		var activity = document.getElementById('activity');
-		save.addEventListener('click', function() {
-			console.log(heigth.value);
-			console.log(weight.value);
-			console.log(activity.value);
-
-			//     	  axios.post("/TrainMe/student_bodyData_update/"+ ${LoginOK.id},
-			// //     	  {heigth:heigth.value, weight:weight.value, activity:activity.value })
-			//     	  {data:"111"})
-			// 		  .then(function (res){
-			// 			                console.log("okkkkkkkk");
-			// 			                console.log(data);
-			// 			          					 }
-			// 	    				)    	
-
-			//     	  $.post("/TrainMe/student_bodyData_update/"+ ${LoginOK.id} , 
-			//     			  {heigth:heigth.value, weight:weight.value, activity:activity.value },
-			//                   function (data) {
-			//     				  window.location.href="<c:url value='/student_info/${LoginOK.id}' />";
-			//                   }
-			//                 );
-
-		})
-
+	
 		var cancel_btn = document.getElementById('cancel_btn');
-		cancel_btn
-				.addEventListener(
-						'click',
-						function() {
-							console.log("aaa");
-							window.location.href = "<c:url value='/student_info/${LoginOK.id}' />";
-						})
+		cancel_btn.addEventListener('click',function(event) {
+	
+			console.log("aaa");
+			window.location.href = "<c:url value='/student_info/${LoginOK.id}' />";
+			event.preventDefault();  // 阻止瀏欄器預設行為(送出表單)
+		})
+		
+		 var options = 	document.getElementsByTagName('option');
+	
+		 for(option of options){
+			 if(option.value == ${LoginOK.activity} ){
+				 option.setAttribute('selected','selected');
+			 }			 
+		 }
+		
+		 var heigth = document.getElementById('heigth');
+		 var weight = document.getElementById('weight');
+		 var introduction = document.getElementById('introduction').value;
+		 var save_btn = document.getElementById('save_btn');		 
+		 save_btn.addEventListener('click',function (event) {
+// 			 	console.log(heigth.value);
+				 if(heigth.value >= 1000 || heigth.value< 0 || weight.value >= 1000 || weight.value< 0){
+					 alert("數值範圍不正確唷");
+					 event.preventDefault();
+					}
+				if(introduction.length > 150){
+					alert("自我介紹最多150個字唷");
+					 event.preventDefault();
+				}
+			 
+		 })
 	</script>
 </body>
 </html>

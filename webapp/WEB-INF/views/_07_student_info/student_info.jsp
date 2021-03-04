@@ -88,7 +88,19 @@
 								</div>
 								<div class="wp_div">
 									<p>
-										點數餘額 : <span>${MoneyBean.get((MoneyBean.size()-1)).total_amount}</span> 點 <a href="#">我要儲值</a>
+										點數餘額 :
+										 <span>
+											<c:choose>
+												<c:when test="${MoneyBean.size() == 0}">
+													0
+												</c:when>
+												<c:otherwise>
+												${MoneyBean.get((MoneyBean.size()-1)).total_amount} 	
+												</c:otherwise>
+												
+											</c:choose>
+										</span> 
+											點 <a href="#">我要儲值</a>
 									</p>
 								</div>
 
@@ -118,17 +130,17 @@
 								<div class="body_data">
 									<div class="data">
 										<p>BMI</p>
-										<span></span>
+										<span>${BMI}</span>
 
 									</div>
 									<div class="data">
 										<p>BMR</p>
-										<span>1276.4</span>
+										<span>${BMR}</span>
 
 									</div>
 									<div class="data">
 										<p>TDEE</p>
-										<span>1531.68</span>
+										<span>${TDEE}</span>
 
 									</div>
 								</div>
@@ -142,7 +154,7 @@
 
 						<div class="wrap_right self_intro">
 
-							<p>一些關於是否有運動習慣、身體狀態等等的自我介紹約150字以內。一些關於是否有運動習慣、身體狀態等等的自我介紹約150字以內。一些關於是否有運動習慣、身體狀態等等的自我介紹約150字以內一些關於是否有運動習慣、身體狀態等等的自我介紹約150字以內。一些關於是否有運動習慣、身體狀態等等的自我介紹約150字以內。</p>
+							<p>${LoginOK.introduction}</p>
 						</div>
 
 

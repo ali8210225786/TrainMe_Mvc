@@ -67,6 +67,7 @@ public class TrainerBean_H extends MemberBean_H {
 	@Transient
 	Integer gympassword;
 	String profile_image;
+	String profile_video;
 	Integer is_delete;
 	String hash;
 	String nickname;
@@ -78,6 +79,8 @@ public class TrainerBean_H extends MemberBean_H {
 	private String fileName;
 	@Transient
 	MultipartFile trainerImage;
+	@Transient
+	MultipartFile trainerVideo;
 	@Transient
     public boolean hasError = false;
 	
@@ -379,6 +382,20 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
+	public String getProfile_video() {
+		return profile_video;
+	}
+
+
+
+
+	public void setProfile_video(String profile_video) {
+		this.profile_video = profile_video;
+	}
+
+
+
+
 	public Integer getIs_delete() {
 		return is_delete;
 	}
@@ -542,6 +559,20 @@ public class TrainerBean_H extends MemberBean_H {
 
 	public void setTrainerImage(MultipartFile trainerImage) {
 		this.trainerImage = trainerImage;
+	}
+
+
+
+
+	public MultipartFile getTrainerVideo() {
+		return trainerVideo;
+	}
+
+
+
+
+	public void setTrainerVideo(MultipartFile trainerVideo) {
+		this.trainerVideo = trainerVideo;
 	}
 
 

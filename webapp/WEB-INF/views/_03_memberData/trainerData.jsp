@@ -106,38 +106,38 @@
 							name="bank_account" value="${trainerBean.bank_account}">
 					</div>
 
-					<div class="setting_box upload_file">
-						<label>上傳相片</label>
+<!-- 					<div class="setting_box upload_file"> -->
+<!-- 						<label>上傳相片</label> -->
 
-						<div class="upload_file_area">
-							<div id="imgbox" class="ufl_box upload_imgbox">
+<!-- 						<div class="upload_file_area"> -->
+<!-- 							<div id="imgbox" class="ufl_box upload_imgbox"> -->
 
-								<c:choose>
-									<c:when test="${empty  trainerBean.profile_image}">
-										<img id="photo" name="photo"
-											src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
-									</c:when>
-									<c:otherwise>
-										<img id="photo" name="photo"
-											src="/upload/${trainerBean.profile_image}">
-									</c:otherwise>
-								</c:choose>
+<%-- 								<c:choose> --%>
+<%-- 									<c:when test="${empty  trainerBean.profile_image}"> --%>
+<!-- 										<img id="photo" name="photo" -->
+<%-- 											src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png"> --%>
+<%-- 									</c:when> --%>
+<%-- 									<c:otherwise> --%>
+<!-- 										<img id="photo" name="photo" -->
+<%-- 											src="/upload/${trainerBean.profile_image}"> --%>
+<%-- 									</c:otherwise> --%>
+<%-- 								</c:choose> --%>
 
 
-							</div>
-							<div class="ufl_box">
-								<p>
-									從電腦中選取圖檔<br> 最佳大小為 250 x 250 px
-								</p>
-								<button type="button" class="upload_button">
-									<label> <!--<input type="file" accept="image/*" id="theFile" name="theFile" /> accept : 限制上傳檔案類型 	 -->
-										<form:input path="trainerImage" type='file' class="theFile" />
-										<form:errors path="trainerImage" cssClass="error" /> 上傳檔案
-									</label>
-								</button>
-							</div>
-						</div>
-					</div>
+<!-- 							</div> -->
+<!-- 							<div class="ufl_box"> -->
+<!-- 								<p> -->
+<!-- 									從電腦中選取圖檔<br> 最佳大小為 250 x 250 px -->
+<!-- 								</p> -->
+<!-- 								<button type="button" class="upload_button"> -->
+<!-- 									<label> <input type="file" accept="image/*" id="theFile" name="theFile" /> accept : 限制上傳檔案類型 	 -->
+<%-- 										<form:input path="trainerImage" type='file' class="theFile" /> --%>
+<%-- 										<form:errors path="trainerImage" cssClass="error" /> 上傳檔案 --%>
+<!-- 									</label> -->
+<!-- 								</button> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 
 					<div class="edit_box e_button">
 						<button class="save">更新</button>
@@ -223,31 +223,31 @@
     
 // 照片處理
 	
-    const theFile = document.getElementById('trainerImage');
+//     const theFile = document.getElementById('trainerImage');
 
 
     
-    theFile.addEventListener('change',function () {
-    	console.log('ok');
-        showImg(theFile);
+//     theFile.addEventListener('change',function () {
+//     	console.log('ok');
+//         showImg(theFile);
   
-    })
+//     })
 
-    function showImg(imgFile) {
-        var file = imgFile.files[0];
+//     function showImg(imgFile) {
+//         var file = imgFile.files[0];
        
-            // 建立FileReader物件
-            var fr = new FileReader();
+//             // 建立FileReader物件
+//             var fr = new FileReader();
             
-            let photo = document.getElementById('photo');
-            //註冊load事件
-            fr.addEventListener('load', function(e) {
-                 photo.src = e.target.result;                 
-            });
-            //readAsDataURL去讀 file 把檔案轉成 URL
-            fr.readAsDataURL(file);
+//             let photo = document.getElementById('photo');
+//             //註冊load事件
+//             fr.addEventListener('load', function(e) {
+//                  photo.src = e.target.result;                 
+//             });
+//             //readAsDataURL去讀 file 把檔案轉成 URL
+//             fr.readAsDataURL(file);
             
-    }
+//     }
              
     
 </script>

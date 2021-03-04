@@ -1,4 +1,4 @@
-package _03_memberData.model;
+package _07_memberInfo.model;
 
 import java.sql.Date;
 import java.util.LinkedHashSet;
