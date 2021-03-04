@@ -88,19 +88,16 @@
 								</div>
 								<div class="wp_div">
 									<p>
-										點數餘額 :
-										 <span>
-											<c:choose>
+										點數餘額 : <span> <c:choose>
 												<c:when test="${MoneyBean.size() == 0}">
 													0
 												</c:when>
 												<c:otherwise>
 												${MoneyBean.get((MoneyBean.size()-1)).total_amount} 	
 												</c:otherwise>
-												
+
 											</c:choose>
-										</span> 
-											點 <a href="#">我要儲值</a>
+										</span> 點 <a href="#">我要儲值</a>
 									</p>
 								</div>
 
@@ -181,20 +178,24 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="class_name">加強核心</td>
-								<td>Mark</td>
-								<td>2020-04-01 15:00-16:00</td>
-								<td>1500</td>
-								<td><a href="">取消</a></td>
-							</tr>
-							<tr>
-								<td class="class_name">加強核心</td>
-								<td>Mark</td>
-								<td>2020-04-09 15:00-16:00</td>
-								<td>1500</td>
-								<td><a href="#">取消</a></td>
-							</tr>
+							<c:if test="${comingSoonCourse.size() > 0}">
+								<c:forEach varStatus="i" begin="0"
+									end="${comingSoonCourse.size()-1}">
+
+									<tr>
+										<td class="class_name">${comingSoonCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+										<td>${comingSoonCourse.get(i.current).getTrainerCourseBean_H().getTrainerBean_H().getName()}</td>
+										<td>${comingSoonCourse.get(i.current).getDate()}
+
+											${comingSoonCourse.get(i.current).getTime()}:00 -
+											${comingSoonCourse.get(i.current).getTime() + 1}:00</td>
+										<td>${comingSoonCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
+										<td><a href="">取消</a></td>
+									</tr>
+
+								</c:forEach>
+							</c:if>
+
 						</tbody>
 					</table>
 
@@ -222,13 +223,24 @@
 								<th scope="col">取消課程</th>
 							</tr>
 						</thead>
+
 						<tbody>
-							<td class="class_name">加強核心</td>
-							<td>Mark</td>
-							<td>2020-04-20 15:00-16:00</td>
-							<td>1500</td>
-							<td><a href="#">取消</a></td>
+							<c:if test="${waitCourse.size() > 0}">
+								<c:forEach varStatus="i" begin="0"
+									end="${waitCourse.size()-1}">
+									<td class="class_name">${waitCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+									<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getTrainerBean_H().getName()}</td>
+									<td>${waitCourse.get(i.current).getDate()}
+
+										${waitCourse.get(i.current).getTime()}:00 -
+										${waitCourse.get(i.current).getTime() + 1}:00</td>
+									<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
+									<td><a href="">取消</a></td>
+								</c:forEach>
+							</c:if>
 						</tbody>
+
+
 					</table>
 
 
@@ -257,7 +269,7 @@
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 <script>
@@ -297,6 +309,24 @@
 			}
 		}
 	});
+
+	// 	window.onload = function () {
+	// // 		axios.get("/TrainMe/getComingSoonCourse/"+ ${LoginOK.id})
+	// // 			 .then(function (res) {
+	// // 				console.log(res);
+	// // 				 var comingSoonCourses = res.data;
+	// // 			})
+
+	// 		var xhr = new XMLHttpRequest();
+	// 			xhr.open('GET', "/TrainMe/getComingSoonCourse/"+${LoginOK.id}, true)
+	// 			xhr.send();
+	// 			xhr.onreadystatechange = function () {
+	// 				if(xhr.status == 200 && xhr.readyState == 4){
+	// 					console.log(xhr.responseText);					
+	// 				}
+	// 			}
+
+	// 	}
 </script>
 
 

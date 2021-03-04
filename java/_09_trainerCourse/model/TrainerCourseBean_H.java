@@ -1,5 +1,8 @@
 package _09_trainerCourse.model;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import _01_register.model.TrainerBean_H;
+import _04_money.model.MoneyBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 
 @Entity
@@ -32,8 +37,8 @@ public class TrainerCourseBean_H {
 	private SkillTypeBean_H skill_typeBean_H;
 	private Integer price;
 	
-	@OneToOne(mappedBy = "trainerCourseBean_H")
-	private StudentCourseBean_H studentCourseBean_H;
+	@OneToMany(mappedBy = "trainerCourseBean_H")
+	private Set<StudentCourseBean_H> studentCourseBean_H = new LinkedHashSet<>();;
 	
 	public TrainerCourseBean_H(TrainerBean_H trainerBean_H, Integer price) {
 		super();
@@ -41,8 +46,9 @@ public class TrainerCourseBean_H {
 		this.price = price;
 	}
 	
+	
 	public TrainerCourseBean_H(Integer id, TrainerBean_H trainerBean_H, SkillBean_H skillBean_H,
-			SkillTypeBean_H skill_typeBean_H, Integer price, StudentCourseBean_H studentCourseBean_H) {
+			SkillTypeBean_H skill_typeBean_H, Integer price, Set<StudentCourseBean_H> studentCourseBean_H) {
 		super();
 		this.id = id;
 		this.trainerBean_H = trainerBean_H;
@@ -51,6 +57,17 @@ public class TrainerCourseBean_H {
 		this.price = price;
 		this.studentCourseBean_H = studentCourseBean_H;
 	}
+
+
+	public Set<StudentCourseBean_H> getStudentCourseBean_H() {
+		return studentCourseBean_H;
+	}
+
+
+	public void setStudentCourseBean_H(Set<StudentCourseBean_H> studentCourseBean_H) {
+		this.studentCourseBean_H = studentCourseBean_H;
+	}
+
 
 	public TrainerCourseBean_H() {
 		super();
@@ -97,13 +114,7 @@ public class TrainerCourseBean_H {
 		this.price = price;
 	}
 
-	public StudentCourseBean_H getStudentCourseBean_H() {
-		return studentCourseBean_H;
-	}
-
-	public void setStudentCourseBean_H(StudentCourseBean_H studentCourseBean_H) {
-		this.studentCourseBean_H = studentCourseBean_H;
-	}
+	
 	
 	
 	

@@ -1,9 +1,8 @@
 package _07_memberInfo.service;
 
-import java.math.BigDecimal;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import javax.transaction.Transactional;
@@ -16,6 +15,7 @@ import _01_register.model.StudentBean_H;
 import _03_memberData.dao.MemberDataDao;
 import _07_memberInfo.dao.StudentInfoDao;
 import _07_memberInfo.model.StudentDataBean_H;
+import _10_studentCourse.model.StudentCourseBean_H;
 
 @Transactional
 @Service
@@ -96,5 +96,19 @@ public class StudentInfoService {
 	
 	public void updateBodyData(StudentBean_H sb) {
 		memberDataDao.updateStudent(sb);
+	}
+	
+	public List<StudentCourseBean_H> getComingSoonCourse(int id , Date nowDate){
+		
+		   Calendar cal = Calendar.getInstance();
+		   cal.setTime(nowDate);
+		   cal.add(Calendar.DATE, 7);		   
+		   java.sql.Date endDate = new java.sql.Date(cal.getTimeInMillis());
+		   
+		return studentInfoDao.getComingSoonCourse(id, nowDate, endDate);
+	}
+	
+	public List<StudentCourseBean_H> getWaitCourse(int id, Date nowDate){
+		return studentInfoDao.getWaitCourse(id, nowDate);
 	}
 }

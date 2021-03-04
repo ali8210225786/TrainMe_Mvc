@@ -74,8 +74,7 @@ public class TrainerBean_H extends MemberBean_H {
 	String course;
 	String introduction;
 	
-	private Blob image;
-	private String fileName;
+
 	@Transient
 	MultipartFile trainerImage;
 	@Transient
@@ -501,35 +500,6 @@ public class TrainerBean_H extends MemberBean_H {
 	public void setMoneyBean_H(Set<MoneyBean_H> moneyBean_H) {
 		this.moneyBean_H = moneyBean_H;
 	}
-
-
-
-
-	public Blob getImage() {
-		return image;
-	}
-
-
-
-
-	public void setImage(Blob image) {
-		this.image = image;
-	}
-
-
-
-
-	public String getFileName() {
-		return fileName;
-	}
-
-
-
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
 
 
 

@@ -184,10 +184,13 @@ public class RegisterController {
 			Random theRandom = new Random();
 			theRandom.nextInt(999999);
 			trainerBean.setHash(DigestUtils.md5Hex("" + theRandom));
+			
 			trainerBean.setType(2);
 			trainerBean.setVerification(0);
 			trainerBean.setIs_delete(0);
+			
 			memberService.saveTrainer_H(trainerBean);
+			
 		} catch (Exception ex) {
 			System.out.println(ex.getClass().getName() + ", ex.getMessage()=" + ex.getMessage());
 			result.rejectValue("email", "", "發生異常，請通知系統人員...");
@@ -240,14 +243,13 @@ public class RegisterController {
 	public String Login(@ModelAttribute("loginBean") LoginBean loginBean, BindingResult result, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 
-		String password = loginBean.getPassword();
 		MemberBean_H mb = null;
 		StudentBean_H sb = null;
 		TrainerBean_H tb = null;
 
 		try {
 			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),
-					GlobalService.getMD5Endocing(GlobalService.encryptString(password)));
+					GlobalService.getMD5Endocing(GlobalService.encryptString(loginBean.getPassword())));
 
 			if (mb != null) {
 
