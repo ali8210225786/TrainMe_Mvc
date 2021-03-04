@@ -39,7 +39,7 @@ import mail.model.SendingEmail;
 import mail.service.MailService;
 
 @Controller
-@SessionAttributes({ "LoginOK" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean"}) // 此處有LoginOK的識別字串
 public class MoneyController {
 
 	@Autowired
