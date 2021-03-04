@@ -37,7 +37,7 @@ public class MemPointDaoImpl implements MemPointDao{
 		
 		@SuppressWarnings("unchecked")
 		List <MoneyBean_H> mb = session.createQuery(hql).setParameter("stid", id).getResultList();
-		
+	
 		System.out.println("mb.size()= "+mb.size());
 //		System.out.println("MoneyBean.get(0).student_course_id ="+mb.get(0).getStudentCourseBean_H().getTrainerCourseBean_H().getSkillBean_H().getName() );
 		return mb;

@@ -39,7 +39,7 @@ import mail.model.SendingEmail;
 import mail.service.MailService;
 
 @Controller
-@SessionAttributes({ "LoginOK" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK","addValue" }) // 此處有LoginOK的識別字串
 public class MoneyController {
 
 	@Autowired
@@ -59,4 +59,18 @@ public class MoneyController {
 	}
 
 
+	@GetMapping("/studentMoney/addPoint")
+	public String addPoint(Model model) {
+		
+		
+		return "/_04_money/st_add_point";
+	}
+	
+	@GetMapping("/studentMoney/checkout")
+	public String stCheckout(Model model) {
+		
+		return "/_04_money/st_checkout";
+	}
+	
+	
 }
