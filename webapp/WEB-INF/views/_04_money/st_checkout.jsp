@@ -33,27 +33,38 @@ table, td {
 			<td></td>
 		</tr>
 	</table>
+
 	<form:form method="POST" action="/TrainMe/tr_register"
-		modelAttribute="trainerBean" enctype='multipart/form-data'>
+		modelAttribute="cardBean" enctype='multipart/form-data'>
 		<div>信用卡付款</div>
 		<div>
 			<label>姓名</label><br>
-			<form:input path='name' class="input_field" placeholder="請輸入您的姓名"
+			<form:input path='name' placeholder="請輸入您的姓名"
 				required="required" />
 		</div>
+
 		<div>
 			<form:errors path="name" cssClass="error" />
 		</div>
 
-		<li class="input"><span class="Tit">信用卡卡號</span> 
-		<input
+		<div>
+			<label>信用卡卡號</label><br>
+			<form:input path='cardNo' placeholder="請輸入您的姓名"
+				required="required" size="4" />
+		</div>
+
+		<div>
+			<form:errors path="name" cssClass="error" />
+		</div>
+
+
+
+		<li class="input"><span class="Tit">信用卡卡號</span> <input
 			id="tbCardNo1" name="CardNo1" type="text" size="4"
 			class="input_text CardNo" autocomplete="off" maxlength="4"> <span
-			style="float: left">-</span>
-			 <input id="tbCardNo2" name="CardNo2"
+			style="float: left">-</span> <input id="tbCardNo2" name="CardNo2"
 			type="text" size="4" class="input_text CardNo" autocomplete="off"
-			maxlength="4"> <span style="float: left">-</span> 
-			<input
+			maxlength="4"> <span style="float: left">-</span> <input
 			id="tbCardNo3" name="CardNo3" type="text" size="4"
 			class="input_text CardNo" autocomplete="off" maxlength="4"> <span
 			style="float: left">-</span> <input id="tbCardNo4" name="CardNo4"
