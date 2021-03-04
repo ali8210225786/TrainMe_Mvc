@@ -33,13 +33,15 @@ import _01_register.service.MemberService_H;
 import _01_register.validate.StudentValidator;
 import _01_register.validate.TrainerValidator;
 import _02_login.model.LoginBean;
+import _04_money.model.CardBean;
 import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
+import _04_money.validate.CardValidator;
 import mail.model.SendingEmail;
 import mail.service.MailService;
 
 @Controller
-@SessionAttributes({ "LoginOK","addValue" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK","MoneyBean" }) // 此處有LoginOK的識別字串
 public class MoneyController {
 
 	@Autowired
@@ -48,11 +50,13 @@ public class MoneyController {
 	@Autowired
 	MemPointService memPointService;
 
+	@Autowired
+	CardValidator cardValidator;
 	
 
 	@GetMapping("/studentMoney/{id}")
 	public String studentMoney(Model model, @PathVariable("id") Integer id) {
-		
+		System.out.println("pig =" +id);
 		List<MoneyBean_H> money =memPointService.getMoneyDetail(id);
 		model.addAttribute("MoneyBean", money);
 		return "/_04_money/st_point";
@@ -68,9 +72,19 @@ public class MoneyController {
 	
 	@GetMapping("/studentMoney/checkout")
 	public String stCheckout(Model model) {
-		
+		CardBean cardBean=new CardBean();
+		model.addAttribute("CardBean", cardBean);
 		return "/_04_money/st_checkout";
 	}
 	
+
+	@PostMapping("/studentMoney/checkout")
+	public String stRegister(@ModelAttribute("cardBean") CardBean cardBean, BindingResult result,
+			Model model, HttpServletRequest request) {
+		System.out.println("進入/studentMoney/checkout");
+//		cardValidator.validate(cardBean, result);
+		
+		return "/_04_money/st_point";
+	}
 	
 }

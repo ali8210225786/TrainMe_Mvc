@@ -34,13 +34,14 @@ table, td {
 		</tr>
 	</table>
 
-	<form:form method="POST" action="/TrainMe/tr_register"
-		modelAttribute="cardBean" enctype='multipart/form-data'>
+<%-- 		action="<c:url value='/studentMoney/checkout' />" --%>
+<!-- 		action="/studentMoney/checkout"  -->
+	<form:form method="POST"
+		modelAttribute="CardBean" enctype='multipart/form-data'>
 		<div>信用卡付款</div>
 		<div>
 			<label>姓名</label><br>
-			<form:input path='name' placeholder="請輸入您的姓名"
-				required="required" />
+			<form:input path='name' placeholder="請輸入您的姓名" required="required" />
 		</div>
 
 		<div>
@@ -49,32 +50,25 @@ table, td {
 
 		<div>
 			<label>信用卡卡號</label><br>
-			<form:input path='cardNo' placeholder="請輸入您的姓名"
-				required="required" size="4" />
+			<form:input path='cardNo' required="required" maxlength="4" size="4"
+				type="text" />
+			<form:input path='cardNo' required="required" maxlength="4" size="4"
+				type="text" />
+			<form:input path='cardNo' required="required" maxlength="4" size="4"
+				type="text" />
+			<form:input path='cardNo' required="required" maxlength="4" size="4"
+				type="text" />
 		</div>
 
 		<div>
 			<form:errors path="name" cssClass="error" />
 		</div>
 
-
-
-		<li class="input"><span class="Tit">信用卡卡號</span> <input
-			id="tbCardNo1" name="CardNo1" type="text" size="4"
-			class="input_text CardNo" autocomplete="off" maxlength="4"> <span
-			style="float: left">-</span> <input id="tbCardNo2" name="CardNo2"
-			type="text" size="4" class="input_text CardNo" autocomplete="off"
-			maxlength="4"> <span style="float: left">-</span> <input
-			id="tbCardNo3" name="CardNo3" type="text" size="4"
-			class="input_text CardNo" autocomplete="off" maxlength="4"> <span
-			style="float: left">-</span> <input id="tbCardNo4" name="CardNo4"
-			type="text" size="4" class="input_text CardNo" autocomplete="off"
-			maxlength="4"> <input style="display: none;" id="money"
-			name="money" type="text">
-			<p class="error" color="red" size="-1">${MsgMap.cardNoError}
-				${MsgMap.cardNoEmptyError}</p> <br /> <span class="Tit">有效期限</span> <select
-			id="ddlExpiryMonth" name="ExpiryMonth"
-			class="input_text ddlExpiryMonth">
+		<div>
+			<label>有效期限</label><br>
+		</div>
+		<div>
+			<form:select path='expiryMonth'>
 				<option selected="selected" value="">--</option>
 				<option value="01">01月</option>
 				<option value="02">02月</option>
@@ -88,10 +82,9 @@ table, td {
 				<option value="10">10月</option>
 				<option value="11">11月</option>
 				<option value="12">12月</option>
-		</select>
-			<p class="error" color="red" size="-1">${MsgMap.expiryMonthEmptyError}
-			</p> <select id="ddlExpiryYear" name="ExpiryYear"
-			class="input_text ddlExpiryYear">
+			</form:select>
+
+			<form:select path='expiryYear'>
 				<option selected="selected" value="">--</option>
 				<option value="2021">2021</option>
 				<option value="2022">2022</option>
@@ -113,43 +106,58 @@ table, td {
 				<option value="2038">2038</option>
 				<option value="2039">2039</option>
 				<option value="2040">2040</option>
-		</select>
-			<p class="error" color="red" size="-1">${MsgMap.expiryYearEmptyError}
-			</p> <br /> <span class="Tit">背面後三碼</span> <input id="tbCardCVV2"
-			name="CardCVV" type="tel" size="3" class="input_text"
-			autocomplete="off" maxlength="3" />
-			<p class="error" color="red" size="-1">${MsgMap.cardCVVEmptyError}
-			</p> <br />
-			<hr></li>
-		<li>
-			<!-- <ul class="point" style="list-style: disc;">
-                    <li><span class="warningTXT">信用卡資訊將會以 SSL 256 bits 加密後，送至刷卡組織做確認，您的卡號資訊不會保留在OB嚴選資料庫。</span></li>
-                    <li><span class="messg">基於交易安全考量，若您使用非台灣地區發行之信用卡付款，在刷卡的過程需請輸入信用卡的 3D 驗證密碼，由於每家銀行的 3D 驗證設定有所不同，請您電洽發卡銀行客服詢問，如果您的發卡銀行尚未提供 3D 驗證功能，則請您改用其他銀行信用卡。 </span></li>
-                </ul> -->
-		</li>
+			</form:select>
+		</div>
 
+		<div>
+			<form:errors path="expiryMonth" cssClass="error" />
+			<form:errors path="expiryYear" cssClass="error" />
+		</div>
 
-		<ul>
-			<li><span class="titBIG">持卡人資料</span></li>
-			<li class="input"><span class="Tit" style="">持卡人姓名&nbsp</span> <input
-				class="input_text" id="Name" name="Name" type="text" value="" /> <label>持卡人姓名</label><br>
-				<form:input path='name' placeholder="請輸入您的姓名" required="required" />
+		<div>
+			<label>背面後三碼</label><br>
+			<form:input path='cardCVV' required="required" size="3" maxlength="3" />
+		</div>
 
-				<form:errors path="name" /> <br> <span class="Tit" style="">手機號碼&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-				<input class="input_text" id="Tel" name="Tel" type="text" value="" />
-				<span style="font-size: 12px; color: #8B8B8B;">(範例
-					0911123123)</span>
-				<p class="error" color="red" size="-1">${MsgMap.phoneEmptyError}
-				</p> <br /> <span class="Tit" style="">電子信箱&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-				<input class="input_text" id="Tel" name="Email" type="email"
-				value="" />
-				<p class="error" color="red" size="-1">${MsgMap.EmailEmptyError}
-				</p> <br /> <span class="Tit" style="">帳單地址&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+		<div>
+			<form:errors path="cardCVV" cssClass="error" />
+		</div>
 
+		<hr>
 
+		<div>持卡人資料</div>
+		<div>
+			<label>持卡人姓名</label><br>
+			<form:input path='cardName' placeholder="請輸入持卡人姓名"
+				required="required" />
+		</div>
 
-				<select name="ZIP" id="ZIP" class="select01 input_text" rel="3p699"
-				style="height: 28px; width: 170px;">
+		<div>
+			<form:errors path="cardName" cssClass="error" />
+		</div>
+		<div>
+			<label>手機號碼</label><br>
+			<form:input path='tel' required="required" />
+		</div>
+
+		<div>
+			<form:errors path="tel" cssClass="error" />
+		</div>
+
+		<div>
+			<label>電子信箱</label><br>
+			<form:input path='email' required="required" type="email" />
+		</div>
+
+		<div>
+			<form:errors path="email" cssClass="error" />
+		</div>
+		
+		<div>
+			<label>帳單地址</label><br>
+		</div>	
+		<div>
+				<form:select path='zip'>
 					<option value="">郵遞區號</option>
 					<option value="100 台北市 中正區">100 台北市 中正區</option>
 					<option value="103 台北市 大同區">103 台北市 大同區</option>
@@ -192,13 +200,17 @@ table, td {
 					<option value="251 新北市 淡水區">251 新北市 淡水區</option>
 					<option value="252 新北市 三芝區">252 新北市 三芝區</option>
 					<option value="253 新北市 石門區">253 新北市 石門區</option>
-			</select> <input class="input_text" id="Address" name="Address"
-				style="width: 230px" type="text" value="" />
-				<p class="error" color="red" size="-1">${MsgMap.zipEmptyError}
-					${MsgMap.addressEmptyError}</p> <br></li>
-		</ul>
+			</form:select>
+			<form:input path='address' required="required" />
+		</div>
 
-		<button type="submit" class="submit-btn register-btn">提交</button>
+		<div>
+		<form:errors path="zip" cssClass="error" />
+			<form:errors path="address" cssClass="error" />
+		</div>
+
+
+		<button type="submit" class="submit-btn register-btn" onclick="location.href='/studentMoney/checkout'">提交</button>
 	</form:form>
 
 
