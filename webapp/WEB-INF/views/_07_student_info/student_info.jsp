@@ -173,7 +173,7 @@
 								<th scope="col" class="class_name">課程名稱</th>
 								<th scope="col">教練</th>
 								<th scope="col">上課時間</th>
-								<th scope="col">扣點</th>
+								<th scope="col">本堂點數</th>
 								<th scope="col">取消課程</th>
 							</tr>
 						</thead>
@@ -190,7 +190,8 @@
 											${comingSoonCourse.get(i.current).getTime()}:00 -
 											${comingSoonCourse.get(i.current).getTime() + 1}:00</td>
 										<td>${comingSoonCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
-										<td><a href="">取消</a></td>
+										<td><a href="/TrainMe/CancelCourse/${LoginOK.id}?courseId=${comingSoonCourse.get(i.current).getId()}"
+											class="cancel">取消</a></td>
 									</tr>
 
 								</c:forEach>
@@ -219,15 +220,14 @@
 								<th scope="col" class="class_name">課程名稱</th>
 								<th scope="col">教練</th>
 								<th scope="col">上課時間</th>
-								<th scope="col">扣點</th>
+								<th scope="col">本堂點數</th>
 								<th scope="col">取消課程</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<c:if test="${waitCourse.size() > 0}">
-								<c:forEach varStatus="i" begin="0"
-									end="${waitCourse.size()-1}">
+								<c:forEach varStatus="i" begin="0" end="${waitCourse.size()-1}">
 									<td class="class_name">${waitCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
 									<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getTrainerBean_H().getName()}</td>
 									<td>${waitCourse.get(i.current).getDate()}
@@ -235,7 +235,7 @@
 										${waitCourse.get(i.current).getTime()}:00 -
 										${waitCourse.get(i.current).getTime() + 1}:00</td>
 									<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
-									<td><a href="">取消</a></td>
+									<td><a href="/TrainMe/CancelCourse/${LoginOK.id}?courseId=${waitCourse.get(i.current).getId()}" class="cancel">取消</a></td>
 								</c:forEach>
 							</c:if>
 						</tbody>
@@ -268,7 +268,8 @@
 </body>
 
 
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
@@ -282,10 +283,10 @@
 		type : 'line',
 		data : {
 			labels : [ '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月',
-					'10月', '11月', '12月' ],
+					'10月', '11月', '12月' ], // 時間
 			datasets : [ {
 				// label: '# of Votes',
-				data : [ 50, 52, 53, 55, 52, 50, 53, 55, 52, 50 ],
+				data : [ 50, 52, 53, 55, 52, 50, 53, 55, 52, 50 ],  //體重
 				backgroundColor : 'transparent',
 				borderColor : 'red',
 				borderWidth : 1
@@ -309,24 +310,18 @@
 			}
 		}
 	});
+	
+	// 確認是否取消通知
+	$('.cancel').on('click', function (event) {
+		var yes = confirm('是否確定取消課程？');
+		if(!yes){
+			event.preventDefault();
+		}
+	})
+	
 
-	// 	window.onload = function () {
-	// // 		axios.get("/TrainMe/getComingSoonCourse/"+ ${LoginOK.id})
-	// // 			 .then(function (res) {
-	// // 				console.log(res);
-	// // 				 var comingSoonCourses = res.data;
-	// // 			})
 
-	// 		var xhr = new XMLHttpRequest();
-	// 			xhr.open('GET', "/TrainMe/getComingSoonCourse/"+${LoginOK.id}, true)
-	// 			xhr.send();
-	// 			xhr.onreadystatechange = function () {
-	// 				if(xhr.status == 200 && xhr.readyState == 4){
-	// 					console.log(xhr.responseText);					
-	// 				}
-	// 			}
-
-	// 	}
+	
 </script>
 
 

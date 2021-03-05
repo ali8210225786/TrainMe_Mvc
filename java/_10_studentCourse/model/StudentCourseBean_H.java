@@ -87,11 +87,11 @@ public class StudentCourseBean_H implements Serializable{
 		this.studentBean_H = studentBean_H;
 	}
 
-	public Integer getTr_id() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setTr_id(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
