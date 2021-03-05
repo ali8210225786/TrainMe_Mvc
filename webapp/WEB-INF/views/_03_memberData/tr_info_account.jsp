@@ -12,17 +12,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>教練-個人資料</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_info.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_account.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_tr_info.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" -->
-<!-- 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" -->
-<!-- 	crossorigin="anonymous" /> -->
-<!-- <link rel="stylesheet" href="./css/style_st_lesson.css"> -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style_st_info.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style_st_account.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style_nav.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style_tr_info.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="./css/style_st_lesson.css">
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
 .aside ul li:nth-child(2) a {
@@ -33,14 +39,14 @@
 </head>
 <body>
 	<!-- ============上方導覽列======================================================= -->
-   <jsp:include page="/fragment/nav_tr.jsp"/>  
-   
-    <!-- 編輯資料 -->
+	<jsp:include page="/fragment/nav_tr.jsp" />
 
-    <div class="container">
-     <!-- ============左側選單======================================================= -->
-       <jsp:include page="/fragment/sidebar_tr.jsp"/>
-       
+	<!-- 編輯資料 -->
+
+	<div class="container">
+		<!-- ============左側選單======================================================= -->
+		<jsp:include page="/fragment/sidebar_tr.jsp" />
+
 		<div class="content">
 			<div class="title">
 				<h3>個人資料</h3>
@@ -55,7 +61,7 @@
 				<form:form action="/TrainMe/updateTrInfoAccount/${trainerBean.id}"
 					method="post" modelAttribute="trainerBean"
 					enctype="multipart/form-data">
-					
+
 					<div class="setting_box" value="2000" id="abc">
 						<label>姓名</label>
 						<p>${trainerBean.name}</p>
@@ -66,7 +72,8 @@
 					</div>
 					<div class="setting_box">
 						<label>年資</label> <input type="number" min="0" name="year"
-							placeholder="請填整數" class="short_nb" required value="${trainerBean.year}" /> 年
+							placeholder="請填整數" class="short_nb" required
+							value="${trainerBean.year}" /> 年
 					</div>
 
 					<div class="setting_box">
@@ -90,7 +97,9 @@
 							<!-- 證照表格 -->
 							<div class="tab-pane fade show active" id="pills-wait"
 								role="tabpanel" aria-labelledby="pills-wait-tab">
-								<table id="table" class="table border">
+								
+<!-- ===================  bordered  改成 table-bordered =====================================-->
+								<table id="table" class="table table-bordered">
 									<thead class="thead-light">
 										<tr>
 											<th scope="col" class="trif_f">擁有證照</th>
@@ -111,7 +120,7 @@
 					<div class="setting_box upload_file">
 						<label for="name">自我介紹:</label>
 						<textarea name="introduction" id="text" cols="60" rows="15"
-							maxlength="1000" >${trainerBean.introduction}</textarea>
+							maxlength="1000">${trainerBean.introduction}</textarea>
 						<p id="feedback"></p>
 					</div>
 
@@ -140,8 +149,7 @@
 									從電腦中選取圖檔<br> 最佳大小為 250 x 250 px
 								</p>
 								<button type="button" class="upload_button">
-									<label> 
-<!-- 									<input type="file" accept="image/*" class="theFile" name="theFile" />  -->
+									<label> <!-- 									<input type="file" accept="image/*" class="theFile" name="theFile" />  -->
 										<form:input path="trainerImage" type='file' class="theFile" />
 										<form:errors path="trainerImage" cssClass="error" /> 上傳檔案
 									</label>
@@ -154,30 +162,26 @@
 						<label>上傳影片</label>
 						<div class="upload_file_area">
 							<div>
-							 <c:choose>
-									    <c:when test="${empty  trainerBean.profile_video}">
-									       <video id="video" class="upload_videobox" controls></video>
-									    </c:when>    
-									    <c:otherwise>
-									       <video id="video" class="upload_videobox" controls>
-									        	<source src="/upload/${trainerBean.profile_video}" type="video/mp4" id="video_del">	
-									       </video>
-									    </c:otherwise>
-									</c:choose>				
+								<c:choose>
+									<c:when test="${empty  trainerBean.profile_video}">
+										<video id="video" class="upload_videobox" controls></video>
+									</c:when>
+									<c:otherwise>
+										<video id="video" class="upload_videobox" controls>
+											<source src="/upload/${trainerBean.profile_video}"
+												type="video/mp4" id="video_del">
+										</video>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="ufl_box">
 								<p>
-									從電腦中選取影片檔
-								<br> 
-									上傳檔案限mp4格式
-								<br> 	
-									，6MB以內
+									從電腦中選取影片檔 <br> 上傳檔案限mp4格式 <br> ，6MB以內
 								</p>
-								<button type="button" class="upload_button">									
-									<label> 
-										<form:input path="trainerVideo" type="file" accept="video/*" class="theFile"/>
-										<form:errors path="trainerVideo" cssClass="error" /> 
-										上傳檔案
+								<button type="button" class="upload_button">
+									<label> <form:input path="trainerVideo" type="file"
+											accept="video/*" class="theFile" /> <form:errors
+											path="trainerVideo" cssClass="error" /> 上傳檔案
 									</label>
 								</button>
 								<br>
@@ -198,124 +202,132 @@
 	</div>
 	</div>
 
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" -->
-<!-- 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" -->
-<!-- 	crossorigin="anonymous"></script> -->
-<!-- <script -->
-<!-- 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" -->
-<!-- 	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" -->
-<!-- 	crossorigin="anonymous"></script> -->
-<script>
-	/*
-	 var tab=document.getElementById('tab') //獲取表格元素
-	 var rows=tab.rows; //返回包含表格中所有行的一個數組。
-	 cells=rows[1].cells //某一行的單元格
-	 alert(rows[1].cells[2].innerHTML)
-	 rows[1].cells[2].innerHTML='資料13';
-	 rows[1].cells[2].style.color='red'
-	 */
+<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" -->
+<!-- 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" -->
+<!-- 		crossorigin="anonymous"></script> -->
+	<!-- <script -->
+	<!-- 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" -->
+	<!-- 	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" -->
+	<!-- 	crossorigin="anonymous"></script> -->
+	<script>
+		/*
+		 var tab=document.getElementById('tab') //獲取表格元素
+		 var rows=tab.rows; //返回包含表格中所有行的一個數組。
+		 cells=rows[1].cells //某一行的單元格
+		 alert(rows[1].cells[2].innerHTML)
+		 rows[1].cells[2].innerHTML='資料13';
+		 rows[1].cells[2].style.color='red'
+		 */
 
-	// 編輯證照
-	//先找到input(輸入的證照名稱)的值
-	// alert(lsname);
-	//新增
-	function addtr() {
-		var lsname = document.getElementById('lsname').value;
-		var table = document.getElementById('table');
-		var tradd = table.insertRow(1)
-		tradd.innerHTML = `<td class="trif_f">${lsname}</td><td><a href="#">修改</a>　<a href="javascript:" onclick="del(this)">刪除</a></td>`
-
-	}
-	table.insertRow()
-
-	//刪除(待修改)
-	function del(obj) {
-		var yes = confirm('確定刪除？');
-		if (yes) {
-			var tr = obj.parentNode.parentNode;//得到按钮bai[obj]的父元素duzhi[td]的父元素[tr]
-			tr.parentNode.removeChild(tr);//从daotr的父元素[tbody]移除tr
+		// 編輯證照
+		//先找到input(輸入的證照名稱)的值
+		// alert(lsname);
+		//新增
+		function addtr() {
+			var lsname = document.getElementById('lsname').value;
+			var table = document.getElementById('table');
+			var tradd = table.insertRow(1) // onclick="del()"
+			tradd.innerHTML = `<td class="trif_f">\${lsname}</td><td><a href="#">修改</a>　<a href="javascript:" id="del_btn" >刪除</a></td>`
+			//刪除(待修改)
+			var del_btn = document.getElementById('del_btn')
+			del_btn.addEventListener('click', function del(e) {
+				var yes = confirm('確定刪除？');
+				if (yes) {
+					var tr = e.target.parentNode.parentNode;//得到按钮bai[obj]的父元素duzhi[td]的父元素[tr]
+					tr.parentNode.removeChild(tr);//从daotr的父元素[tbody]移除tr
+				}
+			});
 		}
-	}
+		table.insertRow()
 
-	// 自我介紹       
-	$(document).ready(function() {
-						let textMax = ($("#text").val()).length;
-						$('#feedback').html(`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
 
-						$('#text').keyup(function() {
-											let textMax = 0;
-											let textLength = $(this).val().length;
-											total = textMax + textLength;
-											$('#feedback').html(`已經輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
-											//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
-										});
-					});
+		// 自我介紹       
+		$(document)
+				.ready(
+						function() {
+							let textMax = ($("#text").val()).length;
+							$('#feedback')
+									.html(
+											`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
 
-	// 上傳
-	// 照片處理
-    const theFile = document.getElementById('trainerImage');
-	
-    theFile.addEventListener('change',function () {
-    	console.log('ok');
-        showImg(theFile);
-  
-    })
+							$('#text')
+									.keyup(
+											function() {
+												let textMax = 0;
+												let textLength = $(this).val().length;
+												total = textMax + textLength;
+												$('#feedback')
+														.html(
+																`已經輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
+												//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
+											});
+						});
 
-    function showImg(imgFile) {
-        var file = imgFile.files[0];
-       
-            // 建立FileReader物件
-            var fr = new FileReader();
-            
-            let photo = document.getElementById('photo');
-            //註冊load事件
-            fr.addEventListener('load', function(e) {
-                 photo.src = e.target.result;                 
-            });
-            //readAsDataURL去讀 file 把檔案轉成 URL
-            fr.readAsDataURL(file);
-            
-    }
- 	// 影片處理
-  const input = document.getElementById('trainerVideo');
-	const video = document.getElementById('video');
-	const videoSource = document.createElement('source');
-	input.addEventListener('change', function() {
-		del();
-		$("#file_error_video").html("");
-		var file_size_video = $('#trainerVideo')[0].files[0].size;
-		const files = this.files || [];
-		if (file_size_video > 70971520) {
-			$("#file_error_video").html("檔案大小請勿超過 70MB");
-			return false;
-		} else {
-			if (!files.length)
-				return;
+		// 上傳
+		// 照片處理
+		const theFile = document.getElementById('trainerImage');
 
-			const reader = new FileReader();
+		theFile.addEventListener('change', function() {
+			console.log('ok');
+			showImg(theFile);
 
-			reader.onload = function(e) {
-				videoSource.setAttribute('src', e.target.result);
-				video.appendChild(videoSource);
-				video.load();
-				video.play();
-			};
+		})
 
-			reader.onprogress = function(e) {
-				console.log('progress: ', Math
-						.round((e.loaded * 100) / e.total));
-			};
+		function showImg(imgFile) {
+			var file = imgFile.files[0];
 
-			reader.readAsDataURL(files[0]);
+			// 建立FileReader物件
+			var fr = new FileReader();
+
+			let photo = document.getElementById('photo');
+			//註冊load事件
+			fr.addEventListener('load', function(e) {
+				photo.src = e.target.result;
+			});
+			//readAsDataURL去讀 file 把檔案轉成 URL
+			fr.readAsDataURL(file);
+
 		}
-	});         
-	function del(){
-	} if(video.hasChildNodes()){
-	        while(video.childNodes.length >= 1){
-	        	video.removeChild(video.firstChild);
-	        }
-	    }    
+		// 影片處理
+		const input = document.getElementById('trainerVideo');
+		const video = document.getElementById('video');
+		const videoSource = document.createElement('source');
+		input.addEventListener('change', function() {
+			del();
+			$("#file_error_video").html("");
+			var file_size_video = $('#trainerVideo')[0].files[0].size;
+			const files = this.files || [];
+			if (file_size_video > 70971520) {
+				$("#file_error_video").html("檔案大小請勿超過 70MB");
+				return false;
+			} else {
+				if (!files.length)
+					return;
 
-</script>
+				const reader = new FileReader();
+
+				reader.onload = function(e) {
+					videoSource.setAttribute('src', e.target.result);
+					video.appendChild(videoSource);
+					video.load();
+					video.play();
+				};
+
+				reader.onprogress = function(e) {
+					console.log('progress: ', Math.round((e.loaded * 100)
+							/ e.total));
+				};
+
+				reader.readAsDataURL(files[0]);
+			}
+		});
+		function del() {
+		}
+		if (video.hasChildNodes()) {
+			while (video.childNodes.length >= 1) {
+				video.removeChild(video.firstChild);
+			}
+		}
+	</script>
 </body>
 </html>
