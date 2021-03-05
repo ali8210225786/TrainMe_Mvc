@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -20,6 +22,7 @@ import _03_memberData.service.MemberDataService;
 import _07_memberInfo.model.StudentDataBean_H;
 import _07_memberInfo.service.StudentInfoService;
 import _10_studentCourse.model.StudentCourseBean_H;
+import _10_studentCourse.service.StudentCourseService;
 
 @Controller
 @SessionAttributes({ "LoginOK", "MoneyBean", "comingSoonCourse", "waitCourse" }) // 此處有LoginOK的識別字串
@@ -30,6 +33,9 @@ public class StudentInfoController {
 	
 	@Autowired
 	MemberDataService memberDataService;
+	
+	@Autowired
+	StudentCourseService studentCourseService;
 	
 	@GetMapping("/student_info/{id}")
 	public String StudentInfo(Model model,
@@ -50,9 +56,9 @@ public class StudentInfoController {
 		
 		Date now = new Date( );
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
-		System.out.println("======================1");
-		List<StudentCourseBean_H> comingSoonCourse = studentInfoService.getComingSoonCourse(id, nowDate);
-		List<StudentCourseBean_H> waitCourse = studentInfoService.getWaitCourse(id, nowDate);
+//		System.out.println("======================1");
+		List<StudentCourseBean_H> comingSoonCourse = studentCourseService.getComingSoonCourse(id, nowDate);
+		List<StudentCourseBean_H> waitCourse = studentCourseService.getWaitCourse(id, nowDate);
 		model.addAttribute("comingSoonCourse", comingSoonCourse);
 		model.addAttribute("waitCourse", waitCourse);
 		model.addAttribute("LoginOK", studentBean);
@@ -88,25 +94,17 @@ public class StudentInfoController {
 		return "redirect:/student_info/"+id;
 	}
 	
-	@GetMapping(value = "/getComingSoonCourse/{id}",  produces = { "application/json; charset=UTF-8" })
-	public String getComingSoonCourse(@PathVariable("id") Integer id, Model model) {
-//		Date now = new Date( );
-//		java.sql.Date nowDate = new java.sql.Date(now.getTime());
-//		System.out.println("======================1");
-//		List<StudentCourseBean_H> list = studentInfoService.getComingSoonCourse(id, nowDate);
-////		for (int i = 0; i < list.size(); i++) {
-////			System.out.println(list.get(i));
-////		}
-////		
-////		Map<String, Object> map = new HashMap<>();
-////		map.put("list", list);
-//		model.addAttribute("comingSoonCourse", list);
+	@GetMapping("/CancelCourse/{id}")
+	public String cancelCourse(
+			@PathVariable("id") Integer id, 
+			@RequestParam("courseId") String courseIdStr, 
+			Model model) {
+		int courseId = Integer.parseInt(courseIdStr);
+		studentCourseService.cancelCourse(courseId);
+		
 		return "redirect:/student_info/"+id;
 	}
 	
-//	@ModelAttribute
-//	public void commonData(Model model) {
-//	
-//	}
+
 	
 }

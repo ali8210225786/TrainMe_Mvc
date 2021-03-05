@@ -25,23 +25,6 @@ public class StudentInfoDao {
 		session.save(sdb);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<StudentCourseBean_H> getComingSoonCourse(int id , Date nowDate, Date endDate) {
-		Session session = factory.getCurrentSession();
-		List<StudentCourseBean_H> courses = new ArrayList<>();
-		String hql = "FROM StudentCourseBean_H WHERE is_allowed = 1 and date BETWEEN '" 
-				   + nowDate + "' and '" + endDate + "' and st_id = :mId ORDER BY date";
-		courses = session.createQuery(hql).setParameter("mId", id).getResultList();
-		return courses;
-	}
 	
-	@SuppressWarnings("unchecked")
-	public List<StudentCourseBean_H> getWaitCourse(int id, Date nowDate) {
-		Session session = factory.getCurrentSession();
-		List<StudentCourseBean_H> courses = new ArrayList<>();
-		String hql = "FROM StudentCourseBean_H WHERE is_allowed = 0 and date > :nowDate and st_id = :mId ORDER BY date";
-		courses = session.createQuery(hql).setParameter("nowDate", nowDate).setParameter("mId", id).getResultList();
-		return courses;
-	}
 	
 }

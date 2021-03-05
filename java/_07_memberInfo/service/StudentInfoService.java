@@ -98,17 +98,5 @@ public class StudentInfoService {
 		memberDataDao.updateStudent(sb);
 	}
 	
-	public List<StudentCourseBean_H> getComingSoonCourse(int id , Date nowDate){
-		
-		   Calendar cal = Calendar.getInstance();
-		   cal.setTime(nowDate);
-		   cal.add(Calendar.DATE, 7);		   
-		   java.sql.Date endDate = new java.sql.Date(cal.getTimeInMillis());
-		   
-		return studentInfoDao.getComingSoonCourse(id, nowDate, endDate);
-	}
 	
-	public List<StudentCourseBean_H> getWaitCourse(int id, Date nowDate){
-		return studentInfoDao.getWaitCourse(id, nowDate);
-	}
 }
