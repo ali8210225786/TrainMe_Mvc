@@ -53,7 +53,7 @@
 
 			<div class="info_wrap t lesson">
 
-				<ul class="nav nav-pills mb-3 pb-3 border-bottom" id="pills-tab"
+				<ul class="nav nav-tab mb-3" id="pills-tab"
 					role="tablist">
 					<li class="nav-item mr-4" role="presentation">
 						<a
@@ -82,8 +82,8 @@
 					<!-- 等待同意 -->
 					<div class="tab-pane fade show active" id="pills-wait"
 						role="tabpanel" aria-labelledby="pills-wait-tab">
-						<table class="table border">
-							<thead class="thead-light">
+						<table class="table border b_c">
+							<thead class="thead">
 								<tr>
 									<th scope="col" class="class_name">課程名稱</th>
 									<th scope="col">教練</th>
@@ -114,7 +114,7 @@
 					<div class="tab-pane fade" id="pills-next" role="tabpanel"
 						aria-labelledby="pills-next-tab">
 						<table class="table border">
-							<thead class="thead-light">
+							<thead class="thead">
 								<tr class="my-auto">
 									<th scope="col" class="class_name">課程名稱</th>
 									<th scope="col">教練</th>
@@ -148,7 +148,7 @@
 					<div class="tab-pane fade" id="pills-history" role="tabpanel"
 						aria-labelledby="pills-history-tab">
 						<table class="table border">
-							<thead class="thead-light">
+							<thead class="thead">
 								<tr class="my-auto">
 									<th scope="col" class="class_name">課程名稱</th>
 									<th scope="col">教練</th>
@@ -204,7 +204,7 @@
 	crossorigin="anonymous"></script>
 <script>
 	//選單點選變色(待補)
-
+	
 	//頁籤
 
 	$('#pills-tab a').on('click', function(event) {
@@ -222,6 +222,12 @@
 		console.log(this.closest());
 // 		var clicktab = 
 	})
+	
+	
+	window.onload = function () {
+		
+		
+	}
 </script>
 
 

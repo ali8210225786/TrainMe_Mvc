@@ -16,6 +16,7 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="../css/style_st_info.css">
 <link rel="stylesheet" href="../css/style_nav.css">
+<link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
@@ -168,7 +169,7 @@
 						<i class="far fa-list-alt"></i> 即將開始的課程
 					</h5>
 					<table class="table border">
-						<thead class="thead-light">
+						<thead class="thead">
 							<tr class="my-auto">
 								<th scope="col" class="class_name">課程名稱</th>
 								<th scope="col">教練</th>
@@ -215,7 +216,7 @@
 						<i class="far fa-list-alt"></i> 等待同意的預約
 					</h5>
 					<table class="table border">
-						<thead class="thead-light">
+						<thead class="thead">
 							<tr>
 								<th scope="col" class="class_name">課程名稱</th>
 								<th scope="col">教練</th>
@@ -253,10 +254,7 @@
 						<h5>
 							<i class="fas fa-weight"></i> 我的體重趨勢圖
 						</h5>
-						<a
-							href="<c:url value='/_07_student_info/student_info_edit.jsp' />"
-							id="edit_info"><i class="fas fa-pen-square"
-							style="color: #ddd"></i></a>
+						
 					</div>
 
 					<canvas id="myChart" width="400" height="150"></canvas>

@@ -132,32 +132,9 @@
 
 <script>
 
-    // 非正方形圖檔置中待解決or是否要有裁切功能
-//     function doFirst(){
-//     document.getElementById('theFile').onchange = fileChange;
-//     }
-//     function fileChange(){
-//     let file = document.getElementById('theFile').files[0];
-//     let readFile = new FileReader();
-//     readFile.readAsDataURL(file);
-//     readFile.addEventListener('load',function(){
-//         let image = document.getElementById('image');
-//         let imgbox = document.getElementById('imgbox');
-//         image.src = this.result;
-//         image.style.maxWidth = '150px';
-//         image.style.maxHeight = '150px';
-
-//         imgbox.style.backgroundImage = 'none';
-//         });
-//     }
-//     window.addEventListener('load',doFirst);
     
-    console.log(${studentBean.city.id});
-// 	getAreaList(${studentBean.city.id});
-	
-        
-	
-   
+//     console.log(${studentBean.city.id});
+
 // 縣市列表
 	var cityList = document.getElementById('city.id')
 	var areaList = document.getElementById('area.id')

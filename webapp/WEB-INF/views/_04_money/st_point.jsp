@@ -131,7 +131,7 @@
 				<table class="table border">
 					<c:choose>
 					<c:when test="${MoneyBean.size()==0}">   
-					<thead class="thead-light">
+					<thead class="thead">
 							<tr>
 								<th scope="col">交易日期</th>
 								<th scope="col">上課日期</th>
@@ -144,7 +144,7 @@
 						</thead>
 					 </c:when> 
 					 <c:otherwise>
-						<thead class="thead-light">
+						<thead class="thead">
 							<tr>
 								<th scope="col">交易日期</th>
 								<th scope="col">上課日期</th>

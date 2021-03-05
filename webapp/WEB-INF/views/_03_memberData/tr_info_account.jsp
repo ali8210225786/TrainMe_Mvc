@@ -15,6 +15,10 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous" />
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style_st_info.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style_st_account.css">
@@ -24,10 +28,6 @@
 	href="${pageContext.request.contextPath}/css/style_tr_info.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-	crossorigin="anonymous" />
 <link rel="stylesheet" href="./css/style_st_lesson.css">
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
