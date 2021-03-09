@@ -49,6 +49,12 @@ public class StudentBean_H extends MemberBean_H {
 	private String password;
 	@Transient
 	private String passwordcheck;
+	@Transient
+	private String oldpassword;
+	@Transient
+	private String newpassword;
+	@Transient
+	private String newpasswordcheck;
 	private String id_number;
 	private String sex;
 	@Column(columnDefinition = "INT Default 0")
@@ -177,6 +183,32 @@ public class StudentBean_H extends MemberBean_H {
 
 	public void setPasswordcheck(String passwordcheck) {
 		this.passwordcheck = passwordcheck;
+	}
+	
+	public String getOldpassword() {
+		return oldpassword;
+	}
+
+	public void setOldpassword(String oldpassword) {
+		this.oldpassword = oldpassword;
+	}
+
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+
+	
+	
+	public String getNewpasswordcheck() {
+		return newpasswordcheck;
+	}
+
+	public void setNewpasswordcheck(String newpasswordcheck) {
+		this.newpasswordcheck = newpasswordcheck;
 	}
 
 	public String getId_number() {

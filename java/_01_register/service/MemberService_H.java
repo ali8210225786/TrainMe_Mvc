@@ -6,6 +6,7 @@ import _01_register.model.GymBean_H;
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
+import _05_tr_info_account.model.TrainerLicenseBean_H;
 
 
 
@@ -15,13 +16,18 @@ public interface MemberService_H {
 	int checkverification_H(int gymId);
 	int saveStudent_H(StudentBean_H sb);
 	int saveTrainer_H(TrainerBean_H tr);
+	int saveTrainerLicenseBean_H(TrainerLicenseBean_H tl);
 	boolean checkPass(int type , String email );
 
 	MemberBean_H queryStudent_H(String id);
 	MemberBean_H checkIdPassword_H(String email, String password) ;
+	MemberBean_H checkOldPassword_H(String email, String password) ;
+	MemberBean_H checkEmail_H(String email) ;
 	
 	List<StudentBean_H> listAll_H();
 	List<GymBean_H> getGymList_H();
+	
+	
 
 	
 }

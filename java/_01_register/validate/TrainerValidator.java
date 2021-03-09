@@ -38,12 +38,13 @@ public class TrainerValidator implements Validator {
 
 		TrainerBean_H tb = (TrainerBean_H) target;
 
-		
-		
+		//前面加if (tb.getNewpassword() == null) 判斷式，是為了執行修改密碼時，防止tb.getName()得到null值，以至於不能判斷tb.getName().length()
+		if (tb.getNewpassword() == null) {
 		if (tb.getName() != null && tb.getName().length() < 1 || tb.getName().length() > 30) {
 			errors.rejectValue("name", "trainerBean.name.size", "姓名欄位格式不正確");
 		}
-
+		}
+		
 		if (tb.getPassword() != null  && !PASSWORD_PATTERN.matcher(tb.getPassword()).matches()) {
 			errors.rejectValue("password", "trainerBean.password.space", "密碼至少含有一個小寫字母，且長度不能小於六個字元");
 		}
@@ -52,7 +53,16 @@ public class TrainerValidator implements Validator {
 		) {
 			errors.rejectValue("passwordcheck", "trainerBean.password.mustEqual", "密碼欄位並須和密碼確認一致");
 		}
-
+		
+		if (tb.getNewpassword() != null  && !PASSWORD_PATTERN.matcher(tb.getNewpassword()).matches()) {
+			errors.rejectValue("newpassword", "studentBean.password.space", "密碼至少含有一個小寫字母，且長度不能小於六個字元");
+		}	
+		
+		if (tb.getNewpasswordcheck() != null && tb.getNewpassword() != null && !tb.getNewpasswordcheck().equals(tb.getNewpassword())
+		) {
+			errors.rejectValue("newpasswordcheck", "studentBean.password.mustEqual", "新密碼欄位並須和新密碼確認一致");
+		}
+		
 		if (tb.getEmail() == null || !Email_PATTERN.matcher(tb.getEmail()).matches()) {
 			errors.rejectValue("email", "trainerBean.email.invalid", "必須包含@符號，必須包含點，點和@之間必須有字元");
 		}

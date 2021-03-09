@@ -35,11 +35,13 @@ import com.google.gson.Gson;
 
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
+import _01_register.service.MemberService_H;
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
 import _03_memberData.service.AddressService;
 import _03_memberData.service.GymService;
 import _03_memberData.service.MemberDataService;
+import _05_tr_info_account.model.TrainerLicenseBean_H;
 
 @Controller
 @SessionAttributes({ "LoginOK","gymName"}) // 此處有LoginOK的識別字串
@@ -53,6 +55,9 @@ public class TrInfoAccountContoller {
 	
 	@Autowired
 	GymService gymService;
+	
+	@Autowired
+	MemberService_H memberService;
 
 	@GetMapping("/tr_info_account/{id}")
 	public String trainerData(Model model, @PathVariable("id") Integer id) {
@@ -137,6 +142,13 @@ public class TrInfoAccountContoller {
 		memberDataService.updateTrainer(oldBean);
 		return "redirect:/tr_info_account/" + id;
 	}
-
+	 @PostMapping("/addLicense")
+	 public void addLicense(@RequestParam("lsname") String lsname, @RequestParam("trainerBeanId") int trainerBeanId) {
+	 TrainerLicenseBean_H trainerLicenseBean_H = new TrainerLicenseBean_H();
+	 TrainerBean_H tb = memberDataService.getTrainerById(trainerBeanId);
+	 trainerLicenseBean_H.setName(lsname);
+	 trainerLicenseBean_H.setTrainerBean_H(tb);
+	 memberService.saveTrainerLicenseBean_H(trainerLicenseBean_H);
+	 }
 
 }

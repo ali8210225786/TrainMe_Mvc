@@ -43,7 +43,7 @@ public class RootAppConfig {
         
         factory.setDataSource(dataSource());         // 連線資訊
         factory.setPackagesToScan(new String[] {     // 映射資訊的來源(套件名稱)
-                    "_01_register.model","_03_memberData.model","_04_money.model","_07_memberInfo.model",
+                    "_01_register.model","_03_memberData.model","_04_money.model","_05_tr_info_account","_07_memberInfo.model",
                     "_09_trainerCourse.model","_10_studentCourse.model","_11_orderProcess.model"
                 });
         factory.setHibernateProperties(additionalProperties());   // 進階資訊
