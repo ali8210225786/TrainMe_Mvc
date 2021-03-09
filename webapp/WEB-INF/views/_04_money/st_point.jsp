@@ -123,7 +123,7 @@
 					</c:otherwise>
 					</c:choose>
 				</p>
-				<!-- 				<button class="df_btn"><a href="st_add_point.jsp">我要儲值</a></button> -->
+								<button class="df_btn"><a href="<c:url value='/studentMoney/addPoint' />">我要儲值</a></button>
 			</div>
 			<!-- ============即將開始的課程======================================================= -->
 

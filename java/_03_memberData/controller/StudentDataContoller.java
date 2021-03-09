@@ -70,7 +70,6 @@ public class StudentDataContoller {
 		return "/_03_memberData/studentData";
 	}
 	
-
 	
 
 	@GetMapping("/areaList")
