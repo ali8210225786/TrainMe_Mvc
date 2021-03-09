@@ -1,7 +1,9 @@
 package _04_money.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -40,15 +42,35 @@ public class TrainerAccountBean_H extends MemberBean_H {
 	private Date time;
 	private Integer total_amount;
 	private String note;
+	@Transient
+	List<TrainerAccountBean_H> items = new ArrayList<>();
 	
-	public TrainerAccountBean_H(Integer id, TrainerBean_H trainerBean_H, Date time, Integer total_amount, String note) {
+	
+	public TrainerAccountBean_H() {
+		
+	};
+	
+	public TrainerAccountBean_H(Integer id, TrainerBean_H trainerBean_H, Date time, Integer total_amount, String note,
+			List<TrainerAccountBean_H> items) {
 		super();
 		this.id = id;
 		this.trainerBean_H = trainerBean_H;
 		this.time = time;
 		this.total_amount = total_amount;
 		this.note = note;
+		this.items = items;
 	}
+
+
+	public List<TrainerAccountBean_H> getItems() {
+		return items;
+	}
+
+
+	public void setItems(List<TrainerAccountBean_H> items) {
+		this.items = items;
+	}
+
 
 	public Integer getId() {
 		return id;
