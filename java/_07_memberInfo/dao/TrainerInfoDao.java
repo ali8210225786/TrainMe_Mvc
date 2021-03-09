@@ -23,6 +23,7 @@ public class TrainerInfoDao {
 		return session.createQuery(hql).setParameter("mtrId", trId).getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<TrainerCourseBean_H> getTrainerCourseSkillType(int trId) {
 		Session session = factory.getCurrentSession();
 		String hql = "SELECT DISTINCT skill_typeBean_H FROM TrainerCourseBean_H WHERE tr_id = :mtrId";
