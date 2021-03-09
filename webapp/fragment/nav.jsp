@@ -4,25 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>導覽列</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style_nav.css">
+<%-- 	<link rel="stylesheet" href="<c:url value='/css/style.css' />"> --%>
+<%-- 	<link rel="stylesheet" href="<c:url value='/css/style_nav.css' />"> --%>
     <header id="navbar">
         <ul>
             <li class="logo">
-                <a href="<c:url value='/index.jsp' />"><img src="${pageContext.request.contextPath}/images/index/logo_black.png"></a>
+                <a href="<c:url value='/' />"><img src="${pageContext.request.contextPath}/images/index/logo_black.png"></a>
 <!--                 <a href="#"><img src="../images/index/logo_black.png"></a> -->
             </li>
                 <div class="items">
                     <li><a href="#">關於我們</a></li>
-                    <li><a href="#">尋找教練</a></li>
+                    <li><a href="<c:url value='/searchTrainer' />">尋找教練</a></li>
                     <li><a href="#">購物商城</a></li>
                     <li><a href="#">運動論壇</a></li>
                 </div>
             <li>
                 <button class="nav_btn" onclick="Show();">登入/註冊</button>
             </li>    
+            
 
-       
+
+
+
+
+
 <!--             <li class="member"> -->
 <!--                 <a href="#"> -->
 <%--                         <img src="${pageContext.request.contextPath}/images/index/member.jpg"> --%>
@@ -45,6 +50,7 @@
        
        
     </header>
+   
     <script>
 
 	// 導覽列
@@ -61,9 +67,9 @@
         } 
         
 
-        var logout_btn = document.getElementById('logout_btn');
-        logout_btn.addEventListener('click',function () {
-		window.location.href="<c:url value='/Logout' />";		
-        })
+//         var logout_btn = document.getElementById('logout_btn');
+//         logout_btn.addEventListener('click',function () {
+// 		window.location.href="<c:url value='/Logout' />";		
+//         })
 
 </script>
