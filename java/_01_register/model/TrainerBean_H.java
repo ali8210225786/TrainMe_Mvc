@@ -73,6 +73,7 @@ public class TrainerBean_H extends MemberBean_H {
 	String nickname;
 	String bank_account;
 	String course;
+	@Column(columnDefinition="text")
 	String introduction;
 	
 
