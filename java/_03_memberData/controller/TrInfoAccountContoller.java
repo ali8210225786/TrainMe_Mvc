@@ -42,7 +42,8 @@ import _03_memberData.model.City_H;
 import _03_memberData.service.AddressService;
 import _03_memberData.service.GymService;
 import _03_memberData.service.MemberDataService;
-import _05_tr_info_account.model.TrainerLicenseBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
+
 
 @Controller
 @SessionAttributes({ "LoginOK","gym"}) // 此處有LoginOK的識別字串

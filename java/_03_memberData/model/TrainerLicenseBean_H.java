@@ -1,4 +1,4 @@
-package _05_tr_info_account.model;
+package _03_memberData.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

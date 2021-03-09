@@ -7,7 +7,8 @@ import _01_register.model.GymBean_H;
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
-import _05_tr_info_account.model.TrainerLicenseBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
+
 
 
 

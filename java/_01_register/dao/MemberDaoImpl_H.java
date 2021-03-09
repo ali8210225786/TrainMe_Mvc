@@ -15,7 +15,8 @@ import _01_register.model.GymBean_H;
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
-import _05_tr_info_account.model.TrainerLicenseBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
+
 
 // 本類別使用為標準的Hibernate+Spring技術來存取資料庫。
 @Repository

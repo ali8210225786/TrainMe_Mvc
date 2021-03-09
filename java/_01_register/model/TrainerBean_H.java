@@ -22,7 +22,7 @@ import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
 import _04_money.model.MoneyBean_H;
 import _04_money.model.TrainerAccountBean_H;
-import _05_tr_info_account.model.TrainerLicenseBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
