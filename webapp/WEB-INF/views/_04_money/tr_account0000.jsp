@@ -54,20 +54,31 @@
 
 			<!-- 說明 -->
 			<div class="info_wrap t lesson">
-				<table class="table border">
+			<table class="table border">
+				<c:choose>
+					<c:when test="${AccountBean.size()==0}">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">轉入時間</th>
+								<th scope="col">轉出帳號</th>
+								<th scope="col">轉入帳號</th>
+								<th scope="col">轉入金額</th>
+								<th scope="col">備註</th>
+							</tr>
+						</thead>
+					</c:when>
+					<c:otherwise>
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">轉入時間</th>
+								<th scope="col">轉出帳號</th>
+								<th scope="col">轉入帳號</th>
+								<th scope="col">轉入金額</th>
+								<th scope="col">備註</th>
+							</tr>
+						</thead>
 
-					<thead class="thead-light">
-						<tr>
-							<th scope="col">轉入時間</th>
-							<th scope="col">轉出帳號</th>
-							<th scope="col">轉入帳號</th>
-							<th scope="col">轉入金額</th>
-							<th scope="col">備註</th>
-						</tr>
-					</thead>
-					<tbody class="tr_height">
-
-						<c:if test="${AccountBean.size() != 0}">
+						<tbody class="tr_height">
 							<c:forEach varStatus="i" begin="0" end="${AccountBean.size()-1}">
 								<tr>
 									<td>${AccountBean.get(i.current).time}</td>
@@ -78,8 +89,10 @@
 
 								</tr>
 							</c:forEach>
-						</c:if>
-					</tbody>
-				</table>
+						</tbody>
+					</c:otherwise>
+				</c:choose>
+			</table>
+			
 </body>
 </html>
