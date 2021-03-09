@@ -19,7 +19,8 @@ public class CardValidator implements Validator {
 	
 	private static final Pattern PASSWORD_PATTERN = Pattern.compile("((?=.*\\d)(?=.*[a-z]).{6,})");
 	private static final Pattern Email_PATTERN = Pattern.compile("^\\w{1,63}@[a-zA-Z0-9]{2,63}\\.[a-zA-Z]{2,63}(\\.[a-zA-Z]{2,63})?$");
-	
+	private static final Pattern TEL_PATTERN = Pattern.compile("^[0-9]*$");
+
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -37,22 +38,38 @@ public class CardValidator implements Validator {
 		if (cb.getName() != null && cb.getName().length() < 1 || cb.getName().length() > 5) {
 			errors.rejectValue("name", "", "姓名欄位格式不正確");
 		}
-//
-//		if (st.getPassword() != null  && !PASSWORD_PATTERN.matcher(st.getPassword()).matches()) {
-//			errors.rejectValue("password", "studentBean.password.space", "密碼至少含有一個小寫字母，且長度不能小於六個字元");
-//		}
-//		
-//		if (st.getPasswordcheck() != null && st.getPassword() != null && !st.getPasswordcheck().equals(st.getPassword())
-//		) {
-//			errors.rejectValue("passwordcheck", "studentBean.password.mustEqual", "密碼欄位並須和密碼確認一致");
-//		}
-//
-//		if (st.getEmail() == null || !Email_PATTERN.matcher(st.getEmail()).matches()) {
-//			errors.rejectValue("email", "studentBean.email.invalid", "必須包含@符號，必須包含點，點和@之間必須有字元");
-//		}
+
+		if ((cb.getCardNo1()+cb.getCardNo2()+cb.getCardNo3()+cb.getCardNo4()).length() != 16 ) {
+			errors.rejectValue("cardNo1", "", "信用卡欄位不完整");
+		}
+		if (cb.getExpiryMonth().equals("-1") && !cb.getExpiryYear().equals("-1"))
+		 {
+			errors.rejectValue("expiryMonth", "", "請選擇到期月份");
+		}
+		if (cb.getExpiryYear().equals("-1") && !cb.getExpiryMonth().equals("-1"))
+		 {
+			errors.rejectValue("expiryMonth", "", "請選擇到期年份");
+		}
+		if (cb.getExpiryYear().equals("-1") && cb.getExpiryMonth().equals("-1"))
+		 {
+			errors.rejectValue("expiryMonth", "", "請選擇到期月份及年份");
+		}
+		if (cb.getCardCVV().length()<3)
+		 {
+			errors.rejectValue("cardCVV", "", "CVV欄位不完整");
+		}
+		if (cb.getCardName().length() > 5  || TEL_PATTERN.matcher(cb.getCardName()).matches()) {
+			errors.rejectValue("cardName", "", "姓名欄位格式不正確");
+		}
+		if (!TEL_PATTERN.matcher(cb.getTel()).matches()) {
+			errors.rejectValue("tel", "", "電話欄位只能為數字");
+		}
+		if (!Email_PATTERN.matcher(cb.getEmail()).matches()) {
+			errors.rejectValue("expiryYear", "", "必須包含@符號，必須包含點，點和@之間必須有字元");
+		}
 //		
 //		if (st.getBirthday() == null) {
-//			errors.rejectValue("birthday", "studentBean.birthday", "生日欄位格式不正確");
+//			errors.rejectValue("cardCVV", "studentBean.birthday", "生日欄位格式不正確");
 //		}
 //		if (st.getSex() == null) {
 //			errors.rejectValue("sex", "studentBean.sex", "性別欄位格式不正確");
