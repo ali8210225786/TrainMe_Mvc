@@ -28,6 +28,17 @@ public class StudentCourseDao {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<StudentCourseBean_H> getComingSoonCourseAll(int id , Date nowDate) {
+		Session session = factory.getCurrentSession();
+		List<StudentCourseBean_H> courses = new ArrayList<>();
+		String hql = "FROM StudentCourseBean_H WHERE is_allowed = 1 and is_delete = 0 and date > '" 
+				   + nowDate + "' and st_id = :mId ORDER BY date";
+		courses = session.createQuery(hql).setParameter("mId", id).getResultList();
+		return courses;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
 	public List<StudentCourseBean_H> getWaitCourse(int id, Date nowDate) {
 		Session session = factory.getCurrentSession();
 		List<StudentCourseBean_H> courses = new ArrayList<>();
