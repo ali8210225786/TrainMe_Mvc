@@ -122,7 +122,7 @@ public class RegisterController {
 		}
 
 		// 寄驗證信
-		SendingEmail se = new SendingEmail(1, studentBean.getEmail(), studentBean.getHash());
+		SendingEmail se = new SendingEmail(1, studentBean.getEmail(), studentBean.getHash(), studentBean.getName());
 		se.sendMail();
 
 		model.addAttribute("studentBean", new StudentBean_H());
@@ -199,7 +199,7 @@ public class RegisterController {
 		}
 
 		// 寄驗證信
-		SendingEmail se = new SendingEmail(2, trainerBean.getEmail(), trainerBean.getHash());
+		SendingEmail se = new SendingEmail(2, trainerBean.getEmail(), trainerBean.getHash(), trainerBean.getName());
 		se.sendMail();
 
 		model.addAttribute("trainerBean", new TrainerBean_H());
