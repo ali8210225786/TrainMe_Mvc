@@ -68,7 +68,7 @@
 					</div>
 					<div class="setting_box">
 						<label>授課區域</label>
-						<p>${gymName}</p>
+						<p>${gym.getName()}</p>
 					</div>
 					<div class="setting_box">
 						<label>年資</label> <input type="number" min="0" name="year"
@@ -97,8 +97,8 @@
 							<!-- 證照表格 -->
 							<div class="tab-pane fade show active" id="pills-wait"
 								role="tabpanel" aria-labelledby="pills-wait-tab">
-								
-<!-- ===================  bordered  改成 table-bordered =====================================-->
+
+								<!-- ===================  bordered  改成 table-bordered =====================================-->
 								<table id="table" class="table table-bordered">
 									<thead class="thead-light">
 										<tr>
@@ -120,7 +120,7 @@
 					<div class="setting_box upload_file">
 						<label for="name">自我介紹:</label>
 						<textarea name="introduction" id="text" cols="60" rows="15"
-							maxlength="1000">${trainerBean.introduction}</textarea>
+							maxlength="1000" placeholder="限1000字以內">${trainerBean.introduction}</textarea>
 						<p id="feedback"></p>
 					</div>
 
@@ -202,14 +202,12 @@
 	</div>
 	</div>
 
-<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" -->
-<!-- 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" -->
-<!-- 		crossorigin="anonymous"></script> -->
-	<!-- <script -->
-	<!-- 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" -->
-	<!-- 	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" -->
-	<!-- 	crossorigin="anonymous"></script> -->
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
+	
+
 		/*
 		 var tab=document.getElementById('tab') //獲取表格元素
 		 var rows=tab.rows; //返回包含表格中所有行的一個數組。
@@ -225,9 +223,15 @@
 		//新增
 		function addtr() {
 			var lsname = document.getElementById('lsname').value;
+			console.log(lsname);
 			var table = document.getElementById('table');
 			var tradd = table.insertRow(1) // onclick="del()"
 			tradd.innerHTML = `<td class="trif_f">\${lsname}</td><td><a href="#">修改</a>　<a href="javascript:" id="del_btn" >刪除</a></td>`
+
+			$.post("/TrainMe/addLicense", {
+				lsname : lsname
+			});
+
 			//刪除(待修改)
 			var del_btn = document.getElementById('del_btn')
 			del_btn.addEventListener('click', function del(e) {
@@ -237,15 +241,17 @@
 					tr.parentNode.removeChild(tr);//从daotr的父元素[tbody]移除tr
 				}
 			});
+			
+			
 		}
 		table.insertRow()
-
 
 		// 自我介紹       
 		$(document)
 				.ready(
 						function() {
 							let textMax = ($("#text").val()).length;
+					
 							$('#feedback')
 									.html(
 											`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
@@ -262,7 +268,13 @@
 												//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
 											});
 						});
-
+		
+		// 將換行、空白符號轉換成<br>，存入資料庫
+		var content = $("#text").val();
+		content = content.replace(/\n|\r\n/g, "<br>");
+// 		console.log(content);
+		
+		
 		// 上傳
 		// 照片處理
 		const theFile = document.getElementById('trainerImage');

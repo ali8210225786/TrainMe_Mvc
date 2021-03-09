@@ -54,17 +54,17 @@
 				</div>
 			</ul></li>
 </header>
-<script>
-	// 導覽列
-	// 往下捲動再往上時顯示導覽列
-	var prevScrollpos = window.pageYOffset;
-	window.onscroll = function() {
-		var currentScrollPos = window.pageYOffset;
-		if (prevScrollpos > currentScrollPos) {
-			document.getElementById("navbar").style.top = "0";
-		} else {
-			document.getElementById("navbar").style.top = "-90px";
-		}
-		prevScrollpos = currentScrollPos;
-	}
-</script>
+<!-- <script> -->
+<!-- // 	// 導覽列 -->
+<!-- // 	// 往下捲動再往上時顯示導覽列 -->
+<!-- // 	var prevScrollpos = window.pageYOffset; -->
+<!-- // 	window.onscroll = function() { -->
+<!-- // 		var currentScrollPos = window.pageYOffset; -->
+<!-- // 		if (prevScrollpos > currentScrollPos) { -->
+<!-- // 			document.getElementById("navbar").style.top = "0"; -->
+<!-- // 		} else { -->
+<!-- // 			document.getElementById("navbar").style.top = "-90px"; -->
+<!-- // 		} -->
+<!-- // 		prevScrollpos = currentScrollPos; -->
+<!-- // 	} -->
+<!-- </script> -->

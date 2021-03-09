@@ -53,29 +53,19 @@
 
 			<div class="info_wrap t lesson">
 
-				<ul class="nav nav-tab mb-3" id="pills-tab"
-					role="tablist">
-					<li class="nav-item mr-4" role="presentation">
-						<a
-							class="nav-link li_color active" id="pills-wait-tab"
-							data-toggle="pill" href="#pills-wait" role="tab"
-							aria-controls="pills-wait" aria-selected="true"> 等待同意 
-						</a>
-					</li>
-					<li class="nav-item mr-4" role="presentation">
-						<a
-							class="nav-link li_color" id="pills-next-tab" data-toggle="pill"
-							href="#pills-next" role="tab" aria-controls="pills-next"
-							aria-selected="false">即將上課
-						</a>
-					</li>
-					<li class="nav-item " role="presentation">
-						<a
-							class="nav-link li_color" id="pills-history-tab"
-							data-toggle="pill" href="#pills-history" role="tab"
-							aria-controls="pills-history" aria-selected="false">歷史課程
-						</a>
-					</li>
+				<ul class="nav nav-tab mb-3" id="pills-tab" role="tablist">
+					<li class="nav-item mr-4" role="presentation"><a
+						class="nav-link li_color active" id="pills-wait-tab"
+						data-toggle="pill" href="#pills-wait" role="tab"
+						aria-controls="pills-wait" aria-selected="true"> 等待同意 </a></li>
+					<li class="nav-item mr-4" role="presentation"><a
+						class="nav-link li_color" id="pills-next-tab" data-toggle="pill"
+						href="#pills-next" role="tab" aria-controls="pills-next"
+						aria-selected="false">即將上課 </a></li>
+					<li class="nav-item " role="presentation"><a
+						class="nav-link li_color" id="pills-history-tab"
+						data-toggle="pill" href="#pills-history" role="tab"
+						aria-controls="pills-history" aria-selected="false">歷史課程 </a></li>
 				</ul>
 
 				<div class="tab-content mt-3" id="pills-tabContent">
@@ -103,8 +93,8 @@
 											${waitCourse.get(i.current).getTime() + 1}:00</td>
 										<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 										<td><a
-											href="/CancelCourseLesson/${LoginOK.id}?courseId=${waitCourse.get(i.current).getId()}"
-											class="cancel">取消</a></td>
+											href="/TrainMe/CancelCourseLesson/${LoginOK.id}?courseId=${waitCourse.get(i.current).getId()}&type=waitCourse"
+											class="cancel" data-type="waitCourse">取消</a></td>
 									</c:forEach>
 								</c:if>
 							</tbody>
@@ -136,8 +126,8 @@
 												${comingSoonCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${comingSoonCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 											<td><a
-												href="/TrainMe/CancelCourseLesson/${LoginOK.id}?courseId=${comingSoonCourse.get(i.current).getId()}"
-												class="cancel">取消</a></td>
+												href="/TrainMe/CancelCourseLesson/${LoginOK.id}?courseId=${comingSoonCourse.get(i.current).getId()}&type=comingSoon"
+												class="cancel" data-type="comingSoon">取消</a></td>
 										</tr>
 									</c:forEach>
 								</c:if>
@@ -190,21 +180,18 @@
 
 
 		</div>
-</body>
-
-
-
-<script src="./js/jquery-3.5.1.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-	crossorigin="anonymous"></script>
-<script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+			crossorigin="anonymous"></script>
+		<script>
 	//選單點選變色(待補)
 	
+	
+	var changeTab = null;
 	//頁籤
 
 	$('#pills-tab a').on('click', function(event) {
@@ -219,16 +206,24 @@
 		if (!yes) {
 			event.preventDefault();
 		}
-		console.log(this.closest());
-// 		var clicktab = 
+		console.log(this.dataset.type);
+		changeTab = this.dataset.type;
 	})
+		console.log("${type.equals('comingSoon')}");
 	
+
+	<c:if test="${type.equals('comingSoon')}">
+// 				console.log("111111111");
+				$('#pills-next-tab').tab('show')			
+	</c:if>
+	<c:if test="${type.equals('waitCourse')}">
+// 				console.log("2222");
+				$('#pills-wait-tab').tab('show')			
+	</c:if>
+		
 	
-	window.onload = function () {
 		
-		
-	}
+	
 </script>
-
-
+</body>
 </html>
