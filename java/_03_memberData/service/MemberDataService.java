@@ -26,10 +26,12 @@ public class MemberDataService {
 	AddressService addressService;
 	
 	public void updateStudent(StudentBean_H sb) {
+		if(sb.getCity() != null && sb.getArea() != null) {
 		City_H city = addressService.getCityById(sb.getCity().getId());
 		Area_H area = addressService.getAreaById(sb.getArea().getId());
 		sb.setCity(city);
 		sb.setArea(area);
+		}
 		memberDataDao.updateStudent(sb);	
 	}
 	

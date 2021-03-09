@@ -22,6 +22,7 @@ import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
 import _04_money.model.MoneyBean_H;
 import _04_money.model.TrainerAccountBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
@@ -40,47 +41,53 @@ public class TrainerBean_H extends MemberBean_H {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id;
+	private Integer id;
 	@Column(columnDefinition = "INT Default 2")
-	Integer type;
-	String name;
-	String phone;
-	Date birthday;
-	String email;
-	String password;
+	private Integer type;
+	private String name;
+	private String phone;
+	private Date birthday;
+	private String email;
+	private String password;
 	@Transient
-	String passwordcheck;
-	String id_number;
-	String sex;
-	Integer verification;
-	Integer year;
+	private String passwordcheck;
+	@Transient
+	private String oldpassword;
+	@Transient
+	private String newpassword;
+	@Transient
+	private String newpasswordcheck;
+	private String id_number;
+	private String sex;
+	private Integer verification;
+	private Integer year;
 	@ManyToOne
 	@JoinColumn(name="city_id")
-	City_H city;
+	private City_H city;
 	@ManyToOne
 	@JoinColumn(name="area_id")
-	Area_H area;
-	String address;
+	private Area_H area;
+	private String address;
 	@ManyToOne
 	@JoinColumn(name="gym_id")
-	GymBean_H gym;
+	private GymBean_H gym;
 	@Transient
-	Integer gympassword;
-	String profile_image;
-	String profile_video;
-	Integer is_delete;
-	String hash;
-	String nickname;
-	String bank_account;
-	String course;
-	String introduction;
+	private Integer gympassword;
+	private String profile_image;
+	private String profile_video;
+	private Integer is_delete;
+	private String hash;
+	private String nickname;
+	private String bank_account;
+	private String course;
+	private String introduction;
 	
 	private Blob image;
 	private String fileName;
 	@Transient
-	MultipartFile trainerImage;
+	private MultipartFile trainerImage;
 	@Transient
-	MultipartFile trainerVideo;
+	private MultipartFile trainerVideo;
 	@Transient
     public boolean hasError = false;
 	
@@ -101,6 +108,9 @@ public class TrainerBean_H extends MemberBean_H {
 	
 	@OneToMany(mappedBy = "trainerBean_H")
 	private Set<TrainerOffBean_H> trainerOffBean_H = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<TrainerLicenseBean_H> trainerLicenseBean_H = new LinkedHashSet<>();
 	
 	public TrainerBean_H(Integer id, Integer type, String name, String phone, Date birthday, String email, String password,
 			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash) {
@@ -237,6 +247,48 @@ public class TrainerBean_H extends MemberBean_H {
 
 	public void setPasswordcheck(String passwordcheck) {
 		this.passwordcheck = passwordcheck;
+	}
+
+
+
+
+	public String getOldpassword() {
+		return oldpassword;
+	}
+
+
+
+
+	public void setOldpassword(String oldpassword) {
+		this.oldpassword = oldpassword;
+	}
+
+
+
+
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+
+
+
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+
+
+
+
+	public String getNewpasswordcheck() {
+		return newpasswordcheck;
+	}
+
+
+
+
+	public void setNewpasswordcheck(String newpasswordcheck) {
+		this.newpasswordcheck = newpasswordcheck;
 	}
 
 
@@ -615,6 +667,20 @@ public class TrainerBean_H extends MemberBean_H {
 
 	public void setOrdersBean_H(Set<OrdersBean_H> ordersBean_H) {
 		this.ordersBean_H = ordersBean_H;
+	}
+
+
+
+
+	public Set<TrainerLicenseBean_H> getTrainerLicenseBean_H() {
+		return trainerLicenseBean_H;
+	}
+
+
+
+
+	public void setTrainerLicenseBean_H(Set<TrainerLicenseBean_H> trainerLicenseBean_H) {
+		this.trainerLicenseBean_H = trainerLicenseBean_H;
 	}
 
 

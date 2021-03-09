@@ -46,7 +46,7 @@ public class StudentCourseBean_H implements Serializable{
 	@Column(columnDefinition = "INT Default 0")
 	private Integer is_allowed;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="trainer_course_id")
 	private TrainerCourseBean_H trainerCourseBean_H;
 	
@@ -87,11 +87,11 @@ public class StudentCourseBean_H implements Serializable{
 		this.studentBean_H = studentBean_H;
 	}
 
-	public Integer getTr_id() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setTr_id(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

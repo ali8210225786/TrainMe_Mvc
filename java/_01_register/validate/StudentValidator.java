@@ -34,31 +34,42 @@ public class StudentValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "email", "studentBean.email.empty", "email欄不能空白");
 		ValidationUtils.rejectIfEmpty(errors, "id_number", "studentBean.id_number.empty", "身分證欄位不能空白");
 
-		StudentBean_H st = (StudentBean_H) target;
+		StudentBean_H sb = (StudentBean_H) target;
 
-		
-		
-		if (st.getName() != null && st.getName().length() < 1 || st.getName().length() > 30) {
+		//前面加if (sb.getNewpassword() == null) 判斷式，是為了執行修改密碼時，防止sb.getName()得到null值，以至於不能判斷sb.getName().length()
+		if (sb.getNewpassword() == null) {
+		if (sb.getName() != null && sb.getName().length() < 1 || sb.getName().length() > 30) {
 			errors.rejectValue("name", "studentBean.name.size", "姓名欄位格式不正確");
 		}
-
-		if (st.getPassword() != null  && !PASSWORD_PATTERN.matcher(st.getPassword()).matches()) {
+		}
+		
+		if (sb.getPassword() != null  && !PASSWORD_PATTERN.matcher(sb.getPassword()).matches()) {
 			errors.rejectValue("password", "studentBean.password.space", "密碼至少含有一個小寫字母，且長度不能小於六個字元");
 		}
 		
-		if (st.getPasswordcheck() != null && st.getPassword() != null && !st.getPasswordcheck().equals(st.getPassword())
+	
+		if (sb.getPasswordcheck() != null && sb.getPassword() != null && !sb.getPasswordcheck().equals(sb.getPassword())
 		) {
 			errors.rejectValue("passwordcheck", "studentBean.password.mustEqual", "密碼欄位並須和密碼確認一致");
 		}
+		
+		if (sb.getNewpassword() != null  && !PASSWORD_PATTERN.matcher(sb.getNewpassword()).matches()) {
+			errors.rejectValue("newpassword", "studentBean.password.space", "密碼至少含有一個小寫字母，且長度不能小於六個字元");
+		}	
+		
+		if (sb.getNewpasswordcheck() != null && sb.getNewpassword() != null && !sb.getNewpasswordcheck().equals(sb.getNewpassword())
+		) {
+			errors.rejectValue("newpasswordcheck", "studentBean.password.mustEqual", "新密碼欄位並須和新密碼確認一致");
+		}
 
-		if (st.getEmail() == null || !Email_PATTERN.matcher(st.getEmail()).matches()) {
+		if (sb.getEmail() == null || !Email_PATTERN.matcher(sb.getEmail()).matches()) {
 			errors.rejectValue("email", "studentBean.email.invalid", "必須包含@符號，必須包含點，點和@之間必須有字元");
 		}
 		
-		if (st.getBirthday() == null) {
+		if (sb.getBirthday() == null) {
 			errors.rejectValue("birthday", "studentBean.birthday", "生日欄位格式不正確");
 		}
-		if (st.getSex() == null) {
+		if (sb.getSex() == null) {
 			errors.rejectValue("sex", "studentBean.sex", "性別欄位格式不正確");
 		}
 

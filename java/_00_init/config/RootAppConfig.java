@@ -4,6 +4,7 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement //加了此註釋，才可使用@Transactional
 public class RootAppConfig {
 	
 	
@@ -43,7 +44,7 @@ public class RootAppConfig {
         
         factory.setDataSource(dataSource());         // 連線資訊
         factory.setPackagesToScan(new String[] {     // 映射資訊的來源(套件名稱)
-                    "_01_register.model","_03_memberData.model","_04_money.model","_07_memberInfo.model",
+                    "_01_register.model","_03_memberData.model","_04_money.model","_05_tr_info_account","_07_memberInfo.model",
                     "_09_trainerCourse.model","_10_studentCourse.model","_11_orderProcess.model"
                 });
         factory.setHibernateProperties(additionalProperties());   // 進階資訊

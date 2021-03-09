@@ -24,7 +24,7 @@
             box-shadow:0px 0px 7px #ccc;
             /* border: 1px solid  red; */
             padding: 20px 200px;
-            z-index: 1;
+            z-index: 3;
         }
         header ul{
             display: flex;
@@ -83,9 +83,9 @@
             border: 1px solid #59ddb8;
         }
 
-        /*­Ó¤H­¶­±¤U©Ô¿ï³æ*/
+        /*ï¿½Ó¤Hï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½Ô¿ï¿½ï¿½*/
 
-        /* ·|­ûÀY¹³ */
+        /* ï¿½|ï¿½ï¿½ï¿½Yï¿½ï¿½ */
         .member{
             position: relative;
         }
@@ -102,7 +102,7 @@
             object-fit:cover
         }
 
-        /*¤U©Ô¿ï³æ*/
+        /*ï¿½Uï¿½Ô¿ï¿½ï¿½*/
         .dropdown_box{
             position: relative;
             border: 1px solid #eee;
