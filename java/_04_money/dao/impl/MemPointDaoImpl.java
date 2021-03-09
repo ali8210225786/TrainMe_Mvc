@@ -55,9 +55,7 @@ public class MemPointDaoImpl implements MemPointDao{
 		List <TrainerAccountBean_H> ta = session.createQuery(hql).setParameter("trid", id).getResultList();
 	
 		System.out.println("mb.size()= "+ta.size());
-		System.out.println("MoneyBean.get(0).student_course_id ="+ta.get(0).getNote() );
-		System.out.println("MoneyBean.get(0).student_course_id ="+ta.get(0).getTrainerBean_H().getBank_account() );
-		System.out.println("MoneyBean.get(0).student_course_id ="+ta.get(0).getTotal_amount() );
+		
 		return ta;
 	}
 
