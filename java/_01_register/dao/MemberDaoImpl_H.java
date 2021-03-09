@@ -15,6 +15,8 @@ import _01_register.model.GymBean_H;
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
+
 
 // 本類別使用為標準的Hibernate+Spring技術來存取資料庫。
 @Repository
@@ -110,7 +112,7 @@ public class MemberDaoImpl_H implements MemberDao_H {
 
 		return sb;
 	}
-
+	
 //	// 檢查使用者在登入時輸入的帳號與密碼是否正確。如果正確，傳回該帳號所對應的MemberBean物件，
 	// // 否則傳回 null。
 	@SuppressWarnings("unused")
@@ -153,6 +155,85 @@ public class MemberDaoImpl_H implements MemberDao_H {
 		}
 		return null;
 	}
+	@Override
+	public MemberBean_H checkOldPassword_H(String email, String password) {
+		String[] types = { "StudentBean_H", "TrainerBean_H" };
+		Session session = factory.getCurrentSession();
+		for (int i = 0; i < types.length; i++) {
+			
+			
+			String type = types[i];
+			
+			String hql = "FROM " + type + " WHERE email = :memail and password = :psw";
+
+			if (type.equals("StudentBean_H")) {
+
+				try {
+					return (StudentBean_H) session.createQuery(hql).setParameter("memail", email)
+							.setParameter("psw", password).getSingleResult();
+				} catch (NoResultException e) {
+					continue;
+				}
+
+			} 
+			
+			if (type.equals("TrainerBean_H")) {
+
+				try {
+					return (TrainerBean_H) session.createQuery(hql).setParameter("memail", email)
+							.setParameter("psw", password).getSingleResult();
+				} catch (NoResultException e) {
+					continue;
+				}
+			}
+
+		}
+		return null;
+	}
+	@Override
+	public MemberBean_H checkEmail_H(String email) {
+		String[] types = { "StudentBean_H", "TrainerBean_H" };
+		Session session = factory.getCurrentSession();
+		for (int i = 0; i < types.length; i++) {
+			
+			
+			String type = types[i];
+			
+			String hql = "FROM " + type + " WHERE email = :memail";
+
+			if (type.equals("StudentBean_H")) {
+
+				try {
+					return (StudentBean_H) session.createQuery(hql).setParameter("memail", email).getSingleResult();
+				} catch (NoResultException e) {
+					continue;
+				}
+
+			} 
+			
+			if (type.equals("TrainerBean_H")) {
+
+				try {
+					return (TrainerBean_H) session.createQuery(hql).setParameter("memail", email).getSingleResult();
+				} catch (NoResultException e) {
+					continue;
+				}
+			}
+
+		}
+		return null;
+	}
+	// 儲存TrainerLicenseBean物件，將參數tl新增到trainer_license表格內。
+
+		@Override
+		public int saveTrainerLicenseBean_H(TrainerLicenseBean_H tl) {
+			int n = 0;
+			Session session = factory.getCurrentSession();
+			session.save(tl);
+			n++;
+
+			return n;
+		}
 
 
 

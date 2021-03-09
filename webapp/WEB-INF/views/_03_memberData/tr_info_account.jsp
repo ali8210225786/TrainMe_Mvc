@@ -228,9 +228,12 @@
 			var tradd = table.insertRow(1) // onclick="del()"
 			tradd.innerHTML = `<td class="trif_f">\${lsname}</td><td><a href="#">修改</a>　<a href="javascript:" id="del_btn" >刪除</a></td>`
 
-			$.post("/TrainMe/addLicense", {
-				lsname : lsname
-			});
+			$.post("/TrainMe/addLicense", 
+			{ 	  
+				  lsname: lsname,
+				  trainerBeanId: ${trainerBean.id}
+			}
+			);
 
 			//刪除(待修改)
 			var del_btn = document.getElementById('del_btn')

@@ -7,15 +7,15 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>學員-帳號設定-修改密碼</title>
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/style_st_info.css">
-<link rel="stylesheet" href="../css/style_st_account.css">
-<link rel="stylesheet" href="../css/style_nav.css">
+<title>教練-帳號設定-修改密碼</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_info.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_account.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="../js/jquery-3.5.1.js"></script>
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
 .aside ul li:nth-child(6) a {
@@ -66,7 +66,7 @@
 		<jsp:include page="/fragment/sidebar_tr.jsp"/>
 		
 		<!-- ============右側網頁======================================================= -->
-		<jsp:include page="/fragment/pw_edit.jsp"/>
+		<jsp:include page="/fragment/pw_edit_tr.jsp"/>
 		
 <!-- 		<div class="aside"> -->
 <!-- 			<ul> -->
@@ -111,14 +111,14 @@
 	</div>
 
 </body>
-<script>
-    document.getElementById("saveBtn").addEventListener("click",function(){
-      swal({
-        title: "確定更改密碼嗎?",
-        icon: "info",
-        buttons: true,
-        dangerMode: false
-      });
-    });
-    </script>
+<!-- <script> -->
+<!--      document.getElementById("saveBtn").addEventListener("click",function(){ -->
+<!--       swal({ -->
+<!--          title: "確定更改密碼嗎?", -->
+<!--        icon: "info", -->
+<!--          buttons: true, -->
+<!--         dangerMode: false -->
+<!--       }); -->
+<!--     }); -->
+<!--     </script> -->
 </html>

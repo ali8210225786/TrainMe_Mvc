@@ -65,7 +65,7 @@
 					</div>
 					<div class="setting_box">
 						<label>密碼</label><a
-							href="<c:url value='/_03MemberData/passwordUpdate.jsp' />">修改密碼</a>
+							href="<c:url value='/tr_PasswordUpdate/${trainerBean.id}' />">修改密碼</a>
 					</div>
 					<div class="setting_box">
 						<label>生日</label>

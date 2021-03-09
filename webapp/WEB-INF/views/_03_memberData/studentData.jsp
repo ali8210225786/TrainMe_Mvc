@@ -45,7 +45,7 @@
                     <p>您在 Train Me 服務使用的基本資訊</p>
                 </div>
                 <div class="setting_area">
-                        <form:form  action="/TrainMe/updateStData/${studentBean.id}" method="post" modelAttribute="studentBean" enctype="multipart/form-data">
+                        <form:form  action="/TrainMe/updateStData" method="post" modelAttribute="studentBean" enctype="multipart/form-data">
                         
                            
                             <div class="setting_box">
@@ -55,7 +55,7 @@
                                 <label>Email</label><p>${studentBean.email}</p>
                             </div>
                             <div class="setting_box">
-                                <label>密碼</label><a href="<c:url value='/_03MemberData/passwordUpdate.jsp' />">修改密碼</a>
+                                <label>密碼</label><a href="<c:url value='/st_PasswordUpdate/${studentBean.id}' />">修改密碼</a>
                             </div>
                             <div class="setting_box">
                                 <label>生日</label><p>${studentBean.birthday}</p>
