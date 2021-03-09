@@ -15,7 +15,7 @@ import _07_memberInfo.service.StudentInfoService;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
 
-@SessionAttributes({ "LoginOK", "comingSoonCourse", "waitCourse", "beforeCourse" })
+@SessionAttributes({ "LoginOK", "comingSoonCourse", "waitCourse", "beforeCourse", "type" })
 @Controller
 public class StudentCourseController {
 
@@ -30,13 +30,13 @@ public class StudentCourseController {
 //		System.out.println("==================okkkkkkkkkkkkkkkkk");
 		Date now = new Date();
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
-		List<StudentCourseBean_H> comingSoonCourse = studentCourseService.getComingSoonCourse(id, nowDate);
+		List<StudentCourseBean_H> comingSoonCourse = studentCourseService.getComingSoonCourseAll(id, nowDate);
 		List<StudentCourseBean_H> waitCourse = studentCourseService.getWaitCourse(id, nowDate);
 		List<StudentCourseBean_H> beforeCourse = studentCourseService.getBeforeCourse(id, nowDate);
 		model.addAttribute("comingSoonCourse", comingSoonCourse);
 		model.addAttribute("waitCourse", waitCourse);
 		model.addAttribute("beforeCourse", beforeCourse);
-
+		
 		return "_10_studentCourse/st_info_lesson";
 	}
 	
@@ -44,10 +44,12 @@ public class StudentCourseController {
 	public String cancelCourse(
 			@PathVariable("id") Integer id, 
 			@RequestParam("courseId") String courseIdStr, 
+			@RequestParam("type") String type, 
 			Model model) {
 		int courseId = Integer.parseInt(courseIdStr);
 		studentCourseService.cancelCourse(courseId);
-		
+		System.out.println(type);
+		model.addAttribute("type",type);
 		return "redirect:/st_info_lesson/"+id;
 	}
 

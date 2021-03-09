@@ -30,6 +30,10 @@ public class StudentCourseService {
 		return studentCourseDao.getComingSoonCourse(id, nowDate, endDate);
 	}
 	
+	public List<StudentCourseBean_H> getComingSoonCourseAll(int id , Date nowDate) {
+		return studentCourseDao.getComingSoonCourseAll(id, nowDate);
+	}
+	
 	public List<StudentCourseBean_H> getWaitCourse(int id, Date nowDate){
 		return studentCourseDao.getWaitCourse(id, nowDate);
 	}
