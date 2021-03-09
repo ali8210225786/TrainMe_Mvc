@@ -62,7 +62,7 @@ public class StudentInfoController {
 		model.addAttribute("comingSoonCourse", comingSoonCourse);
 		model.addAttribute("waitCourse", waitCourse);
 		model.addAttribute("LoginOK", studentBean);
-		return "/_07_student_info/student_info";
+		return "/_07_memberInfo/student_info";
 	}
 	
 	@GetMapping("/student_info_edit/{id}")
@@ -70,7 +70,7 @@ public class StudentInfoController {
 			@PathVariable("id") Integer id) {
 		StudentBean_H studentBean = memberDataService.getStudentById(id);
 		model.addAttribute("studentBean", studentBean);
-		return "/_07_student_info/student_info_edit";
+		return "/_07_memberInfo/student_info_edit";
 	}
 	
 	@PostMapping("/student_bodyData_update/{id}")
