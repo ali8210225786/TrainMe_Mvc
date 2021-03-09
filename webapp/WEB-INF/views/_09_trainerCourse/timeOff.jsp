@@ -71,12 +71,6 @@ th, td {
 				class="input_date" x-model="dateBegin" x-ref="date" />
 			<!--       x-model :  讓使用者輸入和(js)記憶體可以同步更新   -->
 			<!--       x-ref   :  之後可以使用$refs.date來取得這個dom元素  -->
-			<br /> 設定每日開始時間 : <input type="number" name="time_begin"
-				id="time_begin" min="0" max="24" class="input_date"
-				x-model="timeBegin" @change="checkHours" /> 設定每日結束時間 : <input
-				type="number" name="time_end" id="time_end" min="0" max="24"
-				class="input_date" x-model="timeEnd" @change="checkHours" />
-			<br />
 			<button id="btn" :disabled="notAllowGenerate()"
 				@click="produceDate()">查詢</button>
 		</div>
@@ -109,14 +103,14 @@ th, td {
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-<!-- 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+	<!-- 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 	<script>
       function courseData() {
         return {
           dateBegin: null,
           dateEnd: null,
-          timeBegin: null,
-          timeEnd: null,
+//           timeBegin: null,
+//           timeEnd: null,
           dates: [],
           hours: [],
           dateBodys: [],
@@ -130,9 +124,9 @@ th, td {
           },
           notAllowGenerate() {   //判斷資料是否有輸入
             return (
-              this.dateBegin === null ||
-              this.timeBegin === null ||
-              this.timeEnd === null
+              this.dateBegin === null 
+//               this.timeBegin === null ||
+//               this.timeEnd === null
             );
           },
           produceDate() {    //產生行程表
@@ -160,8 +154,8 @@ th, td {
             
           },
           produceHourData() {   //產生小時列表
-            let firstTime = parseInt(this.timeBegin);
-            let lastTime = parseInt(this.timeEnd);
+            let firstTime = 8;
+            let lastTime = 21;
             
             for (firstTime; firstTime <= lastTime; firstTime++) {           
               this.hours.push(firstTime);
@@ -171,23 +165,12 @@ th, td {
             const self = this;
             $.get("/TrainMe/TimeOff/get/" + ${LoginOK.id}, data,
               function (data) {
-            	 console.log("aaaaaa");
-            	 console.log(data);
+//             	 console.log("aaaaaa");
+//             	 console.log(data);
             	self.closeHours = data;
               },
               "json"
             );
-// 			  axios.get("/TrainMe/TimeOff/get/" + ${LoginOK.id}, {
-// 		    	    params: {
-// 		    	    	dateBegin:this.dateBegin,
-// 		    	    	dateEnd:this.dateEnd
-		    	    	
-// 		    	    }})
-// 			    .then(function (res) {
-// 			        var data = res.data;
-// 			        console.log(res);
-// 			    })
-
           },
           isClosed(dateBody,hour) {   //判斷時段是否已經關閉
             const closeHourStr = dateBody + "_" + hour;
@@ -205,21 +188,7 @@ th, td {
 
 //             console.log(this.closeHours);
           },
-          checkHours() {  //檢查輸入的時段
-            let firstTime = parseInt(this.timeBegin);
-            let lastTime = parseInt(this.timeEnd);
-            if(firstTime === null || lastTime === null){
-            	return;
-            }
-            
-            
-            if(firstTime > lastTime){
-               alert('結束時間不能比開始時間小唷~');
-               return;
-            }
-             
-          },
-          save(){  // 先刪除時間內的所有資料，再存新資料
+           save(){  // 先刪除時間內的所有資料，再存新資料
         	  const hourData = this.closeHours.map(hour => hour); //解開包住物件得
         	  const payload = {
               closeHour: hourData,

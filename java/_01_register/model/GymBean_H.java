@@ -1,5 +1,6 @@
 package _01_register.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,16 +17,23 @@ public class GymBean_H {
 	String address;
 	String phone;
 	Integer verification; 
+	@Column(columnDefinition="text")
+	String introduction;
 	
-	public GymBean_H(Integer id, String name, String address, String phone, Integer verification) {
+	
+
+	
+	public GymBean_H(Integer id, String name, String address, String phone, Integer verification, String introduction) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
 		this.verification = verification;
+		this.introduction = introduction;
 	}
-	
+
+
 	public GymBean_H() {
 		
 	}
@@ -69,6 +77,16 @@ public class GymBean_H {
 
 	public void setVerification(Integer verification) {
 		this.verification = verification;
+	}
+
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 	
 	

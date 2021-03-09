@@ -39,7 +39,8 @@
 			<ul class="dropdown">
 				<div class="triangle"></div>
 				<div class="dropdown_box">
-					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人資料</a></li>
+					<li><a href="<c:url value='/trainer_info/${LoginOK.id}' />">個人資料</a></li>
+					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人資料(編輯)</a></li>
 					<li><a href="#">學員列表</a></li>
 					<li><a href="<c:url value='/TimeOff/${LoginOK.id}' />">課程管理</a></li>
 					<li><a href="#">帳戶查詢</a></li>
@@ -50,18 +51,18 @@
 				</div>
 			</ul></li>
 </header>
-<script>
-	// 導覽列
-	// 往下捲動再往上時顯示導覽列
-	var prevScrollpos = window.pageYOffset;
-	window.onscroll = function() {
-		var currentScrollPos = window.pageYOffset;
-		if (prevScrollpos > currentScrollPos) {
-			document.getElementById("navbar").style.top = "0";
-		} else {
-			document.getElementById("navbar").style.top = "-90px";
-		}
-		prevScrollpos = currentScrollPos;
-	}
+<!-- <script> -->
+<!-- // 	// 導覽列 -->
+<!-- // 	// 往下捲動再往上時顯示導覽列 -->
+<!-- // // 	var prevScrollpos = window.pageYOffset; -->
+<!-- // // 	window.onscroll = function() { -->
+<!-- // // 		var currentScrollPos = window.pageYOffset; -->
+<!-- // // 		if (prevScrollpos > currentScrollPos) { -->
+<!-- // // 			document.getElementById("navbar").style.top = "0"; -->
+<!-- // // 		} else { -->
+<!-- // // 			document.getElementById("navbar").style.top = "-90px"; -->
+<!-- // // 		} -->
+<!-- // // 		prevScrollpos = currentScrollPos; -->
+<!-- // // 	} -->
 
-</script>
+<!-- </script> -->

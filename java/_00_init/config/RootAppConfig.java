@@ -4,6 +4,7 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement //加了此註釋，才可使用@Transactional
 public class RootAppConfig {
 	
 	

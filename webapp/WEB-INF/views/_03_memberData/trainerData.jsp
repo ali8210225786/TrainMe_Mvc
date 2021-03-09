@@ -73,7 +73,7 @@
 					</div>
 					<div class="setting_box">
 						<label>健身房</label>
-						<p>${gymName}</p>
+						<p>${gym.getName()}</p>
 					</div>
 					<div class="setting_box">
 						<label>手機</label> <input type="text" required name="phone"

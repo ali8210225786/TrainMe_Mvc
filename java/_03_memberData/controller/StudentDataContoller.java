@@ -86,7 +86,7 @@ public class StudentDataContoller {
 
 		StudentBean_H oldBean = memberDataService.getStudentById(id);
 
-		System.out.println("=========================>" + newBean.getCity().getId());
+//		System.out.println("=========================>" + newBean.getCity().getId());
 		oldBean.setPhone(newBean.getPhone());
 		oldBean.setNickname(newBean.getNickname());
 		oldBean.setCity(newBean.getCity());

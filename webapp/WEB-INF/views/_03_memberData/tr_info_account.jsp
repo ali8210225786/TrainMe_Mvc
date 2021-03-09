@@ -68,7 +68,7 @@
 					</div>
 					<div class="setting_box">
 						<label>授課區域</label>
-						<p>${gymName}</p>
+						<p>${gym.getName()}</p>
 					</div>
 					<div class="setting_box">
 						<label>年資</label> <input type="number" min="0" name="year"

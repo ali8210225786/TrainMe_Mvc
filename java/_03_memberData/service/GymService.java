@@ -24,8 +24,8 @@ public class GymService {
 	@Autowired
 	GymDao gymDao;
 	
-	public String getGymName(int gymId) {
-		return gymDao.getGymName(gymId);
+	public GymBean_H getGym(int gymId) {
+		return gymDao.getGym(gymId);
 	}
 
 }

@@ -44,7 +44,7 @@
 				<div class="triangle"></div>
 				<div class="dropdown_box">
 					<li><a href="<c:url value='/student_info/${LoginOK.id}' />">個人資料</a></li>
-					<li><a href="#">我的課程</a></li>
+					<li><a href="<c:url value='/st_info_lesson/${LoginOK.id}' />">我的課程</a></li>
 					<li><a href="<c:url value='/studentMoney/${LoginOK.id}' />">我的點數</a></li>
 					
 					<li><a href="#">訂單查詢</a></li>
@@ -54,17 +54,17 @@
 				</div>
 			</ul></li>
 </header>
-<script>
-	// 導覽列
-	// 往下捲動再往上時顯示導覽列
-	var prevScrollpos = window.pageYOffset;
-	window.onscroll = function() {
-		var currentScrollPos = window.pageYOffset;
-		if (prevScrollpos > currentScrollPos) {
-			document.getElementById("navbar").style.top = "0";
-		} else {
-			document.getElementById("navbar").style.top = "-90px";
-		}
-		prevScrollpos = currentScrollPos;
-	}
-</script>
+<!-- <script> -->
+<!-- // 	// 導覽列 -->
+<!-- // 	// 往下捲動再往上時顯示導覽列 -->
+<!-- // 	var prevScrollpos = window.pageYOffset; -->
+<!-- // 	window.onscroll = function() { -->
+<!-- // 		var currentScrollPos = window.pageYOffset; -->
+<!-- // 		if (prevScrollpos > currentScrollPos) { -->
+<!-- // 			document.getElementById("navbar").style.top = "0"; -->
+<!-- // 		} else { -->
+<!-- // 			document.getElementById("navbar").style.top = "-90px"; -->
+<!-- // 		} -->
+<!-- // 		prevScrollpos = currentScrollPos; -->
+<!-- // 	} -->
+<!-- </script> -->

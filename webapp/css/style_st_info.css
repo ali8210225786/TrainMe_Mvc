@@ -4,7 +4,7 @@ a, a:hover, a:focus {
 
 .container{
     width: 100%;
-    max-width: 1500px;
+    max-width: 1400px;
     position: relative;
     top: 100px;
     margin: auto;
@@ -24,13 +24,14 @@ a, a:hover, a:focus {
     left: 20px;
     width: 20%;
     min-width: 200px;
+
     /* border: 1px solid  red; */
 }
 .aside ul{
     /* margin: 20px; */
-    border: 1px solid #ccc;
-    /* border: 1px solid  #fff; */
+    background-color: #fff;
     width: 220px;
+    box-shadow:  1px 1px 1px #ddd;
 }
 .aside ul li{
     padding: 25px 30px 25px 30px;
@@ -69,12 +70,13 @@ a, a:hover, a:focus {
 .content{
     position: relative;
     /* border: 1px solid red; */
-    padding: 20px;
+    padding: 30px;
     width: 70%;
     min-width: 1000px;
     margin-top: 0px;
     /* margin:auto 0; */
     background-color: #fff;
+    box-shadow:  1px 1px 1px #ddd;
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 300;
 }
@@ -95,6 +97,7 @@ a, a:hover, a:focus {
 /*上方欄*/
 .info_wrap{
     /* border: 1px solid red; */
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     width: 100%;
@@ -185,7 +188,7 @@ a, a:hover, a:focus {
 /* 學員自介 */
 .self_intro{
     font-size: 15px;
-    padding: 10px 20px 0px;
+    padding: 10px 40px 0px 20px;
 
     /* border: 1px solid red; */
 }
@@ -218,7 +221,7 @@ a, a:hover, a:focus {
 
 .edit_area{
     width: 630px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #fff;
     padding: 20px 20px;
     margin: 20px 0px;
@@ -284,7 +287,23 @@ a, a:hover, a:focus {
     color: #666;
 }
 .table td a{
-    color: #21d4a7;
+    color: #32c8a3;
+}
+.thead-light tr th{
+    padding: 20px;
+    text-align: center;
+}
+tbody tr td{
+    font-size: 16px;
+    padding: 20px;
+}
+tbody tr td{
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.6;
+}
+tbody tr td i{
+    font-size: 26px;
 }
 
 .class_name{
