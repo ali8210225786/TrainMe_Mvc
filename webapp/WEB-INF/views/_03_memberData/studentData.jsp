@@ -45,7 +45,7 @@
                     <p>您在 Train Me 服務使用的基本資訊</p>
                 </div>
                 <div class="setting_area">
-                        <form:form  action="/TrainMe/updateStData" method="post" modelAttribute="studentBean" enctype="multipart/form-data">
+                        <form:form  action="/TrainMe/updateStData/${studentBean.id}" method="post" modelAttribute="studentBean" enctype="multipart/form-data">
                         
                            
                             <div class="setting_box">
