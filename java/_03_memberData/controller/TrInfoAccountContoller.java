@@ -39,10 +39,11 @@ import _01_register.model.TrainerBean_H;
 import _01_register.service.MemberService_H;
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 import _03_memberData.service.AddressService;
 import _03_memberData.service.GymService;
 import _03_memberData.service.MemberDataService;
-import _03_memberData.model.TrainerLicenseBean_H;
+
 
 
 @Controller
