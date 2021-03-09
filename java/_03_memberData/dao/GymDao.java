@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _01_register.model.GymBean_H;
+
 @Repository
 public class GymDao {
 
@@ -14,12 +16,12 @@ public class GymDao {
 	public GymDao() {
 	}
 	
-	public String getGymName(int gymId) {
+	public GymBean_H getGym(int gymId) {
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "SELECT name from GymBean_H WHERE id = :gymId";
+		String hql = "From GymBean_H WHERE id = :gymId";
 		
-		return (String) session.createQuery(hql)
+		return (GymBean_H) session.createQuery(hql)
 					           .setParameter("gymId", gymId)
 				               .getSingleResult();
 	}
