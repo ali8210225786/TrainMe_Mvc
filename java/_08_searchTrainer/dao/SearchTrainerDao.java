@@ -19,7 +19,14 @@ public class SearchTrainerDao {
 	@SuppressWarnings("unchecked")
 	public List<TrainerCourseBean_H> getTrainerCourseAll() {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TrainerCourseBean_H";
+		String hql = "FROM TrainerCourseBean_H group by trainerBean_H";
+		return session.createQuery(hql).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TrainerCourseBean_H> getTrainerOfSkillType() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TrainerCourseBean_H group by trainerBean_H,skill_typeBean_H";
 		return session.createQuery(hql).getResultList();
 	}
 	

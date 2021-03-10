@@ -25,5 +25,9 @@ public class SearchTrainerService {
 		return searchTrainerDao.getSkillTypeAll();
 	}
 	
+	public List<TrainerCourseBean_H> getTrainerOfSkillType() {
+		return searchTrainerDao.getTrainerOfSkillType();
+	}
+	
 	
 }

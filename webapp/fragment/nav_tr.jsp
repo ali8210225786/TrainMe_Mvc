@@ -14,7 +14,7 @@
 		</li>
 		<div class="items">
 			<li><a href="#">關於我們</a></li>
-			<li><a href="<c:url value='/searchTrainer' />">尋找教練</a></li>
+			<li><a href="<c:url value='/searchTrainerAll' />">尋找教練</a></li>
 			<li><a href="#">購物商城</a></li>
 			<li><a href="#">運動論壇</a></li>
 		</div>
