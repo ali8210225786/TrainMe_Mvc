@@ -82,7 +82,8 @@ public class PasswordUpdateController {
 				result.rejectValue("oldpassword", "", "該密碼不存在");
 			}else if(newBean.getNewpassword().equals(newBean.getNewpasswordcheck())){
 				oldBean.setPassword(GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getNewpassword())));
-				memberDataService.updateStudent(oldBean);			
+				memberDataService.updateStudent(oldBean);	
+				return "redirect:/studentData/" + id;
 			}
 		} catch (RuntimeException ex) {
 			result.rejectValue("oldpassword", "", ex.getMessage());
@@ -109,7 +110,8 @@ public class PasswordUpdateController {
 				result.rejectValue("oldpassword", "", "該密碼不存在");
 			}else if(newBean.getNewpassword().equals(newBean.getNewpasswordcheck())){
 				oldBean.setPassword(GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getNewpassword())));
-				memberDataService.updateTrainer(oldBean);			
+				memberDataService.updateTrainer(oldBean);	
+				return "redirect:/trainerData/" + id;
 			}
 		} catch (RuntimeException ex) {
 			result.rejectValue("oldpassword", "", ex.getMessage());

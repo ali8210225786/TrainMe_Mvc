@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import _01_register.model.MemberBean_H;
 import _01_register.model.TrainerBean_H;
 
 @Entity

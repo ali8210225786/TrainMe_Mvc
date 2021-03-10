@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>導覽列</title>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"> --%>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css"> --%>
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_login.css"> --%>
 <header id="navbar">
 	<ul>
 		<li class="logo"><a href="<c:url value='/' />"><img
@@ -17,7 +14,7 @@
 		</li>
 		<div class="items">
 			<li><a href="#">關於我們</a></li>
-			<li><a href="#">尋找教練</a></li>
+			<li><a href="<c:url value='/searchTrainer' />">尋找教練</a></li>
 			<li><a href="#">購物商城</a></li>
 			<li><a href="#">運動論壇</a></li>
 		</div>

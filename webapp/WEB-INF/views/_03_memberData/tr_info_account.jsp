@@ -79,7 +79,8 @@
 					<div class="setting_box">
 						<label for="name">教練頁面標題</label> <input class="trpage_title"
 							type="text" name="course" placeholder="請輸入您想顯示在教練頁面的標題名稱，限20字以內"
-							required value="${trainerBean.course}" />
+							required value="${trainerBean.course}" id="course"
+							oninput="checkCourse();" />
 					</div>
 
 					<!-- 證照 -->
@@ -107,10 +108,24 @@
 										</tr>
 									</thead>
 									<tbody class="tr_license">
-										<tr id="tr_lc">
-											<!-- <td class="trif_f">AASFP 亞洲運動及體適能專業學院高級私人體適能教練</td>
+
+
+										<c:if test="${trainerLicenseBean.size() > 0}">
+											<c:forEach varStatus="i" begin="0"
+												end="${trainerLicenseBean.size()-1}">
+												<tr id="tr_lc">
+													<td class="trif_f">
+														${trainerLicenseBean.get(i.current).getName()}</td>
+													<td><a
+														href="<c:url value='/delLicense/${trainerBean.id}/${trainerLicenseBean.get(i.current).getId()}' />"
+														class="del_btn">刪除</a></td>
+												</tr>
+
+											</c:forEach>
+										</c:if>
+
+										<!-- <td class="trif_f">AASFP 亞洲運動及體適能專業學院高級私人體適能教練</td>
                                                 <td><a href="#">編輯</a>　<a href="javascript:" onclick="deletetr()">刪除</a></td> -->
-										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -217,37 +232,38 @@
 		 rows[1].cells[2].style.color='red'
 		 */
 
-		// 編輯證照
-		//先找到input(輸入的證照名稱)的值
-		// alert(lsname);
+	// 編輯證照
 		//新增
 		function addtr() {
 			var lsname = document.getElementById('lsname').value;
-			console.log(lsname);
-			var table = document.getElementById('table');
-			var tradd = table.insertRow(1) // onclick="del()"
-			tradd.innerHTML = `<td class="trif_f">\${lsname}</td><td><a href="#">修改</a>　<a href="javascript:" id="del_btn" >刪除</a></td>`
 
 			$.post("/TrainMe/addLicense", 
-			{ 	  
-				  lsname: lsname,
-				  trainerBeanId: ${trainerBean.id}
-			}
-			);
-
-			//刪除(待修改)
-			var del_btn = document.getElementById('del_btn')
-			del_btn.addEventListener('click', function del(e) {
-				var yes = confirm('確定刪除？');
-				if (yes) {
-					var tr = e.target.parentNode.parentNode;//得到按钮bai[obj]的父元素duzhi[td]的父元素[tr]
-					tr.parentNode.removeChild(tr);//从daotr的父元素[tbody]移除tr
-				}
-			});
-			
-			
+					{  lsname: lsname, 
+					   trainerBeanId: ${trainerBean.id}
+					} ,
+					 function () {
+					      window.location.assign(window.location.href)  
+					 }
+			);		
 		}
-		table.insertRow()
+		//刪除
+		$('.del_btn').on('click', function(event) {
+    var yes = confirm('確定刪除？');
+    if (!yes) {
+     event.preventDefault()
+    }
+   })
+
+		// 教練課程標題
+		function checkCourse() {
+		var course_input = document.querySelector("#course");
+	
+	if (course_input.value.length > 50) {
+		course_input.setCustomValidity("超過50字了");
+	} else {
+		course_input.setCustomValidity(""); // be sure to leave this empty!
+	}
+}
 
 		// 自我介紹       
 		$(document)

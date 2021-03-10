@@ -23,7 +23,7 @@ public class StudentCourseController {
 	StudentInfoService studentInfoService;
 	
 	@Autowired
-	StudentCourseService studentCourseService;
+	StudentCourseService studentCourseService;	
 
 	@GetMapping("/st_info_lesson/{id}")
 	public String stLesson(Model model, @PathVariable("id") Integer id) {
