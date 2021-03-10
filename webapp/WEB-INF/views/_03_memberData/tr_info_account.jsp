@@ -107,10 +107,19 @@
 										</tr>
 									</thead>
 									<tbody class="tr_license">
-										<tr id="tr_lc">
 											<!-- <td class="trif_f">AASFP 亞洲運動及體適能專業學院高級私人體適能教練</td>
                                                 <td><a href="#">編輯</a>　<a href="javascript:" onclick="deletetr()">刪除</a></td> -->
-										</tr>
+<!-- 									<td class="trif_f">\${lsname}</td><td><a href="javascript:" id="del_btn" >刪除</a></td> -->
+											<c:if test="${trainerLicenseBean.size() != 0}">
+												<c:forEach varStatus="i" begin="0" end="${trainerLicenseBean.size()-1}">
+													<tr id="tr_lc">
+														<td class="trif_f">${trainerLicenseBean.get(i.current).getName()}</td>
+														<td><a  class="del_btn" href="/TrainMe/delLicense/${id}/${trainerLicenseBean.get(i.current).getId()}" >刪除</a></td>
+													</tr>
+												</c:forEach>
+											</c:if>
+
+
 									</tbody>
 								</table>
 							</div>
@@ -206,7 +215,7 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-	
+
 
 		/*
 		 var tab=document.getElementById('tab') //獲取表格元素
@@ -217,38 +226,27 @@
 		 rows[1].cells[2].style.color='red'
 		 */
 
-		// 編輯證照
-		//先找到input(輸入的證照名稱)的值
-		// alert(lsname);
+// 編輯證照
 		//新增
 		function addtr() {
 			var lsname = document.getElementById('lsname').value;
-			console.log(lsname);
-			var table = document.getElementById('table');
-			var tradd = table.insertRow(1) // onclick="del()"
-			tradd.innerHTML = `<td class="trif_f">\${lsname}</td><td><a href="#">修改</a>　<a href="javascript:" id="del_btn" >刪除</a></td>`
-
-			$.post("/TrainMe/addLicense", 
-			{ 	  
-				  lsname: lsname,
-				  trainerBeanId: ${trainerBean.id}
-			}
-			);
-
-			//刪除(待修改)
-			var del_btn = document.getElementById('del_btn')
-			del_btn.addEventListener('click', function del(e) {
+// 			console.log(lsname);
+			$.post("/TrainMe/addLicense", {  lsname: lsname, trainerBeanId: ${trainerBean.id}} ,
+					function () {
+						window.location.assign(window.location.href)		
+					}
+				 );
+		}	
+		//刪除
+		$('.del_btn').on('click', function(event) {
+// 				console.log("aaaa");
 				var yes = confirm('確定刪除？');
-				if (yes) {
-					var tr = e.target.parentNode.parentNode;//得到按钮bai[obj]的父元素duzhi[td]的父元素[tr]
-					tr.parentNode.removeChild(tr);//从daotr的父元素[tbody]移除tr
+				if (!yes) {
+					event.preventDefault()
 				}
-			});
-			
-			
-		}
-		table.insertRow()
+			})
 
+			
 		// 自我介紹       
 		$(document)
 				.ready(

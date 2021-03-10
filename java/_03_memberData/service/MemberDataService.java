@@ -1,5 +1,7 @@
 package _03_memberData.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
@@ -11,6 +13,7 @@ import _01_register.model.TrainerBean_H;
 import _03_memberData.dao.MemberDataDao;
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 
 @Transactional
 @Service
@@ -52,4 +55,17 @@ public class MemberDataService {
 	public TrainerBean_H getTrainerById(int id) {
 		return memberDataDao.getTrainerById(id);
 	}
+	
+	public List<TrainerLicenseBean_H> getTrainerLicenseAll(int id) {
+		return memberDataDao.getTrainerLicenseAll(id);
+	}
+	
+	public void delTrainerLicense(TrainerLicenseBean_H tlb) {
+		memberDataDao.delTrainerLicense(tlb);
+	}
+	
+	public TrainerLicenseBean_H getTrainerLicenseById(int id) {
+		return memberDataDao.getTrainerLicenseById(id);
+	}
+	
 }

@@ -1,5 +1,7 @@
 package _03_memberData.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 
 @Repository
 public class MemberDataDao {
@@ -34,5 +37,22 @@ public class MemberDataDao {
 		Session session = factory.getCurrentSession();
 		return session.get(TrainerBean_H.class, id);
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TrainerLicenseBean_H> getTrainerLicenseAll(int id) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TrainerLicenseBean_H WHERE tr_id = :mId";
+		return session.createQuery(hql).setParameter("mId", id).getResultList();
+	}
+	
+	public void delTrainerLicense(TrainerLicenseBean_H tlb) {
+		Session session = factory.getCurrentSession();
+		session.delete(tlb);
+	}
+	
+	public TrainerLicenseBean_H getTrainerLicenseById(int id) {
+		Session session = factory.getCurrentSession();
+		return session.get(TrainerLicenseBean_H.class, id);
 	}
 }
