@@ -24,9 +24,13 @@ public interface MemberService_H {
 	MemberBean_H checkIdPassword_H(String email, String password) ;
 	MemberBean_H checkOldPassword_H(String email, String password) ;
 	MemberBean_H checkEmail_H(String email) ;
+	public List <TrainerLicenseBean_H> checkTrainerLicense_H(int id);
 	
 	List<StudentBean_H> listAll_H();
 	List<GymBean_H> getGymList_H();
+	void delTrainerLicense_H(int id);
+
+
 	
 	
 
