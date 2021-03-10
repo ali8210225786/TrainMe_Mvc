@@ -125,11 +125,6 @@ public class TrainerDataContoller {
 		return "redirect:/trainerData/" + id;
 	}
 	
-	@PostMapping("/addLicense")
-	public void addLicense(@RequestParam("lsname") String lsname) {
-		System.out.println("aa");
-		System.out.println(lsname);
-	}
 		
 
 	@ModelAttribute

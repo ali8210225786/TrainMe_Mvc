@@ -54,7 +54,7 @@ public class ResetPasswordController {
 			.compile("^\\w{1,63}@[a-zA-Z0-9]{2,63}\\.[a-zA-Z]{2,63}(\\.[a-zA-Z]{2,63})?$");
 
 //跳轉忘記密碼頁面
-	@GetMapping("/ResetPassword/")
+	@GetMapping("/ResetPassword")
 	public String stPasswordUpdate(Model model) {
 
 		LoginBean loginBean = new LoginBean();

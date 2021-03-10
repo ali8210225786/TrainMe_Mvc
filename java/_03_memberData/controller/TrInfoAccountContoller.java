@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import _01_register.model.GymBean_H;
+import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
 import _01_register.service.MemberService_H;
@@ -46,7 +47,7 @@ import _03_memberData.model.TrainerLicenseBean_H;
 
 
 @Controller
-@SessionAttributes({ "LoginOK","gym"}) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK","gym","trainerLicenseBean"}) // 此處有LoginOK的識別字串
 public class TrInfoAccountContoller {
 
 	@Autowired
@@ -65,10 +66,11 @@ public class TrInfoAccountContoller {
 	public String trainerData(Model model, @PathVariable("id") Integer id) {
 		
 		TrainerBean_H trainerBean = memberDataService.getTrainerById(id);
-		
+		List<TrainerLicenseBean_H> trainerLicenseBean = memberService.checkTrainerLicense_H(id);
 		GymBean_H gym =  gymService.getGym(trainerBean.getGym().getId());
 		model.addAttribute("gym", gym);
-
+		
+	    model.addAttribute("trainerLicenseBean", trainerLicenseBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("LoginOK", trainerBean);
 		return "/_03_memberData/tr_info_account";
@@ -145,12 +147,20 @@ public class TrInfoAccountContoller {
 		return "redirect:/tr_info_account/" + id;
 	}
 	 @PostMapping("/addLicense")
-	 public void addLicense(@RequestParam("lsname") String lsname, @RequestParam("trainerBeanId") int trainerBeanId) {
+	 public String addLicense(@RequestParam("lsname") String lsname, @RequestParam("trainerBeanId") int trainerBeanId) {
 	 TrainerLicenseBean_H trainerLicenseBean_H = new TrainerLicenseBean_H();
 	 TrainerBean_H tb = memberDataService.getTrainerById(trainerBeanId);
 	 trainerLicenseBean_H.setName(lsname);
 	 trainerLicenseBean_H.setTrainerBean_H(tb);
 	 memberService.saveTrainerLicenseBean_H(trainerLicenseBean_H);
+	 return "redirect:/tr_info_account/" + trainerBeanId;
+	 }
+	 
+	 @GetMapping("/delLicense/{tr_id}/{id}")
+	 public String delLicense(Model model, @PathVariable("tr_id") Integer tr_id, @PathVariable("id") Integer id) {
+		memberService.delTrainerLicense_H(id);
+		
+		 return "redirect:/tr_info_account/" + tr_id;
 	 }
 
 }
