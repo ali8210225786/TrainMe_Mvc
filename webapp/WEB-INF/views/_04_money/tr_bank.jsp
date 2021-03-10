@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>學員-我的課程</title>
+<title>學員-帳戶查詢</title>
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -16,32 +16,32 @@
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />">
-
+<link rel="stylesheet" href="<c:url value='/css/style_st_money.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
-<style>
-.aside ul li:nth-child(3) a {
-	color: #21d4a7;
-}
-
-.qr {
-	margin-top: 10px;
-	display: flex;
-	align-items: baseline;
-	vertical-align: middle;
-	font-size: 15px;
-}
-
-.qr li select {
-	font-size: 13px;
-}
-
-.bank tr th:last-child {
-	width: 150px;
-}
-</style>
+    <style>
+        .aside ul li:nth-child(4) a{
+            color: #21d4a7;
+        }
+        /* 查詢區間： */
+        .qr{
+            margin: 10px 0 15px 0;
+            display: flex;
+            align-items:baseline;
+            vertical-align: middle;
+            font-size: 15px;
+        }
+        .qr li select{
+            width: 150px;
+            font-size: 14px;
+        }
+        .bank tr th:last-child{
+            width: 150px;
+        }
+    
+    </style>
 </head>
 <body>
 
@@ -58,29 +58,33 @@
 		<!-- ============右側網頁======================================================= -->
 
 
-		<!-- ============個人資料======================================================= -->
+		       <!-- ============個人資料======================================================= -->
 
-		<div class="content">
+        <div class="content">
             <div class="title">
                 <h3>帳戶查詢</h3>
             </div>
+            <!-- 說明 -->
 
-                   <!-- 說明 -->
+            <div class="explain">
+                <p>查詢您在Train Me的課程帳款。</p>
+            </div>
+
+        <!-- ============帳戶======================================================= -->
+               
+                <div class="info_wrap t lesson">
 
                   <div class="qr">
                     <label>查詢區間：</label>
-                      
+                    <li>    
                         <select name="">
                             <option value="1">最近三個月</option>
                             <option value="2">最近半年</option>
                             <option value="2">全部資料</option>
                         </select>
-                   
+                    </li>
                   </div>
 
-			<!-- ============即將開始的課程======================================================= -->
-
-			<div class="info_wrap t lesson">
                             <table class="table border">
                                 <thead class="thead bank">
                                   <tr>
