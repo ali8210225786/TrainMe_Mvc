@@ -87,6 +87,18 @@ public class MemberServiceImpl_H implements MemberService_H {
 	}
 	@Transactional
 	@Override
+	public List <TrainerLicenseBean_H> checkTrainerLicense_H(int id) {
+		return dao.checkTrainerLicense_H(id);
+	}
+
+	@Transactional
+	@Override
+	public void delTrainerLicense_H(int id) {
+		dao.delTrainerLicense(id);
+	}
+
+	@Transactional
+	@Override
 	public List<StudentBean_H> listAll_H() {
 
 		return dao.listAll_H();

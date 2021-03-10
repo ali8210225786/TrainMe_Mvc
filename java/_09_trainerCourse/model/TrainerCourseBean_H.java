@@ -38,7 +38,7 @@ public class TrainerCourseBean_H {
 	private Integer price;
 	
 	@OneToMany(mappedBy = "trainerCourseBean_H")
-	private Set<StudentCourseBean_H> studentCourseBean_H = new LinkedHashSet<>();;
+	private Set<StudentCourseBean_H> studentCourseBean_H = new LinkedHashSet<>();
 	
 	public TrainerCourseBean_H(TrainerBean_H trainerBean_H, Integer price) {
 		super();

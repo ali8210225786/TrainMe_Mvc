@@ -40,10 +40,11 @@ import _01_register.model.TrainerBean_H;
 import _01_register.service.MemberService_H;
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 import _03_memberData.service.AddressService;
 import _03_memberData.service.GymService;
 import _03_memberData.service.MemberDataService;
-import _03_memberData.model.TrainerLicenseBean_H;
+
 
 
 @Controller
@@ -66,16 +67,13 @@ public class TrInfoAccountContoller {
 	public String trainerData(Model model, @PathVariable("id") Integer id) {
 		
 		TrainerBean_H trainerBean = memberDataService.getTrainerById(id);
-		List<TrainerLicenseBean_H> trainerLicenseBean = memberDataService.getTrainerLicenseAll(id);
+		List<TrainerLicenseBean_H> trainerLicenseBean = memberService.checkTrainerLicense_H(id);
 		GymBean_H gym =  gymService.getGym(trainerBean.getGym().getId());
 		model.addAttribute("gym", gym);
 		
 	    model.addAttribute("trainerLicenseBean", trainerLicenseBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("LoginOK", trainerBean);
-		for (TrainerLicenseBean_H tlb : trainerLicenseBean) {
-			System.out.println(tlb.getName());
-		}
 		return "/_03_memberData/tr_info_account";
 	}
 
@@ -156,14 +154,12 @@ public class TrInfoAccountContoller {
 	 trainerLicenseBean_H.setName(lsname);
 	 trainerLicenseBean_H.setTrainerBean_H(tb);
 	 memberService.saveTrainerLicenseBean_H(trainerLicenseBean_H);
-	 System.out.println(trainerBeanId);
 	 return "redirect:/tr_info_account/" + trainerBeanId;
 	 }
 	 
 	 @GetMapping("/delLicense/{tr_id}/{id}")
 	 public String delLicense(Model model, @PathVariable("tr_id") Integer tr_id, @PathVariable("id") Integer id) {
-		 TrainerLicenseBean_H tlb = memberDataService.getTrainerLicenseById(id);
-		 memberDataService.delTrainerLicense(tlb);
+		memberService.delTrainerLicense_H(id);
 		
 		 return "redirect:/tr_info_account/" + tr_id;
 	 }

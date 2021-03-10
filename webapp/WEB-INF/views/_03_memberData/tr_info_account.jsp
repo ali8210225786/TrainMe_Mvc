@@ -79,7 +79,8 @@
 					<div class="setting_box">
 						<label for="name">教練頁面標題</label> <input class="trpage_title"
 							type="text" name="course" placeholder="請輸入您想顯示在教練頁面的標題名稱，限20字以內"
-							required value="${trainerBean.course}" />
+							required value="${trainerBean.course}" id="course"
+							oninput="checkCourse();" />
 					</div>
 
 					<!-- 證照 -->
@@ -107,19 +108,24 @@
 										</tr>
 									</thead>
 									<tbody class="tr_license">
-											<!-- <td class="trif_f">AASFP 亞洲運動及體適能專業學院高級私人體適能教練</td>
+
+
+										<c:if test="${trainerLicenseBean.size() > 0}">
+											<c:forEach varStatus="i" begin="0"
+												end="${trainerLicenseBean.size()-1}">
+												<tr id="tr_lc">
+													<td class="trif_f">
+														${trainerLicenseBean.get(i.current).getName()}</td>
+													<td><a
+														href="<c:url value='/delLicense/${trainerBean.id}/${trainerLicenseBean.get(i.current).getId()}' />"
+														class="del_btn">刪除</a></td>
+												</tr>
+
+											</c:forEach>
+										</c:if>
+
+										<!-- <td class="trif_f">AASFP 亞洲運動及體適能專業學院高級私人體適能教練</td>
                                                 <td><a href="#">編輯</a>　<a href="javascript:" onclick="deletetr()">刪除</a></td> -->
-<!-- 									<td class="trif_f">\${lsname}</td><td><a href="javascript:" id="del_btn" >刪除</a></td> -->
-											<c:if test="${trainerLicenseBean.size() != 0}">
-												<c:forEach varStatus="i" begin="0" end="${trainerLicenseBean.size()-1}">
-													<tr id="tr_lc">
-														<td class="trif_f">${trainerLicenseBean.get(i.current).getName()}</td>
-														<td><a  class="del_btn" href="/TrainMe/delLicense/${id}/${trainerLicenseBean.get(i.current).getId()}" >刪除</a></td>
-													</tr>
-												</c:forEach>
-											</c:if>
-
-
 									</tbody>
 								</table>
 							</div>
@@ -215,7 +221,7 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-
+	
 
 		/*
 		 var tab=document.getElementById('tab') //獲取表格元素
@@ -226,27 +232,39 @@
 		 rows[1].cells[2].style.color='red'
 		 */
 
-// 編輯證照
+	// 編輯證照
 		//新增
 		function addtr() {
 			var lsname = document.getElementById('lsname').value;
-// 			console.log(lsname);
-			$.post("/TrainMe/addLicense", {  lsname: lsname, trainerBeanId: ${trainerBean.id}} ,
-					function () {
-						window.location.assign(window.location.href)		
-					}
-				 );
-		}	
+
+			$.post("/TrainMe/addLicense", 
+					{  lsname: lsname, 
+					   trainerBeanId: ${trainerBean.id}
+					} ,
+					 function () {
+					      window.location.assign(window.location.href)  
+					 }
+			);		
+		}
 		//刪除
 		$('.del_btn').on('click', function(event) {
-// 				console.log("aaaa");
-				var yes = confirm('確定刪除？');
-				if (!yes) {
-					event.preventDefault()
-				}
-			})
+    var yes = confirm('確定刪除？');
+    if (!yes) {
+     event.preventDefault()
+    }
+   })
 
-			
+		// 教練課程標題
+		function checkCourse() {
+		var course_input = document.querySelector("#course");
+	
+	if (course_input.value.length > 50) {
+		course_input.setCustomValidity("超過50字了");
+	} else {
+		course_input.setCustomValidity(""); // be sure to leave this empty!
+	}
+}
+
 		// 自我介紹       
 		$(document)
 				.ready(

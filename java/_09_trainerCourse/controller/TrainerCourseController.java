@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,10 @@ import com.google.protobuf.TextFormat.ParseException;
 import _09_trainerCourse.model.CloseHour;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
+import _10_studentCourse.model.StudentCourseBean_H;
 
 @Controller
-@SessionAttributes({"LoginOK"})
+@SessionAttributes({"LoginOK","StudentCourse"})
 public class TrainerCourseController {
 	
 	@Autowired
@@ -76,4 +78,13 @@ public class TrainerCourseController {
 		return "redirect:/TimeOff/" + id;
 	}
 
+	
+	@GetMapping("/trainerCourse/{id}")
+	public String getTrainerCourse(Model model,@PathVariable("id") Integer id){
+		
+		Set<StudentCourseBean_H> scSet =trainerCourseService.getTrainerCourseById(id);
+		model.addAttribute("StudentCourse", scSet);
+		return "/_09_trainerCourse/tr_course";
+	}
+	
 }

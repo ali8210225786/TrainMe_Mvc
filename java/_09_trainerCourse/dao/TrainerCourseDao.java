@@ -3,7 +3,10 @@ package _09_trainerCourse.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import _01_register.model.TrainerBean_H;
+import _04_money.model.MoneyBean_H;
+import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
+import _10_studentCourse.model.StudentCourseBean_H;
 
 @Repository
 public class TrainerCourseDao {
@@ -59,4 +65,25 @@ public class TrainerCourseDao {
 		Session session = factory.getCurrentSession();
 		return session.get(TrainerBean_H.class, trId);
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public Set<StudentCourseBean_H> getTrainerCourseById(int trId) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TrainerCourseBean_H  where tr_id = :trid ";
+		
+		@SuppressWarnings("unchecked")
+		List <TrainerCourseBean_H> sclist = session.createQuery(hql).setParameter("trid", trId).getResultList();
+		
+		Set<StudentCourseBean_H> st=new LinkedHashSet<>();
+		for(TrainerCourseBean_H sc : sclist) {
+			Iterator it = 	sc.getStudentCourseBean_H().iterator();
+			while (it.hasNext()) {
+				st.add((StudentCourseBean_H) it.next());
+				
+			}			
+		}
+		System.out.println("st="+ st);
+		return st;
+	}
+	
 }

@@ -58,7 +58,7 @@ public class AccountController {
 		System.out.println("進入/trainerAccount/{id}的方法");
 		List<TrainerAccountBean_H> account =memPointService.getAccountDetail(id);
 		model.addAttribute("AccountBean", account);
-		return "/_04_money/tr_account";
+		return "/_04_money/tr_bank";
 	}
 
 }
