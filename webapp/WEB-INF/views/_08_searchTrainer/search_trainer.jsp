@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +16,6 @@
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
-<link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/css/style_search_trainer.css' />">
@@ -55,9 +56,10 @@
 		<div class="search_trainer">
 
 			<!-- 搜尋bar -->
-			<form action="#">
+			
+			<form action="<c:url value='/searchTrainerByCondition' />"  >
 				<label>課程種類：</label>
-				<li><select name="" class="lesson">
+				<li><select name="skillType" class="lesson">
 						<option value="0">請選擇</option>
 						<c:if test="${skillTypeAll.size() > 0}">
 							<c:forEach varStatus="i" begin="0" end="${skillTypeAll.size()-1}">
@@ -65,7 +67,7 @@
 							</c:forEach>
 						</c:if>
 				</select></li> <label>地點：</label>
-				<li><select name="" class="location">
+				<li><select name="city" class="location">
 						<option value="0">請選擇</option>
 						<c:if test="${cities.size() > 0}">
 							<c:forEach varStatus="i" begin="0" end="${cities.size()-1}">
@@ -73,7 +75,7 @@
 							</c:forEach>
 						</c:if>
 				</select></li>
-				<li><input type="search" placeholder="輸入關鍵字"
+				<li><input type="search" name="keyword" placeholder="輸入關鍵字"
 					class="search_input"></li>
 				<li><button class="search_btn">
 						<i class="fas fa-search"></i>

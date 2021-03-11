@@ -29,5 +29,10 @@ public class SearchTrainerService {
 		return searchTrainerDao.getTrainerOfSkillType();
 	}
 	
+	public List<TrainerCourseBean_H> searchTrainerByCondition(int cityId, int skillTypeId) {
+		return searchTrainerDao.searchTrainerByCondition(cityId, skillTypeId);
+	}
+
+	
 	
 }

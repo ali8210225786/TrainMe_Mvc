@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import _01_register.model.GymBean_H;
 import _01_register.model.StudentBean_H;
@@ -40,8 +41,43 @@ public class SearchTrainerController {
 	public String SearchTrainerAll(Model model) {
 		List<TrainerCourseBean_H> trainerCourseAll = searchTrainerService.getTrainerCourseAll();
 		List<TrainerCourseBean_H> trainerOfSkillType = searchTrainerService.getTrainerOfSkillType();
-		List<City_H> cities = addressService.listCities();		
-		List<SkillTypeBean_H> skillTypeAll = searchTrainerService.getSkillTypeAll();
+
+	
+		model.addAttribute("trainerCourseAll", trainerCourseAll);
+		model.addAttribute("trainerOfSkillType", trainerOfSkillType);
+		return "/_08_searchTrainer/search_trainer";
+	}
+	
+	@GetMapping("/searchTrainerByCondition")
+	public String SearchTrainerByCondition(Model model,
+			@RequestParam("skillType") int skillType,
+			@RequestParam("city") int city,
+			@RequestParam("keyword") String keyword
+			) {
+		System.out.println( skillType);
+		System.out.println( city);
+		System.out.println( keyword);
+		List<TrainerCourseBean_H> a = searchTrainerService.searchTrainerByCondition(city, skillType);
+		List<TrainerCourseBean_H> trainerOfSkillType = searchTrainerService.getTrainerOfSkillType();
+//		for( TrainerCourseBean_H b : a) {
+//			System.out.println(b.getId());
+//		}
+		
+	
+		model.addAttribute("trainerCourseAll", a);
+		model.addAttribute("trainerOfSkillType", trainerOfSkillType);
+		
+		return "/_08_searchTrainer/search_trainer";
+	}
+	
+	
+	
+	
+	
+
+	
+	@ModelAttribute
+	public void commonData(Model model) {
 		
 		// 為了for註冊、登入from:from表單
 		StudentBean_H studentBean = new StudentBean_H();
@@ -50,21 +86,9 @@ public class SearchTrainerController {
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
-		
-		
-		model.addAttribute("cities", cities);	
-		model.addAttribute("skillTypeAll", skillTypeAll);	
-		model.addAttribute("trainerCourseAll", trainerCourseAll);
-		model.addAttribute("trainerOfSkillType", trainerOfSkillType);
-		return "/_08_searchTrainer/search_trainer";
-	}
-	
-	
-
-	
-	@ModelAttribute
-	public void commonData(Model model) {
-
+			
+		List<SkillTypeBean_H> skillTypeAll = searchTrainerService.getSkillTypeAll();
+		List<City_H> cities = addressService.listCities();		
 		Map<String, String> sexMap = new HashMap<>();
 		Map<Integer, String> gymMap = new HashMap<>();
 		List<GymBean_H> gymList = memberService.getGymList_H();
@@ -73,8 +97,11 @@ public class SearchTrainerController {
 		}
 		sexMap.put("M", "男");
 		sexMap.put("F", "女");
+		
 		model.addAttribute("sexMap", sexMap);
 		model.addAttribute("gymList", gymMap);
+		model.addAttribute("cities", cities);	
+		model.addAttribute("skillTypeAll", skillTypeAll);	
 	}
 	
 }
