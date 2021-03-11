@@ -16,6 +16,7 @@ import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
 import _03_memberData.model.TrainerLicenseBean_H;
+import _04_money.model.MoneyBean_H;
 
 
 // 本類別使用為標準的Hibernate+Spring技術來存取資料庫。
@@ -234,8 +235,27 @@ public class MemberDaoImpl_H implements MemberDao_H {
 
 			return n;
 		}
-
-
+		
+		@Override
+		public List <TrainerLicenseBean_H> checkTrainerLicense_H(int id) {
+			
+			String hql = "FROM TrainerLicenseBean_H WHERE tr_id = :metr_id";
+			Session session = factory.getCurrentSession();
+			
+			@SuppressWarnings("unchecked")
+			List <TrainerLicenseBean_H> mb = session.createQuery(hql).setParameter("metr_id", id).getResultList();
+			return mb;
+		}
+		
+		@Override
+		public void delTrainerLicense(int Id) {
+			Session session = factory.getCurrentSession();
+			
+			String hql = "DELETE FROM TrainerLicenseBean_H WHERE id = :mid";
+			
+			session.createQuery(hql).setParameter("mid", Id).executeUpdate();		
+		}
+		
 
 	@SuppressWarnings("unchecked")
 	@Override

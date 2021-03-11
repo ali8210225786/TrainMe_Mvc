@@ -45,5 +45,10 @@ public interface MemberDao_H {
 
 	int saveTrainerLicenseBean_H(TrainerLicenseBean_H tl);
 
+	public List<TrainerLicenseBean_H> checkTrainerLicense_H(int id);
+
+
+	void delTrainerLicense(int Id);
+
 	
 }

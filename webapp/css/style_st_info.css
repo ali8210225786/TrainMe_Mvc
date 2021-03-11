@@ -8,12 +8,10 @@ a, a:hover, a:focus {
     position: relative;
     top: 100px;
     margin: auto;
-
     display: flex;
     justify-content: center;
     align-content: flex-start;
     /* border: 1px solid  red; */
-
     /* background-color: #000; */
 }
 
@@ -75,8 +73,7 @@ a, a:hover, a:focus {
     min-width: 1000px;
     margin-top: 0px;
     /* margin:auto 0; */
-    background-color: #fff;
-    box-shadow:  1px 1px 1px #ddd;
+    /* background-color: #fff; */
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 300;
 }
@@ -98,8 +95,9 @@ a, a:hover, a:focus {
 .info_wrap{
     /* border: 1px solid red; */
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    box-shadow:  1px 1px 1px #ddd;
+    /* border: 1px solid #ddd; */
+    /* border-radius: 8px; */
     width: 100%;
     display: flex;
     margin: 20px 0px;
@@ -283,7 +281,9 @@ a, a:hover, a:focus {
     padding: 20px;
 }
 .t h5{
-    padding: 0 0 10px;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 30px;
     color: #666;
 }
 .table td a{
@@ -312,9 +312,5 @@ tbody tr td i{
 
 /* 體重趨勢圖 */
 
-
-
-
-/*選單點選變色*/
 
 

@@ -1,6 +1,7 @@
 package _09_trainerCourse.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import _09_trainerCourse.dao.TrainerCourseDao;
 import _09_trainerCourse.model.TrainerOffBean_H;
-
+import _10_studentCourse.model.StudentCourseBean_H;
 @Transactional
 @Service
 public class TrainerCourseService {
@@ -36,7 +37,9 @@ public class TrainerCourseService {
 		return trainerCourseDao.queryTimeOffList(dateBegin, dateEnd, trId);
 	}
 
-	
+	public Set<StudentCourseBean_H> getTrainerCourseById(int trId){
+		return trainerCourseDao.getTrainerCourseById(trId);
+	}
 	
 		
 
