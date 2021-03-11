@@ -1,5 +1,7 @@
 package _08_searchTrainer.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -29,9 +31,81 @@ public class SearchTrainerService {
 		return searchTrainerDao.getTrainerOfSkillType();
 	}
 	
-	public List<TrainerCourseBean_H> searchTrainerByCondition(int cityId, int skillTypeId) {
-		return searchTrainerDao.searchTrainerByCondition(cityId, skillTypeId);
+	public List<TrainerCourseBean_H> searchTrainerByCondition(int cityId, int skillTypeId, String keyWord) {
+		List<TrainerCourseBean_H> searchTrainerByCondition = new ArrayList<>();
+		
+		List<Integer> searchTrainerByCity = searchTrainerDao.searchTrainerByCity(cityId);
+		List<Integer> searchTrainerBySkillType = searchTrainerDao.searchTrainerBySkillType(skillTypeId);
+		List<Integer> searchTrainerByKeyWord = searchTrainerDao.searchTrainerByKeyWord(keyWord);
+		List<Integer> resultTrainerId = new ArrayList<Integer>();
+
+		
+//		// 全部都有輸入
+//		if (cityId != 0 && skillTypeId != 0 && keyWord != "") {}
+		// 只輸入地址、類型
+		if (cityId != 0 && skillTypeId != 0 && keyWord == "") {
+			searchTrainerByCity.retainAll(searchTrainerBySkillType);
+			resultTrainerId.addAll(searchTrainerByCity);
+		}
+		// 只輸入地址、關鍵字
+		if (cityId != 0 && skillTypeId == 0 && keyWord != "") {
+			searchTrainerByCity.retainAll(searchTrainerByKeyWord);
+			resultTrainerId.addAll(searchTrainerByCity);
+		}
+		// 只輸入類型、關鍵字
+		if (cityId == 0 && skillTypeId != 0 && keyWord != "") {
+			searchTrainerByKeyWord.retainAll(searchTrainerByKeyWord);
+			resultTrainerId.addAll(searchTrainerByKeyWord);
+		}
+		// 只輸入地址
+		if (cityId != 0 && skillTypeId == 0 && keyWord == "") {
+			resultTrainerId.addAll(searchTrainerByCity);
+		}
+		// 只輸入類型
+		if (cityId == 0 && skillTypeId != 0 && keyWord == "") {
+			resultTrainerId.addAll(searchTrainerBySkillType);
+		}
+		// 只輸入關鍵字
+		if (cityId == 0 && skillTypeId == 0 && keyWord != "") {
+			resultTrainerId.addAll(searchTrainerByKeyWord);
+		}
+		
+		for(Integer trId:resultTrainerId) {
+			searchTrainerByCondition.add(searchTrainerDao.getTrainerCourseByTrainerId(trId));
+		}
+		return searchTrainerByCondition;
 	}
+	
+	
+	
+//	public List<TrainerCourseBean_H> searchTrainerByCondition(int cityId, int skillTypeId, String keyWord) {
+//		
+//	    List<TrainerCourseBean_H> searchTrainerByCity = searchTrainerDao.searchTrainerByCity(cityId);
+//		List<TrainerCourseBean_H> searchTrainerBySkillType = searchTrainerDao.searchTrainerBySkillType(skillTypeId);
+//		List<TrainerCourseBean_H> searchTrainerByKeyWord = searchTrainerDao.searchTrainerByKeyWord(keyWord);
+//		
+//		if (cityId != 0 && skillTypeId != 0 ) {
+//			searchTrainerByCity.retainAll(searchTrainerBySkillType);
+//			return searchTrainerByCity ;
+//		}
+////		// 全部都有輸入
+////		if (cityId != 0 && skillTypeId != 0 && keyWord != "") {}
+////		// 只輸入地址、類型
+////		if (cityId != 0 && skillTypeId != 0 && keyWord == "") {}
+////		// 只輸入地址、關鍵字
+////		if (cityId != 0 && skillTypeId == 0 && keyWord != "") {}
+////		// 只輸入類型、關鍵字
+////		if (cityId == 0 && skillTypeId != 0 && keyWord != "") {}
+////		// 只輸入地址
+////		if (cityId != 0 && skillTypeId == 0 && keyWord == "") {}
+////		// 只輸入類型
+////		if (cityId == 0 && skillTypeId != 0 && keyWord == "") {}
+////		// 只輸入關鍵字
+////		if (cityId == 0 && skillTypeId == 0 && keyWord != "") {}
+//		
+//		
+//		return null;
+//	}
 
 	
 	

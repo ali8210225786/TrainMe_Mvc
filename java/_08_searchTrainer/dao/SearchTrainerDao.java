@@ -39,15 +39,35 @@ public class SearchTrainerDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<TrainerCourseBean_H> searchTrainerByCondition(int cityId, int skillTypeId ) {
+	public List<Integer> searchTrainerByCity(int cityId) {
 		Session session = factory.getCurrentSession();										   
-		String hql = "FROM TrainerCourseBean_H as tc WHERE tc.trainerBean_H.city.id = :cityId "
-				   + "AND tc.skill_typeBean_H.id = :skillTypeId GROUP BY tc.trainerBean_H.id";
-		List<TrainerCourseBean_H> a = session.createQuery(hql).setParameter("cityId", cityId)
-											 .setParameter("skillTypeId", skillTypeId).getResultList();
-		return a;
-		
-	
+		String hql = "SELECT DISTINCT tc.trainerBean_H.id FROM TrainerCourseBean_H as tc WHERE tc.trainerBean_H.city.id = :cityId ";
+		List<Integer> searchTrainerByCity = session.createQuery(hql).setParameter("cityId", cityId).getResultList();
+		return searchTrainerByCity;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Integer> searchTrainerBySkillType(int skillTypeId) {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT DISTINCT tc.trainerBean_H.id FROM TrainerCourseBean_H as tc WHERE tc.skill_typeBean_H.id = :skillTypeId";
+		List<Integer> searchTrainerBySkillType = session.createQuery(hql).setParameter("skillTypeId", skillTypeId).getResultList();
+		return searchTrainerBySkillType;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Integer> searchTrainerByKeyWord(String keyWord) {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT DISTINCT tc.trainerBean_H.id FROM TrainerCourseBean_H as tc WHERE tc.trainerBean_H.course like '%" +keyWord+ "%' "
+					+ " or tc.trainerBean_H.introduction like '%" + keyWord +  "%' ";	
+		return session.createQuery(hql).getResultList();
+	}
+	
+	public TrainerCourseBean_H getTrainerCourseByTrainerId(int trId) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TrainerCourseBean_H as tc WHERE tc.trainerBean_H.id = :trId group by trainerBean_H";
+		return (TrainerCourseBean_H) session.createQuery(hql).setParameter("trId", trId).getSingleResult();
+	}
+	
+	
 	
 }
