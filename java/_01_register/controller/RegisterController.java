@@ -61,6 +61,9 @@ public class RegisterController {
 
 	@GetMapping("/")
 	public String index(Model model) {
+		
+//		因為index頁面內就有註冊功能，內有連結了3個Bean的3個form，本方法如果沒有加入這3個Bean就會報錯
+//		(可能是因為View元件(index)有要顯示的東西(那3個表單)所以一定要把有的東西都加入model裡)
 		StudentBean_H studentBean = new StudentBean_H();
 		TrainerBean_H trainerBean = new TrainerBean_H();
 		LoginBean loginBean = new LoginBean();
@@ -74,6 +77,7 @@ public class RegisterController {
 //	// BindingResult 參數必須與@ModelAttribute修飾的參數連續編寫，中間不能夾其他參數
 	// 學員註冊
 	@PostMapping("/st_register")
+	// 此時使用者(在JSP)填寫的內容在這裡傳入↓
 	public String stRegister(@ModelAttribute("studentBean") StudentBean_H studentBean, BindingResult result,
 			Model model, HttpServletRequest request) {
 		TrainerBean_H trainerBean = new TrainerBean_H();
@@ -81,11 +85,17 @@ public class RegisterController {
 
 		// 呼叫Validate進行資料檢查
 		st_validator.validate(studentBean, result);
+		
+		// 當有錯誤時的處理，呼叫寫在本類別的errorResponseSt方法()，把原本的內容studentBean跟Model傳入
 		if (result.hasErrors()) {
 			errorResponseSt(studentBean, model);
+			
+			// 資料有誤，導回首頁
 			return "index";
 
 		}
+		
+		// 加密使用者註冊的密碼
 		studentBean.setPassword(GlobalService.getMD5Endocing(GlobalService.encryptString(studentBean.getPassword())));
 
 		// 檢查 email是否重複
@@ -103,16 +113,22 @@ public class RegisterController {
 			return "index";
 
 		}
-
+		
+		
+		// 檢查無錯誤
 		try {
-			// 檢查無錯誤
-
+			
+			// 產生寄驗證信用的亂碼
 			Random theRandom = new Random();
 			theRandom.nextInt(999999);
 			studentBean.setHash(DigestUtils.md5Hex("" + theRandom));
+			
+			// 原來的table有塞預設值(bean),但是hibernate的save()方法會把沒有填資料的欄位都設為null,所以要在這裡再塞一次預設資料
 			studentBean.setType(1);
 			studentBean.setVerification(0);
 			studentBean.setIs_delete(0);
+			
+			// 儲存新會員
 			memberService.saveStudent_H(studentBean);
 		} catch (Exception ex) {
 			System.out.println(ex.getClass().getName() + ", ex.getMessage()=" + ex.getMessage());
@@ -122,16 +138,20 @@ public class RegisterController {
 		}
 
 		// 寄驗證信
-		SendingEmail se = new SendingEmail(1, studentBean.getEmail(), studentBean.getHash());
+		SendingEmail se = new SendingEmail(1, studentBean.getEmail(), studentBean.getHash(), studentBean.getName());
 		se.sendMail();
 
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
+		
+		// 伺服器通知客戶端對新網址發出請求。其原本參數狀態不被保留。
+		// 所以如果只用"index"跳轉後網址會有/tr_register
 		return "redirect:/";
 	}
 
 	// 當有錯誤時的處理 - 學員
+//	因為傳進來的是已經帶有資料的studentBean,所以不需要加@ModelAttribute("studentBean")
 	public void errorResponseSt(StudentBean_H studentBean, Model model) {
 		TrainerBean_H trainerBean = new TrainerBean_H();
 		LoginBean loginBean = new LoginBean();
@@ -184,10 +204,13 @@ public class RegisterController {
 			Random theRandom = new Random();
 			theRandom.nextInt(999999);
 			trainerBean.setHash(DigestUtils.md5Hex("" + theRandom));
+			
 			trainerBean.setType(2);
 			trainerBean.setVerification(0);
 			trainerBean.setIs_delete(0);
+			
 			memberService.saveTrainer_H(trainerBean);
+			
 		} catch (Exception ex) {
 			System.out.println(ex.getClass().getName() + ", ex.getMessage()=" + ex.getMessage());
 			result.rejectValue("email", "", "發生異常，請通知系統人員...");
@@ -196,7 +219,7 @@ public class RegisterController {
 		}
 
 		// 寄驗證信
-		SendingEmail se = new SendingEmail(2, trainerBean.getEmail(), trainerBean.getHash());
+		SendingEmail se = new SendingEmail(2, trainerBean.getEmail(), trainerBean.getHash(), trainerBean.getName());
 		se.sendMail();
 
 		model.addAttribute("trainerBean", new TrainerBean_H());
@@ -237,31 +260,42 @@ public class RegisterController {
 	}
 
 	@PostMapping("/login")
+				// 此時使用者(在JSP)填寫的內容在這裡傳入↓
 	public String Login(@ModelAttribute("loginBean") LoginBean loginBean, BindingResult result, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 
-		String password = loginBean.getPassword();
 		MemberBean_H mb = null;
 		StudentBean_H sb = null;
 		TrainerBean_H tb = null;
 
 		try {
 			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),
-					GlobalService.getMD5Endocing(GlobalService.encryptString(password)));
+					// 取得使用者輸入的密碼加密比對
+					GlobalService.getMD5Endocing(GlobalService.encryptString(loginBean.getPassword())));
 
+			// 判斷該會員是教練ㄇ
 			if (mb != null) {
 
 				if (mb instanceof TrainerBean_H) {
+					
+					// 轉成TrainerBean_H物件以使用其方法
 					tb = (TrainerBean_H) mb;
+					
+					// 檢查是否通過信箱驗證
 					if (memberService.checkPass(tb.getType(), tb.getEmail())) {
-						// OK, 登入成功, 將tb物件放入Session範圍內，識別字串為"LoginOK"
+						
+						// 登入成功, 把該會員tb登記為LoginOK登入狀態→存進LoginOK
+						// OK, 登入成功, 將tb物件放入Session範圍內，識別字串為"LoginOK",此時其他頁面的控制器只要有"LoginOK"就能接到此會員的資料
 						model.addAttribute("LoginOK", tb);
 					} else {
 						result.rejectValue("userEmail", "", "帳號尚未通過信箱驗證");
+						
+						// 當有錯誤時的處理，呼叫寫在本類別的errorResponseLg方法()，把原本的內容loginBean跟Model傳入
 						errorResponseLg(loginBean, model);
 					}
 				}
 
+				// 判斷該會員是學員ㄇ
 				if (mb instanceof StudentBean_H) {
 					sb = (StudentBean_H) mb;
 					if (memberService.checkPass(sb.getType(), sb.getEmail())) {
@@ -289,6 +323,7 @@ public class RegisterController {
 
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", new StudentBean_H());
+		
 		model.addAttribute("loginBean", loginBean);
 		return "index";
 	}

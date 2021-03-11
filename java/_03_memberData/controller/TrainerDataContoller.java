@@ -70,8 +70,8 @@ public class TrainerDataContoller {
 			model.addAttribute("areaList", areaMap);
 		}
 		
-		String gymName =  gymService.getGymName(trainerBean.getGym().getId());
-		model.addAttribute("gymName", gymName);
+		GymBean_H gym =  gymService.getGym(trainerBean.getGym().getId());
+		model.addAttribute("gym", gym);
 		
 
 		model.addAttribute("trainerBean", trainerBean);
@@ -124,6 +124,9 @@ public class TrainerDataContoller {
 		memberDataService.updateTrainer(oldBean);
 		return "redirect:/trainerData/" + id;
 	}
+	
+	
+		
 
 	@ModelAttribute
 	public void commonData(Model model) {
@@ -135,5 +138,7 @@ public class TrainerDataContoller {
 		model.addAttribute("cityList", citiesMap);
 
 	}
+	
+	
 
 }

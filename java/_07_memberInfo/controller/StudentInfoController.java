@@ -1,6 +1,9 @@
 package _07_memberInfo.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,15 +12,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _01_register.model.StudentBean_H;
 import _03_memberData.service.MemberDataService;
 import _07_memberInfo.model.StudentDataBean_H;
 import _07_memberInfo.service.StudentInfoService;
+import _10_studentCourse.model.StudentCourseBean_H;
+import _10_studentCourse.service.StudentCourseService;
 
 @Controller
-@SessionAttributes({ "LoginOK","MoneyBean" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean", "comingSoonCourse", "waitCourse" }) // 此處有LoginOK的識別字串
 public class StudentInfoController {
 	
 	@Autowired
@@ -25,6 +33,9 @@ public class StudentInfoController {
 	
 	@Autowired
 	MemberDataService memberDataService;
+	
+	@Autowired
+	StudentCourseService studentCourseService;
 	
 	@GetMapping("/student_info/{id}")
 	public String StudentInfo(Model model,
@@ -43,8 +54,15 @@ public class StudentInfoController {
 			model.addAttribute("TDEE", TDEE);
 		}
 		
+		Date now = new Date( );
+		java.sql.Date nowDate = new java.sql.Date(now.getTime());
+//		System.out.println("======================1");
+		List<StudentCourseBean_H> comingSoonCourse = studentCourseService.getComingSoonCourse(id, nowDate);
+		List<StudentCourseBean_H> waitCourse = studentCourseService.getWaitCourse(id, nowDate);
+		model.addAttribute("comingSoonCourse", comingSoonCourse);
+		model.addAttribute("waitCourse", waitCourse);
 		model.addAttribute("LoginOK", studentBean);
-		return "/_07_student_info/student_info";
+		return "/_07_memberInfo/student_info";
 	}
 	
 	@GetMapping("/student_info_edit/{id}")
@@ -52,7 +70,7 @@ public class StudentInfoController {
 			@PathVariable("id") Integer id) {
 		StudentBean_H studentBean = memberDataService.getStudentById(id);
 		model.addAttribute("studentBean", studentBean);
-		return "/_07_student_info/student_info_edit";
+		return "/_07_memberInfo/student_info_edit";
 	}
 	
 	@PostMapping("/student_bodyData_update/{id}")
@@ -76,9 +94,17 @@ public class StudentInfoController {
 		return "redirect:/student_info/"+id;
 	}
 	
-//	@ModelAttribute
-//	public void commonData(Model model) {
-//	
-//	}
+	@GetMapping("/CancelCourse/{id}")
+	public String cancelCourse(
+			@PathVariable("id") Integer id, 
+			@RequestParam("courseId") String courseIdStr, 
+			Model model) {
+		int courseId = Integer.parseInt(courseIdStr);
+		studentCourseService.cancelCourse(courseId);
+		
+		return "redirect:/student_info/"+id;
+	}
+	
+
 	
 }

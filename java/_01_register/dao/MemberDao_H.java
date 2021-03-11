@@ -7,6 +7,8 @@ import _01_register.model.GymBean_H;
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
+
 
 
 
@@ -17,7 +19,11 @@ public interface MemberDao_H {
 	
 	public int checkverification_H(int verification);
 
-	public MemberBean_H checkIdPassword_H(String email, String password);	
+	public MemberBean_H checkIdPassword_H(String email, String password);
+	
+	public MemberBean_H checkOldPassword_H(String email, String password);
+	
+	public MemberBean_H checkEmail_H(String email);
 	
 	public List<StudentBean_H> listAll_H() ;
 	
@@ -37,4 +43,7 @@ public interface MemberDao_H {
 	
 	boolean checkPass(int type , String email );
 
+	int saveTrainerLicenseBean_H(TrainerLicenseBean_H tl);
+
+	
 }

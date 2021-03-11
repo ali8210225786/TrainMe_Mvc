@@ -1,0 +1,40 @@
+#tr_lesson_contrainer {
+    border: 4px dashed rgb(16, 206, 165);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+  }
+
+  #datebox {
+    /* border: 1px solid red; */
+    text-align: center;
+  }
+
+  .input_date {
+    margin: 40px;
+  }
+  #showBtn,#saveBtu {
+    width: 80px;
+    height: 40px;
+    margin: 20px;
+    border-radius: 10px;
+    outline: none;
+    cursor:pointer
+  }
+  #schedule{
+      text-align: center;
+  }
+ 
+
+  table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    width: 150px;
+    height: 30px;
+  }

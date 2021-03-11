@@ -20,8 +20,10 @@ import org.springframework.stereotype.Repository;
 
 import _00_init.util.DBService;
 import _01_register.model.MemberBean_H;
+import _01_register.model.StudentBean_H;
 import _04_money.dao.MemPointDao;
 import _04_money.model.MoneyBean_H;
+import _04_money.model.TrainerAccountBean_H;
 
 @Repository
 public class MemPointDaoImpl implements MemPointDao{
@@ -43,10 +45,31 @@ public class MemPointDaoImpl implements MemPointDao{
 		return mb;
 	}
 	
+	@Override
+	public List <TrainerAccountBean_H> getAccountDetail(int id) {
+		
+		String hql = "FROM TrainerAccountBean_H WHERE tr_id = :trid ORDER BY time";
+		Session session = factory.getCurrentSession();
+		
+		@SuppressWarnings("unchecked")
+		List <TrainerAccountBean_H> ta = session.createQuery(hql).setParameter("trid", id).getResultList();
 	
-	
-	
-	
+		System.out.println("mb.size()= "+ta.size());
+		
+		return ta;
+	}
+
+	@Override
+	public int saveMoney(MoneyBean_H moneyBean_H) {
+		StudentBean_H sb = new StudentBean_H();
+		int n = 0;
+		Session session = factory.getCurrentSession();
+//		session.merge (sb);
+		session.clear();
+		session.save(moneyBean_H);
+		n++;
+		return n;
+	}
 	
 	
 //	public List <CourseBean> getCourseDetail(int id) {

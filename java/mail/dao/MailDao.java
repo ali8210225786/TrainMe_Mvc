@@ -43,16 +43,13 @@ public class MailDao {
 					               						.setParameter("mhash", hash)
 					               						.setParameter("mverification", 0)					               						
 					               						.getSingleResult();
-    	System.out.println("AAAAAAAAAAAAAA");
 		    	if(memberBean != null) {		    		
 		    		if(memberBean instanceof StudentBean_H) {
-		    			System.out.println("bbbbbbbbbbbbbb");
 		    			sb = (StudentBean_H) memberBean;
 		    			sb.setVerification(1);
 		    			session.update(sb);
 		    		}
 		    		if(memberBean instanceof TrainerBean_H) {
-		    			System.out.println("cccccccccccccc");
 		    			tb = (TrainerBean_H) memberBean;
 		    			tb.setVerification(1);
 		    			session.update(tb);

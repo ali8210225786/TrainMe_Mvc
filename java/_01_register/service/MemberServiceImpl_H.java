@@ -15,6 +15,8 @@ import _01_register.model.GymBean_H;
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
+
 
 
 @Service
@@ -59,6 +61,28 @@ public class MemberServiceImpl_H implements MemberService_H {
 	public MemberBean_H checkIdPassword_H(String email, String password) {
 		MemberBean_H mb = null;
 		mb = dao.checkIdPassword_H(email, password);	
+		return mb;
+	}
+	@Transactional
+	@Override
+	public MemberBean_H checkOldPassword_H(String email, String password) {
+		MemberBean_H mb = null;
+		mb = dao.checkOldPassword_H(email, password);	
+		return mb;
+	}
+	@Transactional
+	@Override
+	public int saveTrainerLicenseBean_H(TrainerLicenseBean_H tl) {
+		int n = 0;		
+		n = dao.saveTrainerLicenseBean_H(tl);
+		n++;
+		return n;
+	}
+	@Transactional
+	@Override
+	public MemberBean_H checkEmail_H(String email) {
+		MemberBean_H mb = null;
+		mb = dao.checkEmail_H(email);	
 		return mb;
 	}
 	@Transactional

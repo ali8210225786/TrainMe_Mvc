@@ -1,59 +1,118 @@
 package _04_money.model;
 
+import _03_memberData.model.Area_H;
+import _03_memberData.model.City_H;
+
 public class CardBean {
  
 	String name;
-	String cardNo;
+	String cardNo1;
+	String cardNo2;
+	String cardNo3;
+	String cardNo4;
 	String expiryMonth;
 	String expiryYear;
 	String cardCVV;
 	String cardName;
 	String tel;
 	String email;
-	String zip;
 	String address;
+	City_H city;
+	Area_H area;
+	Integer money;
 	
 	
 	public CardBean() {
 		
 	};
-	
-	
-	
-	
 
-
-	public CardBean(String name, String cardNo, String expiryMonth, String expiryYear, String cardCVV, String cardName,
-			String tel, String email, String zip, String address) {
+	public CardBean(String name, String cardNo1, String cardNo2, String cardNo3, String cardNo4, String expiryMonth,
+			String expiryYear, String cardCVV, String cardName, String tel, String email, String address, City_H city,
+			Area_H area) {
 		super();
 		this.name = name;
-		this.cardNo = cardNo;
+		this.cardNo1 = cardNo1;
+		this.cardNo2 = cardNo2;
+		this.cardNo3 = cardNo3;
+		this.cardNo4 = cardNo4;
 		this.expiryMonth = expiryMonth;
 		this.expiryYear = expiryYear;
 		this.cardCVV = cardCVV;
 		this.cardName = cardName;
 		this.tel = tel;
 		this.email = email;
-		this.zip = zip;
 		this.address = address;
+		this.city = city;
+		this.area = area;
 	}
 
 
+	public Integer getMoney() {
+		return money;
+	}
 
+	public void setMoney(Integer money) {
+		this.money = money;
+	}
 
-
-
-	public String getZip() {
-		return zip;
+	public City_H getCity() {
+		return city;
 	}
 
 
-
-	public void setZip(String zip) {
-		this.zip = zip;
+	public void setCity(City_H city) {
+		this.city = city;
 	}
 
 
+	public Area_H getArea() {
+		return area;
+	}
+
+
+	public void setArea(Area_H area) {
+		this.area = area;
+	}
+
+
+	public String getCardNo1() {
+		return cardNo1;
+	}
+
+
+	public void setCardNo1(String cardNo1) {
+		this.cardNo1 = cardNo1;
+	}
+
+
+	public String getCardNo2() {
+		return cardNo2;
+	}
+
+
+	public void setCardNo2(String cardNo2) {
+		this.cardNo2 = cardNo2;
+	}
+
+
+	public String getCardNo3() {
+		return cardNo3;
+	}
+
+
+	public void setCardNo3(String cardNo3) {
+		this.cardNo3 = cardNo3;
+	}
+
+
+	public String getCardNo4() {
+		return cardNo4;
+	}
+
+
+	public void setCardNo4(String cardNo4) {
+		this.cardNo4 = cardNo4;
+	}
 
 	public String getAddress() {
 		return address;
@@ -120,12 +179,6 @@ public class CardBean {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getCardNo() {
-		return cardNo;
-	}
-	public void setCardNo(String cardNo) {
-		this.cardNo = cardNo;
 	}
 
 	public String getExpiryMonth() {

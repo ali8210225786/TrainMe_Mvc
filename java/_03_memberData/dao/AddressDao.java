@@ -32,7 +32,7 @@ public class AddressDao {
 	public List<Area_H> listAreas(int cityId) {
 		
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Area_H WHERE city_H.id = : cityId";
+		String hql = "from Area_H WHERE city_H.id = :cityId";
 		
 		return session.createQuery(hql)
 					  .setParameter("cityId", cityId)

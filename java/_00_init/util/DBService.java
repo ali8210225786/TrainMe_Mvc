@@ -21,7 +21,7 @@ public class DBService {
 	private static final String DBURL_MySQL = "jdbc:mysql://" + host
 			+ "/trainme?useUnicode=yes&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Taipei";
 	public static final String USERID_MySQL = "root";
-	public static final String PSWD_MySQL = "root";
+	public static final String PSWD_MySQL = "java123";
 
 	
 	
