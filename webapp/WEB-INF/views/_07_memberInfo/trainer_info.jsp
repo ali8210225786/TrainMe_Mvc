@@ -15,6 +15,10 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
+
+<%-- <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />"> --%>
+<link rel="stylesheet" href="<c:url value='/css/style_timeset.css' />">
+
 <link rel="stylesheet"
 	href="<c:url value='/css/style_trainer_page.css' />">
 <link rel="stylesheet"
@@ -57,7 +61,7 @@
 
 	<!-- 教練簡介 -->
 
-	<a name="introduction"></a>
+	<a id="introduction"></a>
 	<div class="trpg_wrap">
 		<div class="trpg_content">
 			<div class="trpg_content_left">
@@ -225,7 +229,7 @@
 	</div>
 
 	<!-- 教學影片 -->
-	<a name="video"></a>
+	<a id="video"></a>
 	<div class="trpg_wrap">
 		<div class="title">
 			<h4>教學影片</h4>
@@ -256,8 +260,167 @@
 	<div class="trpg_wrap">
 		<div class="title">
 			<h4>預約教練</h4>
+			
 		</div>
-		<div class="trpg_content si">(暫無)</div>
+		<div class="trpg_content si">
+		
+		
+			<div class="sc">
+            <!-- 一進來就會顯示當天起始那一周的時間表 -->
+            <table class="table tschedule">
+              <thead class="thead">
+                <tr>
+                  <th scope="col"> </th>
+                  <th scope="col">(一)<br> 3/8</th>
+                  <th scope="col">(二)<br> 3/9</th>
+                  <th scope="col">(三)<br> 3/10</th>
+                  <th scope="col">(四)<br> 3/11</th>
+                  <th scope="col">(五)<br> 3/12</th>
+                  <th scope="col">(六)<br> 3/13</th>
+                  <th scope="col">(日)<br> 3/14</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">8:00 - 9:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">9:00 - 10:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">10:00 - 11:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">11:00 - 12:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">12:00 - 13:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">13:00 - 14:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">14:00 - 15:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">15:00 - 16:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">16:00 - 17:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">17:00 - 18:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">18:00 - 19:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">19:00 - 20:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">20:00 - 21:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+              </tbody>
+            </table>  
+          </div>
+		
+		
+		
+		
+		</div>
+		
+
 	</div>
 
 
@@ -387,8 +550,35 @@
 
 		</div>
 	</div>
+	
+        <!-- 回到最上面 -->
+        <a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
+            <i class="fa fa-angle-up"></i>
+         </a>
 
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
 
+//回到最上面
+$(function() {
+    /* 按下GoTop按鈕時的事件 */
+    $('#gotop').click(function(){
+        $('html,body').animate({ scrollTop: 0 }, 'slow');   /* 返回到最頂 速度slow */
+        return false;
+    });
+    
+    /* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+    $(window).scroll(function() {
+        if ( $(this).scrollTop() > 400){
+            $('#gotop').fadeIn();
+        } else {
+            $('#gotop').fadeOut();
+        }
+    });
+});
+
+</script>
 
 
 </body>
