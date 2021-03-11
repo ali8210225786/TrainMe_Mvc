@@ -156,7 +156,7 @@
 		<div class="title">
 			<h4>自我介紹</h4>
 		</div>
-		<div class="trpg_content si" id="introduction">
+		<div class="trpg_content si sit" id="introduction">
 			${trainerBean.introduction};</div>
 	</div>
 
@@ -184,7 +184,7 @@
 					</thead>
 					<tbody class="tr_height">
 
-						<c:if test="${trainerCourses.size() > 0}">
+						<c:if test="${trainerCourses.size() != 0}">
 							<c:forEach varStatus="i" begin="0"
 								end="${trainerCourses.size()-1}">
 								<tr>
@@ -210,11 +210,16 @@
 
 		<div class="trpg_content si">
 			<div class="lcs">
-				<li>AASFP 亞洲運動及體適能專業學院高級私人體適能教練</li>
-				<li>ACE 美國運動體適能協會私人教練</li>
-				<li>AFAA PFT 美國有氧體適能協會個人體適能顧問</li>
-				<li>Balanced Body Pilates 皮拉提斯墊上訓練第一級和第二級指導員</li>
-				<li>EOXi 國際飛輪教練認證</li>
+				<!-- 				<li>AASFP 亞洲運動及體適能專業學院高級私人體適能教練</li> -->
+				<!-- 				<li>ACE 美國運動體適能協會私人教練</li> -->
+				<!-- 				<li>AFAA PFT 美國有氧體適能協會個人體適能顧問</li> -->
+				<!-- 				<li>Balanced Body Pilates 皮拉提斯墊上訓練第一級和第二級指導員</li> -->
+				<!-- 				<li>EOXi 國際飛輪教練認證</li> -->
+				<c:if test="${trainerLicenseBean.size() != 0}">
+					<c:forEach varStatus="i" begin="0" end="${trainerLicenseBean.size()-1}">
+						<li>${trainerLicenseBean.get(i.current).getName()}</li>
+					</c:forEach>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -230,7 +235,7 @@
 			<div class="video">
 				<c:choose>
 					<c:when test="${empty  trainerBean.profile_video}">
-						<video id="video" class="upload_videobox" controls></video>
+						(此教練還沒有上傳影片)
 					</c:when>
 					<c:otherwise>
 						<video id="video" class="upload_videobox" controls>

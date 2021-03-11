@@ -14,7 +14,7 @@
             </li>
                 <div class="items">
                     <li><a href="#">關於我們</a></li>
-                    <li><a href="<c:url value='/searchTrainer' />">尋找教練</a></li>
+                    <li><a href="<c:url value='/searchTrainerAll' />">尋找教練</a></li>
                     <li><a href="#">購物商城</a></li>
                     <li><a href="#">運動論壇</a></li>
                 </div>
@@ -55,16 +55,16 @@
 
 	// 導覽列
         // 往下捲動再往上時顯示導覽列
-        var prevScrollpos = window.pageYOffset;
-        window.onscroll = function() {
-        var currentScrollPos = window.pageYOffset;
-        if (prevScrollpos > currentScrollPos) {
-            document.getElementById("navbar").style.top = "0";
-        } else {
-            document.getElementById("navbar").style.top = "-90px";
-        }
-        prevScrollpos = currentScrollPos;
-        } 
+//         var prevScrollpos = window.pageYOffset;
+//         window.onscroll = function() {
+//         var currentScrollPos = window.pageYOffset;
+//         if (prevScrollpos > currentScrollPos) {
+//             document.getElementById("navbar").style.top = "0";
+//         } else {
+//             document.getElementById("navbar").style.top = "-90px";
+//         }
+//         prevScrollpos = currentScrollPos;
+//         } 
         
 
 //         var logout_btn = document.getElementById('logout_btn');

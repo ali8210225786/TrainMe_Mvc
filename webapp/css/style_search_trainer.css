@@ -153,3 +153,9 @@
     /* border: 1px solid red; */
     margin-bottom: 10px;
 }
+
+.result .fc_content{
+/* 	border: 1px solid red; */
+	margin-top: 10px;
+	width: 600px;
+}
