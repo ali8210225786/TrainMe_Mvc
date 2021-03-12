@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
 import _03_memberData.model.TrainerLicenseBean_H;
+import _09_trainerCourse.model.TrainerCourseBean_H;
 
 @Repository
 public class MemberDataDao {
@@ -54,5 +55,13 @@ public class MemberDataDao {
 	public TrainerLicenseBean_H getTrainerLicenseById(int id) {
 		Session session = factory.getCurrentSession();
 		return session.get(TrainerLicenseBean_H.class, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TrainerCourseBean_H> getTrainerAndCourse() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TrainerCourseBean_H tc GROUP BY tc.trainerBean_H.id ";
+//		SELECT  *  FROM  trainer_course tc JOIN trainer t ON tc.tr_id = t.id GROUP BY t.id
+		return session.createQuery(hql).getResultList();
 	}
 }
