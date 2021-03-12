@@ -1,60 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>課程管理</title>
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Document</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教練-課程管理</title>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="./css/style_st_info.css">
+<link rel="stylesheet" href="./css/style_st_account.css">
+<link rel="stylesheet" href="./css/style_timeset.css">
+<link rel="stylesheet" href="./css/style_nav.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
-#tr_lesson_contrainer {
-	border: 4px dashed rgb(16, 206, 165);
-	border-radius: 20px;
-	padding: 20px;
-	margin: 10px;
+.aside ul li:nth-child(3) a {
+	color: #21d4a7;
 }
 
-#datebox {
-	/* border: 1px solid red; */
-	text-align: center;
+.short_nb {
+	width: 90px;
 }
 
-.input_date {
-	margin: 40px;
-}
-
-#showBtn, #saveBtu {
-	width: 80px;
-	height: 40px;
-	margin: 20px;
-	border-radius: 10px;
-	outline: none;
-	cursor: pointer;
-}
-
-#schedule {
-	text-align: center;
-}
-
-table {
-	border-collapse: collapse;
-	border: 1px solid #ddd;
-	margin: 0 auto;
-}
-
-th, td {
-	border: 1px solid #ddd;
-	width: 150px;
-	height: 30px;
-}
-
-.is-closed {
-	background: rgb(16, 206, 165);
+.lesson_name {
+	width: 300px;
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -63,153 +37,299 @@ th, td {
 	defer></script>
 </head>
 <body>
-	<div id="tr_lesson_contrainer" x-data="courseData()"
-		x-init="init($refs)">
-		<h2>課程管理</h2>
-		<div id="datebox">
-			設定起始日期 : <input type="date" id="date_begin" name="date_begin"
-				class="input_date" x-model="dateBegin" x-ref="date" />
-			<!--       x-model :  讓使用者輸入和(js)記憶體可以同步更新   -->
-			<!--       x-ref   :  之後可以使用$refs.date來取得這個dom元素  -->
-			<button id="btn" :disabled="notAllowGenerate()"
-				@click="produceDate()">查詢</button>
-		</div>
 
-		<div id="schedule">
-			<table>
-				<thead id="title">
-					<tr id="title_tr">
-						<template x-for="date in dates" :key="date">
-							<th x-text="date"></th>
-						</template>
-					</tr>
-				</thead>
-				<tbody id="tbody">
-					<template x-for="hour in hours" :key="hour">
-						<tr>
-							<th x-text="hour + ':00'"></th>
-							<template x-for="dateBody in dateBodys" :key="dateBody + hour">
-								<td @click="closeToggle(dateBody,hour)"
-									:class="{'is-closed': isClosed( dateBody, hour ) }"></td>
-							</template>
-						</tr>
-					</template>
-				</tbody>
-			</table>
+	<jsp:include page="/fragment/nav_tr.jsp" />
 
-			<button id="saveBtu" x-show="dates.length > 0" @click="save">確定儲存</button>
+
+
+	<div class="container">
+
+		<jsp:include page="/fragment/sidebar_tr.jsp" />
+
+
+
+		<div class="content" x-data="courseData()" x-init="init()">
+			<div class="back">
+				<a href="./tr_lesson.html"><i class="fas fa-chevron-left"></i>
+					返回課程管理</a>
+			</div>
+			<div class="title">
+				<h3>課程管理 > 管理預約時段</h3>
+			</div>
+
+			<div id="datebox" class="datebox">
+				<p>請在此設定您不開放預約的時段。</p>
+
+				<div>
+					<label>選擇起始日期：</label> <input type="date" id="date_begin"
+						name="date_begin" class="input_date" x-model="dateBegin"
+						@change="updateBeginDate()" />
+				</div>
+			</div>
+
+
+
+			<!-- ============預約時間設定======================================================= -->
+
+			<div class="info_wrap t lesson">
+
+				<div class="sc">
+					<!-- 一進來就會顯示當天起始那一周的時間表 -->
+					<table class="table tschedule">
+						<thead class="thead">
+							<tr>
+								<th scope="col"></th>
+								<th scope="col">(一)<br> 3/8
+								</th>
+								<th scope="col">(二)<br> 3/9
+								</th>
+								<th scope="col">(三)<br> 3/10
+								</th>
+								<th scope="col">(四)<br> 3/11
+								</th>
+								<th scope="col">(五)<br> 3/12
+								</th>
+								<th scope="col">(六)<br> 3/13
+								</th>
+								<th scope="col">(日)<br> 3/14
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">8:00 - 9:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">9:00 - 10:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">10:00 - 11:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">11:00 - 12:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">12:00 - 13:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">13:00 - 14:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">14:00 - 15:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">15:00 - 16:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">16:00 - 17:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">17:00 - 18:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">18:00 - 19:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">19:00 - 20:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">20:00 - 21:00</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+
+
+
+
+
 		</div>
 	</div>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-	<!-- 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-	<script>
-      function courseData() {
-        return {
-          dateBegin: null,
-          dateEnd: null,
-//           timeBegin: null,
-//           timeEnd: null,
-          dates: [],
-          hours: [],
-          dateBodys: [],
-          closeHours: [],
-          init($refs) {   //設定不可選擇當日之前日期
-            const today = dayjs(new Date());
-            todayStr = today.format("YYYY-MM-DD");
-            // console.log($refs.date);
-            $refs.date.min = todayStr;
-           
-          },
-          notAllowGenerate() {   //判斷資料是否有輸入
-            return (
-              this.dateBegin === null 
-//               this.timeBegin === null ||
-//               this.timeEnd === null
-            );
-          },
-          produceDate() {    //產生行程表
-        	this.resetData();
-            this.produceDateTitle();
-            this.produceHourData();
-          },
-          resetData() {   //清空原有資料
-            this.dates = [];
-            this.hours = [];
-            this.closeHours = [];
-            this.dateBodys = [];
-          },
-          produceDateTitle() {   //產生日期列表
-            const firstDay = dayjs(new Date(this.dateBegin));
-            this.dateEnd = firstDay.add(7, "day").format("YYYY-MM-DD");
-            this.dates.push("");
-            for (let i = 0; i < 7; i++) {
-              const date = firstDay.add(i, "day");
-              const dateStr = date.format("YYYY-MM-DD");
-              this.dates.push(dateStr);
-              this.dateBodys.push(dateStr);
-            }
-            
-            
-          },
-          produceHourData() {   //產生小時列表
-            let firstTime = 8;
-            let lastTime = 21;
-            
-            for (firstTime; firstTime <= lastTime; firstTime++) {           
-              this.hours.push(firstTime);
-            }
-            const data = {dateBegin:this.dateBegin , dateEnd:this.dateEnd}
-            
-            const self = this;
-            $.get("/TrainMe/TimeOff/get/" + ${LoginOK.id}, data,
-              function (data) {
-//             	 console.log("aaaaaa");
-//             	 console.log(data);
-            	self.closeHours = data;
-              },
-              "json"
-            );
-          },
-          isClosed(dateBody,hour) {   //判斷時段是否已經關閉
-            const closeHourStr = dateBody + "_" + hour;
-            return this.closeHours.indexOf(closeHourStr) > -1;
-          },
-          closeToggle(dateBody,hour) {   //時段關閉開啟處理
-            const closeHourStr = dateBody + "_" + hour;
-//             console.log(closeHourStr);
-            const index = this.closeHours.indexOf(closeHourStr);
-            if (index > -1) {
-              this.closeHours.splice(index, 1);
-            } else {
-              this.closeHours.push(closeHourStr);
-            }
+	</div>
 
-//             console.log(this.closeHours);
-          },
-           save(){  // 先刪除時間內的所有資料，再存新資料
-        	  const hourData = this.closeHours.map(hour => hour); //解開包住物件得
-        	  const payload = {
-              closeHour: hourData,
-              dateBegin: this.dateBegin,
-              dateEnd: this.dateEnd
-            };
-
-        
-            $.post("/TrainMe/TimeOff/update/" + ${LoginOK.id} , {data:JSON.stringify(payload)},
-              function (data, textStatus, jqXHR) {
-                console.log(data);
-              },
-              "json"
-            );
-            
-
-
-
-          }
-        };
-      }
-    </script>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+	crossorigin="anonymous"></script>
+<script>
+
+  
+
+//   function convertToISO(timebit) {
+//     // remove GMT offset
+//     timebit.setHours(0, -timebit.getTimezoneOffset(), 0, 0);
+//     // format convert and take first 10 characters of result
+//     var isodate = timebit.toISOString().slice(0,10);
+//     return isodate;
+//   }
+
+//   var bookdate = document.getElementById('date_begin');
+//   var currentdate = new Date();
+//   bookdate.min = convertToISO(currentdate);
+//   bookdate.placeholder = bookdate.min;
+//   var futuredate = new Date();
+  // 限制只能選2周內的日期
+  // futuredate.setDate(futuredate.getDate() + 14);
+  // bookdate.max = convertToISO(futuredate);
+  
+   let today = dayjs().format('YYYY-MM-DD');
+  
+  function data() {
+	  
+	  return{
+		  beginDate : today,
+	      dates:[],
+	      hours[],
+	      init(){
+	        this.updateBeginDate();
+	        produceHourData();
+	      },
+	      updateBeginDate(){
+	          this.dates = this.generateDates(this.beginDate);
+	      },
+	      generateDates(beginDate){
+	          let  result = [];
+	          for (let i = 0; i < 7; i++) {
+	            let date = dayjs(beginDate).add(i,'day');
+	            result.push(date);
+	      }
+	          // console.log(result);
+	          return result;
+	     },
+	     parseDayOfWeek(day){
+	          let week = ['日','一','二','三','四','五','六']
+	          return `(${week[day]})`
+	     },
+	     produceHourData() {   //產生小時列表
+	            let firstTime = 8;
+	            let lastTime = 21;
+	            const firstDay = today;
+	            this.dateEnd = firstDay.add(7, "day").format("YYYY-MM-DD");
+	            
+	            for (firstTime; firstTime <= lastTime; firstTime++) {           
+	              this.hours.push(firstTime);
+	            }
+	            const data = {dateBegin:this.dateBegin , dateEnd:this.dateEnd}
+	            
+	            const self = this;
+	            $.get("/TrainMe/TimeOff/get/" + ${LoginOK.id}, data,
+	              function (data) {
+//	             	 console.log("aaaaaa");
+//	             	 console.log(data);
+	            	self.closeHours = data;
+	              },
+	              "json"
+	            );
+	     }
+	     
+	     
+	     
+	     
+	     
+	  }
+	
+}
+
+
+
+</script>
 </html>
