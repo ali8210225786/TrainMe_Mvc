@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -67,23 +68,23 @@ public class TrainerCourseDao {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public Set<StudentCourseBean_H> getTrainerCourseById(int trId) {
+	public List<StudentCourseBean_H> getTrainerCourseById(int trId) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TrainerCourseBean_H  where tr_id = :trid ";
-		
+		String hql = "FROM StudentCourseBean_H sc WHERE sc.trainerCourseBean_H.trainerBean_H.id= :trid ";
+		                                                               
 		@SuppressWarnings("unchecked")
-		List <TrainerCourseBean_H> sclist = session.createQuery(hql).setParameter("trid", trId).getResultList();
-		
-		Set<StudentCourseBean_H> st=new LinkedHashSet<>();
-		for(TrainerCourseBean_H sc : sclist) {
-			Iterator it = 	sc.getStudentCourseBean_H().iterator();
-			while (it.hasNext()) {
-				st.add((StudentCourseBean_H) it.next());
-				
-			}			
-		}
-		System.out.println("st="+ st);
-		return st;
+		List <StudentCourseBean_H> sc = session.createQuery(hql).setParameter("trid", trId).getResultList();
+//		sc.get(0).getTrainerCourseBean_H().getTrainerBean_H().getId()
+//		List<StudentCourseBean_H> st=new LinkedList<>();
+//		for(TrainerCourseBean_H sc : sclist) {
+//			Iterator it = 	sc.getStudentCourseBean_H().iterator();
+//			while (it.hasNext()) {
+//				st.add((StudentCourseBean_H) it.next());
+////				st.get(0).getDate()
+//			}			
+//		}
+//		System.out.println("st="+ st);
+		return sc;
 	}
 	
 }
