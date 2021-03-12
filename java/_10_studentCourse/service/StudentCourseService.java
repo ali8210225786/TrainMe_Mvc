@@ -49,6 +49,7 @@ public class StudentCourseService {
 	
 	public void allowCourse(int courseId) {
 		studentCourseDao.allowCourse(courseId);
+	}
 		
 	public StudentCourseBean_H getStudentCourse(int courseId) {
 		return studentCourseDao.getStudentCourse(courseId);

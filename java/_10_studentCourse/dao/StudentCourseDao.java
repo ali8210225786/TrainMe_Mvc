@@ -70,7 +70,7 @@ public class StudentCourseDao {
 		StudentCourseBean_H scb = session.get(StudentCourseBean_H.class, courseId);
 		scb.setIs_allowed(1);
 		session.update(scb);
-
+	}
 //	用課程id找到該堂課程
 	public StudentCourseBean_H getStudentCourse(int courseId) {
 		Session session = factory.getCurrentSession();

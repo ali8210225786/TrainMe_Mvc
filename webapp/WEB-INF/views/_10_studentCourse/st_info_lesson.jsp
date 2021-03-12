@@ -162,7 +162,6 @@
 												${beforeCourse.get(i.current).getTime()}:00 -
 												${beforeCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${beforeCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
-											<td><a href="<c:url value='/st_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i class="fas fa-book"></i></a></td>
 									<c:if test="${ratings.size() > 0}">
 									
 											<c:forEach varStatus="a" begin="0" end="${ratings.size()-1}">
@@ -178,7 +177,7 @@
 
 											</c:forEach>
 									</c:if>
-											<td><a href="#"><i class="fas fa-book"></i></a></td>
+											<td><a href="<c:url value='/st_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i class="fas fa-book"></i></a></td>
 										</tr>
 									</c:forEach>
 								</c:if>
