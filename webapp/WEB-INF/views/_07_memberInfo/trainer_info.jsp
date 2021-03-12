@@ -95,13 +95,10 @@
 				</div>
 				<div class="info_div">
 					<label>教練評價</label>
-					<div class="starss" id="starss">
-						<img value="1" src="<c:url value='/images/star1.png' />"> <img
-							value="2" src="<c:url value='/images/star1.png' />"> <img
-							value="3" src="<c:url value='/images/star1.png' />"> <img
-							value="4" src="<c:url value='/images/star1.png' />"> <img
-							value="5" src="<c:url value='/images/star1.png' />">
-					</div>
+					<div class="starss">
+	                    <div class="empty_star">★★★★★</div>
+	                    <div class="full_star">★★★★★</div>
+                	</div>
 					<p>(30)</p>
 				</div>
 				<div class="info_div">

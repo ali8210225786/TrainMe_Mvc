@@ -326,129 +326,134 @@
 </div>        
 
 
-   
+   	
     <!-- 人氣教練 -->
 
     <span class="hot_trainer">
         <img src="data:image/png;base64,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"> 
         <h3>本月人氣教練</h3>
     </span>
-    
     <div class="splide">
         <div class="splide__track">
             <ul class="splide__list">
+            
+            
+    <c:if test="${trainerAndCoursese.size() > 0}">
+	<c:forEach varStatus="i" begin="0" end="${trainerAndCoursese.size()-1}">
                 <div class="splide__slide">
                     <div class="p_t">
-                        <p class="t_name">林瑪莉</p>
+                        <p class="t_name">${trainerAndCoursese.get(i.current).getTrainerBean_H().getName()}</p>
                         <span>
-                            <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p>
+                            <p class="t_location"><i class="fas fa-map-marker-alt"></i>${trainerAndCoursese.get(i.current).getTrainerBean_H().getCity().getName()}</p>
                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p>
                         </span>
                         <span>
                             <div class="ratings">
                                 <div class="empty-stars"></div>
-                                <div class="full-stars" style="width:80%"></div>                            
+                                <div class="full-stars" style="width:60%"></div>                            
                             </div>
                             <p>(18)</p>
                         </span>
                     </div>
-                    <img src="${pageContext.request.contextPath}/images/index/1.jpg">
+                   <a href="<c:url value='/trainer_info/${trainerAndCoursese.get(i.current).getTrainerBean_H().getId()}' />"> 
+                   			<img src="/upload/${trainerAndCoursese.get(i.current).getTrainerBean_H().getProfile_image()}" border="0"></a>
                 </div>
 
-                <div class="splide__slide">
-                    <div class="p_t">
-                        <p class="t_name">林瑪莉</p>
-                        <span>
-                            <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p>
-                            <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p>
-                        </span>
-                        <span>
-                            <div class="ratings">
-                                <div class="empty-stars"></div>
-                                <div class="full-stars" style="width:80%"></div>                            
-                            </div>
-                            <p>(18)</p>
-                        </span>
-                    </div>
-                    <img src="${pageContext.request.contextPath}/images/index/2.png">
-                </div>
+<!--                 <div class="splide__slide"> -->
+<!--                     <div class="p_t"> -->
+<!--                         <p class="t_name">林瑪莉</p> -->
+<!--                         <span> -->
+<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <div class="ratings"> -->
+<!--                                 <div class="empty-stars"></div> -->
+<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
+<!--                             </div> -->
+<!--                             <p>(18)</p> -->
+<!--                         </span> -->
+<!--                     </div> -->
+<%--                     <img src="${pageContext.request.contextPath}/images/index/2.png"> --%>
+<!--                 </div> -->
 
-                <div class="splide__slide">
-                    <div class="p_t">
-                        <p class="t_name">林瑪莉</p>
-                        <span>
-                            <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p>
-                            <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p>
-                        </span>
-                        <span>
-                            <div class="ratings">
-                                <div class="empty-stars"></div>
-                                <div class="full-stars" style="width:80%"></div>                            
-                            </div>
-                            <p>(18)</p>
-                        </span>
-                    </div>
-                    <img src="${pageContext.request.contextPath}/images/index/3.jpg">
-                </div>
+<!--                 <div class="splide__slide"> -->
+<!--                     <div class="p_t"> -->
+<!--                         <p class="t_name">林瑪莉</p> -->
+<!--                         <span> -->
+<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <div class="ratings"> -->
+<!--                                 <div class="empty-stars"></div> -->
+<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
+<!--                             </div> -->
+<!--                             <p>(18)</p> -->
+<!--                         </span> -->
+<!--                     </div> -->
+<%--                     <img src="${pageContext.request.contextPath}/images/index/3.jpg"> --%>
+<!--                 </div> -->
                 
-                <div class="splide__slide">
-                    <div class="p_t">
-                        <p class="t_name">林瑪莉</p>
-                        <span>
-                            <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p>
-                            <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p>
-                        </span>
-                        <span>
-                            <div class="ratings">
-                                <div class="empty-stars"></div>
-                                <div class="full-stars" style="width:80%"></div>                            
-                            </div>
-                            <p>(18)</p>
-                        </span>
-                    </div>
-                    <img src="${pageContext.request.contextPath}/images/index/1.jpg">
-                </div>
+<!--                 <div class="splide__slide"> -->
+<!--                     <div class="p_t"> -->
+<!--                         <p class="t_name">林瑪莉</p> -->
+<!--                         <span> -->
+<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <div class="ratings"> -->
+<!--                                 <div class="empty-stars"></div> -->
+<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
+<!--                             </div> -->
+<!--                             <p>(18)</p> -->
+<!--                         </span> -->
+<!--                     </div> -->
+<%--                     <img src="${pageContext.request.contextPath}/images/index/1.jpg"> --%>
+<!--                 </div> -->
 
-                <div class="splide__slide">
-                    <div class="p_t">
-                        <p class="t_name">林瑪莉</p>
-                        <span>
-                            <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p>
-                            <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p>
-                        </span>
-                        <span>
-                            <div class="ratings">
-                                <div class="empty-stars"></div>
-                                <div class="full-stars" style="width:80%"></div>                            
-                            </div>
-                            <p>(18)</p>
-                        </span>
-                    </div>
-                    <img src="${pageContext.request.contextPath}/images/index/2.png">
-                </div>
+<!--                 <div class="splide__slide"> -->
+<!--                     <div class="p_t"> -->
+<!--                         <p class="t_name">林瑪莉</p> -->
+<!--                         <span> -->
+<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <div class="ratings"> -->
+<!--                                 <div class="empty-stars"></div> -->
+<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
+<!--                             </div> -->
+<!--                             <p>(18)</p> -->
+<!--                         </span> -->
+<!--                     </div> -->
+<%--                     <img src="${pageContext.request.contextPath}/images/index/2.png"> --%>
+<!--                 </div> -->
 
-                <div class="splide__slide">
-                    <div class="p_t">
-                        <p class="t_name">林瑪莉</p>
-                        <span>
-                            <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p>
-                            <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p>
-                        </span>
-                        <span>
-                            <div class="ratings">
-                                <div class="empty-stars"></div>
-                                <div class="full-stars" style="width:80%"></div>                            
-                            </div>
-                            <p>(18)</p>
-                        </span>
-                    </div>
-                    <img src="${pageContext.request.contextPath}/images/index/3.jpg">
-                </div>
+<!--                 <div class="splide__slide"> -->
+<!--                     <div class="p_t"> -->
+<!--                         <p class="t_name">林瑪莉</p> -->
+<!--                         <span> -->
+<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <div class="ratings"> -->
+<!--                                 <div class="empty-stars"></div> -->
+<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
+<!--                             </div> -->
+<!--                             <p>(18)</p> -->
+<!--                         </span> -->
+<!--                     </div> -->
+<%--                     <img src="${pageContext.request.contextPath}/images/index/3.jpg"> --%>
+<!--                 </div> -->
                 
+</c:forEach>
+</c:if>
             </ul>
         </div>
     </div>
-
 <!-- <!-- 登入/註冊 --> 
 <jsp:include page="/fragment/login.jsp"/> 
 

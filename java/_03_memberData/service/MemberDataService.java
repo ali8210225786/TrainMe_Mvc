@@ -1,6 +1,8 @@
 package _03_memberData.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +16,7 @@ import _03_memberData.dao.MemberDataDao;
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
 import _03_memberData.model.TrainerLicenseBean_H;
+import _09_trainerCourse.model.TrainerCourseBean_H;
 
 @Transactional
 @Service
@@ -68,4 +71,20 @@ public class MemberDataService {
 		return memberDataDao.getTrainerLicenseById(id);
 	}
 	
+	public List<TrainerCourseBean_H> getTrainerAndCourse() {
+		
+		// 存放TrainerCourseBean_H內容的集合  
+		List<TrainerCourseBean_H> list = memberDataDao.getTrainerAndCourse();
+		// 存放亂序結果的集合  
+		ArrayList<TrainerCourseBean_H> result = new ArrayList<>();  
+		Random random = new Random();
+		for (int i = 0; i < 6; i++) {
+			 int myRand = random.nextInt(list.size());
+			 //將取出的這個元素放到存放亂序結果的集合中  
+			 result.add(list.get(myRand));  
+			 //從原始集合中刪除該元素防止重複
+			 list.remove(myRand);  
+		}
+		return result;
+	}
 }

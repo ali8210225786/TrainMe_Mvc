@@ -127,13 +127,10 @@
 
 							<!-- 評價星星 (暫)-->
 							<div class="fc_star">
-								<div class="starss" id="starss">
-									<img value="1" src="<c:url value='/images/star1.png' />">
-									<img value="2" src="<c:url value='/images/star1.png' />">
-									<img value="3" src="<c:url value='/images/star1.png' />">
-									<img value="4" src="<c:url value='/images/star1.png' />">
-									<img value="5" src="<c:url value='/images/star1.png' />">
-								</div>
+								<div class="starss">
+				                    <div class="empty_star">★★★★★</div>
+				                    <div class="full_star">★★★★★</div>
+	                			</div>
 							</div>
 
 						</div>

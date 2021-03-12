@@ -32,8 +32,10 @@ import _01_register.service.MemberService_H;
 import _01_register.validate.StudentValidator;
 import _01_register.validate.TrainerValidator;
 import _02_login.model.LoginBean;
+import _03_memberData.service.MemberDataService;
 import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
+import _09_trainerCourse.model.TrainerCourseBean_H;
 import mail.model.SendingEmail;
 import mail.service.MailService;
 
@@ -58,15 +60,21 @@ public class RegisterController {
 	
 	@Autowired
 	MemPointService memPointService;
+	
+	@Autowired
+	MemberDataService memberDataService;
 
 	@GetMapping("/")
 	public String index(Model model) {
 		StudentBean_H studentBean = new StudentBean_H();
 		TrainerBean_H trainerBean = new TrainerBean_H();
-		LoginBean loginBean = new LoginBean();
+		LoginBean loginBean = new LoginBean();		
+		List<TrainerCourseBean_H> trainerAndCourseBean = memberDataService.getTrainerAndCourse();
+		
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("trainerAndCoursese", trainerAndCourseBean);
 
 		return "index";
 	}
@@ -246,6 +254,8 @@ public class RegisterController {
 		MemberBean_H mb = null;
 		StudentBean_H sb = null;
 		TrainerBean_H tb = null;
+		
+		List<TrainerCourseBean_H> trainerAndCourseBean = memberDataService.getTrainerAndCourse();
 
 		try {
 			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),
@@ -292,6 +302,7 @@ public class RegisterController {
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("trainerAndCoursese", trainerAndCourseBean);
 		return "index";
 	}
 
