@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mail.dao.MailDao;
-
+@Transactional
 @Service
 public class MailService {
 
@@ -16,12 +16,9 @@ public class MailService {
 	
 	@Autowired
 	MailDao dao;
+
 	
-	public MailService() {
-		
-	}
-	
-	@Transactional
+
 	public void changeVerification(String type , String email , String hash) {
 			dao.changeVerification(type, email, hash);
 	}

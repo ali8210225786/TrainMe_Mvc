@@ -40,7 +40,7 @@
 	</div>
 
 
-<!-- <!-- 	<script type="text/javascript"> --> -->
+<!-- 	<script type="text/javascript"> -->
 <!-- // 	$(document).ready(function() { -->
 <!-- // 	    $("#resetForm").validate({ -->
 <!-- // 	        rules: { -->
@@ -56,6 +56,6 @@
 <!-- // 	    } -->
 <!-- // 	    }); -->
 <!-- // 	}); -->
-<!-- <!-- 	</script> --> -->
+<!-- 	</script> -->
 </body>
 </html>

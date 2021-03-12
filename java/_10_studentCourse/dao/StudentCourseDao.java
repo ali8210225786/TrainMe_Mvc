@@ -65,6 +65,11 @@ public class StudentCourseDao {
 		scb.setIs_delete(1);
 		session.update(scb);
 	}
+	public void allowCourse(int courseId) {
+		Session session = factory.getCurrentSession();
+		StudentCourseBean_H scb = session.get(StudentCourseBean_H.class, courseId);
+		scb.setIs_allowed(1);
+		session.update(scb);
 
 //	用課程id找到該堂課程
 	public StudentCourseBean_H getStudentCourse(int courseId) {
