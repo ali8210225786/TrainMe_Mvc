@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import _09_trainerCourse.model.RatingsBean_H;
 import _10_studentCourse.dao.StudentCourseDao;
 import _10_studentCourse.model.StudentCourseBean_H;
 
@@ -44,6 +45,18 @@ public class StudentCourseService {
 	
 	public void cancelCourse(int courseId) {
 		studentCourseDao.cancelCourse(courseId);
+	}
+	
+	public StudentCourseBean_H getStudentCourse(int courseId) {
+		return studentCourseDao.getStudentCourse(courseId);
+	}
+	
+	public void addFeedback(RatingsBean_H ratingsBean) {
+		studentCourseDao.addFeedback(ratingsBean);
+	}
+	
+	public List<RatingsBean_H> getRatings(){
+		return studentCourseDao.getRatings();
 	}
 	
 }
