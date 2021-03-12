@@ -146,9 +146,9 @@
                 </div>
                 <div class="check_area">
                     <div class="check">
-                        <input type="checkbox" class="check_box"> 記住密碼
-                    </div>
+<!--                         <input type="checkbox" class="check_box"> 記住密碼 -->
                     <a href="<c:url value='/ResetPassword' />">忘記密碼</a>
+                    </div>
                 </div>
                 <div class="msgbox">
                 	<form:errors path="userEmail" cssClass="error" />

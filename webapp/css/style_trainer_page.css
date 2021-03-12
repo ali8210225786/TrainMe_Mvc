@@ -112,11 +112,29 @@
     font-weight: 400;
     font-family: 'Noto Sans TC', sans-serif;
 }
+.sit{
+	white-space: pre-wrap;
+}
+
 
 /* 評價星等 */
-.starss{
-    display: inline-block;
+.starss {
+    position: relative;
     vertical-align:text-top;
+    display: inline-block;
+    color: #ddd; /*背景星星顏色*/
+    overflow: hidden;
+    font-size: 20px; /*調整字體大小可放大縮小星星*/
+    /* text-shadow: 0px 1px 0 #999; */
+}
+.full_star {
+    width: 90%; /*調整寬度可變更星等*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #ffd000; /*前景星星顏色*/
 }
 
 /* 健身房 */
@@ -213,4 +231,26 @@
 .fc_star{
     /* border: 1px solid red; */
     margin-bottom: 10px;
+}
+
+/* 回到最上面按鈕 */
+
+#gotop {
+    position:fixed;
+    z-index:90;
+    right:30px;
+    bottom:31px;
+    display:none;
+    width:50px;
+    height:50px;
+    color:#fff;
+    background:#65e7c7;
+    line-height:50px;
+    border-radius:50%;
+    transition:all 0.5s;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+#gotop:hover{
+    background:#7af8d8;
 }

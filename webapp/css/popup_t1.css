@@ -15,7 +15,7 @@
     font-weight: 300;
 }
 #overlay{
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -29,7 +29,7 @@
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
     width: 800px;
     height: 500px;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     margin-top: -250px;
@@ -39,7 +39,7 @@
     overflow: hidden;
 }
 
-/* µn¤J®Ø */
+/* ï¿½nï¿½Jï¿½ï¿½ */
 
 .loginform{
     position: absolute;
@@ -76,7 +76,7 @@
     width: 100%;
 }
 
-/* µù¥U®Ø */
+/* ï¿½ï¿½ï¿½Uï¿½ï¿½ */
 
 .wrap{
     /* border: 1px solid #f00; */
@@ -94,7 +94,7 @@
 }
 
 
-/* ¾Ç­û°Ï¶ô */
+/* ï¿½Ç­ï¿½ï¿½Ï¶ï¿½ */
 .st{
     position: absolute;
     width: 100%;
@@ -103,7 +103,7 @@
     transition: .3s;
 }
 
-/* ±Ð½m°Ï¶ô */
+/* ï¿½Ð½mï¿½Ï¶ï¿½ */
 .tr{
     position: absolute;
     width: 100%;
@@ -262,7 +262,7 @@ label{
     width: 80%;
     transform: .5;
 }
-/* ÁôÂÃ */
+/* ï¿½ï¿½ï¿½ï¿½ */
 .hide {
     display: none;
   }
@@ -270,7 +270,7 @@ label{
 .transition{
     transition: .5s;
 }
-/* ÀË¬d°T®§ */
+/* ï¿½Ë¬dï¿½Tï¿½ï¿½ */
 .msgbox{
     /* border: 1px solid red; */
     color: red;
