@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class TrainerCourseBean_H {
 	private SkillTypeBean_H skill_typeBean_H;
 	private Integer price;
 	
-	@OneToMany(mappedBy = "trainerCourseBean_H")
+	@OneToMany(mappedBy = "trainerCourseBean_H", fetch = FetchType.EAGER)
 	private Set<StudentCourseBean_H> studentCourseBean_H = new LinkedHashSet<>();
 	
 	public TrainerCourseBean_H(TrainerBean_H trainerBean_H, Integer price) {

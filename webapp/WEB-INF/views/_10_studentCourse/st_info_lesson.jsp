@@ -143,7 +143,8 @@
 									<th scope="col" class="class_name">課程名稱</th>
 									<th scope="col">教練</th>
 									<th scope="col">上課時間</th>
-									<th scope="col">扣點</th>
+									<th scope="col">本堂點數</th>
+									<th scope="col">評價</th>
 									<th scope="col">上課日誌</th>
 								</tr>
 							</thead>
@@ -159,6 +160,21 @@
 												${beforeCourse.get(i.current).getTime()}:00 -
 												${beforeCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${beforeCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
+									<c:if test="${ratings.size() > 0}">
+									
+											<c:forEach varStatus="a" begin="0" end="${ratings.size()-1}">
+												<c:choose>
+													<c:when test="${ratings.get(a.current).getStudentCourseBean_H().getId() == beforeCourse.get(i.current).getId()}">
+															<td>已評價</td>
+													</c:when>
+													<c:otherwise>
+															<td><a href="<c:url value='/st_feedback/${beforeCourse.get(i.current).getId()}' />">給評價</a></td>
+													</c:otherwise>
+												</c:choose>
+
+
+											</c:forEach>
+									</c:if>
 											<td><a href="#"><i class="fas fa-book"></i></a></td>
 										</tr>
 									</c:forEach>
