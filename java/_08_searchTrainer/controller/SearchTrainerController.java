@@ -54,17 +54,13 @@ public class SearchTrainerController {
 			@RequestParam("city") int city,
 			@RequestParam("keyword") String keyword
 			) {
-		System.out.println( skillType);
-		System.out.println( city);
-		System.out.println( keyword);
-		List<TrainerCourseBean_H> a = searchTrainerService.searchTrainerByCondition(city, skillType);
+	
+		List<TrainerCourseBean_H> brforeSearch = searchTrainerService.searchTrainerByCondition(city, skillType, keyword);
 		List<TrainerCourseBean_H> trainerOfSkillType = searchTrainerService.getTrainerOfSkillType();
-//		for( TrainerCourseBean_H b : a) {
-//			System.out.println(b.getId());
-//		}
+
 		
 	
-		model.addAttribute("trainerCourseAll", a);
+		model.addAttribute("trainerCourseAll", brforeSearch);
 		model.addAttribute("trainerOfSkillType", trainerOfSkillType);
 		
 		return "/_08_searchTrainer/search_trainer";
