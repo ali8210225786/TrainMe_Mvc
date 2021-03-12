@@ -46,4 +46,8 @@ public class StudentCourseService {
 		studentCourseDao.cancelCourse(courseId);
 	}
 	
+	public void allowCourse(int courseId) {
+		studentCourseDao.allowCourse(courseId);
+	}
+	
 }
