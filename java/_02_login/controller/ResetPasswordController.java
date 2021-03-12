@@ -72,7 +72,7 @@ public class ResetPasswordController {
 		String newpassword = getRandomString(6);
 		String realpassword = GlobalService.getMD5Endocing(GlobalService.encryptString(newpassword));
 		String message = "";
-
+		String name = null;
 		MemberBean_H mb = null;
 		StudentBean_H sb = null;
 		TrainerBean_H tb = null;
@@ -87,15 +87,17 @@ public class ResetPasswordController {
 						tb = (TrainerBean_H) mb;
 						tb.setPassword(realpassword);
 						memberDataService.updateTrainer(tb);
+						name = tb.getName();
 					}
 
 					if (mb instanceof StudentBean_H) {
 						sb = (StudentBean_H) mb;
 						sb.setPassword(realpassword);
 						memberDataService.updateStudent(sb);
+						name = sb.getName();
 					}
 				}
-				SendingEmail_newpassword sn = new SendingEmail_newpassword(useremail, newpassword);
+				SendingEmail_newpassword sn = new SendingEmail_newpassword(useremail, newpassword, name);
 				sn.sendMail();
 				message = "你的密碼已經重置，請確認你的信箱！";
 			}
