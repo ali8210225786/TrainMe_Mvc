@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,7 +57,7 @@ public class StudentCourseBean_H implements Serializable{
 	@OneToMany(mappedBy = "studentCourseBean_H")
 	private Set<MoneyBean_H> moneyBean_H = new LinkedHashSet<>();
 	
-	@OneToOne(mappedBy = "studentCourseBean_H")
+	@OneToOne(mappedBy = "studentCourseBean_H" , fetch = FetchType.LAZY)
 	RatingsBean_H ratingsBean_H;
 
 	public StudentCourseBean_H(StudentBean_H studentBean_H, Integer tr_id, Date date, Integer time

@@ -37,7 +37,7 @@ public class TrainerCourseService {
 		return trainerCourseDao.queryTimeOffList(dateBegin, dateEnd, trId);
 	}
 
-	public Set<StudentCourseBean_H> getTrainerCourseById(int trId){
+	public List<StudentCourseBean_H> getTrainerCourseById(int trId){
 		return trainerCourseDao.getTrainerCourseById(trId);
 	}
 	
