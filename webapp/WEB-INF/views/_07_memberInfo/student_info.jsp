@@ -277,17 +277,32 @@
 
 	// 圖表
 	var ctx = document.getElementById('myChart').getContext('2d');
+
+	function weight(){
+		var array = new Array();
+		<c:forEach items="${StudentDataBean}" var="sdb">
+	 		array.push(${sdb.st_weight}); //js中可以使用此標籤，將EL表示式中的值push到陣列中
+	 	</c:forEach>
+// 	for(var i=0;i<array.length;i++)
+// 	 {
+	 	
+// 	 }
+	return array;
+	}
 	var myChart = new Chart(ctx, {
 		type : 'line',
 		data : {
 			labels : [ '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月',
 					'10月', '11月', '12月' ], // 時間
 			datasets : [ {
-				// label: '# of Votes',
-				data : [ 50, 52, 53, 55, 52, 50, 53, 55, 52, 50 ],  //體重
-				backgroundColor : 'transparent',
-				borderColor : 'red',
-				borderWidth : 1
+				// label: '# of Votes',				
+				
+				data : 
+					
+					[ ] = weight(),  //體重
+					backgroundColor : 'transparent',
+					borderColor : 'red',
+					borderWidth : 1				
 			} ]
 		},
 		options : {

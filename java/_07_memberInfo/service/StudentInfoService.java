@@ -94,6 +94,18 @@ public class StudentInfoService {
 		studentInfoDao.saveWeightData(sdb);
 	}
 	
+	public void updateWeightData(StudentDataBean_H sdb) {
+		studentInfoDao.updateWeightData(sdb);
+	}
+	
+	public StudentDataBean_H getStudentWeightDataByDateAndId(int id, Date date) {
+		return studentInfoDao.getStudentWeightDataByDateAndId(id, date);
+	}
+	
+	public List<StudentDataBean_H> getStudentWeightData(int id) {
+		return studentInfoDao.getStudentWeightData(id);
+	}
+	
 	public void updateBodyData(StudentBean_H sb) {
 		memberDataDao.updateStudent(sb);
 	}

@@ -87,7 +87,7 @@ public class RegisterController {
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);		
-		model.addAttribute("trainerAndCoursese", trainerAndCourseBean);
+		model.addAttribute("trainerAndCourse", trainerAndCourseBean);
 
 		return "index";
 	}
@@ -342,7 +342,7 @@ public class RegisterController {
 
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", new StudentBean_H());
-		model.addAttribute("trainerAndCoursese", trainerAndCourseBean);
+		model.addAttribute("trainerAndCourse", trainerAndCourseBean);
 		model.addAttribute("loginBean", loginBean);
 		return "index";
 	}

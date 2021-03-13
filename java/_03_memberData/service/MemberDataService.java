@@ -78,13 +78,23 @@ public class MemberDataService {
 		// 存放亂序結果的集合  
 		ArrayList<TrainerCourseBean_H> result = new ArrayList<>();  
 		Random random = new Random();
-		for (int i = 0; i < 6; i++) {
-			 int myRand = random.nextInt(list.size());
-			 //將取出的這個元素放到存放亂序結果的集合中  
-			 result.add(list.get(myRand));  
-			 //從原始集合中刪除該元素防止重複
-			 list.remove(myRand);  
-		}
-		return result;
+		//首頁要隨機產生六個推薦教練，若是資料庫沒有六筆以上教練資料，就產生當前資料庫的教練資料筆數
+		if(list.size() < 6) {
+			for (int i = 0; i < list.size(); i++) {
+				 int myRand = random.nextInt(list.size());
+				 //將取出的這個元素放到存放亂序結果的集合中  
+				 result.add(list.get(myRand));  
+		 }
+			}else {
+			 for (int i = 0; i < 6; i++) {
+				 int myRand = random.nextInt(list.size());
+				 //將取出的這個元素放到存放亂序結果的集合中  
+				 result.add(list.get(myRand));  
+				 //從原始集合中刪除該元素防止重複
+				 list.remove(myRand);  
+			}
+		 }
+		return result; 
 	}
 }
+
