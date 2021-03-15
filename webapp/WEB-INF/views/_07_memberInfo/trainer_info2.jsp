@@ -15,7 +15,6 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
-<link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 
 <%-- <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />"> --%>
 <link rel="stylesheet" href="<c:url value='/css/style_timeset.css' />">
@@ -26,34 +25,6 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-<script
-	src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
-	defer></script>
-<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-
-<style type="text/css">
-.tschedule td {
-	cursor: pointer;
-}
-
-.tschedule .closed {
-	background: grey;
-	cursor: not-allowed;
-}
-
-.tschedule .booked {
-	background: pink;
-	cursor: not-allowed;
-	color: white;
-}
-
-.scheduleTd {
-	background: #dac;
-}
-</style>
 </head>
 <body>
 
@@ -67,12 +38,6 @@
 
 	<c:if test="${LoginOK.type == 2}">
 		<jsp:include page="/fragment/nav_tr.jsp" />
-	</c:if>
-
-
-	<!-- 登入/註冊 -->
-	<c:if test="${LoginOK == null}">
-		<jsp:include page="/fragment/login.jsp" />
 	</c:if>
 
 
@@ -131,9 +96,9 @@
 				<div class="info_div">
 					<label>教練評價</label>
 					<div class="starss">
-						<div class="empty_star">★★★★★</div>
-						<div class="full_star">★★★★★</div>
-					</div>
+	                    <div class="empty_star">★★★★★</div>
+	                    <div class="full_star">★★★★★</div>
+                	</div>
 					<p>(30)</p>
 				</div>
 				<div class="info_div">
@@ -251,8 +216,7 @@
 				<!-- 				<li>Balanced Body Pilates 皮拉提斯墊上訓練第一級和第二級指導員</li> -->
 				<!-- 				<li>EOXi 國際飛輪教練認證</li> -->
 				<c:if test="${trainerLicenseBean.size() != 0}">
-					<c:forEach varStatus="i" begin="0"
-						end="${trainerLicenseBean.size()-1}">
+					<c:forEach varStatus="i" begin="0" end="${trainerLicenseBean.size()-1}">
 						<li>${trainerLicenseBean.get(i.current).getName()}</li>
 					</c:forEach>
 				</c:if>
@@ -292,55 +256,166 @@
 	<div class="trpg_wrap">
 		<div class="title">
 			<h4>預約教練</h4>
-
+			
 		</div>
-		<div class="trpg_content si" x-data="data()" x-init="init()">
-
-
+		<div class="trpg_content si">
+		
+		
 			<div class="sc">
-				<!-- 一進來就會顯示當天起始那一周的時間表 -->
-				<table class="table tschedule">
-					<thead class="thead">
-						<tr>
-							<th scope="col"></th>
-							<template x-for="date in dates" :key="date.day()">
-								<th scope="col">
-									<div x-text="parseDayOfWeek(date.day())"></div>
-									<div x-text="date.format('MM/DD')"></div>
-								</th>
-							</template>
-						</tr>
-					</thead>
-					<tbody>
-						<template x-for="hour in hours" :key="hour">
-							<tr>
-								<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
-								<template x-for="date in dates" :key="date + hour">
-									<td
-										:class="{
-		                        closed :isClosed(date,hour),  
-				                        booked :isBooked(date,hour)}" 
-										@click="bookCourse(date,hour)">
-										<template x-if="isBooked(date, hour)">
-											<div>已預約</div>
-										</template>
-										<template x-if="isClosed(date, hour)">
-											<div>已關閉</div>
-										</template>
-									</td>
-								</template>
-							</tr>
-						</template>
-
-					</tbody>
-				</table>
-			</div>
-
-
-
-
+            <!-- 一進來就會顯示當天起始那一周的時間表 -->
+            <table class="table tschedule">
+              <thead class="thead">
+                <tr>
+                  <th scope="col"> </th>
+                  <th scope="col">(一)<br> 3/8</th>
+                  <th scope="col">(二)<br> 3/9</th>
+                  <th scope="col">(三)<br> 3/10</th>
+                  <th scope="col">(四)<br> 3/11</th>
+                  <th scope="col">(五)<br> 3/12</th>
+                  <th scope="col">(六)<br> 3/13</th>
+                  <th scope="col">(日)<br> 3/14</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">8:00 - 9:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">9:00 - 10:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">10:00 - 11:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">11:00 - 12:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">12:00 - 13:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">13:00 - 14:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">14:00 - 15:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">15:00 - 16:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">16:00 - 17:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">17:00 - 18:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">18:00 - 19:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">19:00 - 20:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <th scope="row">20:00 - 21:00</th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+              </tbody>
+            </table>  
+          </div>
+		
+		
+		
+		
 		</div>
-
+		
 
 	</div>
 
@@ -471,126 +546,35 @@
 
 		</div>
 	</div>
+	
+        <!-- 回到最上面 -->
+        <a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
+            <i class="fa fa-angle-up"></i>
+         </a>
 
-	<!-- 回到最上面 -->
-	<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#"
-		id="gotop"> <i class="fa fa-angle-up"></i>
-	</a>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
 
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script>
-		//回到最上面
-		$(function() {
-			/* 按下GoTop按鈕時的事件 */
-			$('#gotop').click(function() {
-				$('html,body').animate({
-					scrollTop : 0
-				}, 'slow'); /* 返回到最頂 速度slow */
-				return false;
-			});
+//回到最上面
+$(function() {
+    /* 按下GoTop按鈕時的事件 */
+    $('#gotop').click(function(){
+        $('html,body').animate({ scrollTop: 0 }, 'slow');   /* 返回到最頂 速度slow */
+        return false;
+    });
+    
+    /* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+    $(window).scroll(function() {
+        if ( $(this).scrollTop() > 400){
+            $('#gotop').fadeIn();
+        } else {
+            $('#gotop').fadeOut();
+        }
+    });
+});
 
-			/* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
-			$(window).scroll(function() {
-				if ($(this).scrollTop() > 400) {
-					$('#gotop').fadeIn();
-				} else {
-					$('#gotop').fadeOut();
-				}
-			});
-		});
-
-		let today = dayjs().format('YYYY-MM-DD');
-
-
-
-		  function data() {
-			    return {
-				      beginDate : today,
-				      dates:[],
-				      hours : [8,9,10,11,12,13,14,15,16,17,18,19,20,21],
-				      closed : [],
-				      booked : [],
-				      init(){
-				        this.updateBeginDate();
-				        this.getBookedHours();
-				        this. getClosedHours();
-				      },
-				      getBookedHours(){
-
-				    	  const self = this;
-				    	  $.get("/TrainMe/TimeOff/getBooked/" + ${trainerBean.id},
-				                  function (data) {
-				                	self.booked = data;
-				                  },
-				                  "json"
-				        );
-				    	  
-
-				      },
-				      getClosedHours(){
-						var dateEnd = dayjs(this.beginDate).add(7,'day');
-						const datax = {dateBegin:this.beginDate , dateEnd: dateEnd.format('YYYY-MM-DD') }
-						const self = this;
-				    	$.get("/TrainMe/TimeOff/getClosed/" + ${trainerBean.id}, datax,
-				                  function (data) {
-				                	self.closed = data;
-				                	 console.log(closed);
-				                  },
-				                  "json"
-				        );
-				      },
-				      updateBeginDate(){
-					        this.dates = this.generateDates(this.beginDate);
-					  },
-					  generateDates(beginDate){
-					        let  result = [];
-					        for (let i = 0; i < 7; i++) {
-					          let date = dayjs(this.beginDate).add(i,'day');
-					          result.push(date);
-					        }
-					        // console.log(result);
-					        return result;
-					 },
-				     parseDayOfWeek(day){
-				        let week = ['日','一','二','三','四','五','六']
-				        return week[day];
-				     },
-				     toDateHourStr(date, hour){
-					        const dateStr = date.format('YYYY-MM-DD');
-					        return dateStr + "_" + hour;;
-					 },
-					 bookCourse(date,hour){
-					    	  const dateStr = date.format('YYYY-MM-DD');
-					        if(this.isBooked(date,hour) || this.isClosed(date,hour)){
-					          return;
-					  }   
-					        var yes = confirm('是否確定預約 ' + dateStr + ' ' +   hour +':00 - '+(hour+1)+':00 ? ')
-							if(!yes){
-								event.preventDefault();
-							}
-					        
-					      },
-					      isBooked(date,hour){
-					        // const dateStr = date.format('YYYY-MM-DD');
-					        // const dateHourStr = `${dateStr}_${hour}`;
-					        const dateHourStr = this.toDateHourStr(date, hour);
-					        return this.booked.includes(dateHourStr);
-					      },
-					      isClosed(date, hour){
-//					        const dateStr = date.format('YYYY-MM-DD');
-					        // const dateHourStr = `${dateStr}_${hour}`;
-					    	const dateHourStr = this.toDateHourStr(date, hour);
-						    return this.closed.includes(dateHourStr);
-					        
-					      }
-			      
-			      
-			 	}
-		    
-		  }
-		  
-	</script>
+</script>
 
 
 </body>
