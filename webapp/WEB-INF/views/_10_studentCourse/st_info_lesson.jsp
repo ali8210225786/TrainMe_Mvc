@@ -238,7 +238,7 @@
 				$('#pills-wait-tab').tab('show')			
 	</c:if>
 		
-	
+				
 		
 	
 </script>
