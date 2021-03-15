@@ -254,7 +254,7 @@
 						<h5>
 							<i class="fas fa-weight"></i> 我的體重趨勢圖
 						</h5>
-						
+						<p>單位:kg</p>
 					</div>
 
 					<canvas id="myChart" width="400" height="150"></canvas>
@@ -281,12 +281,8 @@
 	function weight(){
 		var array = new Array();
 		<c:forEach items="${StudentDataBean}" var="sdb">
-	 		array.push(${sdb.st_weight}); //js中可以使用此標籤，將EL表示式中的值push到陣列中
+	 		array.push(${sdb}); //js中可以使用此標籤，將EL表示式中的值push到陣列中
 	 	</c:forEach>
-// 	for(var i=0;i<array.length;i++)
-// 	 {
-	 	
-// 	 }
 	return array;
 	}
 	var myChart = new Chart(ctx, {
@@ -299,14 +295,16 @@
 				
 				data : 
 					
-					[ ] = weight(),  //體重
+					[ ] = weight(),  //體重			
 					backgroundColor : 'transparent',
 					borderColor : 'red',
-					borderWidth : 1				
+					borderWidth : 1	,					
 			} ]
 		},
 		options : {
-
+			legend : { 
+				display: false 
+				},
 			plugins : {
 				title : {
 					display : false,

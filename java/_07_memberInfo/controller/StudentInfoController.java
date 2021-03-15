@@ -44,7 +44,7 @@ public class StudentInfoController {
 	public String StudentInfo(Model model, @PathVariable("id") Integer id) {
 
 		StudentBean_H studentBean = memberDataService.getStudentById(id);
-		List<StudentDataBean_H> studentDataBean = studentInfoService.getStudentWeightData(id);
+		List<StudentDataBean_H> studentDataBean = studentInfoService.getStudentWeightDateData(id);
 		int age = studentInfoService.calAge(studentBean.getBirthday());
 		model.addAttribute("age", age);
 		if (studentBean.getHeigth() != null && studentBean.getWeight() != null) {
