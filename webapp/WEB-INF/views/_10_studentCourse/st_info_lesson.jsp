@@ -168,6 +168,7 @@
 													href="<c:url value='/st_feedback/${beforeCourse.get(i.current).getId()}' />">給評價</a></td>
 
 											</c:if>
+											<c:if test="${ratings.size() > 0 }">
 											<c:choose>
 												<c:when
 													test="${beforeCourse.get(i.current).getIs_rated()== 1 }">
@@ -177,7 +178,8 @@
 													<td><a
 														href="<c:url value='/st_feedback/${beforeCourse.get(i.current).getId()}' />">給評價</a></td>
 												</c:otherwise>
-											</c:choose>				
+											</c:choose>	
+											</c:if>			
 											<td><a
 												href="<c:url value='/st_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i
 													class="fas fa-book"></i></a></td>

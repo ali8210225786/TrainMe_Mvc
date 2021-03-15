@@ -55,7 +55,7 @@
 			<!-- 說明 -->
 
 			<div class="explain">
-				<p>您在 Train Me 服務使用的基本資訊，這些內容將顯示在您的教練頁面。</p>
+				<p>您在 Train Me 服務使用的基本資訊，這些內容將顯示在您的<a href="">教練頁面</a>。</p>
 			</div>
 			<div class="setting_area">
 				<form:form action="/TrainMe/updateTrInfoAccount/${trainerBean.id}"
