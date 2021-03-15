@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.google.gson.Gson;
 import com.google.protobuf.TextFormat.ParseException;
 
+import _08_searchTrainer.service.SearchTrainerService;
 import _09_trainerCourse.model.CloseHour;
+import _09_trainerCourse.model.SkillTypeBean_H;
+import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
@@ -34,17 +37,34 @@ public class TrainerCourseController {
 	
 	@Autowired
 	StudentCourseService studentCourseService;
+	
+	@Autowired
+	SearchTrainerService searchTrainerService;
 
 	@GetMapping("/TimeOff/{id}")
 	public String timeOff(Model model) {
 		return "/_09_trainerCourse/timeOff";
 	}
+	@GetMapping("/courseSet/{id}")
+	public String courseSet(Model model) {
+		List<SkillTypeBean_H> skillTypeAll = searchTrainerService.getSkillTypeAll();
+		model.addAttribute("skillTypeAll", skillTypeAll);
+		return "/_09_trainerCourse/tr_lesson_set";
+	}
+	
+	
 
-	@GetMapping("/TimeOff/get/{id}")
+	@GetMapping("/TimeOff/getClosed/{id}")
 	public @ResponseBody List<String> getTimeOff(@PathVariable("id") Integer id, @RequestParam String dateBegin,
 			@RequestParam String dateEnd) {
 		List<String> timeOff = trainerCourseService.queryTimeOffList(dateBegin, dateEnd, id);
 		return timeOff;
+	}
+	
+	@GetMapping("/TimeOff/getBooked/{id}")
+	public @ResponseBody List<String> getBooked(@PathVariable("id") Integer id){
+		List<String> BookedTimes = trainerCourseService.queryBookedList(id);
+		return BookedTimes;
 	}
 
 	@PostMapping("/TimeOff/update/{id}")
@@ -109,5 +129,7 @@ public class TrainerCourseController {
 		model.addAttribute("type",type);
 		return "redirect:/trainerCourse/"+id;
 	}
+	
+	
 
 }

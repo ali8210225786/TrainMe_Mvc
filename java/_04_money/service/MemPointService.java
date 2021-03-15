@@ -13,4 +13,6 @@ public interface MemPointService {
 	public List<TrainerAccountBean_H> getAccountDetail(int id);
 
 	int saveMoney(MoneyBean_H moneyBean_H);
+
+	public int saveRefund(MoneyBean_H moneyBean_H);
 }
