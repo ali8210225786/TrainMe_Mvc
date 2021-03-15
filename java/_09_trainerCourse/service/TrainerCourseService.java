@@ -1,5 +1,6 @@
 package _09_trainerCourse.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -35,6 +36,17 @@ public class TrainerCourseService {
 	
 	public List<String> queryTimeOffList(String dateBegin ,String dateEnd,int trId){
 		return trainerCourseDao.queryTimeOffList(dateBegin, dateEnd, trId);
+	}
+	
+	public List<String> queryBookedList(int trId) {
+		List<String> list = new ArrayList<>();
+		List<StudentCourseBean_H> bookedTimes = trainerCourseDao.getTrainerCourseById(trId);
+		for(StudentCourseBean_H bookedTime : bookedTimes) {
+			String bookedHour = bookedTime.getDate() + "_" + bookedTime.getTime();
+//			System.out.println("============================="+bookedTime.getId());
+			list.add(bookedHour);
+		}	
+		return list;
 	}
 
 	public List<StudentCourseBean_H> getTrainerCourseById(int trId){

@@ -41,7 +41,7 @@ public class SearchTrainerDao {
 	@SuppressWarnings("unchecked")
 	public List<Integer> searchTrainerByCity(int cityId) {
 		Session session = factory.getCurrentSession();										   
-		String hql = "SELECT DISTINCT tc.trainerBean_H.id FROM TrainerCourseBean_H as tc WHERE tc.trainerBean_H.city.id = :cityId ";
+		String hql = "SELECT DISTINCT tc.trainerBean_H.id FROM TrainerCourseBean_H as tc WHERE tc.trainerBean_H.gym.city.id = :cityId ";
 		List<Integer> searchTrainerByCity = session.createQuery(hql).setParameter("cityId", cityId).getResultList();
 		return searchTrainerByCity;
 	}
@@ -64,7 +64,7 @@ public class SearchTrainerDao {
 	
 	public TrainerCourseBean_H getTrainerCourseByTrainerId(int trId) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TrainerCourseBean_H as tc WHERE tc.trainerBean_H.id = :trId group by trainerBean_H";
+		String hql = "FROM TrainerCourseBean_H as tc WHERE tc.trainerBean_H.id = :trId group by trainerBean_H ";
 		return (TrainerCourseBean_H) session.createQuery(hql).setParameter("trId", trId).getSingleResult();
 	}
 	

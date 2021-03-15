@@ -38,8 +38,8 @@ public class TrainerCourseBean_H {
 	private SkillTypeBean_H skill_typeBean_H;
 	private Integer price;
 	
-	@OneToMany(mappedBy = "trainerCourseBean_H", fetch = FetchType.EAGER)
-	private Set<StudentCourseBean_H> studentCourseBean_H = new LinkedHashSet<>();
+//	@OneToMany(mappedBy = "trainerCourseBean_H", fetch = FetchType.EAGER)
+//	private Set<StudentCourseBean_H> studentCourseBean_H = new LinkedHashSet<>();
 	
 	public TrainerCourseBean_H(TrainerBean_H trainerBean_H, Integer price) {
 		super();
@@ -49,25 +49,27 @@ public class TrainerCourseBean_H {
 	
 	
 	public TrainerCourseBean_H(Integer id, TrainerBean_H trainerBean_H, SkillBean_H skillBean_H,
-			SkillTypeBean_H skill_typeBean_H, Integer price, Set<StudentCourseBean_H> studentCourseBean_H) {
+			SkillTypeBean_H skill_typeBean_H, Integer price
+//			, Set<StudentCourseBean_H> studentCourseBean_H
+			) {
 		super();
 		this.id = id;
 		this.trainerBean_H = trainerBean_H;
 		this.skillBean_H = skillBean_H;
 		this.skill_typeBean_H = skill_typeBean_H;
 		this.price = price;
-		this.studentCourseBean_H = studentCourseBean_H;
+//		this.studentCourseBean_H = studentCourseBean_H;
 	}
 
 
-	public Set<StudentCourseBean_H> getStudentCourseBean_H() {
-		return studentCourseBean_H;
-	}
-
-
-	public void setStudentCourseBean_H(Set<StudentCourseBean_H> studentCourseBean_H) {
-		this.studentCourseBean_H = studentCourseBean_H;
-	}
+//	public Set<StudentCourseBean_H> getStudentCourseBean_H() {
+//		return studentCourseBean_H;
+//	}
+//
+//
+//	public void setStudentCourseBean_H(Set<StudentCourseBean_H> studentCourseBean_H) {
+//		this.studentCourseBean_H = studentCourseBean_H;
+//	}
 
 
 	public TrainerCourseBean_H() {

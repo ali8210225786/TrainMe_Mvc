@@ -16,6 +16,10 @@
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />">
+<link rel="stylesheet" href="<c:url value='/css/style_st_account.css' />">
+<link rel="stylesheet" href="<c:url value='/css/style_tr_lesson.css' />">
+
+
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -46,12 +50,46 @@
 
 		<div class="content">
 			<div class="title">
-				<h3>我的課程</h3>
+				<h3>課程管理</h3>
 			</div>
+			
+			 <!-- 說明 -->
+
+         <div class="explain">
+            <p>設定您的健身課程、開放預約的時段，並管理您的所有課程訂單。</p>
+         </div>
+        
+        <!-- ============課程設定======================================================= -->
+
+        <div class="info_wrap t">
+
+
+            <h5>課程與時段設定</h5>        
+            <!-- 新增課程 -->
+            <div class="ls_set">
+              <div class="ls_set_box">
+                <a href="<c:url value='/courseSet/${LoginOK.id}' />">管理課程清單<i class="far fa-list-alt"></i></a>
+              </div>
+    
+            <!-- 管理預約時段 -->
+              <div class="ls_set_box">
+                <a href="<c:url value='/TimeOff/${LoginOK.id}' />">管理預約時段<i class="far fa-clock"></i></a>
+              </div>
+    
+            </div>
+            
+            
+            
+
+        </div>
+      
+        <!-- ---------------------------- -->
+			
 
 			<!-- ============即將開始的課程======================================================= -->
 
 			<div class="info_wrap t lesson">
+			<h5>我的課程訂單</h5> 
 
 				<ul class="nav nav-tab mb-3" id="pills-tab" role="tablist">
 				

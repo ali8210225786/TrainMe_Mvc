@@ -40,10 +40,13 @@ public class StudentCourseBean_H implements Serializable{
 	private StudentBean_H studentBean_H;
 	private Integer time;
 	@Column(columnDefinition = "INT Default 0")
-	private Integer is_rated;
+	private Integer is_executed;
 	@Column(columnDefinition = "INT Default 0")
 	private Integer is_delete;
 	private String datdiary_content;
+	@Column(columnDefinition = "INT Default 0")
+	private Integer is_rated;
+	
 	@Column(columnDefinition = "INT Default 0")
 	private Integer is_allowed;
 	
@@ -60,19 +63,26 @@ public class StudentCourseBean_H implements Serializable{
 	@OneToOne(mappedBy = "studentCourseBean_H" , fetch = FetchType.LAZY)
 	RatingsBean_H ratingsBean_H;
 
-	public StudentCourseBean_H(StudentBean_H studentBean_H, Integer tr_id, Date date, Integer time
-			, Integer is_rated, Integer is_delete, String datdiary_content,
-			Integer is_allowed, TrainerCourseBean_H trainerCourseBean_H) {
+	
+
+	public StudentCourseBean_H(Integer id, Date date, StudentBean_H studentBean_H, Integer time, Integer is_executed,
+			Integer is_delete, String datdiary_content, Integer is_rated, Integer is_allowed,
+			TrainerCourseBean_H trainerCourseBean_H, Set<CourseDiaryItemBean_H> courseDiaryItemBean_H,
+			Set<MoneyBean_H> moneyBean_H, RatingsBean_H ratingsBean_H) {
 		super();
-		this.studentBean_H = studentBean_H;
-		this.id = tr_id;
+		this.id = id;
 		this.date = date;
+		this.studentBean_H = studentBean_H;
 		this.time = time;
-		this.is_rated = is_rated;
+		this.is_executed = is_executed;
 		this.is_delete = is_delete;
 		this.datdiary_content = datdiary_content;
+		this.is_rated = is_rated;
 		this.is_allowed = is_allowed;
 		this.trainerCourseBean_H = trainerCourseBean_H;
+		this.courseDiaryItemBean_H = courseDiaryItemBean_H;
+		this.moneyBean_H = moneyBean_H;
+		this.ratingsBean_H = ratingsBean_H;
 	}
 
 	public StudentCourseBean_H() {
@@ -112,12 +122,13 @@ public class StudentCourseBean_H implements Serializable{
 		this.time = time;
 	}
 
-	public Integer getIs_rated() {
-		return is_rated;
+
+	public Integer getIs_executed() {
+		return is_executed;
 	}
 
-	public void setIs_rated(Integer is_rated) {
-		this.is_rated = is_rated;
+	public void setIs_executed(Integer is_executed) {
+		this.is_executed = is_executed;
 	}
 
 	public Integer getIs_delete() {
@@ -151,5 +162,39 @@ public class StudentCourseBean_H implements Serializable{
 	public void setTrainerCourseBean_H(TrainerCourseBean_H trainerCourseBean_H) {
 		this.trainerCourseBean_H = trainerCourseBean_H;
 	}
+
+	public Integer getIs_rated() {
+		return is_rated;
+	}
+
+	public void setIs_rated(Integer is_rated) {
+		this.is_rated = is_rated;
+	}
+
+	public Set<CourseDiaryItemBean_H> getCourseDiaryItemBean_H() {
+		return courseDiaryItemBean_H;
+	}
+
+	public void setCourseDiaryItemBean_H(Set<CourseDiaryItemBean_H> courseDiaryItemBean_H) {
+		this.courseDiaryItemBean_H = courseDiaryItemBean_H;
+	}
+
+	public Set<MoneyBean_H> getMoneyBean_H() {
+		return moneyBean_H;
+	}
+
+	public void setMoneyBean_H(Set<MoneyBean_H> moneyBean_H) {
+		this.moneyBean_H = moneyBean_H;
+	}
+
+	public RatingsBean_H getRatingsBean_H() {
+		return ratingsBean_H;
+	}
+
+	public void setRatingsBean_H(RatingsBean_H ratingsBean_H) {
+		this.ratingsBean_H = ratingsBean_H;
+	}
+	
+	
 	
 }

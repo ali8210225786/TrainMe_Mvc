@@ -5,7 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import _03_memberData.model.Area_H;
+import _03_memberData.model.City_H;
 
 @Entity
 @Table(name="gym")
@@ -14,23 +19,35 @@ public class GymBean_H {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	String name;
-	String address;
 	String phone;
 	Integer verification; 
 	@Column(columnDefinition="text")
 	String introduction;
+	@ManyToOne
+	@JoinColumn(name="city_id")
+	private City_H city;
+	@ManyToOne
+	@JoinColumn(name="area_id")
+	private Area_H area;
+	private String address;
 	
 	
 
 	
-	public GymBean_H(Integer id, String name, String address, String phone, Integer verification, String introduction) {
+
+
+
+	public GymBean_H(Integer id, String name, String phone, Integer verification, String introduction, City_H city,
+			Area_H area, String address) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.address = address;
 		this.phone = phone;
 		this.verification = verification;
 		this.introduction = introduction;
+		this.city = city;
+		this.area = area;
+		this.address = address;
 	}
 
 
@@ -88,6 +105,28 @@ public class GymBean_H {
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
+
+
+	public City_H getCity() {
+		return city;
+	}
+
+
+	public void setCity(City_H city) {
+		this.city = city;
+	}
+
+
+	public Area_H getArea() {
+		return area;
+	}
+
+
+	public void setArea(Area_H area) {
+		this.area = area;
+	}
+	
+	
 	
 	
 	
