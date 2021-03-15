@@ -106,9 +106,14 @@ public class StudentInfoService {
 		return studentInfoDao.getStudentWeightData(id);
 	}
 	
+	public List<StudentDataBean_H> getStudentWeightDateData(int id) {
+		return studentInfoDao.getStudentWeightDateData(id);
+	}
+	
 	public void updateBodyData(StudentBean_H sb) {
 		memberDataDao.updateStudent(sb);
 	}
+	
 	
 	
 }

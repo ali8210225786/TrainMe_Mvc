@@ -32,11 +32,11 @@ public class StudentInfoDao {
 		session.update(sdb);
 	}
 
-	@SuppressWarnings("rawtypes")
 	public StudentDataBean_H getStudentWeightDataByDateAndId(int id, Date date) {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM StudentDataBean_H WHERE st_id = :mId AND data_date = :date";
-			List sdb = session.createQuery(hql).setParameter("mId", id)
+			@SuppressWarnings("unchecked")
+			List<StudentDataBean_H> sdb = session.createQuery(hql).setParameter("mId", id)
 				.setParameter("date", date).getResultList();
 		try {
 			if (sdb.size() > 0) {
@@ -53,6 +53,15 @@ public class StudentInfoDao {
 	public List<StudentDataBean_H> getStudentWeightData(int id) {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM StudentDataBean_H WHERE st_id = :mId ORDER BY data_date";
+		return session.createQuery(hql).setParameter("mId", id).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<StudentDataBean_H> getStudentWeightDateData(int id) {
+		Session session = factory.getCurrentSession();
+		//尋找學員該月份的最後一筆的體重資料(不受年影響)
+		String hql = "SELECT st_weight FROM StudentDataBean_H WHERE st_id = :mId AND data_date IN (SELECT MAX(data_date) FROM StudentDataBean_H\r\n"
+				+ "GROUP BY MONTH(data_date) ) ORDER BY MONTH(data_date)";
 		return session.createQuery(hql).setParameter("mId", id).getResultList();
 	}
 
