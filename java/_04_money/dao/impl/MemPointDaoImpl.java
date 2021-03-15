@@ -70,6 +70,19 @@ public class MemPointDaoImpl implements MemPointDao{
 		n++;
 		return n;
 	}
+
+	@Override
+	public int saveRefund(MoneyBean_H moneyBean_H) {
+		StudentBean_H sb = moneyBean_H.getStudentBean_H();
+		int n = 0;
+		Session session = factory.getCurrentSession();
+//		session.merge(sb);
+		session.clear();
+		session.save(moneyBean_H);
+		n++;
+		return n;
+	}
+
 	
 	
 //	public List <CourseBean> getCourseDetail(int id) {

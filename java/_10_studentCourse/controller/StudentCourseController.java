@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import _01_register.model.StudentBean_H;
+import _01_register.service.MemberServiceImpl_H;
+import _01_register.service.MemberService_H;
+import _03_memberData.service.MemberDataService;
+import _04_money.model.MoneyBean_H;
+import _04_money.service.MemPointService;
 import _07_memberInfo.service.StudentInfoService;
 import _09_trainerCourse.model.RatingsBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
@@ -26,6 +32,12 @@ public class StudentCourseController {
 	
 	@Autowired
 	StudentCourseService studentCourseService;	
+	
+	@Autowired
+	MemPointService memPointService;
+	
+	@Autowired
+	MemberService_H memberService;
 
 	@GetMapping("/st_info_lesson/{id}")
 	public String stLesson(Model model, @PathVariable("id") Integer id) {
@@ -58,6 +70,19 @@ public class StudentCourseController {
 			Model model) {
 		int courseId = Integer.parseInt(courseIdStr);
 		studentCourseService.cancelCourse(courseId);
+		MoneyBean_H moneyBean_H=new MoneyBean_H();
+		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
+		if(type.equals("comingSoon")) {
+
+			StudentBean_H studentBean_H =(StudentBean_H) model.getAttribute("LoginOK");
+			moneyBean_H.setStudentBean_H(studentBean_H);
+			Date date = new Date();
+			java.sql.Date changeTime = new java.sql.Date(date.getTime());
+			moneyBean_H.setChange_time(changeTime);
+			moneyBean_H.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
+//			moneyBean_H.setStudentCourseBean_H(sc);
+			memPointService.saveRefund(moneyBean_H);
+		}
 		System.out.println(type);
 		model.addAttribute("type",type);
 		return "redirect:/st_info_lesson/"+id;
@@ -81,7 +106,8 @@ public class StudentCourseController {
 			@RequestParam("studentCourseId") Integer studentCourseId
 			) {
 		StudentCourseBean_H studentCourseBean = studentCourseService.getStudentCourse(studentCourseId);
-	
+		
+		studentCourseBean.setIs_rated(1);
 		RatingsBean_H ratingsBean = new RatingsBean_H(null, studentCourseBean.getStudentBean_H(), studentCourseBean.getTrainerCourseBean_H().getTrainerBean_H(), starsVal, feedback, studentCourseBean);
 		
 		studentCourseService.addFeedback(ratingsBean);
