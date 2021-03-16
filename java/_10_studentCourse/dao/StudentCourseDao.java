@@ -71,13 +71,15 @@ public class StudentCourseDao {
 		scb.setIs_allowed(1);
 		session.update(scb);
 	}
+	
 //	用課程id找到該堂課程
+//	*找到該堂課程/我的邏輯：給評價的是已經上過的歷史課程→找該堂歷史課程
 	public StudentCourseBean_H getStudentCourse(int courseId) {
 		Session session = factory.getCurrentSession();
 		StudentCourseBean_H scb = session.get(StudentCourseBean_H.class, courseId);
-		return scb;
-		
+		return scb;		
 	}
+	
 	
 //	新增評價
 	public void addFeedback(RatingsBean_H ratingsBean) {

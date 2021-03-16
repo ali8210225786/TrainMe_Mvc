@@ -27,6 +27,7 @@ public class StudentCourseController {
 	@Autowired
 	StudentCourseService studentCourseService;	
 
+	// 學員ㄉ課程列表(待同意/即將上課/歷史課程)
 	@GetMapping("/st_info_lesson/{id}")
 	public String stLesson(Model model, @PathVariable("id") Integer id) {
 //		System.out.println("==================okkkkkkkkkkkkkkkkk");
@@ -50,6 +51,7 @@ public class StudentCourseController {
 		return "_10_studentCourse/st_info_lesson";
 	}
 	
+	// 取消課程
 	@GetMapping("/CancelCourseLesson/{id}")
 	public String cancelCourse(
 			@PathVariable("id") Integer id, 
@@ -63,16 +65,30 @@ public class StudentCourseController {
 		return "redirect:/st_info_lesson/"+id;
 	}
 	
+	// 評價頁面
+//	@GetMapping("/st_feedback/{courseId}")
+//	public String feedback(
+//			@PathVariable("courseId") Integer courseId,
+//			Model model
+//			) {
+//		StudentCourseBean_H studentCourseBean_H = studentCourseService.getStudentCourse(courseId);
+//		model.addAttribute("studentCourseBean_H",studentCourseBean_H);
+//		return "_10_studentCourse/st_feedback";
+//	}
+
 	@GetMapping("/st_feedback/{courseId}")
 	public String feedback(
 			@PathVariable("courseId") Integer courseId,
-			Model model
-			) {
-		StudentCourseBean_H studentCourseBean_H = studentCourseService.getStudentCourse(courseId);
-		model.addAttribute("studentCourseBean_H",studentCourseBean_H);
+			Model model) {
+		Date now = new Date();
+		java.sql.Date nowDate = new java.sql.Date(now.getTime());
+		List<StudentCourseBean_H> beforeCourse = studentCourseService.getBeforeCourse(courseId, nowDate);
+		model.addAttribute("beforeCourse", beforeCourse);
 		return "_10_studentCourse/st_feedback";
 	}
 	
+	
+	// 新增評價
 	@PostMapping("/addfeedback/{id}")
 	public String addfeedback(
 			@PathVariable("id") Integer id, 
@@ -80,14 +96,11 @@ public class StudentCourseController {
 			@RequestParam("feedback") String feedback,
 			@RequestParam("studentCourseId") Integer studentCourseId
 			) {
-		StudentCourseBean_H studentCourseBean = studentCourseService.getStudentCourse(studentCourseId);
-	
+		StudentCourseBean_H studentCourseBean = studentCourseService.getStudentCourse(studentCourseId);	
 		RatingsBean_H ratingsBean = new RatingsBean_H(null, studentCourseBean.getStudentBean_H(), studentCourseBean.getTrainerCourseBean_H().getTrainerBean_H(), starsVal, feedback, studentCourseBean);
-		
 		studentCourseService.addFeedback(ratingsBean);
 		
-		// 頁面跳轉改用jquery的post方法跳轉,這邊return的其實不會有反應,但反正要寫就對ㄌ
-		
+		// 頁面跳轉改用jquery的post方法跳轉,這邊return的其實不會有反應,但反正要寫就對ㄌ		
 		return "redirect:/st_info_lesson/" + id;
 	}
 

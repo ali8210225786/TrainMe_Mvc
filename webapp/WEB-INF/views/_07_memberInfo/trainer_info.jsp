@@ -157,8 +157,7 @@
 		<div class="title">
 			<h4>自我介紹</h4>
 		</div>
-		<div class="trpg_content si sit" id="introduction">
-			${trainerBean.introduction};</div>
+		<div class="trpg_content si sit" id="introduction">${trainerBean.introduction}</div>
 	</div>
 
 

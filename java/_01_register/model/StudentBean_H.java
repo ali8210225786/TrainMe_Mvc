@@ -389,6 +389,20 @@ public class StudentBean_H extends MemberBean_H {
 		this.activity = activity;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "StudentBean_H [id=" + id + ", type=" + type + ", name=" + name + ", phone=" + phone + ", email=" + email
+				+ ", birthday=" + birthday + ", password=" + password + ", passwordcheck=" + passwordcheck
+				+ ", oldpassword=" + oldpassword + ", newpassword=" + newpassword + ", newpasswordcheck="
+				+ newpasswordcheck + ", id_number=" + id_number + ", sex=" + sex + ", verification=" + verification
+				+ ", city=" + city + ", area=" + area + ", address=" + address + ", heigth=" + heigth + ", weight="
+				+ weight + ", profile_image=" + profile_image + ", nickname=" + nickname + ", is_delete=" + is_delete
+				+ ", hash=" + hash + ", introduction=" + introduction + ", activity=" + activity + ", studentImage="
+				+ studentImage + ", hasError=" + hasError + ", moneyBean_H=" + moneyBean_H + ", ratingsBean_H="
+				+ ratingsBean_H + ", studentCourseBean_H=" + studentCourseBean_H + ", ordersBean_H=" + ordersBean_H
+				+ ", trainerOffBean_H=" + trainerOffBean_H + ", studentDataBean_H=" + studentDataBean_H + "]";
+	}
+
+	 	
 
 }

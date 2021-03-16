@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.google.gson.Gson;
 import com.google.protobuf.TextFormat.ParseException;
 
+import _01_register.model.StudentBean_H;
+import _01_register.service.MemberServiceImpl_H;
+import _01_register.service.MemberService_H;
 import _09_trainerCourse.model.CloseHour;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
@@ -34,6 +37,7 @@ public class TrainerCourseController {
 	
 	@Autowired
 	StudentCourseService studentCourseService;
+	
 
 	@GetMapping("/TimeOff/{id}")
 	public String timeOff(Model model) {
@@ -97,6 +101,13 @@ public class TrainerCourseController {
 		model.addAttribute("type",type);
 		return "redirect:/trainerCourse/"+id;
 	}
+	
+	@GetMapping("/CheckStudent/{id}")
+	public @ResponseBody String checkMyStudent(@PathVariable("id") Integer stId) {
+		System.out.println("================================!!!!!!!!!!!!!!!1");
+		return trainerCourseService.getStudentById(stId);
+	}
+	
 	
 	@GetMapping("/AllowStudentCourse/{id}")
 	public String allowCourse(Model model, @PathVariable("id") Integer id,

@@ -165,7 +165,8 @@ public class RegisterController {
 		
 		// 伺服器通知客戶端對新網址發出請求。其原本參數狀態不被保留。
 		// 所以如果只用"index"跳轉後網址會有/tr_register
-		return "redirect:/";
+		
+		return "/_01_register/rd_register_message";
 	}
 
 	// 當有錯誤時的處理 - 學員
@@ -178,6 +179,8 @@ public class RegisterController {
 		model.addAttribute("loginBean", loginBean);
 
 	}
+	
+	@GetMapping("")
 
 //	// BindingResult 參數必須與@ModelAttribute修飾的參數連續編寫，中間不能夾其他參數
 	// 教練註冊
@@ -393,6 +396,14 @@ public class RegisterController {
 		model.addAttribute("gymList", gymMap);
 		model.addAttribute("cities", cities);	
 		model.addAttribute("skillTypeAll", skillTypeAll);
+	}
+	
+	@GetMapping("")
+	public String registerMessgge(
+			@ModelAttribute("studentBean") StudentBean_H studentBean,
+			@ModelAttribute("trainerBean") TrainerBean_H trainerBean 
+			) {
+		return "";
 	}
 
 }

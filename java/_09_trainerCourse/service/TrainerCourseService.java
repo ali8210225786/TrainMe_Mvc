@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import _01_register.model.StudentBean_H;
 import _09_trainerCourse.dao.TrainerCourseDao;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
@@ -39,6 +40,11 @@ public class TrainerCourseService {
 
 	public List<StudentCourseBean_H> getTrainerCourseById(int trId){
 		return trainerCourseDao.getTrainerCourseById(trId);
+	}
+	
+	public String getStudentById(int stId) {
+		String st = trainerCourseDao.getStudentById(stId).toString();
+		return st;
 	}
 	
 		

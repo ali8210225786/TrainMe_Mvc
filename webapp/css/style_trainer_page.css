@@ -11,20 +11,26 @@
 }
 #trainer_navbar{
     position: fixed; /* Make it stick/fixed */
-    top:80px; /* Stay on top */
+    top: 85px; /* Stay on top */
     width: 100%; /*Full width */
     transition: top 0.3s; /* Transition effect when sliding down (and up) */
     background-color: #fff;
     border: 1px solid #eee;
     /* box-shadow:0px 0px 7px #eee; */
     box-shadow: none;
-    padding: 10px 200px;
+    padding: 16px 200px 16px 200px;
     z-index: 2;
+}
+#trainer_navbar a:hover{
+	color: #59ddb8;
+    box-shadow: 0 2px #21d4a7;
+    padding-bottom:12px;
 }
 .trpg_wrap{
     border: 1px solid #eee;
     position: relative;
-    top: 125px;
+    top: 140px;
+    vertical-align:center;
     margin: auto;
     margin-bottom: 20px;
     width: 100%;

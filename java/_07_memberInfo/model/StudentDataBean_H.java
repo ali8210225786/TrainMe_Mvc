@@ -44,6 +44,13 @@ public class StudentDataBean_H extends MemberBean_H {
 		this.data_date = data_date;
 		this.st_weight = st_weight;
 	}
+	
+	
+	public StudentDataBean_H() {
+		
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

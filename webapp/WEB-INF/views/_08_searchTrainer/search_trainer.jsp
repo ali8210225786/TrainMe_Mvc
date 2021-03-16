@@ -140,7 +140,9 @@
 
 							<!-- 課程資訊 -->
 							<div class="fc_title">
+																<!-- ↓從教練課程尋找教練id,搜尋教練的控制器內有塞了trainerCourseAll等東西所以近來搜尋教練的頁面就可以用-->
 								<a class="trTitle"
+																	
 									href="<c:url value='/trainer_info/${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}' />">
 									${trainerCourseAll.get(i.current).getTrainerBean_H().getCourse()}
 								</a>

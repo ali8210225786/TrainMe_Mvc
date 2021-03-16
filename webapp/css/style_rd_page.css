@@ -1,0 +1,59 @@
+/* 註冊成功畫面的css */
+body{
+    background-color: #21d4a7;
+}
+.message{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -300px;
+    /* margin-bottom: 20px; */
+    width: 600px;
+    height: 400px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+    font-family: 'Noto Sans TC', Tahoma, Helvetica, sans-serif;
+
+}
+.b_tutle h4{
+    box-shadow: 0 3px #21d4a7;
+    padding-bottom:5px;
+}
+
+.block{
+    text-align: center;
+    margin-top: 40px;
+    color: #666;
+}
+.block h5{
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.block p,.block span{
+    font-size: 16px;
+    /* line-height: rem; */
+}
+
+.sa{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* .setting_area{
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px 20px;
+    margin: 10px 0px;
+    font-size: 14px;
+    box-shadow:0px 0px 2px #ccc;
+
+} */
