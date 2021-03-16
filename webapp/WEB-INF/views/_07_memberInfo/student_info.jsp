@@ -229,6 +229,7 @@
 						<tbody>
 							<c:if test="${waitCourse.size() > 0}">
 								<c:forEach varStatus="i" begin="0" end="${waitCourse.size()-1}">
+									<tr>
 									<td class="class_name">${waitCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
 									<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getTrainerBean_H().getName()}</td>
 									<td>${waitCourse.get(i.current).getDate()}
@@ -237,6 +238,7 @@
 										${waitCourse.get(i.current).getTime() + 1}:00</td>
 									<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 									<td><a href="/TrainMe/CancelCourse/${LoginOK.id}?courseId=${waitCourse.get(i.current).getId()}" class="cancel">取消</a></td>
+									</tr>
 								</c:forEach>
 							</c:if>
 						</tbody>

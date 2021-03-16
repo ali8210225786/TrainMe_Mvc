@@ -7,7 +7,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _09_trainerCourse.model.SkillBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
+import _10_studentCourse.model.StudentCourseBean_H;
 
 @Repository
 public class TrainerInfoDao {
@@ -30,6 +32,24 @@ public class TrainerInfoDao {
 		
 		return session.createQuery(hql).setParameter("mtrId", trId).getResultList();
 	}
+	
+	public Integer getSkillPrice(int trId , int skillId) {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT price FROM TrainerCourseBean_H WHERE tr_id = :mtrId and sk_id = :skillId";
+		return (Integer) session.createQuery(hql).setParameter("mtrId", trId).setParameter("skillId", skillId).getSingleResult();
+	}
+	
+	public TrainerCourseBean_H getTrainerCourseBeanByTrId_SkillId(int trId , int skillId) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TrainerCourseBean_H WHERE tr_id = :mtrId and sk_id = :skillId";
+		return (TrainerCourseBean_H) session.createQuery(hql).setParameter("mtrId", trId).setParameter("skillId", skillId).getSingleResult();	
+	}
+	
+	public void addStudentCourse(StudentCourseBean_H sc) {
+		Session session = factory.getCurrentSession();
+		session.save(sc);	
+	}
+	
 	
 	
 }
