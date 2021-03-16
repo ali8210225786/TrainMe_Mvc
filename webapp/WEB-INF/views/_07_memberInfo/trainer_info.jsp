@@ -13,6 +13,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous" />
+<link rel="stylesheet" href="<c:url value='/css/style_modal.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
@@ -299,6 +300,36 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+<!-- 	<!-- 按鈕 --> -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
+<!--     Launch demo modal -->
+<!--   </button> -->
+  
+<!--   <!-- 跳出視窗 --> -->
+<!--   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+<!--     <div class="modal-dialog modal-dialog-centered"> -->
+<!--       <div class="modal-content"> -->
+<!--         <div class="modal-header"> -->
+<!--           <h5 class="modal-title" id="exampleModalLabel">確定要預約嗎？</h5> -->
+<!--         </div> -->
+<!--         <div class="modal-body"> -->
+<!--             預約時段： -->
+<!--             2020-01-23　 -->
+<!--             09:00-10:00 -->
+<!--         </div> -->
+<!--         <div class="modal-footer"> -->
+<!--           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button> -->
+<!--           <button type="button" class="btn btn-primary">確定</button> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+
+
+
 
 
 	<!-- 預約教練 -->
@@ -531,6 +562,17 @@
 		id="gotop"> <i class="fa fa-angle-up"></i>
 	</a>
 
+
+	 <script
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"
+    ></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
@@ -558,7 +600,7 @@
 		
 		         
 
-		let today = dayjs().format('YYYY-MM-DD');
+		let today = dayjs().add(1,'day').format('YYYY-MM-DD');
 		  function data() {
 			    return {
 				      beginDate : today,
