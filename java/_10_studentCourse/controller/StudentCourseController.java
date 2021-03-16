@@ -3,6 +3,8 @@ package _10_studentCourse.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +48,31 @@ public class StudentCourseController {
 	@GetMapping("/st_info_lesson/{id}")
 	public String stLesson(Model model, @PathVariable("id") Integer id) {
 //		System.out.println("==================okkkkkkkkkkkkkkkkk");
+		Date now = new Date();
+		java.sql.Date nowDate = new java.sql.Date(now.getTime());
+		List<StudentCourseBean_H> comingSoonCourse = studentCourseService.getComingSoonCourseAll(id, nowDate);
+		List<StudentCourseBean_H> waitCourse = studentCourseService.getWaitCourse(id, nowDate);
+		List<StudentCourseBean_H> beforeCourse = studentCourseService.getBeforeCourse(id, nowDate);
+		List<RatingsBean_H> ratings = studentCourseService.getRatings();
+		
+		
+		
+		
+		model.addAttribute("comingSoonCourse", comingSoonCourse);
+		model.addAttribute("waitCourse", waitCourse);
+		model.addAttribute("beforeCourse", beforeCourse);
+		model.addAttribute("ratings", ratings);
+		
+		
+		
+		return "_10_studentCourse/st_info_lesson";
+	}
+	
+	//同意課程信的查看課程按鈕會轉跳到這個方法
+	@GetMapping("/st_info_lesson")
+	public String stCheckLesson(HttpServletRequest request, Model model) {
+		String stid = request.getParameter("key");
+		Integer id = Integer.parseInt(stid);
 		Date now = new Date();
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 		List<StudentCourseBean_H> comingSoonCourse = studentCourseService.getComingSoonCourseAll(id, nowDate);

@@ -165,9 +165,9 @@
 												${StudentCourse.get(i.current).getTime()}:00 -
 												${StudentCourse.get(i.current).getTime() + 1}:00</td>
 											<td><a
-												href="/TrainMe/AllowStudentCourse/${LoginOK.id}?courseId=${StudentCourse.get(i.current).getId()}&type=comingSoon"
+												href="/TrainMe/AllowStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=comingSoon"
 												class="allow" data-type="comingSoon">同意</a> <a
-												href="/TrainMe/CancelStudentCourse/${LoginOK.id}?courseId=${StudentCourse.get(i.current).getId()}&type=waitCourse"
+												href="/TrainMe/CancelStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=waitCourse"
 												class="cancel" data-type="waitCourse">取消</a></td>
 										</tr>
 									</c:if>

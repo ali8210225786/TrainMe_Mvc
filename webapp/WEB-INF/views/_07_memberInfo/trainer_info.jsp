@@ -49,10 +49,6 @@
 	cursor: not-allowed;
 	color: white;
 }
-
-.scheduleTd {
-	background: #dac;
-}
 </style>
 </head>
 <body>
@@ -96,6 +92,18 @@
 
 	<!-- 教練簡介 -->
 
+	<div id="bt" class="trpg_wrap">
+		<div class="backto">
+			<c:if test="${type.equals('trainer')}">
+				<a href="<c:url value='/tr_info_account/${LoginOK.id}' />"><i
+					class="fas fa-chevron-left"> </i> 返回</a>
+			</c:if>
+			<c:if test="${type.equals('search')}">
+				<a href="<c:url value='/searchTrainerAll' />"><i
+					class="fas fa-chevron-left"> </i> 返回</a>
+			</c:if>
+		</div>
+	</div>
 	<a id="introduction"></a>
 	<div class="trpg_wrap">
 		<div class="trpg_content">
@@ -278,6 +286,9 @@
 							<source src="/upload/${trainerBean.profile_video}"
 								type="video/mp4" id="video_del">
 						</video>
+						<P class="p" style="text-align: center;">- 影片為教練教學展示，僅供學員參考 -</P>
+
+
 					</c:otherwise>
 				</c:choose>
 
@@ -294,52 +305,91 @@
 			<h4>預約教練</h4>
 
 		</div>
-		<div class="trpg_content si" x-data="data()" x-init="init()">
+		<div class="trpg_content si" x-data="data()" x-init="init($refs)">
+			<!-- 選擇日期 -->
+			<div class="reservation">
 
+				<div class="year">
+					<span>2021年</span>
+				</div>
 
-			<div class="sc">
-				<!-- 一進來就會顯示當天起始那一周的時間表 -->
-				<table class="table tschedule">
-					<thead class="thead">
-						<tr>
-							<th scope="col"></th>
-							<template x-for="date in dates" :key="date.day()">
-								<th scope="col">
-									<div x-text="parseDayOfWeek(date.day())"></div>
-									<div x-text="date.format('MM/DD')"></div>
-								</th>
-							</template>
-						</tr>
-					</thead>
-					<tbody>
-						<template x-for="hour in hours" :key="hour">
-							<tr>
-								<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
-								<template x-for="date in dates" :key="date + hour">
-									<td
-										:class="{
-		                        closed :isClosed(date,hour),  
-				                        booked :isBooked(date,hour)}" 
-										@click="bookCourse(date,hour)">
-										<template x-if="isBooked(date, hour)">
-											<div>已預約</div>
-										</template>
-										<template x-if="isClosed(date, hour)">
-											<div>已關閉</div>
-										</template>
-									</td>
-								</template>
-							</tr>
-						</template>
+				<div class="choose_date">
+					<label>選擇日期：</label> <input type="date" id="date_begin"
+						name="date_begin" class="input_date" x-model="beginDate"
+						@change="updateBeginDate()" x-ref="date" />
+				</div>
 
-					</tbody>
-				</table>
 			</div>
 
+			<div class="a">
+								<template x-if="isToday()">
+									<span class="pre"><i class="fas fa-angle-left"
+										@click="lessDate()"></i></span>
+								</template>
+				<div class="list">
+					<div class="choose_box">
+						<div class="sc">
+							<!-- 一進來就會顯示當天起始那一周的時間表 -->
+							<table class="table tschedule">
+								<thead class="thead">
+									<tr>
+										<th scope="col"></th>
+										<template x-for="date in dates" :key="date.day()">
+											<th scope="col">
+												<div x-text="parseDayOfWeek(date.day())"></div>
+												<div x-text="date.format('MM/DD')"></div>
+											</th>
+										</template>
+									</tr>
+								</thead>
+								<tbody>
+									<template x-for="hour in hours" :key="hour">
+										<tr>
+											<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
+											<template x-for="date in dates" :key="date + hour">
+												<td
+													:class="{
+		                       			 closed :isClosed(date,hour),  
+				                        booked :isBooked(date,hour)}"
+													@click="bookCourse(date,hour)">
+													<template x-if="isBooked(date, hour)">
+														<div>已預約</div>
+													</template>
+													<template x-if="isClosed(date, hour)">
+														<div>已關閉</div>
+													</template>
+													<template
+														x-if="!isClosed(date, hour) && !isBooked(date, hour)">
+														<button class="save"
+															style="border-radius: 5px; background-color: #eee; padding: 15px 20px">預約</button>
+													</template>
+												</td>
+											</template>
+										</tr>
+									</template>
+
+								</tbody>
+							</table>
+						</div>
 
 
 
+					<div class="sc">
+						<!-- 一進來就會顯示當天起始那一周的時間表 -->
+					</div>
+				</div>
+
+
+			</div>
+							<template x-if="isEnd()">
+								<span class="next"><i class="fas fa-angle-right"
+									@click="addDate()"></i></span>
+							</template>
 		</div>
+
+
+
+	</div>
 
 
 	</div>
@@ -499,11 +549,12 @@
 				}
 			});
 		});
+		
+		
+		
+		         
 
 		let today = dayjs().format('YYYY-MM-DD');
-
-
-
 		  function data() {
 			    return {
 				      beginDate : today,
@@ -511,10 +562,14 @@
 				      hours : [8,9,10,11,12,13,14,15,16,17,18,19,20,21],
 				      closed : [],
 				      booked : [],
-				      init(){
+				      init($refs){
 				        this.updateBeginDate();
 				        this.getBookedHours();
 				        this. getClosedHours();
+				        $refs.date.min = today;
+				        var dateEnd = dayjs(today).add(14,'day');
+				        dateEndStr = dayjs(dateEnd).format('YYYY-MM-DD');
+				        $refs.date.max = dateEndStr;
 				      },
 				      getBookedHours(){
 
@@ -535,7 +590,7 @@
 				    	$.get("/TrainMe/TimeOff/getClosed/" + ${trainerBean.id}, datax,
 				                  function (data) {
 				                	self.closed = data;
-				                	 console.log(closed);
+// 				                	 console.log(closed);
 				                  },
 				                  "json"
 				        );
@@ -567,14 +622,31 @@
 					  }   
 					        var yes = confirm('是否確定預約 ' + dateStr + ' ' +   hour +':00 - '+(hour+1)+':00 ? ')
 							if(!yes){
+								
 								event.preventDefault();
 							}
+					        if(yes){
+					        	if(${LoginOK == null}){
+// 					        		console.log(${LoginOK});
+					        		alert("請先登入")
+					        		Show();
+// 		====================希望完成登入後可以直接進入預約頁面效果====================
+// 					        		if(${LoginOK != null}){
+// 					        		window.location.href="/bookCourse";
+// 					        		}
+					        	}else{
+					        		var stId = ${LoginOK == null} ? 0 : ${LoginOK.id}
+					        		window.location.href="/TrainMe/bookCourse?tr=" + ${trainerBean.id} +"&st=" + stId
+					        							+ "&date=" + dateStr + "&hour=" + hour;
+					        	}
+					        }
 					        
 					      },
 					      isBooked(date,hour){
 					        // const dateStr = date.format('YYYY-MM-DD');
 					        // const dateHourStr = `${dateStr}_${hour}`;
 					        const dateHourStr = this.toDateHourStr(date, hour);
+// 					        console.log(this.booked);
 					        return this.booked.includes(dateHourStr);
 					      },
 					      isClosed(date, hour){
@@ -583,6 +655,22 @@
 					    	const dateHourStr = this.toDateHourStr(date, hour);
 						    return this.closed.includes(dateHourStr);
 					        
+					      },
+					      isToday(){
+// 					    	  console.log(this.beginDate == today);
+					    	  return this.beginDate != today;
+					      },
+					      lessDate(){
+					    	  this.beginDate = dayjs(this.beginDate).subtract(7,'day').format('YYYY-MM-DD');
+					    	  this.updateBeginDate();
+					      },
+					      addDate(){
+					    	  this.beginDate = dayjs(this.beginDate).add(7,'day').format('YYYY-MM-DD');
+					    	  this.updateBeginDate();
+					      },
+					      isEnd(){
+					    	  var endDate =  dayjs(today).add(14,'day').format('YYYY-MM-DD');
+					    	  return this.beginDate != endDate;
 					      }
 			      
 			      

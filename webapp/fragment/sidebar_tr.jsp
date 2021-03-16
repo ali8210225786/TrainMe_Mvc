@@ -6,7 +6,6 @@
 	<ul id="menu">
 	
         <li class="mypage_title">我的主頁</li>
-        <li><a href="<c:url value='/trainer_info/${LoginOK.id}' />">個人資料</a></li>
         <li><a id="a" href="<c:url value='/tr_info_account/${LoginOK.id}' />"><i class="fas fa-user-circle"></i>個人資料</a></li>
         <li><a href="<c:url value='/trainerCourse/${LoginOK.id}' />"><i class="fas fa-user-circle"></i>課程管理</a></li>
         <li><a href="<c:url value='/trainerAccount/${LoginOK.id}' />"><i class="fas fa-coins"></i>帳戶查詢</a></li>

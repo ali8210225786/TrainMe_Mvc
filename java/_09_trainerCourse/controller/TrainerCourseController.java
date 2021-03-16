@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.google.gson.Gson;
 import com.google.protobuf.TextFormat.ParseException;
 
+import _01_register.model.StudentBean_H;
+import _01_register.service.MemberService_H;
+import _03_memberData.service.MemberDataService;
+import _04_money.service.MemPointService;
 import _08_searchTrainer.service.SearchTrainerService;
 import _09_trainerCourse.model.CloseHour;
 import _09_trainerCourse.model.SkillTypeBean_H;
@@ -27,32 +31,36 @@ import _09_trainerCourse.model.TrainerOffBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
+import mail.model.SendingAcceptEmail;
+import mail.model.SendingRejectedEmail;
 
 @Controller
-@SessionAttributes({ "LoginOK", "StudentCourse", "Now", "type"})
+@SessionAttributes({ "LoginOK", "StudentCourse", "Now", "type" })
 public class TrainerCourseController {
 
 	@Autowired
 	TrainerCourseService trainerCourseService;
-	
+
 	@Autowired
 	StudentCourseService studentCourseService;
-	
+
 	@Autowired
 	SearchTrainerService searchTrainerService;
+
+	@Autowired
+	MemberDataService memberDataService;
 
 	@GetMapping("/TimeOff/{id}")
 	public String timeOff(Model model) {
 		return "/_09_trainerCourse/timeOff";
 	}
+
 	@GetMapping("/courseSet/{id}")
 	public String courseSet(Model model) {
 		List<SkillTypeBean_H> skillTypeAll = searchTrainerService.getSkillTypeAll();
 		model.addAttribute("skillTypeAll", skillTypeAll);
 		return "/_09_trainerCourse/tr_lesson_set";
 	}
-	
-	
 
 	@GetMapping("/TimeOff/getClosed/{id}")
 	public @ResponseBody List<String> getTimeOff(@PathVariable("id") Integer id, @RequestParam String dateBegin,
@@ -60,16 +68,16 @@ public class TrainerCourseController {
 		List<String> timeOff = trainerCourseService.queryTimeOffList(dateBegin, dateEnd, id);
 		return timeOff;
 	}
-	
+
 	@GetMapping("/TimeOff/getBooked/{id}")
-	public @ResponseBody List<String> getBooked(@PathVariable("id") Integer id){
+	public @ResponseBody List<String> getBooked(@PathVariable("id") Integer id) {
 		List<String> BookedTimes = trainerCourseService.queryBookedList(id);
 		return BookedTimes;
 	}
 
-	@PostMapping("/TimeOff/update/{id}")
-	public String updateTimeOff(@PathVariable("id") Integer id, @RequestParam String data) {
-//		System.out.println(data);
+	@PostMapping(value ="/TimeOff/update/{id}")
+	public @ResponseBody String updateTimeOff(@PathVariable("id") Integer id, @RequestParam("data") String data) {
+//		System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		CloseHour closeHour = (new Gson()).fromJson(data, CloseHour.class);
 //		System.out.println(closeHour);
 
@@ -92,8 +100,12 @@ public class TrainerCourseController {
 			trainerCourseService.saveTimeOff(tob, id);
 
 		}
+		Gson gson = new Gson();
+        String json = gson.toJson("ok");
+		
+		return json;
+		
 
-		return "redirect:/TimeOff/" + id;
 	}
 
 	@GetMapping("/trainerCourse/{id}")
@@ -106,30 +118,42 @@ public class TrainerCourseController {
 		return "/_09_trainerCourse/tr_course";
 	}
 
-	@GetMapping("/CancelStudentCourse/{id}")
-	public String cancelCourse(Model model, @PathVariable("id") Integer id,
+	@GetMapping("/CancelStudentCourse/{trid}/{stid}")
+	public String cancelCourse(Model model, @PathVariable("trid") Integer trid, @PathVariable("stid") Integer stid,
 			@RequestParam("courseId") String courseIdStr, 
 			@RequestParam("type") String type) {
-
 		int courseId = Integer.parseInt(courseIdStr);
+		String stId = String.valueOf(stid);
+		StudentBean_H sb = memberDataService.getStudentById(stid);
+		
+		//寄拒絕預約的信
+		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
+		SendingRejectedEmail rejectedEmail=new SendingRejectedEmail(sb.getEmail(), sb.getName(), stId ,sc);
+		rejectedEmail.sendingRejectedEmail();
+		
 		studentCourseService.cancelCourse(courseId);
-		System.out.println("type="+type);
-		model.addAttribute("type",type);
-		return "redirect:/trainerCourse/"+id;
+		System.out.println("type=" + type);
+		model.addAttribute("type", type);
+		return "redirect:/trainerCourse/" + trid;
 	}
-	
-	@GetMapping("/AllowStudentCourse/{id}")
-	public String allowCourse(Model model, @PathVariable("id") Integer id,
-			@RequestParam("courseId") String courseIdStr, 
-			@RequestParam("type") String type) {
 
+	@GetMapping("/AllowStudentCourse/{trid}/{stid}")
+	public String allowCourse(Model model, @PathVariable("trid") Integer trid, @PathVariable("stid") Integer stid,
+			@RequestParam("courseId") String courseIdStr,
+			@RequestParam("type") String type) {
+		StudentBean_H sb = memberDataService.getStudentById(stid);
+		String id = String.valueOf(stid);
 		int courseId = Integer.parseInt(courseIdStr);
-		studentCourseService.allowCourse(courseId); ;
-		System.out.println("type="+type);
-		model.addAttribute("type",type);
-		return "redirect:/trainerCourse/"+id;
+		
+		//寄同意信
+		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
+		SendingAcceptEmail acceptEmail = new SendingAcceptEmail(sb.getEmail(), sb.getName(), id ,sc);
+		acceptEmail.sendAcceptMail();
+		
+		studentCourseService.allowCourse(courseId);
+		System.out.println("type=" + type);
+		model.addAttribute("type", type);
+		return "redirect:/trainerCourse/" + trid;
 	}
-	
-	
 
 }

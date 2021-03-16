@@ -54,8 +54,8 @@
 
 			<!-- 說明 -->
 
-			<div class="explain">
-				<p>您在 Train Me 服務使用的基本資訊，這些內容將顯示在您的教練頁面。</p>
+			<div class="explain ex_a">
+				<p>您在 Train Me 服務使用的基本資訊，這些內容將顯示在您的教練頁面。</p><a href="<c:url value='/trainer_info/${LoginOK.id}?type=trainer' />"><i class="fas fa-search"></i>查看我的教練頁面</a>
 			</div>
 			<div class="setting_area">
 				<form:form action="/TrainMe/updateTrInfoAccount/${trainerBean.id}"

@@ -141,7 +141,7 @@
 							<!-- 課程資訊 -->
 							<div class="fc_title">
 								<a class="trTitle"
-									href="<c:url value='/trainer_info/${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}' />">
+									href="<c:url value='/trainer_info/${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}?type=search' />">
 									${trainerCourseAll.get(i.current).getTrainerBean_H().getCourse()}
 								</a>
 							</div>
