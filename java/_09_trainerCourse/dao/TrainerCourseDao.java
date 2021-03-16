@@ -72,7 +72,6 @@ public class TrainerCourseDao {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM StudentCourseBean_H sc WHERE sc.trainerCourseBean_H.trainerBean_H.id= :trid ORDER BY sc.date";
 		List <StudentCourseBean_H> sc = session.createQuery(hql).setParameter("trid", trId).getResultList();
-
 		return sc;
 	}
 	
