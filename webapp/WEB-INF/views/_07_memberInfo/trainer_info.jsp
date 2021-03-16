@@ -102,6 +102,10 @@
 				<a href="<c:url value='/searchTrainerAll' />"><i
 					class="fas fa-chevron-left"> </i> 返回</a>
 			</c:if>
+			<c:if test="${type.equals('index')}">
+				<a href="<c:url value='/' />"><i
+					class="fas fa-chevron-left"> </i> 返回</a>
+			</c:if>
 		</div>
 	</div>
 	<a id="introduction"></a>
