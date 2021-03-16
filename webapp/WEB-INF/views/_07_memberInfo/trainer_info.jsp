@@ -50,9 +50,7 @@
 	color: white;
 }
 
-.scheduleTd {
-	background: #dac;
-}
+
 </style>
 </head>
 <body>
@@ -96,6 +94,11 @@
 
 	<!-- 教練簡介 -->
 
+    <div id="bt" class="trpg_wrap">
+        <div class="backto">
+            <a href="./search_trainer.html"><i class="fas fa-chevron-left"></i>　返回</a>
+        </div>
+    </div>
 	<a id="introduction"></a>
 	<div class="trpg_wrap">
 		<div class="trpg_content">
@@ -295,7 +298,24 @@
 
 		</div>
 		<div class="trpg_content si" x-data="data()" x-init="init()">
+            <!-- 選擇日期 -->
+           <div class="reservation">
 
+            <div class="year">
+                <span>2021年</span>
+            </div>
+
+            <div class="choose_date">
+                <label>選擇日期：</label>
+                <input
+                type="date"
+                id="date_begin"
+                name="date_begin"
+                class="input_date"
+                />
+             </div>
+
+            </div>
 
 			<div class="sc">
 				<!-- 一進來就會顯示當天起始那一周的時間表 -->
@@ -326,6 +346,9 @@
 										</template>
 										<template x-if="isClosed(date, hour)">
 											<div>已關閉</div>
+										</template>
+										<template x-if="!isClosed(date, hour) && !isBooked(date, hour)">
+										 <button class="save" style="border-radius: 5px; background-color: #eee;padding: 15px 20px">預約</button>
 										</template>
 									</td>
 								</template>

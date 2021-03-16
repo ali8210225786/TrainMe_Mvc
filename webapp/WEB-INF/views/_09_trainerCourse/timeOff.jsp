@@ -126,6 +126,9 @@
 											<template x-if="isBooked(date, hour)">
 												<div>已預約</div>
 											</template>
+											<template x-if="isClosed(date, hour)">
+											<div>已關閉</div>
+										</template>
 										</td>
 									</template>
 								</tr>
@@ -133,6 +136,10 @@
 
 						</tbody>
 					</table>
+					
+					            <div class="e_button trls_t_btn">
+						              <button class="save">儲存設定</button>
+						        </div>
 				</div>
 
 			</div>

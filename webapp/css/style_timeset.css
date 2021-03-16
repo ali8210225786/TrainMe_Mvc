@@ -2,6 +2,14 @@
         font-size: 14px;
         margin-bottom: 20px;
       }
+      .short_nb{
+        width: 90px;
+      }
+      .lesson_name{
+        width: 300px;
+      }
+
+      
       .tschedule{
         border: 1px solid #ddd;
         background-color: #fff;
@@ -9,7 +17,7 @@
         text-align: center;
         font-size: 14px;
       }
-      .thead, tbody tr td{
+      .tschedule .thead, tbody tr td{
         border: 1px solid #ddd
       }
       .sc{
@@ -17,24 +25,18 @@
         margin: auto;
         margin-top: 20px;
       }
-      .thead tr th{
+      .tschedule .thead tr th{
         background-color: #999;
-        /* border-top:2px solid #ddd;
-        border-bottom:2px solid #ddd; */
+        border: none;
+        border-bottom:2px solid #ddd;
         font-family: Tahoma, sans-serif;
         width: 10%;
         color: #fff;
       }
-      .thead tr th:first-child{
+      .tschedule .thead tr th:first-child{
         width: 20%;
       }
-      .thead tr{
-        /* background-color: #fff; */
-      }
-      tr{
-        /* background-color: #fff; */
-      }
-      tbody tr th{
+      .tschedule tbody tr th{
         font-family: Tahoma, sans-serif;
         font-weight: 300;
       }
@@ -72,4 +74,11 @@
     /* 課程設定表格高度 */
     .tr_lesson tr td{
       height: 20px;
+    }
+
+    /* 置中按鈕 */
+    .trls_t_btn{
+      margin: 25px;
+      display: flex;
+      justify-content: center;
     }

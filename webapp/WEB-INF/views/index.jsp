@@ -350,17 +350,16 @@ html .fixWindow {
 	<div class="splide">
 		<div class="splide__track">
 			<ul class="splide__list">
-
-
-				<c:if test="${trainerAndCoursese.size() > 0}">
+			
+				<c:if test="${trainerAndCourse.size() > 0}">
 					<c:forEach varStatus="i" begin="0"
-						end="${trainerAndCoursese.size()-1}">
+						end="${trainerAndCourse.size()-1}">
 						<div class="splide__slide">
 							<div class="p_t">
-								<p class="t_name">${trainerAndCoursese.get(i.current).getTrainerBean_H().getName()}</p>
+								<p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
 								<span>
 									<p class="t_location">
-										<i class="fas fa-map-marker-alt"></i>${trainerAndCoursese.get(i.current).getTrainerBean_H().getCity().getName()}</p>
+										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
 									<p class="t_ltimes">
 										<i class="fas fa-user-friends"></i>20次課程媒合
 									</p>
@@ -373,9 +372,9 @@ html .fixWindow {
 								</span>
 							</div>
 							<a
-								href="<c:url value='/trainer_info/${trainerAndCoursese.get(i.current).getTrainerBean_H().getId()}' />">
+								href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}' />">
 								<img
-								src="/upload/${trainerAndCoursese.get(i.current).getTrainerBean_H().getProfile_image()}"
+								src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}"
 								border="0">
 							</a>
 						</div>
