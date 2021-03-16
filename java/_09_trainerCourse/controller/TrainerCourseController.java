@@ -120,8 +120,7 @@ public class TrainerCourseController {
 
 	@GetMapping("/CancelStudentCourse/{trid}/{stid}")
 	public String cancelCourse(Model model, @PathVariable("trid") Integer trid, @PathVariable("stid") Integer stid,
-			@RequestParam("courseId") String courseIdStr, 
-			@RequestParam("type") String type) {
+			@RequestParam("courseId") String courseIdStr) {
 		int courseId = Integer.parseInt(courseIdStr);
 		String stId = String.valueOf(stid);
 		StudentBean_H sb = memberDataService.getStudentById(stid);
@@ -132,15 +131,12 @@ public class TrainerCourseController {
 		rejectedEmail.sendingRejectedEmail();
 		
 		studentCourseService.cancelCourse(courseId);
-		System.out.println("type=" + type);
-		model.addAttribute("type", type);
 		return "redirect:/trainerCourse/" + trid;
 	}
 
 	@GetMapping("/AllowStudentCourse/{trid}/{stid}")
 	public String allowCourse(Model model, @PathVariable("trid") Integer trid, @PathVariable("stid") Integer stid,
-			@RequestParam("courseId") String courseIdStr,
-			@RequestParam("type") String type) {
+			@RequestParam("courseId") String courseIdStr) {
 		StudentBean_H sb = memberDataService.getStudentById(stid);
 		String id = String.valueOf(stid);
 		int courseId = Integer.parseInt(courseIdStr);
@@ -151,8 +147,6 @@ public class TrainerCourseController {
 		acceptEmail.sendAcceptMail();
 		
 		studentCourseService.allowCourse(courseId);
-		System.out.println("type=" + type);
-		model.addAttribute("type", type);
 		return "redirect:/trainerCourse/" + trid;
 	}
 
