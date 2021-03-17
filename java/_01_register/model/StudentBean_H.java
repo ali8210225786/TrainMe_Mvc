@@ -56,7 +56,7 @@ public class StudentBean_H extends MemberBean_H {
 	private String newpasswordcheck;
 	private String id_number;
 	private String sex;
-	@Column(columnDefinition = "INT Default 0")
+	@Column(columnDefinition = "Double Default 0.0")
 	private Integer verification;
 	
 	

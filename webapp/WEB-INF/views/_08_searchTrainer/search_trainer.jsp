@@ -129,7 +129,7 @@
 							<div class="fc_star">
 								<div class="starss">
 				                    <div class="empty_star">★★★★★</div>
-				                    <div class="full_star">★★★★★</div>
+				                    <div class="full_star" style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>
 	                			</div>
 							</div>
 

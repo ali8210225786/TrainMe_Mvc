@@ -138,7 +138,7 @@ a:hover{
 /* 自我介紹 */
 
 .sit{
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 /* 評價星等 */

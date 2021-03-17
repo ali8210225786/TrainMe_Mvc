@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _01_register.model.StudentBean_H;
+import _01_register.model.TrainerBean_H;
 import _01_register.service.MemberServiceImpl_H;
 import _01_register.service.MemberService_H;
 import _03_memberData.service.MemberDataService;
@@ -40,6 +41,9 @@ public class StudentCourseController {
 	
 	@Autowired
 	MemberService_H memberService;
+	
+	@Autowired
+	MemberDataService memberDataService;
 
 	@GetMapping("/st_info_lesson/{id}")
 	public String stLesson(Model model, @PathVariable("id") Integer id) {
@@ -133,15 +137,37 @@ public class StudentCourseController {
 			@RequestParam("studentCourseId") Integer studentCourseId
 			) {
 		StudentCourseBean_H studentCourseBean = studentCourseService.getStudentCourse(studentCourseId);
+		TrainerBean_H trainerBean_H = memberDataService.getTrainerById(studentCourseBean.getTrainerCourseBean_H().getTrainerBean_H().getId());
 		
 		studentCourseBean.setIs_rated(1);
+		
 		RatingsBean_H ratingsBean = new RatingsBean_H(null, studentCourseBean.getStudentBean_H(), studentCourseBean.getTrainerCourseBean_H().getTrainerBean_H(), starsVal, feedback, studentCourseBean);
 		
 		studentCourseService.addFeedback(ratingsBean);
+		
+		List<RatingsBean_H> ratinglist = memberDataService.getTrainerRatings(studentCourseBean.getTrainerCourseBean_H().getTrainerBean_H().getId());	
+		
+		Double total=0.0;
+		for (int i = 0; i < ratinglist.size(); i++) {
+			total+= ratinglist.get(i).getPoint();
+		}
+	
+		if(ratinglist.size() == 0) {
+		Double avg = ((total) / 1.0);
+		trainerBean_H.setRatings(avg);
+		trainerBean_H.setRatings_size(ratinglist.size());;
+		}else {
+		Double avg = ((total) / (double)(ratinglist.size()));
+		trainerBean_H.setRatings(avg);
+		trainerBean_H.setRatings_size(ratinglist.size());;
+		}
+		
+		memberDataService.updateTrainer(trainerBean_H);
 		
 		// 頁面跳轉改用jquery的post方法跳轉,這邊return的其實不會有反應,但反正要寫就對ㄌ
 		
 		return "redirect:/st_info_lesson/" + id;
 	}
-
 }
+
+
