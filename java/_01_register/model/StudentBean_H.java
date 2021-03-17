@@ -387,6 +387,7 @@ public class StudentBean_H extends MemberBean_H {
 		this.activity = activity;
 	}
 
+
 	
 
 }

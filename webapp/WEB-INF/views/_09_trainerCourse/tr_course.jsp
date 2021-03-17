@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_account.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_tr_lesson.css' />">
+<link rel="stylesheet" href="<c:url value='/css/stprofile_popup.css' />">
 
 
 
@@ -35,7 +36,7 @@
 
 	<!-- ============上方導覽列======================================================= -->
 	<jsp:include page="/fragment/nav_tr.jsp" />
-
+	<jsp:include page="/WEB-INF/views/_09_trainerCourse/check_student_profile.jsp" />
 
 
 	<div class="container">
@@ -166,7 +167,7 @@
 									<c:if
 										test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()> Now }">
 										<tr>
-											<td class="class_name"><a href="">${StudentCourse.get(i.current).getStudentBean_H().getName()}</a></td>
+											<td class="class_name"><a href="javascript:" class="studentData" data-id="${StudentCourse.get(i.current).getStudentBean_H().getId()}">${StudentCourse.get(i.current).getStudentBean_H().getName()}</a></td>
 											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
 											<td>${StudentCourse.get(i.current).getDate()}
 
@@ -225,9 +226,8 @@
 
 
 		</div>
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-			crossorigin="anonymous"></script>
+		<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
@@ -242,7 +242,7 @@
 
 	$('#pills-tab a').on('click', function(event) {
 		event.preventDefault()
-		console.log(this);
+// 		console.log(this);
 		$(this).tab('show')
 	})
 
@@ -252,10 +252,7 @@
 		if (!yes) {
 			event.preventDefault();
 		}
-// 		console.log(this.dataset.type);
-// 		changeTab = this.dataset.type;
 	})
-// 		console.log("${type.equals('comingSoon')}");
 	
 	// 確認是否同意通知
 	$('.allow').on('click', function(event) {
@@ -263,18 +260,43 @@
 		if (!yes) {
 			event.preventDefault();
 		}
-// 		console.log(this.dataset.type);
-// 		changeTab = this.dataset.type;
 	})
 	
+	
+	$('.studentData').on('click', function(event) {
+// 		console.log(event.target.dataset.id);
+	 var stId = event.target.dataset.id;
+	 
+	 $.get("/TrainMe/queryStudent?stId=" + stId,
+             function (data) {
+           	 console.log(data);
+           	 
+				$("#profile_image").html('<img src="<c:url value="/images/'+data.profile_image +'"  />">');
+				$("#name").text(data.name);
+				$("#nickname").text(data.nickname);
+				var sex = data.sex
+				if(sex == "M"){
+					$("#sex").html('<i class="fas fa-mars"></i>');
+				}
+				if(sex == "F"){
+					$("#sex").html('<i class="fas fa-venus"></i>');
+				}
+				$("#age").text(data.age);
+				$("#birthday").text(data.birth);
+				$("#phone").text(data.phone);
+				$("#heigth").text(data.heigth);
+				$("#weight").text(data.weight);
+				$("#BMI").text(data.BMI);
+				$("#introduction").text(data.introduction);
+             },
+             "json"
+   );
 
-// 	<c:if test="${type.equals('comingSoon')}">
-// // 				console.log("111111111");
-// 				$('#pills-next-tab').tab('show')	
-// 	</c:if>
-// 	<c:if test="${type.equals('waitCourse')}">
-// 				$('#pills-wait-tab').tab('show')			
-// 	</c:if>
+		Show();
+	})
+
+	
+
 	
 </script>
 </body>

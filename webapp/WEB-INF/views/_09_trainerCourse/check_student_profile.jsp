@@ -20,48 +20,48 @@
 		<a class="close" href="#" onclick="Hide();">&times;</a>
 
 		<!-- 左相片 -->
-		<div class="st_picture">
-			<img src="${pageContext.request.contextPath}/images/ud.jpg">
+		<div class="st_picture" id="profile_image">
+			<img src="<c:url value=""  />">
 		</div>
 
 		<!-- 右資訊 -->
 		<div class="profile">
 
 
-				<div class="wp_div">
-					<h2>林瑪莉</h2>
-					<p>Mary</p>
-					<i class="fas fa-mars"></i>
-				</div>
-				<div class="pf">
-					<div class="wrap">
+			<div class="wp_div">
+				<h2 id="name"></h2>
+				<p id="nickname"></p>
+				<span id="sex"></span>
+			</div>
+			<div class="pf">
+				<div class="wrap">
 
-						<div class="wp_div">
-							<label>年齡</label><span>28歲</span>
-						</div>
-						<div class="wp_div">
-							<label>生日</label><span>1993/01/01</span>
-						</div>
-						<div class="wp_div">
-							<label>連絡電話</label><span>0911999999</span>
-						</div>
+					<div class="wp_div">
+						<label>年齡</label><span id="age"></span>
 					</div>
+					<div class="wp_div">
+						<label>生日</label><span id="birthday"></span>
+					</div>
+					<div class="wp_div">
+						<label>連絡電話</label><span id="phone"></span>
+					</div>
+				</div>
 
-					<div class="wrap">
-						<div class="wp_div">
-							<label>身高</label><span>165 cm</span>
-						</div>
-						<div class="wp_div">
-							<label>體重</label><span>50 kg</span>
-						</div>
-						<div class="wp_div">
-							<label>BMI</label><span>17.6</span>
-						</div>
+				<div class="wrap">
+					<div class="wp_div">
+						<label>身高</label><span id="heigth"></span>
+					</div>
+					<div class="wp_div">
+						<label>體重</label><span id="weight"></span>
+					</div>
+					<div class="wp_div">
+						<label>BMI</label><span id="BMI"></span>
 					</div>
 				</div>
 			</div>
-		
 		</div>
+
+	</div>
 
 	<hr>
 
@@ -71,33 +71,28 @@
 		<div class="self_intro">
 			<p>自我介紹</p>
 
-			<p>一些關於是否有運動習慣、身體狀態等等的自我介紹約150字以內。</p>
+			<p id="introduction"></p>
 		</div>
 	</div>
 </div>
 
 <script>
+	//查看學員資料
 
-
-//查看學員資料
-
-
-        // 顯示框
-        function Show() {
-            document.getElementById('student_infobox').classList.remove('hide');
-            document.getElementById('overlay').classList.remove('hide');
-            $("#student_infobox").css("display", "block");
-            document.documentElement.style.overflow = 'hidden';//電腦端禁止滑動
-            document.body.style.overflow = 'hidden';//手機端禁止滑動
-            login()
-        }
-        // 隱藏框
-        function Hide() {
-            document.getElementById('student_infobox').classList.add('hide');
-            document.getElementById('overlay').classList.add('hide');
-            $("#student_infobox").css("display", "none");
-            document.documentElement.style.overflow = 'auto';//電腦端可以滑動
-            document.body.style.overflow = 'auto';//手機端可以滑動
-        }
-      
+	// 顯示框
+	function Show() {
+		document.getElementById('student_infobox').classList.remove('hide');
+		document.getElementById('overlay').classList.remove('hide');
+		$("#student_infobox").css("display", "block");
+		document.documentElement.style.overflow = 'hidden';//電腦端禁止滑動
+		document.body.style.overflow = 'hidden';//手機端禁止滑動
+	}
+	// 隱藏框
+	function Hide() {
+		document.getElementById('student_infobox').classList.add('hide');
+		document.getElementById('overlay').classList.add('hide');
+		$("#student_infobox").css("display", "none");
+		document.documentElement.style.overflow = 'auto';//電腦端可以滑動
+		document.body.style.overflow = 'auto';//手機端可以滑動
+	}
 </script>

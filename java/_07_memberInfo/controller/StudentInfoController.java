@@ -49,7 +49,7 @@ public class StudentInfoController {
 		model.addAttribute("age", age);
 		if (studentBean.getHeigth() != null && studentBean.getWeight() != null) {
 
-			double BMI = studentInfoService.calBMI(studentBean);
+			double BMI = studentInfoService.calBMI(studentBean.getHeigth(),studentBean.getWeight());
 			double BMR = studentInfoService.calBMR(studentBean);
 			double TDEE = studentInfoService.calTDEE(studentBean);
 			model.addAttribute("BMI", BMI);

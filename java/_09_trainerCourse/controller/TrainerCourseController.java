@@ -2,9 +2,7 @@ package _09_trainerCourse.controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
-import com.google.protobuf.TextFormat.ParseException;
 
+import _01_register.dto.StudentInfo;
 import _01_register.model.StudentBean_H;
-import _01_register.service.MemberService_H;
 import _03_memberData.service.MemberDataService;
-import _04_money.service.MemPointService;
+import _07_memberInfo.service.StudentInfoService;
 import _08_searchTrainer.service.SearchTrainerService;
 import _09_trainerCourse.model.CloseHour;
 import _09_trainerCourse.model.SkillTypeBean_H;
@@ -35,7 +32,7 @@ import mail.model.SendingAcceptEmail;
 import mail.model.SendingRejectedEmail;
 
 @Controller
-@SessionAttributes({ "LoginOK", "StudentCourse", "Now", "type" })
+@SessionAttributes({ "LoginOK", "StudentCourse", "Now", "type"})
 public class TrainerCourseController {
 
 	@Autowired
@@ -49,6 +46,9 @@ public class TrainerCourseController {
 
 	@Autowired
 	MemberDataService memberDataService;
+	
+	@Autowired
+	StudentInfoService studentInfoService;
 
 	@GetMapping("/TimeOff/{id}")
 	public String timeOff(Model model) {
@@ -56,8 +56,11 @@ public class TrainerCourseController {
 	}
 
 	@GetMapping("/courseSet/{id}")
-	public String courseSet(Model model) {
+	public String courseSet(Model model, @PathVariable("id") Integer id) {
 		List<SkillTypeBean_H> skillTypeAll = searchTrainerService.getSkillTypeAll();
+		List<TrainerCourseBean_H> TrainerCourseList = trainerCourseService.getTrainerCourseList(id);
+		
+		model.addAttribute("TrainerCourseList", TrainerCourseList);
 		model.addAttribute("skillTypeAll", skillTypeAll);
 		return "/_09_trainerCourse/tr_lesson_set";
 	}
@@ -77,7 +80,6 @@ public class TrainerCourseController {
 
 	@PostMapping(value ="/TimeOff/update/{id}")
 	public @ResponseBody String updateTimeOff(@PathVariable("id") Integer id, @RequestParam("data") String data) {
-//		System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		CloseHour closeHour = (new Gson()).fromJson(data, CloseHour.class);
 //		System.out.println(closeHour);
 
@@ -148,6 +150,17 @@ public class TrainerCourseController {
 		
 		studentCourseService.allowCourse(courseId);
 		return "redirect:/trainerCourse/" + trid;
+	}
+	
+	@GetMapping("/queryStudent")
+	public @ResponseBody String queryStudent(Model model, @RequestParam("stId") Integer stId) {
+		StudentBean_H sb = memberDataService.getStudentById(stId);
+		StudentInfo info =  StudentInfo.create(sb);		
+
+		Gson gson = new Gson();
+        String json = gson.toJson(info);
+		
+		return json;
 	}
 
 }
