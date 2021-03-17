@@ -38,15 +38,13 @@
 .tschedule td {
 	cursor: pointer;
 }
-
-.tschedule .closed, .tschedule .booked, .tschedule .save {
-	border-radius: 10px;
-	width: 50px;
-	/* 	height:95%; */
-	border: 2px solid #fff;
+.tschedule .closed,.tschedule .booked,.tschedule .save{
+	border-radius: 8px;
+	width:50px;
+/* 	height:95%; */
+ 	border:3px solid #fff;
 	margin: 5px;
 }
-
 .tschedule .closed {
 	background: #E7E7E7;
 	color: #999;
@@ -54,22 +52,21 @@
 }
 
 .tschedule .booked {
-	/* 	background: #FF5500;FF8F00 */
+/* 	background: #FF5500;FF8F00 */
 	background-image: linear-gradient(120deg, #FF8F00, #FF5500);
 	color: white;
 	cursor: not-allowed;
 }
-
-.tschedule .save {
+.tschedule .save{
 	color: white;
 	background-image: linear-gradient(120deg, #21d4a7, #0ac2a9);
-	/* 	background: #30BE8F;  */
-	/* 	border:1px solid #eee; */
+/* 	background: #30BE8F;  */
+/* 	border:1px solid #eee; */
 }
-
-.tschedule .save:hover {
+.tschedule .save:hover{
 	background-image: linear-gradient(120deg, #30E9BB, #0DDFC2);
 }
+
 </style>
 </head>
 <body>
@@ -343,52 +340,52 @@
 			</div>
 
 			<div class="a">
-				<template x-if="isToday()">
-					<span class="pre"><i class="fas fa-angle-left"
-						@click="lessDate()"></i></span>
-				</template>
-
-				<div class="choose_box">
-					<div class="sc">
-						<!-- 一進來就會顯示當天起始那一周的時間表 -->
-						<table class="table tschedule">
-							<thead class="thead">
-								<tr>
-									<th scope="col"></th>
-									<template x-for="date in dates" :key="date.day()">
-										<th scope="col">
-											<div x-text="parseDayOfWeek(date.day())"></div>
-											<div x-text="date.format('MM/DD')"></div>
-										</th>
-									</template>
-								</tr>
-							</thead>
-							<tbody>
-								<template x-for="hour in hours" :key="hour">
+								<template x-if="isToday()">
+									<span class="pre"><i class="fas fa-angle-left"
+										@click="lessDate()"></i></span>
+								</template>
+								
+					<div class="choose_box">
+						<div class="sc">
+							<!-- 一進來就會顯示當天起始那一周的時間表 -->
+							<table class="table tschedule">
+								<thead class="thead">
 									<tr>
-										<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
-										<template x-for="date in dates" :key="date + hour">
-											<td
-												:class="{
+										<th scope="col"></th>
+										<template x-for="date in dates" :key="date.day()">
+											<th scope="col">
+												<div x-text="date.format('MM/DD')"></div>
+												<div x-text="parseDayOfWeek(date.day())"></div>
+											</th>
+										</template>
+									</tr>
+								</thead>
+								<tbody class="tbody">
+									<template x-for="hour in hours" :key="hour">
+										<tr>
+											<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
+											<template x-for="date in dates" :key="date + hour">
+												<td
+													:class="{
 		                       			 closed :isClosed(date,hour),  
 				                        booked :isBooked(date, hour),
 				                        save :!isClosed(date, hour) && !isBooked(date, hour)
 				                        }"
-												@click="bookCourse(date,hour)">
-												<template x-if="isBooked(date, hour)">
-													<span>已預約</span>
-												</template>
-												<template x-if="isClosed(date, hour)">
-													<span>已關閉</span>
-												</template>
-												<template
-													x-if="!isClosed(date, hour) && !isBooked(date, hour)">
-													<span>預約</span>
-												</template>
-											</td>
-										</template>
-									</tr>
-								</template>
+													@click="bookCourse(date,hour)">
+													<template x-if="isBooked(date, hour)">
+														<span>已預約</span>
+													</template>
+													<template x-if="isClosed(date, hour)">
+														<span>未開放</span>
+													</template>
+													<template
+														x-if="!isClosed(date, hour) && !isBooked(date, hour)">
+														<span>預約</span>
+													</template>
+												</td>
+											</template>
+										</tr>
+									</template>
 
 							</tbody>
 						</table>
@@ -402,11 +399,11 @@
 				</div>
 
 
-				<template x-if="isEnd()">
-					<span class="next"><i class="fas fa-angle-right"
-						@click="addDate()"></i></span>
-				</template>
-			</div>
+							<template x-if="isEnd()">
+								<span class="next"><i class="fas fa-angle-right"
+									@click="addDate()"></i></span>
+							</template>
+		</div>
 
 
 

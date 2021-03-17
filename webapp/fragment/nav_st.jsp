@@ -49,7 +49,14 @@
 					<hr>
 					<li><a href="<c:url value='/logout' />">登出</a></li>
 				</div>
-			</ul></li>
+			</ul>
+			</li>
+		<li>
+            <a href="#">
+                <i class="far fa-bell"><ss class="jiaobiao">1</ss></i>
+            </a>
+        </li>
+   </ul>    
 </header>
 <!-- <script> -->
 <!-- // 	// 導覽列 -->
