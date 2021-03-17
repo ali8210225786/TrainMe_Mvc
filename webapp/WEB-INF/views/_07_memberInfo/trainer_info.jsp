@@ -50,6 +50,10 @@
 	cursor: not-allowed;
 	color: white;
 }
+
+.tschedule .lock{
+	cursor: not-allowed;
+}
 </style>
 </head>
 <body>
@@ -393,9 +397,8 @@
 													<template x-if="isClosed(date, hour)">
 														<div>已關閉</div>
 													</template>
-													<template
-														x-if="!isClosed(date, hour) && !isBooked(date, hour)">
-														<button class="save"
+													<template x-if="!isClosed(date, hour) && !isBooked(date, hour)">
+														<button class="save" :class= "{lock :isTrainer()}"
 															style="border-radius: 5px; background-color: #eee; padding: 15px 20px">預約</button>
 													</template>
 												</td>
@@ -663,7 +666,7 @@
 					 },
 					 bookCourse(date,hour){
 					    	  const dateStr = date.format('YYYY-MM-DD');
-					        if(this.isBooked(date,hour) || this.isClosed(date,hour)){
+					        if(this.isBooked(date,hour) || this.isClosed(date,hour) || this.isTrainer() ){
 					          return;
 					  }   
 					        var yes = confirm('是否確定預約 ' + dateStr + ' ' +   hour +':00 - '+(hour+1)+':00 ? ')
@@ -717,6 +720,10 @@
 					      isEnd(){
 					    	  var endDate =  dayjs(today).add(14,'day').format('YYYY-MM-DD');
 					    	  return this.beginDate != endDate;
+					      },
+					      isTrainer(){
+					    	  var logOk = ${LoginOK.type};
+					    	  return logOk == 2;
 					      }
 			      
 			      

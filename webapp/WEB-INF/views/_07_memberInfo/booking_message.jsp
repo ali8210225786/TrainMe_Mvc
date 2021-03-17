@@ -27,9 +27,6 @@
 		<jsp:include page="/fragment/nav_st.jsp" />
 	</c:if>
 
-	<c:if test="${LoginOK.type == 2}">
-		<jsp:include page="/fragment/nav_tr.jsp" />
-	</c:if>
 
 
     <!-- ====================================================================== -->
