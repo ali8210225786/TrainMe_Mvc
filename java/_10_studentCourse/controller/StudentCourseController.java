@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _01_register.model.StudentBean_H;
+import _01_register.model.TrainerBean_H;
 import _01_register.service.MemberServiceImpl_H;
 import _01_register.service.MemberService_H;
 import _03_memberData.service.MemberDataService;
@@ -89,26 +90,38 @@ public class StudentCourseController {
 		return "_10_studentCourse/st_info_lesson";
 	}
 	
+	
+	
 	@GetMapping("/CancelCourseLesson/{id}")
 	public String cancelCourse(
 			@PathVariable("id") Integer id, 
-			@RequestParam("courseId") String courseIdStr, 
-			@RequestParam("type") String type, 
+			@RequestParam(value="courseId") String courseIdStr, 
+			@RequestParam(value="type") String type, 
 			Model model) {
 		int courseId = Integer.parseInt(courseIdStr);
 		studentCourseService.cancelCourse(courseId);
-		MoneyBean_H moneyBean_H=new MoneyBean_H();
+		MoneyBean_H moneyBean_H1=new MoneyBean_H();
+		MoneyBean_H moneyBean_H2=new MoneyBean_H();
 		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
+		Date date = new Date();
+		java.sql.Date changeTime = new java.sql.Date(date.getTime());
 		if(type.equals("comingSoon")) {
 
+			//學員取消課程後要存進新的一筆退款
 			StudentBean_H studentBean_H =(StudentBean_H) model.getAttribute("LoginOK");
-			moneyBean_H.setStudentBean_H(studentBean_H);
-			Date date = new Date();
-			java.sql.Date changeTime = new java.sql.Date(date.getTime());
-			moneyBean_H.setChange_time(changeTime);
-			moneyBean_H.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
+			moneyBean_H1.setStudentBean_H(studentBean_H);
+			moneyBean_H1.setChange_time(changeTime);
+			moneyBean_H1.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
 //			moneyBean_H.setStudentCourseBean_H(sc);
-			memPointService.saveRefund(moneyBean_H);
+			memPointService.saveStudentRefund(moneyBean_H1);
+			
+			
+			//教練的費用要被扣回去
+			TrainerBean_H trainerBean =sc.getTrainerCourseBean_H().getTrainerBean_H();
+			moneyBean_H2.setTrainerBean_H(trainerBean);
+			moneyBean_H2.setChange_time(changeTime);
+			moneyBean_H2.setChange_amount(-sc.getTrainerCourseBean_H().getPrice());
+			memPointService.saveTrainerRefund(moneyBean_H2);
 		}
 		System.out.println(type);
 		model.addAttribute("type",type);
