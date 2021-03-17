@@ -26,7 +26,8 @@ import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _11_orderProcess.model.OrdersBean_H;
-
+import _12_message.model.MessageBean;
+import _13_addfavorite.model.FavoriteBean;
 
 
 
@@ -102,6 +103,12 @@ public class StudentBean_H extends MemberBean_H {
 
 	@OneToMany(mappedBy = "studentBean_H")
 	private Set<StudentDataBean_H> studentDataBean_H = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<MessageBean> messageBean = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<FavoriteBean> favoriteBean = new LinkedHashSet<>();
 
 	public StudentBean_H(String name, String phone, String email, Date birthday, String password, String id_number,
 			String sex, String hash) {
@@ -386,6 +393,26 @@ public class StudentBean_H extends MemberBean_H {
 	public void setActivity(Integer activity) {
 		this.activity = activity;
 	}
+
+	public Set<MessageBean> getMessageBean() {
+		return messageBean;
+	}
+
+	public void setMessageBean(Set<MessageBean> messageBean) {
+		this.messageBean = messageBean;
+	}
+
+	public Set<FavoriteBean> getFavoriteBean() {
+		return favoriteBean;
+	}
+
+	public void setFavoriteBean(Set<FavoriteBean> favoriteBean) {
+		this.favoriteBean = favoriteBean;
+	}
+	
+	
+	
+	
 
 
 	
