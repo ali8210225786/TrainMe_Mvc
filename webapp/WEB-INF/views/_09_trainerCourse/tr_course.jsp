@@ -16,7 +16,8 @@
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />">
-<link rel="stylesheet" href="<c:url value='/css/style_st_account.css' />">
+<link rel="stylesheet"
+	href="<c:url value='/css/style_st_account.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_tr_lesson.css' />">
 
 
@@ -52,58 +53,60 @@
 			<div class="title">
 				<h3>課程管理</h3>
 			</div>
-			
-			 <!-- 說明 -->
 
-         <div class="explain">
-            <p>設定您的健身課程、開放預約的時段，並管理您的所有課程訂單。</p>
-         </div>
-        
-        <!-- ============課程設定======================================================= -->
+			<!-- 說明 -->
 
-        <div class="info_wrap t">
+			<div class="explain">
+				<p>設定您的健身課程、開放預約的時段，並管理您的所有課程訂單。</p>
+			</div>
+
+			<!-- ============課程設定======================================================= -->
+
+			<div class="info_wrap t">
 
 
-            <h5>課程與時段設定</h5>        
-            <!-- 新增課程 -->
-            <div class="ls_set">
-              <div class="ls_set_box">
-                <a href="<c:url value='/courseSet/${LoginOK.id}' />">管理課程清單<i class="far fa-list-alt"></i></a>
-              </div>
-    
-            <!-- 管理預約時段 -->
-              <div class="ls_set_box">
-                <a href="<c:url value='/TimeOff/${LoginOK.id}' />">管理預約時段<i class="far fa-clock"></i></a>
-              </div>
-    
-            </div>
-            
-            
-            
+				<h5>課程與時段設定</h5>
+				<!-- 新增課程 -->
+				<div class="ls_set">
+					<div class="ls_set_box">
+						<a href="<c:url value='/courseSet/${LoginOK.id}' />">管理課程清單<i
+							class="far fa-list-alt"></i></a>
+					</div>
 
-        </div>
-      
-        <!-- ---------------------------- -->
-			
+					<!-- 管理預約時段 -->
+					<div class="ls_set_box">
+						<a href="<c:url value='/TimeOff/${LoginOK.id}' />">管理預約時段<i
+							class="far fa-clock"></i></a>
+					</div>
+
+				</div>
+
+
+
+
+			</div>
+
+			<!-- ---------------------------- -->
+
 
 			<!-- ============即將開始的課程======================================================= -->
 
 			<div class="info_wrap t lesson">
-			<h5>我的課程訂單</h5> 
+				<h5>我的課程訂單</h5>
 
 				<ul class="nav nav-tab mb-3" id="pills-tab" role="tablist">
-				
+
 					<li class="nav-item mr-4" role="presentation"><a
-						class="nav-link li_color active" id="pills-next-tab" data-toggle="pill"
-						href="#pills-next" role="tab" aria-controls="pills-next"
-						aria-selected="true">已預約的學員</a></li>
-						
+						class="nav-link li_color active" id="pills-next-tab"
+						data-toggle="pill" href="#pills-next" role="tab"
+						aria-controls="pills-next" aria-selected="true">已預約的學員</a></li>
+
 					<li class="nav-item mr-4" role="presentation"><a
-						class="nav-link li_color " id="pills-wait-tab"
-						data-toggle="pill" href="#pills-wait" role="tab"
-						aria-controls="pills-wait" aria-selected="true">發出預約的學員</a></li>
-						
-						
+						class="nav-link li_color " id="pills-wait-tab" data-toggle="pill"
+						href="#pills-wait" role="tab" aria-controls="pills-wait"
+						aria-selected="true">發出預約的學員</a></li>
+
+
 					<li class="nav-item " role="presentation"><a
 						class="nav-link li_color" id="pills-history-tab"
 						data-toggle="pill" href="#pills-history" role="tab"
@@ -123,20 +126,22 @@
 								</tr>
 							</thead>
 							<tbody class="tr_height">
-								<c:forEach varStatus="i" begin="0"
-									end="${StudentCourse.size()-1}">
-									<c:if
-										test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()> Now }">
-										<tr>
-											<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getDate()}
+								<c:if test="${StudentCourse.size() > 0}">
+									<c:forEach varStatus="i" begin="0"
+										end="${StudentCourse.size()-1}">
+										<c:if
+											test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()> Now }">
+											<tr>
+												<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getDate()}
 
-												${StudentCourse.get(i.current).getTime()}:00 -
-												${StudentCourse.get(i.current).getTime() + 1}:00</td>
-										</tr>
-									</c:if>
-								</c:forEach>
+													${StudentCourse.get(i.current).getTime()}:00 -
+													${StudentCourse.get(i.current).getTime() + 1}:00</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</c:if>
 							</tbody>
 						</table>
 					</div>
@@ -153,25 +158,80 @@
 								</tr>
 							</thead>
 							<tbody class="tr_height">
-								<c:forEach varStatus="i" begin="0"
-									end="${StudentCourse.size()-1}">
-									<c:if
-										test="${StudentCourse.get(i.current).getIs_allowed()== 0 && StudentCourse.get(i.current).getIs_delete()==0 &&StudentCourse.get(i.current).getDate()> Now}">
-										<tr>
-											<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getDate()}
+								<c:if test="${StudentCourse.size() > 0}">
+									<c:forEach varStatus="i" begin="0"
+										end="${StudentCourse.size()-1}">
+										<c:if
+											test="${StudentCourse.get(i.current).getIs_allowed()== 0 && StudentCourse.get(i.current).getIs_delete()==0 &&StudentCourse.get(i.current).getDate()> Now}">
+											<tr>
+												<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getDate()}
 
-												${StudentCourse.get(i.current).getTime()}:00 -
-												${StudentCourse.get(i.current).getTime() + 1}:00</td>
-											<td><a
-												href="/TrainMe/AllowStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=comingSoon"
-												class="allow" data-type="comingSoon">同意</a> <a
-												href="/TrainMe/CancelStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=waitCourse"
-												class="cancel" data-type="waitCourse">取消</a></td>
-										</tr>
-									</c:if>
-								</c:forEach>
+													${StudentCourse.get(i.current).getTime()}:00 -
+													${StudentCourse.get(i.current).getTime() + 1}:00</td>
+												<td><button type="button" class="btn btn-primary"
+														data-toggle="modal" data-target="#exampleModal${StudentCourse.get(i.current).getId()}">
+														同意</button>
+													<button type="button" class="btn btn-primary"
+														data-toggle="modal" data-target="#exampleModal1${StudentCourse.get(i.current).getId()}">
+														取消</button></td>
+												<!-- 												<td><a -->
+												<%-- 													href="/TrainMe/AllowStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=comingSoon" --%>
+												<!-- 													class="allow" data-type="comingSoon">同意</a> <a -->
+												<%-- 													href="/TrainMe/CancelStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=waitCourse" --%>
+												<!-- 													class="cancel" data-type="waitCourse">取消</a></td> -->
+											</tr>
+										</c:if>
+
+										<!-- 同意課程的彈跳視窗，會先被隱藏起來 -->
+										<div class="modal fade" id="exampleModal${StudentCourse.get(i.current).getId()}" tabindex="-1"
+											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">確定要同意嗎？</h5>
+													</div>
+													<div class="modal-body">上課時段：
+														${StudentCourse.get(i.current).getDate()}
+
+														${StudentCourse.get(i.current).getTime()}:00 -
+														${StudentCourse.get(i.current).getTime() + 1}:00</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">取消</button>
+														<button id="manageFeedback" class="btn btn-primary"
+															onclick="location.href='/TrainMe/AllowStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=comingSoon'">確定</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- 取消課程的彈跳視窗，會先被隱藏起來 -->
+										<div class="modal fade" id="exampleModal1${StudentCourse.get(i.current).getId()}" tabindex="-1"
+											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">確定要取消嗎？</h5>
+													</div>
+													<div class="modal-body">上課時段：
+														${StudentCourse.get(i.current).getDate()}
+
+														${StudentCourse.get(i.current).getTime()}:00 -
+														${StudentCourse.get(i.current).getTime() + 1}:00</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">取消</button>
+														<button id="manageFeedback" class="btn btn-primary"
+															onclick="location.href='/TrainMe/CancelStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=waitCourse'">確定</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</c:forEach>
+								</c:if>
 							</tbody>
 						</table>
 					</div>
@@ -188,23 +248,25 @@
 								</tr>
 							</thead>
 							<tbody class="tr_height">
-								<c:forEach varStatus="i" begin="0"
-									end="${StudentCourse.size()-1}">
-									<c:if
-										test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()< Now  }">
-										<tr>
-											<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getDate()}
+								<c:if test="${StudentCourse.size() > 0}">
+									<c:forEach varStatus="i" begin="0"
+										end="${StudentCourse.size()-1}">
+										<c:if
+											test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()< Now  }">
+											<tr>
+												<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getDate()}
 
-												${StudentCourse.get(i.current).getTime()}:00 -
-												${StudentCourse.get(i.current).getTime() + 1}:00</td>
-											<td><a
-												href="<c:url value='/st_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i
-													class="fas fa-book"></i></a></td>
-										</tr>
-									</c:if>
-								</c:forEach>
+													${StudentCourse.get(i.current).getTime()}:00 -
+													${StudentCourse.get(i.current).getTime() + 1}:00</td>
+												<td><a
+													href="<c:url value='/st_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i
+														class="fas fa-book"></i></a></td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</c:if>
 							</tbody>
 						</table>
 					</div>

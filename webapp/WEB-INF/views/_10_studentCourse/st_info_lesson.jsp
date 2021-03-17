@@ -94,12 +94,12 @@
 												${waitCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 											<td><button type="button" class="btn btn-primary"
-													data-toggle="modal" data-target="#exampleModal">
+													data-toggle="modal" data-target="#exampleModal1${waitCourse.get(i.current).getId()}">
 													取消</button></td>
 										</tr>
 										
 <!-- 										取消課程的彈跳視窗，會先被隱藏起來 -->
-										<div class="modal fade" id="exampleModal" tabindex="-1"
+										<div class="modal fade" id="exampleModal1${waitCourse.get(i.current).getId()}" tabindex="-1"
 											aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">
@@ -152,12 +152,12 @@
 												${comingSoonCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${comingSoonCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 											<td><button type="button" class="btn btn-primary"
-													data-toggle="modal" data-target="#exampleModal">
+													data-toggle="modal" data-target="#exampleModal${comingSoonCourse.get(i.current).getId()}">
 													取消</button></td>
 										</tr>
 										
 <!-- 										取消課程的彈跳視窗，會先被隱藏起來 -->
-										<div class="modal fade" id="exampleModal" tabindex="-1"
+										<div class="modal fade" id="exampleModal${comingSoonCourse.get(i.current).getId()}" tabindex="-1"
 											aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">

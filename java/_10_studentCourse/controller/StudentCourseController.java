@@ -118,7 +118,6 @@ public class StudentCourseController {
 //			moneyBean_H.setStudentCourseBean_H(sc);
 			memPointService.saveStudentRefund(moneyBean_H1);
 			
-			
 			//教練的費用要被扣回去
 			TrainerBean_H trainerBean =sc.getTrainerCourseBean_H().getTrainerBean_H();
 			moneyBean_H2.setTrainerBean_H(trainerBean);
@@ -126,6 +125,7 @@ public class StudentCourseController {
 			moneyBean_H2.setChange_amount(-sc.getTrainerCourseBean_H().getPrice());
 			memPointService.saveTrainerRefund(moneyBean_H2);
 		}
+		
 		System.out.println(type);
 		model.addAttribute("type",type);
 		return "redirect:/st_info_lesson/"+id;
