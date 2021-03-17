@@ -46,7 +46,11 @@ public class RatingsBean_H extends MemberBean_H {
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="student_course_id")
 	private StudentCourseBean_H studentCourseBean_H;
-
+	
+	public RatingsBean_H() {
+		
+	};
+	
 	public RatingsBean_H(Integer id, StudentBean_H studentBean_H, TrainerBean_H trainerBean_H, BigDecimal point,
 			String comment, StudentCourseBean_H studentCourseBean_H) {
 		super();
