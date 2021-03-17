@@ -1,5 +1,7 @@
 package _09_trainerCourse.model;
 
+import java.util.ArrayList;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,8 +41,11 @@ public class RatingsBean_H extends MemberBean_H {
 	@JoinColumn(name="student_course_id")
 	private StudentCourseBean_H studentCourseBean_H;
 	
+	
+
 	public RatingsBean_H() {
-		
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public RatingsBean_H(Integer id, StudentBean_H studentBean_H, TrainerBean_H trainerBean_H, Integer point,

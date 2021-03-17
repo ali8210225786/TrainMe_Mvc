@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import _07_memberInfo.dao.TrainerInfoDao;
+import _09_trainerCourse.model.SkillBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
+import _10_studentCourse.model.StudentCourseBean_H;
 
 @Transactional
 @Service
@@ -26,4 +28,15 @@ public class TrainerInfoService {
 		return trainerInfoDao.getTrainerCourseSkillType(trId);
 	}
 	
+	public Integer getSkillPrice(int trId , int skillId) {
+		return trainerInfoDao.getSkillPrice(trId, skillId);
+	}
+	
+	public TrainerCourseBean_H getTrainerCourseBeanByTrId_SkillId(int trId , int skillId) {
+		return trainerInfoDao.getTrainerCourseBeanByTrId_SkillId(trId, skillId);
+	}
+	
+	public void addStudentCourse(StudentCourseBean_H sc) {
+		trainerInfoDao.addStudentCourse(sc);
+	}
 }

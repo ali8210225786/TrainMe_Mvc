@@ -138,14 +138,20 @@
 	function addtr() {
 		// var l_category=document.getElementById('l_category').value;
 		var checkValue = $("#l_category").val();
-		var l_name = document.getElementById('l_name').value;
+		var l_name = document.getElementById('l_name');
 		var l_price = document.getElementById('l_price').value;
 		var table = document.getElementById('table');
-		var tradd = table.insertRow(1)
-		tradd.innerHTML = ` <td>${checkValue}</td><td>${l_name}</td><td>${l_price}</td><td><a href="javascript:" onclick="del(this)">刪除</a></td>`
+// 		var tradd = table.insertRow(1)
+// 		tradd.innerHTML = ` <td>${checkValue}</td><td>${l_name}</td><td>${l_price}</td><td><a href="javascript:" onclick="del(this)">刪除</a></td>`
 
+		 console.log(l_name.value.length);
+		 if (l_name.value.length > 20) {
+			 l_name.setCustomValidity("超過20字了");
+		 } else {
+			 l_name.setCustomValidity(""); // be sure to leave this empty!
+		 }
 	}
-	table.insertRow()
+// 	table.insertRow()
 
 	//刪除
 	function del(obj) {

@@ -62,8 +62,24 @@ public class StudentCourseBean_H implements Serializable{
 	
 	@OneToOne(mappedBy = "studentCourseBean_H" , fetch = FetchType.LAZY)
 	RatingsBean_H ratingsBean_H;
+	
+	
 
 	
+
+	
+
+	public StudentCourseBean_H(Date date, StudentBean_H studentBean_H, Integer time, Integer is_delete,
+			Integer is_rated, Integer is_allowed, TrainerCourseBean_H trainerCourseBean_H) {
+		super();
+		this.date = date;
+		this.studentBean_H = studentBean_H;
+		this.time = time;
+		this.is_delete = is_delete;
+		this.is_rated = is_rated;
+		this.is_allowed = is_allowed;
+		this.trainerCourseBean_H = trainerCourseBean_H;
+	}
 
 	public StudentCourseBean_H(Integer id, Date date, StudentBean_H studentBean_H, Integer time, Integer is_executed,
 			Integer is_delete, String datdiary_content, Integer is_rated, Integer is_allowed,

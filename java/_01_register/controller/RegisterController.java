@@ -38,6 +38,8 @@ import _03_memberData.service.MemberDataService;
 import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
 import _08_searchTrainer.service.SearchTrainerService;
+import _09_trainerCourse.model.RatingsAvgBean_H;
+import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import mail.model.SendingEmail;
@@ -82,12 +84,14 @@ public class RegisterController {
 		StudentBean_H studentBean = new StudentBean_H();
 		TrainerBean_H trainerBean = new TrainerBean_H();
 		LoginBean loginBean = new LoginBean();
-		List<TrainerCourseBean_H> trainerAndCourseBean = memberDataService.getTrainerAndCourse();
+		
+		//首頁人氣教練推薦		
+		List<TrainerCourseBean_H> trainerAndCourse = memberDataService.getTrainerAndCourse();
 		
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);		
-		model.addAttribute("trainerAndCourse", trainerAndCourseBean);
+		model.addAttribute("trainerAndCourse", trainerAndCourse);	
 
 		return "index";
 	}
@@ -226,6 +230,8 @@ public class RegisterController {
 			trainerBean.setType(2);
 			trainerBean.setVerification(0);
 			trainerBean.setIs_delete(0);
+			trainerBean.setRatings(0.0);
+			
 			
 			memberService.saveTrainer_H(trainerBean);
 			
@@ -285,7 +291,7 @@ public class RegisterController {
 		MemberBean_H mb = null;
 		StudentBean_H sb = null;
 		TrainerBean_H tb = null;
-		List<TrainerCourseBean_H> trainerAndCourseBean = memberDataService.getTrainerAndCourse();
+		List<TrainerCourseBean_H> trainerAndCourse = memberDataService.getTrainerAndCourse();
 
 		try {
 			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),
@@ -342,7 +348,7 @@ public class RegisterController {
 
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", new StudentBean_H());
-		model.addAttribute("trainerAndCourse", trainerAndCourseBean);
+		model.addAttribute("trainerAndCourse", trainerAndCourse);
 		model.addAttribute("loginBean", loginBean);
 		return "index";
 	}

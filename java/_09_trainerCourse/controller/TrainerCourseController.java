@@ -80,9 +80,9 @@ public class TrainerCourseController {
 		return BookedTimes;
 	}
 
-	@PostMapping("/TimeOff/update/{id}")
-	public String updateTimeOff(@PathVariable("id") Integer id, @RequestParam String data) {
-//		System.out.println(data);
+	@PostMapping(value ="/TimeOff/update/{id}")
+	public @ResponseBody String updateTimeOff(@PathVariable("id") Integer id, @RequestParam("data") String data) {
+//		System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		CloseHour closeHour = (new Gson()).fromJson(data, CloseHour.class);
 //		System.out.println(closeHour);
 
@@ -105,8 +105,12 @@ public class TrainerCourseController {
 			trainerCourseService.saveTimeOff(tob, id);
 
 		}
+		Gson gson = new Gson();
+        String json = gson.toJson("ok");
+		
+		return json;
+		
 
-		return "redirect:/TimeOff/" + id;
 	}
 
 	@GetMapping("/trainerCourse/{id}")

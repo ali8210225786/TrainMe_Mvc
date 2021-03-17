@@ -81,7 +81,9 @@ public class TrainerBean_H extends MemberBean_H {
 	private String bank_account;
 	private String course;
 	private String introduction;
-	
+	@Column(columnDefinition = "INT Default 0")
+	private Double ratings;
+	private Integer ratings_size;
 	
 	@Transient
 	private MultipartFile trainerImage;
@@ -112,7 +114,7 @@ public class TrainerBean_H extends MemberBean_H {
 	private Set<TrainerLicenseBean_H> trainerLicenseBean_H = new LinkedHashSet<>();
 	
 	public TrainerBean_H(Integer id, Integer type, String name, String phone, Date birthday, String email, String password,
-			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash) {
+			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash,Double ratings,Integer ratings_size) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -127,6 +129,8 @@ public class TrainerBean_H extends MemberBean_H {
 		this.gym = gym;
 		this.is_delete = is_delete;
 		this.hash = myHash;
+		this.ratings = ratings;
+		this.ratings_size = ratings_size;
 	}
 
 
@@ -134,6 +138,31 @@ public class TrainerBean_H extends MemberBean_H {
 
 	public TrainerBean_H() {
 		
+	}
+
+
+	public Integer getRatings_size() {
+		return ratings_size;
+	}
+
+
+
+
+	public void setRatings_size(Integer ratings_size) {
+		this.ratings_size = ratings_size;
+	}
+
+
+
+
+	public Double getRatings() {
+		return ratings;
+	}
+
+
+
+	public void setRatings(Double ratings) {
+		this.ratings = ratings;
 	}
 
 

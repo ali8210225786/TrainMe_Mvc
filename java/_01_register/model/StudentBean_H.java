@@ -1,14 +1,12 @@
 package _01_register.model;
 
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -58,7 +56,7 @@ public class StudentBean_H extends MemberBean_H {
 	private String newpasswordcheck;
 	private String id_number;
 	private String sex;
-	@Column(columnDefinition = "INT Default 0")
+	@Column(columnDefinition = "Double Default 0.0")
 	private Integer verification;
 	
 	

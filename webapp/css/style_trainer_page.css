@@ -138,7 +138,7 @@ a:hover{
 /* 自我介紹 */
 
 .sit{
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 /* 評價星等 */
@@ -152,7 +152,7 @@ a:hover{
     /* text-shadow: 0px 1px 0 #999; */
     }
     .full_star {
-    width: 90%; /*調整寬度可變更星等*/
+    width: 30%; /*調整寬度可變更星等*/
     position: absolute;
     left: 0;
     top: 0;
@@ -294,25 +294,44 @@ a:hover{
     color: #333;
 }
 
-/* 置中按鈕 */
-.trls_t_btn button{
+/* 左右選下一周 */
+.a{
     display: flex;
     justify-content: center;
-    align-items: center;   
-    color: #fff; 
-    font-size: 16px;
-    /* text-align: center; */
-    border:none;
-    border-radius: 10px;
-    width: 150px;
-    height: 45px;
-    background-color: #21d4a7;
-    cursor: pointer;
+    align-items: center;
+    position: relative;
 }
-.trls_t_btn button:hover{
-    background-color: #29dfb1;
+.list{
+    /* border:  */
+    width: 800px;
+    position: relative;
+    height: 650px;
+    overflow: hidden;
+}
+/* .choose_box{ */
+/*     position: absolute; */
+/*     width: 100%; */
+/*     font-size: 0; */
+/*     white-space:nowrap; */
+/* } */
+.sc{
+    /* padding: 10px; */
+    width: 800px;
+    /* height: 500px; */
+    display: inline-block;
+}
+.btnpn{
+    position: absolute;
+    top: 50%;
+}
+.next i,.pre i{
+    cursor:pointer;
+    padding: 20px;
+    font-size: 40px;
+    color: #65e7c7;
+}
 
-}
+
 
 
 /* 回到最上面按鈕 */

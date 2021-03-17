@@ -50,7 +50,7 @@
 	color: white;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 
 <script
 	src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
@@ -119,9 +119,9 @@
 									<template x-for="date in dates" :key="date + hour">
 										<td
 											:class="{
-                        closed :isClosed(date,hour),
-                        booked :isBooked(date,hour)
-                    }"
+						                        closed :isClosed(date,hour),
+						                        booked :isBooked(date,hour)
+						                    }"
 											@click="closeToggle(date,hour)">
 											<template x-if="isBooked(date, hour)">
 												<div>已預約</div>
@@ -138,7 +138,7 @@
 					</table>
 					
 					            <div class="e_button trls_t_btn">
-						              <button class="save">儲存設定</button>
+						              <button class="save" @click="save">儲存設定</button>
 						        </div>
 				</div>
 
@@ -153,11 +153,13 @@
 	crossorigin="anonymous"></script>
 <script>
   let today = dayjs().format('YYYY-MM-DD');
-
+  let dateEndStr = dayjs(today).add(7,'day').format('YYYY-MM-DD');
+//   console.log(dateEnd);
 
   function data() {
     return {
       beginDate : today,
+      dateEnd1 : dateEndStr,
       dates:[],
       hours : [8,9,10,11,12,13,14,15,16,17,18,19,20,21],
       closed : [],
@@ -173,7 +175,7 @@
     	  $.get("/TrainMe/TimeOff/getBooked/" + ${LoginOK.id},
                   function (data) {
                 	self.booked = data;
-                	 console.log(booked);
+//                 	 console.log(booked);
                   },
                   "json"
         );
@@ -181,8 +183,9 @@
 
       },
       getClosedHours(){
-		var dateEnd = dayjs(this.beginDate).add(7,'day');
-		const data = {dateBegin:this.beginDate , dateEnd: dateEnd.format('YYYY-MM-DD') }
+// 		var dateEnd = dayjs(this.beginDate).add(7,'day');
+// 		dateEndStr = this.dateEnd.format('YYYY-MM-DD')
+		const data = {dateBegin:this.beginDate , dateEnd: this.dateEnd1 }
 		const self = this;
     	$.get("/TrainMe/TimeOff/getClosed/" + ${LoginOK.id}, data,
                   function (data) {
@@ -237,6 +240,23 @@
         // const dateHourStr = `${dateStr}_${hour}`;
         const dateHourStr = this.toDateHourStr(date, hour);
         return this.closed.includes(dateHourStr);
+      },
+      save(){  // 先刪除時間內的所有資料，再存新資料
+    	  const self = this;
+    	  const hourData = this.closed.map(hour => hour); //解開包住物件得
+    	  const payload = {
+          closeHour: hourData,
+          dateBegin: self.beginDate,
+          dateEnd: self.dateEnd1,
+      	  };
+    	  
+        $.post("/TrainMe/TimeOff/update/"+ ${LoginOK.id}, {data:JSON.stringify(payload)},
+          function (data, textStatus, jqXHR) {
+        	 console.log(data);
+        	alert("儲存成功")
+          },
+          "json"
+        );
       }
       
 

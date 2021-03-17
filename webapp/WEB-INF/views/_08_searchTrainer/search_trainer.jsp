@@ -129,7 +129,7 @@
 							<div class="fc_star">
 								<div class="starss">
 				                    <div class="empty_star">★★★★★</div>
-				                    <div class="full_star">★★★★★</div>
+				                    <div class="full_star" style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>
 	                			</div>
 							</div>
 
@@ -141,7 +141,7 @@
 							<!-- 課程資訊 -->
 							<div class="fc_title">
 								<a class="trTitle"
-									href="<c:url value='/trainer_info/${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}' />">
+									href="<c:url value='/trainer_info/${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}?type=search' />">
 									${trainerCourseAll.get(i.current).getTrainerBean_H().getCourse()}
 								</a>
 							</div>
