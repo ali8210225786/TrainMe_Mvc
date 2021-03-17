@@ -346,7 +346,7 @@ public class RegisterController {
 					if (memberService.checkPass(sb.getType(), sb.getEmail())) {
 						// OK, 登入成功, 將sb物件放入Session範圍內，識別字串為"LoginOK"
 						model.addAttribute("LoginOK", sb);
-						List<MoneyBean_H> money =memPointService.getMoneyDetail(sb.getId());
+						List<MoneyBean_H> money =memPointService.getStudentMoneyDetail(sb.getId());
 						model.addAttribute("MoneyBean", money);
 					} else {
 						result.rejectValue("userEmail", "", "帳號尚未通過信箱驗證");

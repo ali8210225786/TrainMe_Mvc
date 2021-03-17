@@ -20,8 +20,10 @@ import com.google.gson.Gson;
 import com.google.protobuf.TextFormat.ParseException;
 
 import _01_register.model.StudentBean_H;
+import _01_register.model.TrainerBean_H;
 import _01_register.service.MemberService_H;
 import _03_memberData.service.MemberDataService;
+import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
 import _08_searchTrainer.service.SearchTrainerService;
 import _09_trainerCourse.model.CloseHour;
@@ -49,6 +51,9 @@ public class TrainerCourseController {
 
 	@Autowired
 	MemberDataService memberDataService;
+	
+	@Autowired
+	MemPointService memPointService;
 
 	@GetMapping("/TimeOff/{id}")
 	public String timeOff(Model model) {
@@ -144,11 +149,35 @@ public class TrainerCourseController {
 		StudentBean_H sb = memberDataService.getStudentById(stid);
 		String id = String.valueOf(stid);
 		int courseId = Integer.parseInt(courseIdStr);
+		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
+		MoneyBean_H moneyBean_H1=new MoneyBean_H();
+		MoneyBean_H moneyBean_H2=new MoneyBean_H();
+		java.util.Date date = new java.util.Date();
+		java.sql.Date changeTime = new java.sql.Date(date.getTime());
+		TrainerBean_H trainerBean_H=(TrainerBean_H)model.getAttribute("LoginOK");
 		
 		//寄同意信
-		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
 		SendingAcceptEmail acceptEmail = new SendingAcceptEmail(sb.getEmail(), sb.getName(), id ,sc);
 		acceptEmail.sendAcceptMail();
+		
+		//教練同意後money要新增一筆學員扣款
+		moneyBean_H1.setStudentBean_H(sb);
+		moneyBean_H1.setChange_time(changeTime);
+		moneyBean_H1.setChange_amount(-sc.getTrainerCourseBean_H().getPrice());
+		memPointService.saveStudentRefund(moneyBean_H1);
+		
+		
+		//money新增一筆教練費用
+		moneyBean_H2.setTrainerBean_H(trainerBean_H);
+		moneyBean_H2.setChange_time(changeTime);
+		moneyBean_H2.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
+		memPointService.saveTrainerRefund(moneyBean_H2);
+		
+		//如果要把studentcourse的bean設定進去,會有session衝突的問題,所以先註解掉
+//		moneyBean_H1.setStudentCourseBean_H(sc);
+//		memPointService.saveStudentCourseToMoney(moneyBean_H1);
+//		moneyBean_H2.setStudentCourseBean_H(sc);
+//		memPointService.saveStudentCourseToMoney(moneyBean_H2);
 		
 		studentCourseService.allowCourse(courseId);
 		System.out.println("type=" + type);
