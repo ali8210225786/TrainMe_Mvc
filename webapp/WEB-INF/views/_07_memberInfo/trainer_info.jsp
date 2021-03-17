@@ -38,17 +38,35 @@
 .tschedule td {
 	cursor: pointer;
 }
-
+.tschedule .closed,.tschedule .booked,.tschedule .save{
+	border-radius: 8px;
+	width:50px;
+/* 	height:95%; */
+ 	border:3px solid #fff;
+	margin: 5px;
+}
 .tschedule .closed {
-	background: grey;
+	background: #E7E7E7;
+	color: #999;
 	cursor: not-allowed;
 }
 
 .tschedule .booked {
-	background: pink;
-	cursor: not-allowed;
+/* 	background: #FF5500;FF8F00 */
+	background-image: linear-gradient(120deg, #FF8F00, #FF5500);
 	color: white;
+	cursor: not-allowed;
 }
+.tschedule .save{
+	color: white;
+	background-image: linear-gradient(120deg, #21d4a7, #0ac2a9);
+/* 	background: #30BE8F;  */
+/* 	border:1px solid #eee; */
+}
+.tschedule .save:hover{
+	background-image: linear-gradient(120deg, #30E9BB, #0DDFC2);
+}
+
 </style>
 </head>
 <body>
@@ -140,7 +158,7 @@
 					<label>教練評價</label>
 					<div class="starss">
 						<div class="empty_star">★★★★★</div>
-						<div class="full_star">★★★★★</div>
+						<div class="full_star" style="width:50%">★★★★★</div>
 					</div>
 					<p>(30)</p>
 				</div>
@@ -326,7 +344,7 @@
 									<span class="pre"><i class="fas fa-angle-left"
 										@click="lessDate()"></i></span>
 								</template>
-				<div class="list">
+								
 					<div class="choose_box">
 						<div class="sc">
 							<!-- 一進來就會顯示當天起始那一周的時間表 -->
@@ -336,13 +354,13 @@
 										<th scope="col"></th>
 										<template x-for="date in dates" :key="date.day()">
 											<th scope="col">
-												<div x-text="parseDayOfWeek(date.day())"></div>
 												<div x-text="date.format('MM/DD')"></div>
+												<div x-text="parseDayOfWeek(date.day())"></div>
 											</th>
 										</template>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="tbody">
 									<template x-for="hour in hours" :key="hour">
 										<tr>
 											<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
@@ -350,18 +368,19 @@
 												<td
 													:class="{
 		                       			 closed :isClosed(date,hour),  
-				                        booked :isBooked(date,hour)}"
+				                        booked :isBooked(date, hour),
+				                        save :!isClosed(date, hour) && !isBooked(date, hour)
+				                        }"
 													@click="bookCourse(date,hour)">
 													<template x-if="isBooked(date, hour)">
-														<div>已預約</div>
+														<span>已預約</span>
 													</template>
 													<template x-if="isClosed(date, hour)">
-														<div>已關閉</div>
+														<span>未開放</span>
 													</template>
 													<template
 														x-if="!isClosed(date, hour) && !isBooked(date, hour)">
-														<button class="save"
-															style="border-radius: 5px; background-color: #eee; padding: 15px 20px">預約</button>
+														<span>預約</span>
 													</template>
 												</td>
 											</template>
@@ -380,7 +399,6 @@
 				</div>
 
 
-			</div>
 							<template x-if="isEnd()">
 								<span class="next"><i class="fas fa-angle-right"
 									@click="addDate()"></i></span>
