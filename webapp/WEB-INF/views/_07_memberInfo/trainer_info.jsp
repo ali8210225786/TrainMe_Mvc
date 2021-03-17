@@ -39,17 +39,35 @@
 .tschedule td {
 	cursor: pointer;
 }
-
+.tschedule .closed,.tschedule .booked,.tschedule .save{
+	border-radius: 8px;
+	width:50px;
+/* 	height:95%; */
+ 	border:3px solid #fff;
+	margin: 5px;
+}
 .tschedule .closed {
-	background: grey;
+	background: #E7E7E7;
+	color: #999;
 	cursor: not-allowed;
 }
 
 .tschedule .booked {
-	background: pink;
-	cursor: not-allowed;
+/* 	background: #FF5500;FF8F00 */
+	background-image: linear-gradient(120deg, #FF8F00, #FF5500);
 	color: white;
+	cursor: not-allowed;
 }
+.tschedule .save{
+	color: white;
+	background-image: linear-gradient(120deg, #21d4a7, #0ac2a9);
+/* 	background: #30BE8F;  */
+/* 	border:1px solid #eee; */
+}
+.tschedule .save:hover{
+	background-image: linear-gradient(120deg, #30E9BB, #0DDFC2);
+}
+
 
 .tschedule .lock{
 	cursor: not-allowed;
@@ -149,9 +167,9 @@
 					<label>教練評價</label>
 					<div class="starss">
 						<div class="empty_star">★★★★★</div>
-						<div class="full_star">★★★★★</div>
+						<div class="full_star" style="width:${trainerBean.ratings * 20}%">★★★★★</div>
 					</div>
-					<p>(30)</p>
+					<p>(${trainerBean.ratings_size})</p>
 				</div>
 				<div class="info_div">
 					<label>授課區域</label>
@@ -365,7 +383,7 @@
 									<span class="pre"><i class="fas fa-angle-left"
 										@click="lessDate()"></i></span>
 								</template>
-				<div class="list">
+							<div class="list">		
 					<div class="choose_box">
 						<div class="sc">
 							<!-- 一進來就會顯示當天起始那一周的時間表 -->
@@ -375,13 +393,14 @@
 										<th scope="col"></th>
 										<template x-for="date in dates" :key="date.day()">
 											<th scope="col">
+											
 												<div x-text="parseDayOfWeek(date.day())"></div>
 												<div x-text="date.format('MM/DD')"></div>
 											</th>
 										</template>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="tbody">
 									<template x-for="hour in hours" :key="hour">
 										<tr>
 											<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
@@ -389,13 +408,13 @@
 												<td
 													:class="{
 		                       			 closed :isClosed(date,hour),  
-				                        booked :isBooked(date,hour)}"
+				                        booked :isBooked(date, hour)"
 													@click="bookCourse(date,hour)">
 													<template x-if="isBooked(date, hour)">
-														<div>已預約</div>
+														<span>已預約</span>
 													</template>
 													<template x-if="isClosed(date, hour)">
-														<div>已關閉</div>
+														<span>未開放</span>
 													</template>
 													<template x-if="!isClosed(date, hour) && !isBooked(date, hour)">
 														<button class="save" :class= "{lock :isTrainer()}"
@@ -406,9 +425,9 @@
 										</tr>
 									</template>
 
-								</tbody>
-							</table>
-						</div>
+							</tbody>
+						</table>
+					</div>
 
 
 
@@ -417,8 +436,7 @@
 					</div>
 				</div>
 
-
-			</div>
+</div>
 							<template x-if="isEnd()">
 								<span class="next"><i class="fas fa-angle-right"
 									@click="addDate()"></i></span>
@@ -427,7 +445,7 @@
 
 
 
-	</div>
+		</div>
 
 
 	</div>
@@ -445,140 +463,140 @@
 
 
 			<!-- 單則評價(每次新增就是整個fb div) -->
+			<c:if test="${trainerCourseAndStudentCourseAndRatings.size() != 0}">
+				<c:forEach varStatus="i" begin="0"
+					end="${trainerCourseAndStudentCourseAndRatings.size()-1}">
+					<div class="fb">
 
-			<div class="fb">
+						<!-- 會員大頭貼 -->
+						<div class="mb_picture">
+							<c:choose>
+								<c:when
+									test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
+									<img
+										src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+								</c:when>
+								<c:otherwise>
+									<img
+										src="/upload/${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
+								</c:otherwise>
+							</c:choose>
+						</div>
 
-				<!-- 會員大頭貼 -->
-				<div class="mb_picture">
-					<img src="<c:url value='/images/_03_MemberData/upimage.png' />">
-				</div>
+						<!-- 評價內容 -->
+						<div class="fb_content">
 
-				<!-- 評價內容 -->
-				<div class="fb_content">
+							<!-- 會員名稱時間等等 -->
+							<div class="fc_title">
+								<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getName()}</span>
+								<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getDate()}</span>
+								<label>課程：</label><span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</span>
+							</div>
 
-					<!-- 會員名稱時間等等 -->
-					<div class="fc_title">
-						<span>天竺鼠</span> <span>2021-01-27 08:30</span> <label>課程：</label><span>基德老師快樂減重課程快樂減重課程快樂課程</span>
-					</div>
+							<!-- 評價星星 (暫)-->
+							<div class="fc_star">
+								<div class="starss" id="starss">
+									<div class="empty_star">★★★★★</div>
+									<div class="full_star"
+										style="width:${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() * 20}%">★★★★★</div>
+								</div>
+							</div>
 
-					<!-- 評價星星 (暫)-->
-					<div class="fc_star">
-						<div class="starss" id="starss">
-							<img value="1" src="<c:url value='/images/star1.png' />"> <img
-								value="2" src="<c:url value='/images/star1.png' />"> <img
-								value="3" src="<c:url value='/images/star1.png' />"> <img
-								value="4" src="<c:url value='/images/star1.png' />"> <img
-								value="5" src="<c:url value='/images/star1.png' />">
+							<!-- 留言 -->
+							<div class="sit">
+								<p>${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
+							</div>
+
 						</div>
 					</div>
+				</c:forEach>
+			</c:if>
+			<!-- 			<div class="fb"> -->
+			<!-- 				會員大頭貼 -->
+			<!-- 				<div class="mb_picture"> -->
+			<%-- 					<img src="<c:url value='/images/_03_MemberData/member.jpg' />"> --%>
+			<!-- 				</div> -->
 
-					<!-- 留言 -->
-					<div class="fc_content">
-						<p>
-							很認真,很照顧學員<br> 對於第一次使用健身房器材,也講的很詳細,<br>
-							以及飲食控制也不怕麻煩請學員每日提供餐食內容物以判斷熱量吸取的狀態。<br> 真心推薦!
-						</p>
-					</div>
+			<!-- 				評價內容 -->
+			<!-- 				<div class="fb_content"> -->
 
-				</div>
-			</div>
+			<!-- 					會員名稱時間等等 -->
+			<!-- 					<div class="fc_title"> -->
+			<!-- 						<span>天竺鼠</span> <span>2021-01-27 08:30</span> <label>課程：</label><span>基德老師快樂減重課程快樂減重課程快樂課程</span> -->
+			<!-- 					</div> -->
 
-			<div class="fb">
-				<!-- 會員大頭貼 -->
-				<div class="mb_picture">
-					<img src="<c:url value='/images/_03_MemberData/member.jpg' />">
-				</div>
+			<!-- 					評價星星 (暫) -->
+			<!-- 					<div class="fc_star"> -->
+			<!-- 						<div class="starss" id="starss"> -->
+			<%-- 							<img value="1" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="2" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="3" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="4" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="5" src="<c:url value='/images/star1.png' />"> --%>
+			<!-- 						</div> -->
+			<!-- 					</div> -->
 
-				<!-- 評價內容 -->
-				<div class="fb_content">
+			<!-- 					留言 -->
+			<!-- 					<div class="fc_content"> -->
+			<!-- 						<p> -->
+			<!-- 							很認真,很照顧學員<br> 對於第一次使用健身房器材,也講的很詳細,<br> -->
+			<!-- 							以及飲食控制也不怕麻煩請學員每日提供餐食內容物以判斷熱量吸取的狀態。<br> 真心推薦! -->
+			<!-- 						</p> -->
+			<!-- 					</div> -->
 
-					<!-- 會員名稱時間等等 -->
-					<div class="fc_title">
-						<span>天竺鼠</span> <span>2021-01-27 08:30</span> <label>課程：</label><span>基德老師快樂減重課程快樂減重課程快樂課程</span>
-					</div>
+			<!-- 				</div> -->
+			<!-- 			</div> -->
 
-					<!-- 評價星星 (暫)-->
-					<div class="fc_star">
-						<div class="starss" id="starss">
-							<img value="1" src="<c:url value='/images/star1.png' />"> <img
-								value="2" src="<c:url value='/images/star1.png' />"> <img
-								value="3" src="<c:url value='/images/star1.png' />"> <img
-								value="4" src="<c:url value='/images/star1.png' />"> <img
-								value="5" src="<c:url value='/images/star1.png' />">
-						</div>
-					</div>
+			<!-- 			<div class="fb"> -->
 
-					<!-- 留言 -->
-					<div class="fc_content">
-						<p>
-							很認真,很照顧學員<br> 對於第一次使用健身房器材,也講的很詳細,<br>
-							以及飲食控制也不怕麻煩請學員每日提供餐食內容物以判斷熱量吸取的狀態。<br> 真心推薦!
-						</p>
-					</div>
+			<!-- 				會員大頭貼 -->
+			<!-- 				<div class="mb_picture"> -->
+			<%-- 					<img src="<c:url value='/images/_03_MemberData/member.jpg' />"> --%>
+			<!-- 				</div> -->
 
-				</div>
-			</div>
+			<!-- 				評價內容 -->
+			<!-- 				<div class="fb_content"> -->
 
-			<div class="fb">
+			<!-- 					會員名稱時間等等 -->
+			<!-- 					<div class="fc_title"> -->
+			<!-- 						<span>天竺鼠</span> <span>2021-01-27 08:30</span> <label>課程：</label><span>基德老師快樂減重課程快樂減重課程快樂課程</span> -->
+			<!-- 					</div> -->
 
-				<!-- 會員大頭貼 -->
-				<div class="mb_picture">
-					<img src="<c:url value='/images/_03_MemberData/member.jpg' />">
-				</div>
+			<!-- 					評價星星 (暫) -->
+			<!-- 					<div class="fc_star"> -->
+			<!-- 						<div class="starss" id="starss"> -->
 
-				<!-- 評價內容 -->
-				<div class="fb_content">
+			<%-- 							<img value="1" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="2" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="3" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="4" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="5" src="<c:url value='/images/star1.png' />"> --%>
+			<!-- 						</div> -->
+			<!-- 					</div> -->
 
-					<!-- 會員名稱時間等等 -->
-					<div class="fc_title">
-						<span>天竺鼠</span> <span>2021-01-27 08:30</span> <label>課程：</label><span>基德老師快樂減重課程快樂減重課程快樂課程</span>
-					</div>
+			<!-- 					留言 -->
+			<!-- 					<div class="fc_content"> -->
+			<!-- 						<p> -->
+			<!-- 							很認真,很照顧學員<br> 對於第一次使用健身房器材,也講的很詳細,<br> -->
+			<!-- 							以及飲食控制也不怕麻煩請學員每日提供餐食內容物以判斷熱量吸取的狀態。<br> 真心推薦! -->
+			<!-- 						</p> -->
+			<!-- 					</div> -->
 
-					<!-- 評價星星 (暫)-->
-					<div class="fc_star">
-						<div class="starss" id="starss">
+			<!-- 				</div> -->
+			<!-- 			</div> -->
 
-							<img value="1" src="<c:url value='/images/star1.png' />"> <img
-								value="2" src="<c:url value='/images/star1.png' />"> <img
-								value="3" src="<c:url value='/images/star1.png' />"> <img
-								value="4" src="<c:url value='/images/star1.png' />"> <img
-								value="5" src="<c:url value='/images/star1.png' />">
-						</div>
-					</div>
+			<!-- 		</div> -->
+			<!-- 	</div> -->
 
-					<!-- 留言 -->
-					<div class="fc_content">
-						<p>
-							很認真,很照顧學員<br> 對於第一次使用健身房器材,也講的很詳細,<br>
-							以及飲食控制也不怕麻煩請學員每日提供餐食內容物以判斷熱量吸取的狀態。<br> 真心推薦!
-						</p>
-					</div>
+			<!-- 回到最上面 -->
+			<a
+				href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#"
+				id="gotop"> <i class="fa fa-angle-up"></i>
+			</a>
 
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<!-- 回到最上面 -->
-	<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#"
-		id="gotop"> <i class="fa fa-angle-up"></i>
-	</a>
-
-
-	 <script
-        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"
-    ></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"
-    ></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script>
+			<script
+				src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+			<script>
 		//回到最上面
 		$(function() {
 			/* 按下GoTop按鈕時的事件 */
@@ -732,7 +750,5 @@
 		  }
 		  
 	</script>
-
-
 </body>
 </html>

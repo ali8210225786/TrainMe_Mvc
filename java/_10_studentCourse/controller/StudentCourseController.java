@@ -51,6 +51,9 @@ public class StudentCourseController {
 	
 	@Autowired
 	MemberService_H memberService;
+	
+	@Autowired
+	MemberDataService memberDataService;
 
 	@GetMapping("/st_info_lesson/{id}")
 	public String stLesson(Model model, @PathVariable("id") Integer id) {
@@ -100,27 +103,39 @@ public class StudentCourseController {
 		return "_10_studentCourse/st_info_lesson";
 	}
 	
+	
+	
 	@GetMapping("/CancelCourseLesson/{id}")
 	public String cancelCourse(
 			@PathVariable("id") Integer id, 
-			@RequestParam("courseId") String courseIdStr, 
-			@RequestParam("type") String type, 
+			@RequestParam(value="courseId") String courseIdStr, 
+			@RequestParam(value="type") String type, 
 			Model model) {
 		int courseId = Integer.parseInt(courseIdStr);
 		studentCourseService.cancelCourse(courseId);
-		MoneyBean_H moneyBean_H=new MoneyBean_H();
+		MoneyBean_H moneyBean_H1=new MoneyBean_H();
+		MoneyBean_H moneyBean_H2=new MoneyBean_H();
 		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
+		Date date = new Date();
+		java.sql.Date changeTime = new java.sql.Date(date.getTime());
 		if(type.equals("comingSoon")) {
 
+			//學員取消課程後要存進新的一筆退款
 			StudentBean_H studentBean_H =(StudentBean_H) model.getAttribute("LoginOK");
-			moneyBean_H.setStudentBean_H(studentBean_H);
-			Date date = new Date();
-			java.sql.Date changeTime = new java.sql.Date(date.getTime());
-			moneyBean_H.setChange_time(changeTime);
-			moneyBean_H.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
+			moneyBean_H1.setStudentBean_H(studentBean_H);
+			moneyBean_H1.setChange_time(changeTime);
+			moneyBean_H1.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
 //			moneyBean_H.setStudentCourseBean_H(sc);
-			memPointService.saveRefund(moneyBean_H);
+			memPointService.saveStudentRefund(moneyBean_H1);
+			
+			//教練的費用要被扣回去
+			TrainerBean_H trainerBean =sc.getTrainerCourseBean_H().getTrainerBean_H();
+			moneyBean_H2.setTrainerBean_H(trainerBean);
+			moneyBean_H2.setChange_time(changeTime);
+			moneyBean_H2.setChange_amount(-sc.getTrainerCourseBean_H().getPrice());
+			memPointService.saveTrainerRefund(moneyBean_H2);
 		}
+		
 		System.out.println(type);
 		model.addAttribute("type",type);
 		return "redirect:/st_info_lesson/"+id;
@@ -144,11 +159,32 @@ public class StudentCourseController {
 			@RequestParam("studentCourseId") Integer studentCourseId
 			) {
 		StudentCourseBean_H studentCourseBean = studentCourseService.getStudentCourse(studentCourseId);
+		TrainerBean_H trainerBean_H = memberDataService.getTrainerById(studentCourseBean.getTrainerCourseBean_H().getTrainerBean_H().getId());
 		
 		studentCourseBean.setIs_rated(1);
+		
 		RatingsBean_H ratingsBean = new RatingsBean_H(null, studentCourseBean.getStudentBean_H(), studentCourseBean.getTrainerCourseBean_H().getTrainerBean_H(), starsVal, feedback, studentCourseBean);
 		
 		studentCourseService.addFeedback(ratingsBean);
+		
+		List<RatingsBean_H> ratinglist = memberDataService.getTrainerRatings(studentCourseBean.getTrainerCourseBean_H().getTrainerBean_H().getId());	
+		
+		Double total=0.0;
+		for (int i = 0; i < ratinglist.size(); i++) {
+			total+= ratinglist.get(i).getPoint();
+		}
+	
+		if(ratinglist.size() == 0) {
+		Double avg = ((total) / 1.0);
+		trainerBean_H.setRatings(avg);
+		trainerBean_H.setRatings_size(ratinglist.size());;
+		}else {
+		Double avg = ((total) / (double)(ratinglist.size()));
+		trainerBean_H.setRatings(avg);
+		trainerBean_H.setRatings_size(ratinglist.size());;
+		}
+		
+		memberDataService.updateTrainer(trainerBean_H);
 		
 		// 頁面跳轉改用jquery的post方法跳轉,這邊return的其實不會有反應,但反正要寫就對ㄌ
 		
@@ -179,3 +215,5 @@ public class StudentCourseController {
 	}
 
 }
+
+

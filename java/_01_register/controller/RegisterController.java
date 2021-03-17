@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -38,6 +39,8 @@ import _03_memberData.service.MemberDataService;
 import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
 import _08_searchTrainer.service.SearchTrainerService;
+import _09_trainerCourse.model.RatingsAvgBean_H;
+import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import mail.model.SendingEmail;
@@ -82,12 +85,14 @@ public class RegisterController {
 		StudentBean_H studentBean = new StudentBean_H();
 		TrainerBean_H trainerBean = new TrainerBean_H();
 		LoginBean loginBean = new LoginBean();
-		List<TrainerCourseBean_H> trainerAndCourseBean = memberDataService.getTrainerAndCourse();
+		
+		//首頁人氣教練推薦		
+		List<TrainerCourseBean_H> trainerAndCourse = memberDataService.getTrainerAndCourse();
 		
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);		
-		model.addAttribute("trainerAndCourse", trainerAndCourseBean);
+		model.addAttribute("trainerAndCourse", trainerAndCourse);	
 
 		return "index";
 	}
@@ -154,18 +159,21 @@ public class RegisterController {
 			errorResponseSt(studentBean, model);
 
 		}
-
+		
+		StudentBean_H sb = memberDataService.getStudentById(studentBean.getId());
+		Integer id = sb.getId();
 		// 寄驗證信
 		SendingEmail se = new SendingEmail(1, studentBean.getEmail(), studentBean.getHash(), studentBean.getName());
 		se.sendMail();
-
+		
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
-		
+
 		// 伺服器通知客戶端對新網址發出請求。其原本參數狀態不被保留。
 		// 所以如果只用"index"跳轉後網址會有/tr_register
-		return "redirect:/";
+//		return "redirect:/";
+		return "redirect:/registerMessage/" + id;
 	}
 
 	// 當有錯誤時的處理 - 學員
@@ -177,6 +185,17 @@ public class RegisterController {
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
 
+	}
+	
+//	註冊成功跳轉頁面
+	@GetMapping("registerMessage/{id}")
+	public String registerMessage(Model model ,@PathVariable("id") Integer id) {
+		StudentBean_H studentBean_email = memberDataService.getStudentById(id);
+		TrainerBean_H trainerBean_email = memberDataService.getTrainerById(id);
+		model.addAttribute("studentBean", studentBean_email);
+		model.addAttribute("trainerBean", trainerBean_email);
+
+	return "_01_register/rd_register_message";
 	}
 
 //	// BindingResult 參數必須與@ModelAttribute修飾的參數連續編寫，中間不能夾其他參數
@@ -226,6 +245,8 @@ public class RegisterController {
 			trainerBean.setType(2);
 			trainerBean.setVerification(0);
 			trainerBean.setIs_delete(0);
+			trainerBean.setRatings(0.0);
+			
 			
 			memberService.saveTrainer_H(trainerBean);
 			
@@ -235,6 +256,9 @@ public class RegisterController {
 			errorResponseTr(trainerBean, model);
 			return "index";
 		}
+		
+		TrainerBean_H tb = memberDataService.getTrainerById(trainerBean.getId());
+		Integer id = tb.getId();
 
 		// 寄驗證信
 		SendingEmail se = new SendingEmail(2, trainerBean.getEmail(), trainerBean.getHash(), trainerBean.getName());
@@ -243,7 +267,9 @@ public class RegisterController {
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("loginBean", loginBean);
-		return "redirect:/";
+		model.addAttribute("trainerBean_email",trainerBean);
+		
+		return "redirect:/registerMessage/" + id;
 	}
 
 	// 當有錯誤時的處理 - 教練
@@ -285,7 +311,7 @@ public class RegisterController {
 		MemberBean_H mb = null;
 		StudentBean_H sb = null;
 		TrainerBean_H tb = null;
-		List<TrainerCourseBean_H> trainerAndCourseBean = memberDataService.getTrainerAndCourse();
+		List<TrainerCourseBean_H> trainerAndCourse = memberDataService.getTrainerAndCourse();
 
 		try {
 			mb = memberService.checkIdPassword_H(loginBean.getUserEmail(),
@@ -320,7 +346,7 @@ public class RegisterController {
 					if (memberService.checkPass(sb.getType(), sb.getEmail())) {
 						// OK, 登入成功, 將sb物件放入Session範圍內，識別字串為"LoginOK"
 						model.addAttribute("LoginOK", sb);
-						List<MoneyBean_H> money =memPointService.getMoneyDetail(sb.getId());
+						List<MoneyBean_H> money =memPointService.getStudentMoneyDetail(sb.getId());
 						model.addAttribute("MoneyBean", money);
 					} else {
 						result.rejectValue("userEmail", "", "帳號尚未通過信箱驗證");
@@ -342,7 +368,7 @@ public class RegisterController {
 
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", new StudentBean_H());
-		model.addAttribute("trainerAndCourse", trainerAndCourseBean);
+		model.addAttribute("trainerAndCourse", trainerAndCourse);
 		model.addAttribute("loginBean", loginBean);
 		return "index";
 	}

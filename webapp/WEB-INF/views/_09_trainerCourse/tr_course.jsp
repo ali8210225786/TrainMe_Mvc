@@ -16,7 +16,8 @@
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />">
-<link rel="stylesheet" href="<c:url value='/css/style_st_account.css' />">
+<link rel="stylesheet"
+	href="<c:url value='/css/style_st_account.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_tr_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/stprofile_popup.css' />">
 
@@ -53,44 +54,46 @@
 			<div class="title">
 				<h3>課程管理</h3>
 			</div>
-			
-			 <!-- 說明 -->
 
-         <div class="explain">
-            <p>設定您的健身課程、開放預約的時段，並管理您的所有課程訂單。</p>
-         </div>
-        
-        <!-- ============課程設定======================================================= -->
+			<!-- 說明 -->
 
-        <div class="info_wrap t">
+			<div class="explain">
+				<p>設定您的健身課程、開放預約的時段，並管理您的所有課程訂單。</p>
+			</div>
+
+			<!-- ============課程設定======================================================= -->
+
+			<div class="info_wrap t">
 
 
-            <h5>課程與時段設定</h5>        
-            <!-- 新增課程 -->
-            <div class="ls_set">
-              <div class="ls_set_box">
-                <a href="<c:url value='/courseSet/${LoginOK.id}' />">管理課程清單<i class="far fa-list-alt"></i></a>
-              </div>
-    
-            <!-- 管理預約時段 -->
-              <div class="ls_set_box">
-                <a href="<c:url value='/TimeOff/${LoginOK.id}' />">管理預約時段<i class="far fa-clock"></i></a>
-              </div>
-    
-            </div>
-            
-            
-            
+				<h5>課程與時段設定</h5>
+				<!-- 新增課程 -->
+				<div class="ls_set">
+					<div class="ls_set_box">
+						<a href="<c:url value='/courseSet/${LoginOK.id}' />">管理課程清單<i
+							class="far fa-list-alt"></i></a>
+					</div>
 
-        </div>
-      
-        <!-- ---------------------------- -->
-			
+					<!-- 管理預約時段 -->
+					<div class="ls_set_box">
+						<a href="<c:url value='/TimeOff/${LoginOK.id}' />">管理預約時段<i
+							class="far fa-clock"></i></a>
+					</div>
+
+				</div>
+
+
+
+
+			</div>
+
+			<!-- ---------------------------- -->
+
 
 			<!-- ============即將開始的課程======================================================= -->
 
 			<div class="info_wrap t lesson">
-			<h5>我的課程訂單</h5> 
+				<h5>我的課程訂單</h5>
 
 				<ul class="nav nav-tab mb-3" id="pills-tab" role="tablist">
 				
@@ -192,23 +195,25 @@
 								</tr>
 							</thead>
 							<tbody class="tr_height">
-								<c:forEach varStatus="i" begin="0"
-									end="${StudentCourse.size()-1}">
-									<c:if
-										test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()< Now  }">
-										<tr>
-											<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getDate()}
+								<c:if test="${StudentCourse.size() > 0}">
+									<c:forEach varStatus="i" begin="0"
+										end="${StudentCourse.size()-1}">
+										<c:if
+											test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()< Now  }">
+											<tr>
+												<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getDate()}
 
-												${StudentCourse.get(i.current).getTime()}:00 -
-												${StudentCourse.get(i.current).getTime() + 1}:00</td>
-											<td><a
-												href="<c:url value='/st_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i
-													class="fas fa-book"></i></a></td>
-										</tr>
-									</c:if>
-								</c:forEach>
+													${StudentCourse.get(i.current).getTime()}:00 -
+													${StudentCourse.get(i.current).getTime() + 1}:00</td>
+												<td><a
+													href="<c:url value='/st_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i
+														class="fas fa-book"></i></a></td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</c:if>
 							</tbody>
 						</table>
 					</div>

@@ -56,6 +56,9 @@ public class TrainerInfoController {
 	@Autowired
 	MemberService_H memberService;
 	
+	@Autowired
+	TrainerCourseService trainerCourseService;
+	
 
 	@GetMapping("/trainer_info/{id}")
 	public String TrainerInfo(Model model,
@@ -66,6 +69,7 @@ public class TrainerInfoController {
 		List<TrainerCourseBean_H> trainerCourses = trainerInfoService.getTrainerCourse(id);
 		List<TrainerCourseBean_H> trainerCoursesSkillType = trainerInfoService.getTrainerCourseSkillType(id);
 		List<TrainerLicenseBean_H> trainerLicenseBean = memberDataService.getTrainerLicenseAll(id);
+		List<StudentCourseBean_H> trainerCourseAndStudentCourseAndRatings = trainerCourseService.getTrainerCourseById(id);
 		
 		model.addAttribute("type",type);
 		model.addAttribute("trainerLicenseBean", trainerLicenseBean);
@@ -73,6 +77,7 @@ public class TrainerInfoController {
 		model.addAttribute("trainerCourses", trainerCourses);
 		model.addAttribute("gym", gym);
 		model.addAttribute("trainerBean", trainerBean);
+		model.addAttribute("trainerCourseAndStudentCourseAndRatings", trainerCourseAndStudentCourseAndRatings);
 		return "/_07_memberInfo/trainer_info";
 	}
 	

@@ -54,6 +54,28 @@
             padding-bottom:8px;
             text-decoration: none;
         }
+        
+        /* 通知鈴鐺 */
+        ul li:last-child a i{
+            position: relative;
+            font-size: 22px;
+            color: #333;
+            margin-left: 20px;
+        }
+        /* 訊息數量紅點 */
+        .jiaobiao{
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            border-radius: 30px;
+            background: #ff4848;
+            line-height: 15px;
+            text-align: center;
+            top: -5px;
+            left: 12px;
+            font-size: 10px;
+            color: #fff;
+        }
 
         /*logo*/
 

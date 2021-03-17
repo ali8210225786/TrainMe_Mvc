@@ -18,6 +18,14 @@
     background-color: #21d4a7;
     color: #fff;
   }
+    .df_btn a{
+    color: #fff;
+  }
   .df_btn:hover{
     background-color: #29dfb1;
+  }
+  
+  .df_btn a{
+   
+    color: #fff;
   }

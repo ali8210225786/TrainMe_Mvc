@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -350,7 +350,7 @@ html .fixWindow {
 	<div class="splide">
 		<div class="splide__track">
 			<ul class="splide__list">
-			
+
 				<c:if test="${trainerAndCourse.size() > 0}">
 					<c:forEach varStatus="i" begin="0"
 						end="${trainerAndCourse.size()-1}">
@@ -363,12 +363,13 @@ html .fixWindow {
 									<p class="t_ltimes">
 										<i class="fas fa-user-friends"></i>20次課程媒合
 									</p>
-								</span> <span>
+								</span> 
+								<span>
 									<div class="ratings">
 										<div class="empty-stars"></div>
-										<div class="full-stars" style="width: 60%"></div>
+										<div class="full-stars" style="width: ${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings() * 20}%"></div>
 									</div>
-									<p>(18)</p>
+									<p>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</p>				
 								</span>
 							</div>
 							<a

@@ -138,7 +138,7 @@ a:hover{
 /* 自我介紹 */
 
 .sit{
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 /* 評價星等 */
@@ -152,7 +152,7 @@ a:hover{
     /* text-shadow: 0px 1px 0 #999; */
     }
     .full_star {
-    width: 90%; /*調整寬度可變更星等*/
+    width: 30%; /*調整寬度可變更星等*/
     position: absolute;
     left: 0;
     top: 0;
@@ -301,6 +301,8 @@ a:hover{
     align-items: center;
     position: relative;
 }
+
+/* 預約表格div */
 .list{
     /* border:  */
     width: 800px;
@@ -308,12 +310,12 @@ a:hover{
     height: 650px;
     overflow: hidden;
 }
-.choose_box{
-    position: absolute;
-    width: 100%;
-    font-size: 0;
-    white-space:nowrap;
-}
+/* .choose_box{ */
+/*     position: absolute; */
+/*     width: 100%; */
+/*     font-size: 0; */
+/*     white-space:nowrap; */
+/* } */
 .sc{
     /* padding: 10px; */
     width: 800px;
@@ -331,7 +333,22 @@ a:hover{
     color: #65e7c7;
 }
 
-
+/* 預約表格樣式調整 */
+.choose_box .tschedule .thead tr th{
+    border-bottom: 3px solid #fff;
+}
+.tschedule .thead tr th{
+        background-color: #000;
+}
+.tschedule .thead tr th div:first-child{
+        margin-bottom:8px;
+}
+.tschedule tbody tr th{
+    background-color: #F7F7F7;
+}
+.tschedule tbody tr th,.tschedule tbody tr td{
+    border:1px solid #fff;
+}
 
 
 /* 回到最上面按鈕 */
