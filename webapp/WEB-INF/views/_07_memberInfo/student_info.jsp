@@ -98,7 +98,7 @@
 												</c:otherwise>
 
 											</c:choose>
-										</span> 點 <a href="#">我要儲值</a>
+										</span> 點 <a href="<c:url value='/studentMoney/addPoint' />">我要儲值</a>
 									</p>
 								</div>
 
