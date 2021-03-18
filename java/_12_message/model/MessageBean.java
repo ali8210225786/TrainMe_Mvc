@@ -26,10 +26,10 @@ public class MessageBean {
 	private String content;
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="st_id")
-	private StudentBean_H studentBean;
+	private StudentBean_H studentBean_H;
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="tr_id")
-	private TrainerBean_H trainerBean;
+	private TrainerBean_H trainerBean_H;
 	@Column(columnDefinition = "INT Default 0")
 	private Integer is_read;
 	
@@ -40,8 +40,8 @@ public class MessageBean {
 		this.date = date;
 		this.title = title;
 		this.content = content;
-		this.studentBean = studentBean;
-		this.trainerBean = trainerBean;
+		this.studentBean_H = studentBean;
+		this.trainerBean_H = trainerBean;
 		this.is_read = is_read;
 	}
 	
@@ -82,19 +82,19 @@ public class MessageBean {
 	}
 
 	public StudentBean_H getStudentBean() {
-		return studentBean;
+		return studentBean_H;
 	}
 
 	public void setStudentBean(StudentBean_H studentBean) {
-		this.studentBean = studentBean;
+		this.studentBean_H = studentBean;
 	}
 
 	public TrainerBean_H getTrainerBean() {
-		return trainerBean;
+		return trainerBean_H;
 	}
 
 	public void setTrainerBean(TrainerBean_H trainerBean) {
-		this.trainerBean = trainerBean;
+		this.trainerBean_H = trainerBean;
 	}
 
 	public Integer getIs_read() {
