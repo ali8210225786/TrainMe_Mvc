@@ -41,9 +41,8 @@ public class StudentInfoService {
 		return age;
 	}
 
-	public Double calBMI(StudentBean_H studentBean) {
-		double heigth = studentBean.getHeigth()/100;
-		double weight = studentBean.getWeight();
+	public Double calBMI(double heigth, double weight) {
+		heigth = heigth/100;
 		double BMI = Math.round(weight / Math.pow(heigth,2) * 100.0) / 100.0;
 		
 		return BMI;
@@ -94,9 +93,26 @@ public class StudentInfoService {
 		studentInfoDao.saveWeightData(sdb);
 	}
 	
+	public void updateWeightData(StudentDataBean_H sdb) {
+		studentInfoDao.updateWeightData(sdb);
+	}
+	
+	public StudentDataBean_H getStudentWeightDataByDateAndId(int id, Date date) {
+		return studentInfoDao.getStudentWeightDataByDateAndId(id, date);
+	}
+	
+	public List<StudentDataBean_H> getStudentWeightData(int id) {
+		return studentInfoDao.getStudentWeightData(id);
+	}
+	
+	public List<StudentDataBean_H> getStudentWeightDateData(int id) {
+		return studentInfoDao.getStudentWeightDateData(id);
+	}
+	
 	public void updateBodyData(StudentBean_H sb) {
 		memberDataDao.updateStudent(sb);
 	}
+	
 	
 	
 }

@@ -98,7 +98,7 @@
 												</c:otherwise>
 
 											</c:choose>
-										</span> 點 <a href="#">我要儲值</a>
+										</span> 點 <a href="<c:url value='/studentMoney/addPoint' />">我要儲值</a>
 									</p>
 								</div>
 
@@ -229,6 +229,7 @@
 						<tbody>
 							<c:if test="${waitCourse.size() > 0}">
 								<c:forEach varStatus="i" begin="0" end="${waitCourse.size()-1}">
+									<tr>
 									<td class="class_name">${waitCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
 									<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getTrainerBean_H().getName()}</td>
 									<td>${waitCourse.get(i.current).getDate()}
@@ -237,6 +238,7 @@
 										${waitCourse.get(i.current).getTime() + 1}:00</td>
 									<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 									<td><a href="/TrainMe/CancelCourse/${LoginOK.id}?courseId=${waitCourse.get(i.current).getId()}" class="cancel">取消</a></td>
+									</tr>
 								</c:forEach>
 							</c:if>
 						</tbody>
@@ -254,7 +256,7 @@
 						<h5>
 							<i class="fas fa-weight"></i> 我的體重趨勢圖
 						</h5>
-						
+						<p>單位:kg</p>
 					</div>
 
 					<canvas id="myChart" width="400" height="150"></canvas>
@@ -277,21 +279,34 @@
 
 	// 圖表
 	var ctx = document.getElementById('myChart').getContext('2d');
+
+	function weight(){
+		var array = new Array();
+		<c:forEach items="${StudentDataBean}" var="sdb">
+	 		array.push(${sdb}); //js中可以使用此標籤，將EL表示式中的值push到陣列中
+	 	</c:forEach>
+	return array;
+	}
 	var myChart = new Chart(ctx, {
 		type : 'line',
 		data : {
 			labels : [ '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月',
 					'10月', '11月', '12月' ], // 時間
 			datasets : [ {
-				// label: '# of Votes',
-				data : [ 50, 52, 53, 55, 52, 50, 53, 55, 52, 50 ],  //體重
-				backgroundColor : 'transparent',
-				borderColor : 'red',
-				borderWidth : 1
+				// label: '# of Votes',				
+				
+				data : 
+					
+					[ ] = weight(),  //體重			
+					backgroundColor : 'transparent',
+					borderColor : 'red',
+					borderWidth : 1	,					
 			} ]
 		},
 		options : {
-
+			legend : { 
+				display: false 
+				},
 			plugins : {
 				title : {
 					display : false,

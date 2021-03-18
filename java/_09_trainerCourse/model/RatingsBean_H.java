@@ -1,11 +1,10 @@
 package _09_trainerCourse.model;
 
-import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,15 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import com.sun.istack.NotNull;
 
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
-import _03_memberData.model.Area_H;
-import _03_memberData.model.City_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 
 
@@ -40,18 +34,21 @@ public class RatingsBean_H extends MemberBean_H {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="tr_id")
 	private TrainerBean_H trainerBean_H;
-	private BigDecimal point;
+	private Integer point;
 	private String comment;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="student_course_id")
 	private StudentCourseBean_H studentCourseBean_H;
 	
-	public RatingsBean_H() {
-		
-	};
 	
-	public RatingsBean_H(Integer id, StudentBean_H studentBean_H, TrainerBean_H trainerBean_H, BigDecimal point,
+
+	public RatingsBean_H() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public RatingsBean_H(Integer id, StudentBean_H studentBean_H, TrainerBean_H trainerBean_H, Integer point,
 			String comment, StudentCourseBean_H studentCourseBean_H) {
 		super();
 		this.id = id;
@@ -86,11 +83,11 @@ public class RatingsBean_H extends MemberBean_H {
 		this.trainerBean_H = trainerBean_H;
 	}
 
-	public BigDecimal getPoint() {
+	public Integer getPoint() {
 		return point;
 	}
 
-	public void setPoint(BigDecimal point) {
+	public void setPoint(Integer point) {
 		this.point = point;
 	}
 

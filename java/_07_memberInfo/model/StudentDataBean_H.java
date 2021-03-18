@@ -37,6 +37,10 @@ public class StudentDataBean_H extends MemberBean_H {
 	private StudentBean_H studentBean_H;
 	private Date data_date;
 	private Double st_weight;
+	
+	public StudentDataBean_H() {
+		
+	};
 	public StudentDataBean_H(Integer id, StudentBean_H studentBean_H, Date data_date, Double st_weight) {
 		super();
 		this.id = id;

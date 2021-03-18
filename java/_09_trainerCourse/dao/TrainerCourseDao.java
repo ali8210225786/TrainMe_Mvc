@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _01_register.model.TrainerBean_H;
 import _04_money.model.MoneyBean_H;
@@ -20,6 +21,7 @@ import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 
+@SessionAttributes({ "LoginOK"})
 @Repository
 public class TrainerCourseDao {
 	
@@ -56,10 +58,10 @@ public class TrainerCourseDao {
 		for(TrainerOffBean_H offTime : offTimes) {
 			String closeHour = offTime.getDate() + "_" + offTime.getTime();
 			list.add(closeHour);
-		}
-		
+		}	
 		return list;
 	}
+	
 	
 	
 	public TrainerBean_H getTrainerById(int trId) {
@@ -67,24 +69,27 @@ public class TrainerCourseDao {
 		return session.get(TrainerBean_H.class, trId);
 	}
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings( "unchecked" )
 	public List<StudentCourseBean_H> getTrainerCourseById(int trId) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM StudentCourseBean_H sc WHERE sc.trainerCourseBean_H.trainerBean_H.id= :trid ";
-		                                                               
-		@SuppressWarnings("unchecked")
+		String hql = "FROM StudentCourseBean_H sc WHERE sc.trainerCourseBean_H.trainerBean_H.id= :trid ORDER BY sc.date";
 		List <StudentCourseBean_H> sc = session.createQuery(hql).setParameter("trid", trId).getResultList();
-//		sc.get(0).getTrainerCourseBean_H().getTrainerBean_H().getId()
-//		List<StudentCourseBean_H> st=new LinkedList<>();
-//		for(TrainerCourseBean_H sc : sclist) {
-//			Iterator it = 	sc.getStudentCourseBean_H().iterator();
-//			while (it.hasNext()) {
-//				st.add((StudentCourseBean_H) it.next());
-////				st.get(0).getDate()
-//			}			
-//		}
-//		System.out.println("st="+ st);
 		return sc;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TrainerCourseBean_H> getTrainerCourseList(int trId) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TrainerCourseBean_H WHERE tr_id = :trid AND is_delete = 0";
+		return session.createQuery(hql).setParameter("trid", trId).getResultList();	
+	}
+	
+	public void delectCourse(int trainCourseId) {
+		Session session = factory.getCurrentSession();
+		TrainerCourseBean_H tcb = session.get(TrainerCourseBean_H.class, trainCourseId);
+		tcb.setIs_delete(1);
+		session.update(tcb);
+		
 	}
 	
 }

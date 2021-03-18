@@ -47,7 +47,8 @@
 				<p>您所填寫的資料將反映到BMI、BMR與TDEE的數據上。</p>
 			</div>
 			<div class="edit_area">
-				<form:form action="/TrainMe/student_bodyData_update/${studentBean.id}"
+				<form:form
+					action="/TrainMe/student_bodyData_update/${studentBean.id}"
 					method="post" modelAttribute="studentBean"
 					enctype="multipart/form-data">
 
@@ -61,7 +62,7 @@
 					</div>
 					<div class="edit_box">
 						<label>活動量程度</label><br> <select id="activity"
-							name="activity" class="select_activity"  >
+							name="activity" class="select_activity">
 							<option value=0 label="久坐（很少或完全沒運動）" />
 							<option value=1 label="輕度活動量（偶爾運動 / 每周運動1~3天）" />
 							<option value=2 label="中度活動量（適度運動 / 每周運動3~5天）" />
@@ -75,7 +76,7 @@
 						<div class="explain">
 							<p>教練將藉由自我介紹了解您。您可以在此填寫平常的運動習慣、是否有過健身經驗、目前的身體狀態或飲食習慣等資訊。</p>
 						</div>
-						<form:textarea path="introduction" cols="41" rows="10" />
+						<form:textarea path="introduction" cols="41" rows="10" oninput="checkWordCount()" />
 					</div>
 					<div class="edit_box e_button">
 						<button class="cancel" id="cancel_btn">取消</button>
@@ -128,18 +129,17 @@
 			 
 		 })
 		 
-		 introduction.addEventListener('keyup',function (event) {
-// 			 console.log(introduction.value.length);
-			 if(introduction.value.length > 150){
-				 alert("自我介紹最多150個字");
-				 save_btn.setAttribute('disabled','ture');
-				 save_btn.style.backgroundColor = "#ccc";
-			 }
-			 if(introduction.value.length < 150){
-				 save_btn.removeAttribute('disabled');
-				 save_btn.style.backgroundColor = "#21d4a7";
-			 }
-		 })
+
+		 
+		 function checkWordCount() {
+		  var introduction = document.querySelector("#introduction");
+		 
+		 if (introduction.value.length > 150) {
+			 introduction.setCustomValidity("超過150字了");
+		 } else {
+			 introduction.setCustomValidity(""); // be sure to leave this empty!
+		 }
+		}
 		 
 	</script>
 </body>

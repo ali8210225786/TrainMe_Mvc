@@ -27,9 +27,16 @@ public class MemPointServiceImpl implements MemPointService {
 
 	@Transactional
 	@Override
-	public List<MoneyBean_H> getMoneyDetail(int id) {
+	public List<MoneyBean_H> getStudentMoneyDetail(int id) {
 
-		return dao.getMoneyDetail(id);
+		return dao.getStudentMoneyDetail(id);
+	}
+	
+	@Transactional
+	@Override
+	public List<MoneyBean_H> getTrainerMoneyDetail(int id) {
+
+		return dao.getTrainerMoneyDetail(id);
 	}
 
 	@Transactional
@@ -38,6 +45,7 @@ public class MemPointServiceImpl implements MemPointService {
 		return dao.getAccountDetail(id);
 	}
 
+	//學員儲值點數使用這個方法
 	@Transactional
 	@Override
 	public int saveMoney(MoneyBean_H moneyBean_H) {
@@ -56,18 +64,62 @@ public class MemPointServiceImpl implements MemPointService {
 		if(moneyBean_H.getChange_amount()==10000) {
 			moneyBean_H.setChange_amount(10200);
 		}
-		int size = dao.getMoneyDetail(moneyBean_H.getStudentBean_H().getId()).size();
+		int size = dao.getStudentMoneyDetail(moneyBean_H.getStudentBean_H().getId()).size();
 		if(size==0) {
 			moneyBean_H.setTotal_amount(moneyBean_H.getChange_amount());
 		}else {
 			
-			int total = dao.getMoneyDetail(moneyBean_H.getStudentBean_H().getId()).get(size-1).getTotal_amount()
+			int total = dao.getStudentMoneyDetail(moneyBean_H.getStudentBean_H().getId()).get(size-1).getTotal_amount()
 					+ moneyBean_H.getChange_amount();
 			moneyBean_H.setTotal_amount(total);
 		}
 		
 		return dao.saveMoney(moneyBean_H);
 //		return 1;
+	}
+
+	//新增學員點數資料使用這個方法
+	@Transactional
+	@Override
+	public int saveStudentRefund(MoneyBean_H moneyBean_H) {
+		
+		//判斷他資料庫裏面有幾筆money資料
+		int size = dao.getStudentMoneyDetail(moneyBean_H.getStudentBean_H().getId()).size();
+		
+		//如果是0筆就把要變更的$放到total，否則新的total就是變更的$加上舊的$
+		if(size==0) {
+			moneyBean_H.setTotal_amount(moneyBean_H.getChange_amount());
+		}else {
+			
+			int total = dao.getStudentMoneyDetail(moneyBean_H.getStudentBean_H().getId()).get(size-1).getTotal_amount()
+					+ moneyBean_H.getChange_amount();
+			moneyBean_H.setTotal_amount(total);
+		}
+		return dao.saveMoney(moneyBean_H);
+	}
+	
+	//更新money使用這個方法
+		@Transactional
+		@Override
+		public int saveStudentCourseToMoney(MoneyBean_H moneyBean_H) {
+			
+			return dao.updateMoney(moneyBean_H);
+		}
+		
+	//新增教練點數資料使用這個方法
+	@Transactional
+	@Override
+	public int saveTrainerRefund(MoneyBean_H moneyBean_H) {
+		int size = dao.getTrainerMoneyDetail(moneyBean_H.getTrainerBean_H().getId()).size();
+		if(size==0) {
+			moneyBean_H.setTotal_amount(moneyBean_H.getChange_amount());
+		}else {
+			
+			int total = dao.getTrainerMoneyDetail(moneyBean_H.getTrainerBean_H().getId()).get(size-1).getTotal_amount()
+					+ moneyBean_H.getChange_amount();
+			moneyBean_H.setTotal_amount(total);
+		}
+		return dao.saveMoney(moneyBean_H);
 	}
 
 }

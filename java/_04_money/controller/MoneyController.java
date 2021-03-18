@@ -69,7 +69,7 @@ public class MoneyController {
 	@GetMapping("/studentMoney/{id}")
 	public String studentMoney(Model model, @PathVariable("id") Integer id) {
 		System.out.println("pig =" + id);
-		List<MoneyBean_H> money = memPointService.getMoneyDetail(id);
+		List<MoneyBean_H> money = memPointService.getStudentMoneyDetail(id);
 		model.addAttribute("MoneyBean", money);
 		return "/_04_money/st_point";
 	}

@@ -38,3 +38,15 @@
 .ls label:nth-child(2) {
 	font-weight: 500;
 }
+
+.ex_a {
+	display: flex;
+}
+
+.ex_a a {
+	margin-left: 20px;
+}
+
+.ex_a i {
+	margin-right: 5px;
+}

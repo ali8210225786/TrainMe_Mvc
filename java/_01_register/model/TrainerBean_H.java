@@ -1,6 +1,5 @@
 package _01_register.model;
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,13 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 import _04_money.model.MoneyBean_H;
 import _04_money.model.TrainerAccountBean_H;
-import _03_memberData.model.TrainerLicenseBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _11_orderProcess.model.OrdersBean_H;
+import _12_message.model.MessageBean;
+import _13_addfavorite.model.FavoriteBean;
 
 
 
@@ -81,9 +82,10 @@ public class TrainerBean_H extends MemberBean_H {
 	private String bank_account;
 	private String course;
 	private String introduction;
+	@Column(columnDefinition = "INT Default 0")
+	private Double ratings;
+	private Integer ratings_size;
 	
-	private Blob image;
-	private String fileName;
 	@Transient
 	private MultipartFile trainerImage;
 	@Transient
@@ -112,8 +114,14 @@ public class TrainerBean_H extends MemberBean_H {
 	@OneToMany(mappedBy = "trainerBean_H")
 	private Set<TrainerLicenseBean_H> trainerLicenseBean_H = new LinkedHashSet<>();
 	
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<MessageBean> messageBean = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<FavoriteBean> favoriteBean = new LinkedHashSet<>();
+	
 	public TrainerBean_H(Integer id, Integer type, String name, String phone, Date birthday, String email, String password,
-			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash) {
+			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash,Double ratings,Integer ratings_size) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -128,6 +136,8 @@ public class TrainerBean_H extends MemberBean_H {
 		this.gym = gym;
 		this.is_delete = is_delete;
 		this.hash = myHash;
+		this.ratings = ratings;
+		this.ratings_size = ratings_size;
 	}
 
 
@@ -135,6 +145,31 @@ public class TrainerBean_H extends MemberBean_H {
 
 	public TrainerBean_H() {
 		
+	}
+
+
+	public Integer getRatings_size() {
+		return ratings_size;
+	}
+
+
+
+
+	public void setRatings_size(Integer ratings_size) {
+		this.ratings_size = ratings_size;
+	}
+
+
+
+
+	public Double getRatings() {
+		return ratings;
+	}
+
+
+
+	public void setRatings(Double ratings) {
+		this.ratings = ratings;
 	}
 
 
@@ -574,30 +609,6 @@ public class TrainerBean_H extends MemberBean_H {
 
 
 
-	public Blob getImage() {
-		return image;
-	}
-
-
-
-
-	public void setImage(Blob image) {
-		this.image = image;
-	}
-
-
-
-
-	public String getFileName() {
-		return fileName;
-	}
-
-
-
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
 
 
 
@@ -696,6 +707,36 @@ public class TrainerBean_H extends MemberBean_H {
 	public void setTrainerOffBean_H(Set<TrainerOffBean_H> trainerOffBean_H) {
 		this.trainerOffBean_H = trainerOffBean_H;
 	}
+
+
+
+
+	public Set<MessageBean> getMessageBean() {
+		return messageBean;
+	}
+
+
+
+
+	public void setMessageBean(Set<MessageBean> messageBean) {
+		this.messageBean = messageBean;
+	}
+
+
+
+
+	public Set<FavoriteBean> getFavoriteBean() {
+		return favoriteBean;
+	}
+
+
+
+
+	public void setFavoriteBean(Set<FavoriteBean> favoriteBean) {
+		this.favoriteBean = favoriteBean;
+	}
+	
+	
 
 
 }

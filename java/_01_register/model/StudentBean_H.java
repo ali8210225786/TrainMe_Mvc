@@ -1,14 +1,12 @@
 package _01_register.model;
 
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +26,8 @@ import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _11_orderProcess.model.OrdersBean_H;
-
+import _12_message.model.MessageBean;
+import _13_addfavorite.model.FavoriteBean;
 
 
 
@@ -58,7 +57,7 @@ public class StudentBean_H extends MemberBean_H {
 	private String newpasswordcheck;
 	private String id_number;
 	private String sex;
-	@Column(columnDefinition = "INT Default 0")
+	@Column(columnDefinition = "Double Default 0.0")
 	private Integer verification;
 	
 	
@@ -104,6 +103,12 @@ public class StudentBean_H extends MemberBean_H {
 
 	@OneToMany(mappedBy = "studentBean_H")
 	private Set<StudentDataBean_H> studentDataBean_H = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<MessageBean> messageBean = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "studentBean_H")
+	private Set<FavoriteBean> favoriteBean = new LinkedHashSet<>();
 
 	public StudentBean_H(String name, String phone, String email, Date birthday, String password, String id_number,
 			String sex, String hash) {
@@ -388,6 +393,27 @@ public class StudentBean_H extends MemberBean_H {
 	public void setActivity(Integer activity) {
 		this.activity = activity;
 	}
+
+	public Set<MessageBean> getMessageBean() {
+		return messageBean;
+	}
+
+	public void setMessageBean(Set<MessageBean> messageBean) {
+		this.messageBean = messageBean;
+	}
+
+	public Set<FavoriteBean> getFavoriteBean() {
+		return favoriteBean;
+	}
+
+	public void setFavoriteBean(Set<FavoriteBean> favoriteBean) {
+		this.favoriteBean = favoriteBean;
+	}
+	
+	
+	
+	
+
 
 	
 

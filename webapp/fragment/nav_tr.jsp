@@ -14,7 +14,7 @@
 		</li>
 		<div class="items">
 			<li><a href="#">關於我們</a></li>
-			<li><a href="<c:url value='/searchTrainer' />">尋找教練</a></li>
+			<li><a href="<c:url value='/searchTrainerAll' />">尋找教練</a></li>
 			<li><a href="#">購物商城</a></li>
 			<li><a href="#">運動論壇</a></li>
 		</div>
@@ -37,17 +37,22 @@
 			<ul class="dropdown">
 				<div class="triangle"></div>
 				<div class="dropdown_box">
-					<li><a href="<c:url value='/trainer_info/${LoginOK.id}' />">個人資料</a></li>
-					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人資料(編輯)</a></li>
-					<li><a href="<c:url value='/trainerCourse/${LoginOK.id}' />">學員列表</a></li>
-					<li><a href="<c:url value='/TimeOff/${LoginOK.id}' />">課程管理</a></li>
+					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人資料</a></li>
+					<li><a href="<c:url value='/trainerCourse/${LoginOK.id}' />">課程管理</a></li>
 					<li><a href="<c:url value='/trainerAccount/${LoginOK.id}' />">帳戶查詢</a></li>
 					<li><a href="#">訂單查詢</a></li>
 					<li><a href="<c:url value='/trainerData/${LoginOK.id}' />">帳號設定</a></li>
 					<hr>
 					<li><a href="<c:url value='/logout' />">登出</a></li>
 				</div>
-			</ul></li>
+			</ul>
+			</li>
+		<li>
+	        <a href="#">
+	        	<i class="far fa-bell"><ss class="jiaobiao">1</ss></i>
+	        </a>
+        </li>
+   </ul> 
 </header>
 <!-- <script> -->
 <!-- // 	// 導覽列 -->

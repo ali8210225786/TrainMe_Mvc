@@ -25,6 +25,55 @@
 .aside ul li:nth-child(3) a {
 	color: #21d4a7;
 }
+.modal-content {
+	background-color: #fff;
+	position: relative;
+	color: #666;
+	width: 100%;
+}
+
+.modal-header {
+	text-align: center;
+	margin: auto;
+	border: none;
+	padding-top: 30px;
+}
+
+.modal-title {
+	font-weight: bold;
+	color: #000;
+}
+
+.modal-body {
+	padding: 0 0 30px 0;
+	text-align: center;
+}
+
+.modal-footer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	border: none;
+	background-color: #21d4a7;
+}
+
+.modal-footer .btn {
+	border-radius: 1px;
+	padding: 10px 50px;
+}
+
+.modal-footer .btn:first-child {
+	background-color: #fff;
+	color: #333;
+	border: none;
+
+	/* border: 1px solid #fff; */
+}
+
+.modal-footer .btn:last-child {
+	background-color: #000;
+	border: none;
+}
 </style>
 </head>
 <body>
@@ -85,18 +134,42 @@
 							<tbody class="tr_height">
 								<c:if test="${waitCourse.size() > 0}">
 									<c:forEach varStatus="i" begin="0" end="${waitCourse.size()-1}">
-									<tr>
-										<td class="class_name">${waitCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
-										<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getTrainerBean_H().getName()}</td>
-										<td>${waitCourse.get(i.current).getDate()}
+										<tr>
+											<td class="class_name">${waitCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+											<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getTrainerBean_H().getName()}</td>
+											<td>${waitCourse.get(i.current).getDate()}
 
-											${waitCourse.get(i.current).getTime()}:00 -
-											${waitCourse.get(i.current).getTime() + 1}:00</td>
-										<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
-										<td><a
-											href="/TrainMe/CancelCourseLesson/${LoginOK.id}?courseId=${waitCourse.get(i.current).getId()}&type=waitCourse"
-											class="cancel" data-type="waitCourse">取消</a></td>
-									</tr>		
+												${waitCourse.get(i.current).getTime()}:00 -
+												${waitCourse.get(i.current).getTime() + 1}:00</td>
+											<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
+											<td><button type="button" class="btn btn-primary"
+													data-toggle="modal" data-target="#exampleModal1${waitCourse.get(i.current).getId()}">
+													取消</button></td>
+										</tr>
+										
+<!-- 										取消課程的彈跳視窗，會先被隱藏起來 -->
+										<div class="modal fade" id="exampleModal1${waitCourse.get(i.current).getId()}" tabindex="-1"
+											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">確定要取消嗎？</h5>
+													</div>
+													<div class="modal-body">上課時段：
+														${waitCourse.get(i.current).getDate()}
+
+														${waitCourse.get(i.current).getTime()}:00 -
+														${waitCourse.get(i.current).getTime() + 1}:00</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">取消</button>
+														<button id="manageFeedback" class="btn btn-primary"
+															onclick="location.href='/TrainMe/CancelCourseLesson/${LoginOK.id}?courseId=${waitCourse.get(i.current).getId()}&type=waitCourse'">確定</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
 									</c:forEach>
 								</c:if>
 							</tbody>
@@ -127,10 +200,34 @@
 												${comingSoonCourse.get(i.current).getTime()}:00 -
 												${comingSoonCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${comingSoonCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
-											<td><a
-												href="/TrainMe/CancelCourseLesson/${LoginOK.id}?courseId=${comingSoonCourse.get(i.current).getId()}&type=comingSoon"
-												class="cancel" data-type="comingSoon">取消</a></td>
+											<td><button type="button" class="btn btn-primary"
+													data-toggle="modal" data-target="#exampleModal${comingSoonCourse.get(i.current).getId()}">
+													取消</button></td>
 										</tr>
+										
+<!-- 										取消課程的彈跳視窗，會先被隱藏起來 -->
+										<div class="modal fade" id="exampleModal${comingSoonCourse.get(i.current).getId()}" tabindex="-1"
+											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">確定要取消嗎？</h5>
+													</div>
+													<div class="modal-body">上課時段：
+														${comingSoonCourse.get(i.current).getDate()}
+
+														${comingSoonCourse.get(i.current).getTime()}:00 -
+														${comingSoonCourse.get(i.current).getTime() + 1}:00</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">取消</button>
+														<button id="manageFeedback" class="btn btn-primary"
+															onclick="location.href='/TrainMe/CancelCourseLesson/${LoginOK.id}?courseId=${comingSoonCourse.get(i.current).getId()}&type=comingSoon'">確定</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
 									</c:forEach>
 								</c:if>
 							</tbody>
@@ -145,7 +242,8 @@
 									<th scope="col" class="class_name">課程名稱</th>
 									<th scope="col">教練</th>
 									<th scope="col">上課時間</th>
-									<th scope="col">扣點</th>
+									<th scope="col">本堂點數</th>
+									<th scope="col">評價</th>
 									<th scope="col">上課日誌</th>
 								</tr>
 							</thead>
@@ -161,7 +259,27 @@
 												${beforeCourse.get(i.current).getTime()}:00 -
 												${beforeCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${beforeCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
-											<td><a href="<c:url value='/st_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i class="fas fa-book"></i></a></td>
+
+											<c:if test="${ratings.size() == 0 }">
+												<td><a
+													href="<c:url value='/st_feedback/${beforeCourse.get(i.current).getId()}' />">給評價</a></td>
+
+											</c:if>
+											<c:if test="${ratings.size() > 0 }">
+												<c:choose>
+													<c:when
+														test="${beforeCourse.get(i.current).getIs_rated()== 1 }">
+														<td>已評價</td>
+													</c:when>
+													<c:otherwise>
+														<td><a
+															href="<c:url value='/st_feedback/${beforeCourse.get(i.current).getId()}' />">給評價</a></td>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+											<td><a
+												href="<c:url value='/st_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i
+													class="fas fa-book"></i></a></td>
 										</tr>
 									</c:forEach>
 								</c:if>
@@ -171,6 +289,7 @@
 				</div>
 
 			</div>
+
 
 
 
@@ -197,15 +316,15 @@
 	})
 
 	// 確認是否取消通知
-	$('.cancel').on('click', function(event) {
-		var yes = confirm('是否確定取消課程？');
-		if (!yes) {
-			event.preventDefault();
-		}
-		console.log(this.dataset.type);
-		changeTab = this.dataset.type;
-	})
-		console.log("${type.equals('comingSoon')}");
+// 	$('.cancel').on('click', function(event) {
+// 		var yes = confirm('是否確定取消課程？');
+// 		if (!yes) {
+// 			event.preventDefault();
+// 		}
+// 		console.log(this.dataset.type);
+// 		changeTab = this.dataset.type;
+// 	})
+// 		console.log("${type.equals('comingSoon')}");
 	
 
 	<c:if test="${type.equals('comingSoon')}">
@@ -217,7 +336,7 @@
 				$('#pills-wait-tab').tab('show')			
 	</c:if>
 		
-	
+				
 		
 	
 </script>

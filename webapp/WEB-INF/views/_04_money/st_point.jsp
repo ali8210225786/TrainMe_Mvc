@@ -109,6 +109,11 @@
 				<h3>我的點數</h3>
 			</div>
 
+			<!-- ============即將開始的課程======================================================= -->
+
+			<div class="info_wrap t lesson">
+			
+			
 			<!-- 說明 -->
 
 			<div class="balance">
@@ -123,11 +128,9 @@
 					</c:otherwise>
 					</c:choose>
 				</p>
-								<button class="df_btn"><a href="<c:url value='/studentMoney/addPoint' />">我要儲值</a></button>
+								<button class="df_btn" onclick="location.href='/TrainMe/studentMoney/addPoint' ">我要儲值</button>
 			</div>
-			<!-- ============即將開始的課程======================================================= -->
-
-			<div class="info_wrap t lesson">
+			
 				<table class="table border">
 					<c:choose>
 					<c:when test="${MoneyBean.size()==0}">   
