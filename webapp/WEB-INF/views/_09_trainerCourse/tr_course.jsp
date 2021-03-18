@@ -200,7 +200,7 @@
 												${StudentCourse.get(i.current).getTime()}:00 -
 												${StudentCourse.get(i.current).getTime() + 1}:00</td>
 											<td><a
-												href="<c:url value='/st_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i
+												href="<c:url value='/trainer_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i
 													class="fas fa-book"></i></a></td>
 										</tr>
 									</c:if>

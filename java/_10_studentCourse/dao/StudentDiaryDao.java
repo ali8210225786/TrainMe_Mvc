@@ -10,6 +10,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _01_register.model.TrainerBean_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 import _10_studentCourse.model.CourseDiaryItemBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 @Repository
@@ -35,5 +37,20 @@ public class StudentDiaryDao {
 		courses =   session.createQuery(hql).setParameter("mId", id).getResultList();;		
 		return courses;		
 	}
+	
+	// 儲存CourseDiaryItemBean物件，將參數cdi新增到course_diary_item表格內。
+
+			public int saveTrainerCourseDiaryItem_H(CourseDiaryItemBean_H cdi) {
+				int n = 0;
+				Session session = factory.getCurrentSession();
+				session.save(cdi);
+				n++;
+
+				return n;
+			}
+			public void updateStudentCourseDatDiaryContent(StudentCourseBean_H scb) {
+				Session session = factory.getCurrentSession();
+				session.update(scb);
+			}
 	
 }

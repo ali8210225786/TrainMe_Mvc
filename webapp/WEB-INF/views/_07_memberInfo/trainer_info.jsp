@@ -431,49 +431,51 @@
 			<c:if test="${trainerCourseAndStudentCourseAndRatings.size() != 0}">
 				<c:forEach varStatus="i" begin="0"
 					end="${trainerCourseAndStudentCourseAndRatings.size()-1}">
-					<div class="fb">
+					<c:if test="${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() > 0}">
+						<div class="fb">
 
-						<!-- 會員大頭貼 -->
-						<div class="mb_picture">
-							<c:choose>
-								<c:when
-									test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
-									<img
-										src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
-								</c:when>
-								<c:otherwise>
-									<img
-										src="/upload/${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
-								</c:otherwise>
-							</c:choose>
-						</div>
-
-						<!-- 評價內容 -->
-						<div class="fb_content">
-
-							<!-- 會員名稱時間等等 -->
-							<div class="fc_title">
-								<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getName()}</span>
-								<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getDate()}</span>
-								<label>課程：</label><span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</span>
+							<!-- 會員大頭貼 -->
+							<div class="mb_picture">
+								<c:choose>
+									<c:when
+										test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
+										<img
+											src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+									</c:when>
+									<c:otherwise>
+										<img
+											src="/upload/${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
+									</c:otherwise>
+								</c:choose>
 							</div>
 
-							<!-- 評價星星 (暫)-->
-							<div class="fc_star">
-								<div class="starss" id="starss">
-									<div class="empty_star">★★★★★</div>
-									<div class="full_star"
-										style="width:${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() * 20}%">★★★★★</div>
+							<!-- 評價內容 -->
+							<div class="fb_content">
+
+								<!-- 會員名稱時間等等 -->
+								<div class="fc_title">
+									<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getName()}</span>
+									<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getDate()}</span>
+									<label>課程：</label><span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</span>
 								</div>
-							</div>
 
-							<!-- 留言 -->
-							<div class="sit">
-								<p>${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
-							</div>
+								<!-- 評價星星 (暫)-->
+								<div class="fc_star">
+									<div class="starss" id="starss">
+										<div class="empty_star">★★★★★</div>
+										<div class="full_star"
+											style="width:${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() * 20}%">★★★★★</div>
+									</div>
+								</div>
 
+								<!-- 留言 -->
+								<div class="sit">
+									<p>${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
+								</div>
+
+							</div>
 						</div>
-					</div>
+					</c:if>
 				</c:forEach>
 			</c:if>
 			<!-- 			<div class="fb"> -->
