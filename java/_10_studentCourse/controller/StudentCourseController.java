@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.google.gson.Gson;
 
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
@@ -23,6 +26,10 @@ import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
 import _07_memberInfo.service.StudentInfoService;
 import _09_trainerCourse.model.RatingsBean_H;
+import _09_trainerCourse.model.SkillBean_H;
+import _09_trainerCourse.model.SkillTypeBean_H;
+import _09_trainerCourse.model.TrainerCourseBean_H;
+import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
 
@@ -35,6 +42,9 @@ public class StudentCourseController {
 	
 	@Autowired
 	StudentCourseService studentCourseService;	
+	
+	@Autowired
+	TrainerCourseService trainerCourseService;
 	
 	@Autowired
 	MemPointService memPointService;
@@ -180,6 +190,30 @@ public class StudentCourseController {
 		
 		return "redirect:/st_info_lesson/" + id;
 	}
+	
+	@PostMapping("/addTrCourse/{id}")
+	public @ResponseBody String addTrCourse(Model model, @PathVariable("id") Integer id,  @RequestParam("skillType") Integer skillType,
+			@RequestParam("skill") String skill, @RequestParam("price") Integer price) {
+			
+		SkillBean_H skb = new SkillBean_H(null, skill);
+		studentCourseService.addSkill(skb);
+		TrainerBean_H tb = trainerCourseService.getTrainerById(id);
+		SkillTypeBean_H stb = studentCourseService.getSkillTypeById(skillType);
+		TrainerCourseBean_H tcb = new TrainerCourseBean_H(null, tb, skb, stb, price, 0);
+		studentCourseService.addTrainerCourse(tcb);
+		
+		Gson gson = new Gson();
+        String json = gson.toJson("ok");
+		
+		return json;		
+	}
+	
+	@GetMapping("/delectCourse/{id}")
+	public String delectCoursr(@PathVariable("id") Integer id , @RequestParam("trainerCourseId") Integer trainerCourseId) {
+		trainerCourseService.delectCourse(trainerCourseId);
+		return "redirect:/courseSet/"+id;
+	}
+
 }
 
 

@@ -19,6 +19,7 @@
 <link rel="stylesheet"
 	href="<c:url value='/css/style_st_account.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_tr_lesson.css' />">
+<link rel="stylesheet" href="<c:url value='/css/stprofile_popup.css' />">
 
 
 
@@ -85,7 +86,7 @@
 
 	<!-- ============上方導覽列======================================================= -->
 	<jsp:include page="/fragment/nav_tr.jsp" />
-
+	<jsp:include page="/WEB-INF/views/_09_trainerCourse/check_student_profile.jsp" />
 
 
 	<div class="container">
@@ -144,58 +145,29 @@
 				<h5>我的課程訂單</h5>
 
 				<ul class="nav nav-tab mb-3" id="pills-tab" role="tablist">
-
+				
+					
 					<li class="nav-item mr-4" role="presentation"><a
-						class="nav-link li_color active" id="pills-next-tab"
-						data-toggle="pill" href="#pills-next" role="tab"
-						aria-controls="pills-next" aria-selected="true">已預約的學員</a></li>
-
-					<li class="nav-item mr-4" role="presentation"><a
-						class="nav-link li_color " id="pills-wait-tab" data-toggle="pill"
+						class="nav-link li_color active" id="pills-next-tab" data-toggle="pill"
 						href="#pills-wait" role="tab" aria-controls="pills-wait"
-						aria-selected="true">發出預約的學員</a></li>
-
-
+						aria-selected="true">待確認預約</a></li>
+						
+					<li class="nav-item mr-4" role="presentation"><a
+						class="nav-link li_color " id="pills-wait-tab"
+						data-toggle="pill" href="#pills-next" role="tab"
+						aria-controls="pills-next" aria-selected="true">即將上課</a></li>
+						
+						
 					<li class="nav-item " role="presentation"><a
 						class="nav-link li_color" id="pills-history-tab"
 						data-toggle="pill" href="#pills-history" role="tab"
-						aria-controls="pills-history" aria-selected="true">歷史課程的學員 </a></li>
+						aria-controls="pills-history" aria-selected="true">歷史課程</a></li>
 				</ul>
 
 				<div class="tab-content mt-3" id="pills-tabContent">
-					<!-- 已預約的學員 -->
-					<div class="tab-pane fade show active" id="pills-next"
-						role="tabpanel" aria-labelledby="pills-next-tab">
-						<table class="table border b_c">
-							<thead class="thead">
-								<tr>
-									<th scope="col" class="class_name">上課學員</th>
-									<th scope="col">課程名稱</th>
-									<th scope="col">預約課程時段</th>
-								</tr>
-							</thead>
-							<tbody class="tr_height">
-								<c:if test="${StudentCourse.size() > 0}">
-									<c:forEach varStatus="i" begin="0"
-										end="${StudentCourse.size()-1}">
-										<c:if
-											test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()> Now }">
-											<tr>
-												<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
-												<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
-												<td>${StudentCourse.get(i.current).getDate()}
-
-													${StudentCourse.get(i.current).getTime()}:00 -
-													${StudentCourse.get(i.current).getTime() + 1}:00</td>
-											</tr>
-										</c:if>
-									</c:forEach>
-								</c:if>
-							</tbody>
-						</table>
-					</div>
+					
 					<!-- 發出預約的學員 -->
-					<div class="tab-pane fade" id="pills-wait" role="tabpanel"
+					<div class="tab-pane fade active show " id="pills-wait" role="tabpanel"
 						aria-labelledby="pills-wait-tab">
 						<table class="table border">
 							<thead class="thead">
@@ -207,80 +179,55 @@
 								</tr>
 							</thead>
 							<tbody class="tr_height">
-								<c:if test="${StudentCourse.size() > 0}">
-									<c:forEach varStatus="i" begin="0"
-										end="${StudentCourse.size()-1}">
-										<c:if
-											test="${StudentCourse.get(i.current).getIs_allowed()== 0 && StudentCourse.get(i.current).getIs_delete()==0 &&StudentCourse.get(i.current).getDate()> Now}">
-											<tr>
-												<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
-												<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
-												<td>${StudentCourse.get(i.current).getDate()}
+								<c:forEach varStatus="i" begin="0"
+									end="${StudentCourse.size()-1}">
+									<c:if
+										test="${StudentCourse.get(i.current).getIs_allowed()== 0 && StudentCourse.get(i.current).getIs_delete()==0 &&StudentCourse.get(i.current).getDate()> Now}">
+										<tr>
+											<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
+											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+											<td>${StudentCourse.get(i.current).getDate()}
 
-													${StudentCourse.get(i.current).getTime()}:00 -
-													${StudentCourse.get(i.current).getTime() + 1}:00</td>
-												<td><button type="button" class="btn btn-primary"
-														data-toggle="modal" data-target="#exampleModal${StudentCourse.get(i.current).getId()}">
-														同意</button>
-													<button type="button" class="btn btn-primary"
-														data-toggle="modal" data-target="#exampleModal1${StudentCourse.get(i.current).getId()}">
-														取消</button></td>
-												<!-- 												<td><a -->
-												<%-- 													href="/TrainMe/AllowStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=comingSoon" --%>
-												<!-- 													class="allow" data-type="comingSoon">同意</a> <a -->
-												<%-- 													href="/TrainMe/CancelStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=waitCourse" --%>
-												<!-- 													class="cancel" data-type="waitCourse">取消</a></td> -->
-											</tr>
-										</c:if>
+												${StudentCourse.get(i.current).getTime()}:00 -
+												${StudentCourse.get(i.current).getTime() + 1}:00</td>
+											<td><a
+												href="/TrainMe/AllowStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}"
+												class="allow" data-type="comingSoon">同意</a> <a
+												href="/TrainMe/CancelStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}"
+												class="cancel" data-type="waitCourse">取消</a></td>
+										</tr>
+									</c:if>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+					
+					<!-- 已預約的學員 -->
+					<div class="tab-pane fade " id="pills-next"
+						role="tabpanel" aria-labelledby="pills-next-tab">
+						<table class="table border b_c">
+							<thead class="thead">
+								<tr>
+									<th scope="col" class="class_name">上課學員</th>
+									<th scope="col">課程名稱</th>
+									<th scope="col">預約課程時段</th>
+								</tr>
+							</thead>
+							<tbody class="tr_height">
+								<c:forEach varStatus="i" begin="0"
+									end="${StudentCourse.size()-1}">
+									<c:if
+										test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()> Now }">
+										<tr>
+											<td class="class_name"><a href="javascript:" class="studentData" data-id="${StudentCourse.get(i.current).getStudentBean_H().getId()}">${StudentCourse.get(i.current).getStudentBean_H().getName()}</a></td>
+											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+											<td>${StudentCourse.get(i.current).getDate()}
 
-										<!-- 同意課程的彈跳視窗，會先被隱藏起來 -->
-										<div class="modal fade" id="exampleModal${StudentCourse.get(i.current).getId()}" tabindex="-1"
-											aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-dialog-centered">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">確定要同意嗎？</h5>
-													</div>
-													<div class="modal-body">上課時段：
-														${StudentCourse.get(i.current).getDate()}
-
-														${StudentCourse.get(i.current).getTime()}:00 -
-														${StudentCourse.get(i.current).getTime() + 1}:00</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary"
-															data-dismiss="modal">取消</button>
-														<button id="manageFeedback" class="btn btn-primary"
-															onclick="location.href='/TrainMe/AllowStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=comingSoon'">確定</button>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<!-- 取消課程的彈跳視窗，會先被隱藏起來 -->
-										<div class="modal fade" id="exampleModal1${StudentCourse.get(i.current).getId()}" tabindex="-1"
-											aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-dialog-centered">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">確定要取消嗎？</h5>
-													</div>
-													<div class="modal-body">上課時段：
-														${StudentCourse.get(i.current).getDate()}
-
-														${StudentCourse.get(i.current).getTime()}:00 -
-														${StudentCourse.get(i.current).getTime() + 1}:00</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary"
-															data-dismiss="modal">取消</button>
-														<button id="manageFeedback" class="btn btn-primary"
-															onclick="location.href='/TrainMe/CancelStudentCourse/${LoginOK.id}/${StudentCourse.get(i.current).getStudentBean_H().getId()}?courseId=${StudentCourse.get(i.current).getId()}&type=waitCourse'">確定</button>
-													</div>
-												</div>
-											</div>
-										</div>
-
-									</c:forEach>
-								</c:if>
+												${StudentCourse.get(i.current).getTime()}:00 -
+												${StudentCourse.get(i.current).getTime() + 1}:00</td>
+										</tr>
+									</c:if>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -333,9 +280,8 @@
 
 
 		</div>
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-			crossorigin="anonymous"></script>
+		<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
@@ -350,7 +296,7 @@
 
 	$('#pills-tab a').on('click', function(event) {
 		event.preventDefault()
-		console.log(this);
+// 		console.log(this);
 		$(this).tab('show')
 	})
 
@@ -360,10 +306,7 @@
 		if (!yes) {
 			event.preventDefault();
 		}
-		console.log(this.dataset.type);
-		changeTab = this.dataset.type;
 	})
-// 		console.log("${type.equals('comingSoon')}");
 	
 	// 確認是否同意通知
 	$('.allow').on('click', function(event) {
@@ -371,17 +314,43 @@
 		if (!yes) {
 			event.preventDefault();
 		}
-		console.log(this.dataset.type);
-		changeTab = this.dataset.type;
+	})
+	
+	
+	$('.studentData').on('click', function(event) {
+// 		console.log(event.target.dataset.id);
+	 var stId = event.target.dataset.id;
+	 
+	 $.get("/TrainMe/queryStudent?stId=" + stId,
+             function (data) {
+           	 console.log(data);
+           	 
+				$("#profile_image").html('<img src="<c:url value="/images/'+data.profile_image +'"  />">');
+				$("#name").text(data.name);
+				$("#nickname").text(data.nickname);
+				var sex = data.sex
+				if(sex == "M"){
+					$("#sex").html('<i class="fas fa-mars"></i>');
+				}
+				if(sex == "F"){
+					$("#sex").html('<i class="fas fa-venus"></i>');
+				}
+				$("#age").text(data.age);
+				$("#birthday").text(data.birth);
+				$("#phone").text(data.phone);
+				$("#heigth").text(data.heigth);
+				$("#weight").text(data.weight);
+				$("#BMI").text(data.BMI);
+				$("#introduction").text(data.introduction);
+             },
+             "json"
+   );
+
+		Show();
 	})
 
-	<c:if test="${type.equals('comingSoon')}">
-// 				console.log("111111111");
-				$('#pills-next-tab').tab('show')	
-	</c:if>
-	<c:if test="${type.equals('waitCourse')}">
-				$('#pills-wait-tab').tab('show')			
-	</c:if>
+	
+
 	
 </script>
 </body>

@@ -41,9 +41,8 @@ public class StudentInfoService {
 		return age;
 	}
 
-	public Double calBMI(StudentBean_H studentBean) {
-		double heigth = studentBean.getHeigth()/100;
-		double weight = studentBean.getWeight();
+	public Double calBMI(double heigth, double weight) {
+		heigth = heigth/100;
 		double BMI = Math.round(weight / Math.pow(heigth,2) * 100.0) / 100.0;
 		
 		return BMI;
