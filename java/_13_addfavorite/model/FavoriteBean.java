@@ -24,15 +24,15 @@ public class FavoriteBean {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="tr_id")
 	private TrainerBean_H trainerBean_H;
-	private Integer toType;
+
 	
 	
-	public FavoriteBean(Integer id, StudentBean_H studentBean_H, TrainerBean_H trainerBean_H, Integer toType) {
+	public FavoriteBean(Integer id, StudentBean_H studentBean_H, TrainerBean_H trainerBean_H) {
 		super();
 		this.id = id;
 		this.studentBean_H = studentBean_H;
 		this.trainerBean_H = trainerBean_H;
-		this.toType = toType;
+		
 	}
 
 
@@ -66,21 +66,5 @@ public class FavoriteBean {
 	}
 
 
-	public Integer getToType() {
-		return toType;
-	}
-
-
-	public void setToType(Integer toType) {
-		this.toType = toType;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
