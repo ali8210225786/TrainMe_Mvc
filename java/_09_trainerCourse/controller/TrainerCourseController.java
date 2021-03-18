@@ -23,6 +23,7 @@ import _01_register.service.MemberService_H;
 import _03_memberData.service.MemberDataService;
 import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
+import _07_memberInfo.service.StudentInfoService;
 import _08_searchTrainer.service.SearchTrainerService;
 import _09_trainerCourse.model.CloseHour;
 import _09_trainerCourse.model.SkillTypeBean_H;
@@ -50,7 +51,7 @@ public class TrainerCourseController {
 	@Autowired
 	MemberDataService memberDataService;
 	
-	@Autowired
+	
 	@Autowired
 	StudentInfoService studentInfoService;
 	MemPointService memPointService;
