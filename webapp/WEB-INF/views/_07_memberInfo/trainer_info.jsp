@@ -13,7 +13,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous" />
-<link rel="stylesheet" href="<c:url value='/css/style_modal.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
@@ -39,13 +38,15 @@
 .tschedule td {
 	cursor: pointer;
 }
-.tschedule .closed,.tschedule .booked,.tschedule .save{
-	border-radius: 8px;
-	width:50px;
-/* 	height:95%; */
- 	border:3px solid #fff;
+
+.tschedule .closed, .tschedule .booked, .tschedule .save {
+	border-radius: 10px;
+	width: 50px;
+	/* 	height:95%; */
+	border: 2px solid #fff;
 	margin: 5px;
 }
+
 .tschedule .closed {
 	background: #E7E7E7;
 	color: #999;
@@ -53,21 +54,22 @@
 }
 
 .tschedule .booked {
-/* 	background: #FF5500;FF8F00 */
+	/* 	background: #FF5500;FF8F00 */
 	background-image: linear-gradient(120deg, #FF8F00, #FF5500);
 	color: white;
 	cursor: not-allowed;
 }
-.tschedule .save{
+
+.tschedule .save {
 	color: white;
 	background-image: linear-gradient(120deg, #21d4a7, #0ac2a9);
-/* 	background: #30BE8F;  */
-/* 	border:1px solid #eee; */
-}
-.tschedule .save:hover{
-	background-image: linear-gradient(120deg, #30E9BB, #0DDFC2);
+	/* 	background: #30BE8F;  */
+	/* 	border:1px solid #eee; */
 }
 
+.tschedule .save:hover {
+	background-image: linear-gradient(120deg, #30E9BB, #0DDFC2);
+}
 
 .tschedule .lock{
 	cursor: not-allowed;
@@ -123,10 +125,6 @@
 			</c:if>
 			<c:if test="${type.equals('search')}">
 				<a href="<c:url value='/searchTrainerAll' />"><i
-					class="fas fa-chevron-left"> </i> 返回</a>
-			</c:if>
-			<c:if test="${type.equals('index')}">
-				<a href="<c:url value='/' />"><i
 					class="fas fa-chevron-left"> </i> 返回</a>
 			</c:if>
 		</div>
@@ -322,36 +320,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
-<!-- 	<!-- 按鈕 --> -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
-<!--     Launch demo modal -->
-<!--   </button> -->
-  
-<!--   <!-- 跳出視窗 --> -->
-<!--   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-<!--     <div class="modal-dialog modal-dialog-centered"> -->
-<!--       <div class="modal-content"> -->
-<!--         <div class="modal-header"> -->
-<!--           <h5 class="modal-title" id="exampleModalLabel">確定要預約嗎？</h5> -->
-<!--         </div> -->
-<!--         <div class="modal-body"> -->
-<!--             預約時段： -->
-<!--             2020-01-23　 -->
-<!--             09:00-10:00 -->
-<!--         </div> -->
-<!--         <div class="modal-footer"> -->
-<!--           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button> -->
-<!--           <button type="button" class="btn btn-primary">確定</button> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-
-
-
 
 
 	<!-- 預約教練 -->
@@ -379,51 +347,52 @@
 			</div>
 
 			<div class="a">
-								<template x-if="isToday()">
-									<span class="pre"><i class="fas fa-angle-left"
-										@click="lessDate()"></i></span>
-								</template>
-							<div class="list">		
-					<div class="choose_box">
-						<div class="sc">
-							<!-- 一進來就會顯示當天起始那一周的時間表 -->
-							<table class="table tschedule">
-								<thead class="thead">
+				<template x-if="isToday()">
+					<span class="pre"><i class="fas fa-angle-left"
+						@click="lessDate()"></i></span>
+				</template>
+
+				<div class="choose_box">
+					<div class="sc">
+						<!-- 一進來就會顯示當天起始那一周的時間表 -->
+						<table class="table tschedule">
+							<thead class="thead">
+								<tr>
+									<th scope="col"></th>
+									<template x-for="date in dates" :key="date.day()">
+										<th scope="col">
+											<div x-text="parseDayOfWeek(date.day())"></div>
+											<div x-text="date.format('MM/DD')"></div>
+										</th>
+									</template>
+								</tr>
+							</thead>
+							<tbody>
+								<template x-for="hour in hours" :key="hour">
 									<tr>
-										<th scope="col"></th>
-										<template x-for="date in dates" :key="date.day()">
-											<th scope="col">
-											
-												<div x-text="parseDayOfWeek(date.day())"></div>
-												<div x-text="date.format('MM/DD')"></div>
-											</th>
+										<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
+										<template x-for="date in dates" :key="date + hour">
+											<td
+												:class="{
+		                       			 closed :isClosed(date,hour),  
+				                        booked :isBooked(date, hour),
+				                        save :!isClosed(date, hour) && !isBooked(date, hour),
+				                        lock :isTrainer()}"
+												@click="bookCourse(date,hour)">
+												<template x-if="isBooked(date, hour)">
+													<span>已預約</span>
+												</template>
+												<template x-if="isClosed(date, hour)">
+													<span>已關閉</span>
+												</template>
+												<template
+													x-if="!isClosed(date, hour) && !isBooked(date, hour)">
+													<span>預約</span>
+												</template>
+											</td>
 										</template>
 									</tr>
-								</thead>
-								<tbody class="tbody">
-									<template x-for="hour in hours" :key="hour">
-										<tr>
-											<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
-											<template x-for="date in dates" :key="date + hour">
-												<td
-													:class="{
-		                       			 closed :isClosed(date,hour),  
-				                        booked :isBooked(date, hour)"
-													@click="bookCourse(date,hour)">
-													<template x-if="isBooked(date, hour)">
-														<span>已預約</span>
-													</template>
-													<template x-if="isClosed(date, hour)">
-														<span>未開放</span>
-													</template>
-													<template x-if="!isClosed(date, hour) && !isBooked(date, hour)">
-														<button class="save" :class= "{lock :isTrainer()}"
-															style="border-radius: 5px; background-color: #eee; padding: 15px 20px">預約</button>
-													</template>
-												</td>
-											</template>
-										</tr>
-									</template>
+								</template>
 
 							</tbody>
 						</table>
@@ -436,12 +405,12 @@
 					</div>
 				</div>
 
-</div>
-							<template x-if="isEnd()">
-								<span class="next"><i class="fas fa-angle-right"
-									@click="addDate()"></i></span>
-							</template>
-		</div>
+
+				<template x-if="isEnd()">
+					<span class="next"><i class="fas fa-angle-right"
+						@click="addDate()"></i></span>
+				</template>
+			</div>
 
 
 
@@ -466,49 +435,51 @@
 			<c:if test="${trainerCourseAndStudentCourseAndRatings.size() != 0}">
 				<c:forEach varStatus="i" begin="0"
 					end="${trainerCourseAndStudentCourseAndRatings.size()-1}">
-					<div class="fb">
+					<c:if test="${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() > 0}">
+						<div class="fb">
 
-						<!-- 會員大頭貼 -->
-						<div class="mb_picture">
-							<c:choose>
-								<c:when
-									test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
-									<img
-										src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
-								</c:when>
-								<c:otherwise>
-									<img
-										src="/upload/${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
-								</c:otherwise>
-							</c:choose>
-						</div>
-
-						<!-- 評價內容 -->
-						<div class="fb_content">
-
-							<!-- 會員名稱時間等等 -->
-							<div class="fc_title">
-								<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getName()}</span>
-								<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getDate()}</span>
-								<label>課程：</label><span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</span>
+							<!-- 會員大頭貼 -->
+							<div class="mb_picture">
+								<c:choose>
+									<c:when
+										test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
+										<img
+											src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+									</c:when>
+									<c:otherwise>
+										<img
+											src="/upload/${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
+									</c:otherwise>
+								</c:choose>
 							</div>
 
-							<!-- 評價星星 (暫)-->
-							<div class="fc_star">
-								<div class="starss" id="starss">
-									<div class="empty_star">★★★★★</div>
-									<div class="full_star"
-										style="width:${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() * 20}%">★★★★★</div>
+							<!-- 評價內容 -->
+							<div class="fb_content">
+
+								<!-- 會員名稱時間等等 -->
+								<div class="fc_title">
+									<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getName()}</span>
+									<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getDate()}</span>
+									<label>課程：</label><span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</span>
 								</div>
-							</div>
 
-							<!-- 留言 -->
-							<div class="sit">
-								<p>${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
-							</div>
+								<!-- 評價星星 (暫)-->
+								<div class="fc_star">
+									<div class="starss" id="starss">
+										<div class="empty_star">★★★★★</div>
+										<div class="full_star"
+											style="width:${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() * 20}%">★★★★★</div>
+									</div>
+								</div>
 
+								<!-- 留言 -->
+								<div class="sit">
+									<p>${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
+								</div>
+
+							</div>
 						</div>
-					</div>
+					</c:if>
 				</c:forEach>
 			</c:if>
 			<!-- 			<div class="fb"> -->
@@ -620,6 +591,7 @@
 		
 		
 		         
+
 
 		let today = dayjs().add(1,'day').format('YYYY-MM-DD');
 		  function data() {
