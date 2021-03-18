@@ -283,7 +283,7 @@
 												</c:choose>
 											</c:if>
 											<td><a
-												href="<c:url value='/st_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i
+												href="<c:url value='/student_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i
 													class="fas fa-book"></i></a></td>
 										</tr>
 									</c:forEach>

@@ -239,7 +239,7 @@ public class MemberDaoImpl_H implements MemberDao_H {
 		@Override
 		public List <TrainerLicenseBean_H> checkTrainerLicense_H(int id) {
 			
-			String hql = "FROM TrainerLicenseBean_H WHERE tr_id = :metr_id";
+			String hql = "FROM TrainerLicenseBean_H WHERE tr_id = :metr_id ORDER BY id DESC";
 			Session session = factory.getCurrentSession();
 			
 			@SuppressWarnings("unchecked")

@@ -72,7 +72,7 @@ public class TrainerCourseDao {
 	@SuppressWarnings( "unchecked" )
 	public List<StudentCourseBean_H> getTrainerCourseById(int trId) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM StudentCourseBean_H sc WHERE sc.trainerCourseBean_H.trainerBean_H.id= :trid ORDER BY sc.date";
+		String hql = "FROM StudentCourseBean_H sc WHERE sc.trainerCourseBean_H.trainerBean_H.id= :trid ORDER BY sc.date DESC";
 		List <StudentCourseBean_H> sc = session.createQuery(hql).setParameter("trid", trId).getResultList();
 		return sc;
 	}

@@ -54,6 +54,8 @@ public class TrainerCourseController {
 	
 	@Autowired
 	StudentInfoService studentInfoService;
+	
+	@Autowired
 	MemPointService memPointService;
 
 	@GetMapping("/TimeOff/{id}")
