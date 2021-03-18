@@ -1,10 +1,7 @@
 package _03_memberData.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import javax.transaction.Transactional;
@@ -19,7 +16,6 @@ import _03_memberData.dao.MemberDataDao;
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
 import _03_memberData.model.TrainerLicenseBean_H;
-import _09_trainerCourse.model.RatingsAvgBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 

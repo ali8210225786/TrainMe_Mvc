@@ -20,7 +20,7 @@ public class TrainerInfoDao {
 	@SuppressWarnings("unchecked")
 	public List<TrainerCourseBean_H> getTrainerCourse(int trId) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TrainerCourseBean_H WHERE tr_id = :mtrId";
+		String hql = "FROM TrainerCourseBean_H WHERE tr_id = :mtrId AND is_delete = 0";
 		
 		return session.createQuery(hql).setParameter("mtrId", trId).getResultList();
 	}

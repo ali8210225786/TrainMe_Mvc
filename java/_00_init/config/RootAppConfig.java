@@ -25,7 +25,7 @@ public class RootAppConfig {
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
         ds.setUser("root");
-        ds.setPassword("kevin8596");
+        ds.setPassword("123456");
         try {
             ds.setDriverClass("com.mysql.cj.jdbc.Driver");
         } catch (PropertyVetoException e) {
@@ -45,7 +45,8 @@ public class RootAppConfig {
         factory.setDataSource(dataSource());         // 連線資訊
         factory.setPackagesToScan(new String[] {     // 映射資訊的來源(套件名稱)
                     "_01_register.model","_03_memberData.model","_04_money.model","_07_memberInfo.model",
-                    "_09_trainerCourse.model","_10_studentCourse.model","_11_orderProcess.model"
+                    "_09_trainerCourse.model","_10_studentCourse.model","_11_orderProcess.model",
+                    "_12_message.model","_13_addfavorite.model"
                 });
         factory.setHibernateProperties(additionalProperties());   // 進階資訊
         return factory;

@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _01_register.model.TrainerBean_H;
 import _04_money.model.MoneyBean_H;
@@ -20,6 +21,7 @@ import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 
+@SessionAttributes({ "LoginOK"})
 @Repository
 public class TrainerCourseDao {
 	
@@ -73,6 +75,21 @@ public class TrainerCourseDao {
 		String hql = "FROM StudentCourseBean_H sc WHERE sc.trainerCourseBean_H.trainerBean_H.id= :trid ORDER BY sc.date DESC";
 		List <StudentCourseBean_H> sc = session.createQuery(hql).setParameter("trid", trId).getResultList();
 		return sc;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TrainerCourseBean_H> getTrainerCourseList(int trId) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TrainerCourseBean_H WHERE tr_id = :trid AND is_delete = 0";
+		return session.createQuery(hql).setParameter("trid", trId).getResultList();	
+	}
+	
+	public void delectCourse(int trainCourseId) {
+		Session session = factory.getCurrentSession();
+		TrainerCourseBean_H tcb = session.get(TrainerCourseBean_H.class, trainCourseId);
+		tcb.setIs_delete(1);
+		session.update(tcb);
+		
 	}
 	
 }

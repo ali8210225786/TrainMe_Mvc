@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
 import _03_memberData.model.TrainerLicenseBean_H;
-import _09_trainerCourse.model.RatingsAvgBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 

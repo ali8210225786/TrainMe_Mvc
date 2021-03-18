@@ -301,6 +301,8 @@ a:hover{
     align-items: center;
     position: relative;
 }
+
+/* 預約表格div */
 .list{
     /* border:  */
     width: 800px;
@@ -331,7 +333,22 @@ a:hover{
     color: #65e7c7;
 }
 
-
+/* 預約表格樣式調整 */
+.choose_box .tschedule .thead tr th{
+    border-bottom: 3px solid #fff;
+}
+.tschedule .thead tr th{
+        background-color: #000;
+}
+.tschedule .thead tr th div:first-child{
+        margin-bottom:8px;
+}
+.tschedule tbody tr th{
+    background-color: #F7F7F7;
+}
+.tschedule tbody tr th,.tschedule tbody tr td{
+    border:1px solid #fff;
+}
 
 
 /* 回到最上面按鈕 */

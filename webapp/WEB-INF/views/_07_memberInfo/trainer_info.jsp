@@ -70,6 +70,10 @@
 .tschedule .save:hover {
 	background-image: linear-gradient(120deg, #30E9BB, #0DDFC2);
 }
+
+.tschedule .lock{
+	cursor: not-allowed;
+}
 </style>
 </head>
 <body>
@@ -372,8 +376,8 @@
 												:class="{
 		                       			 closed :isClosed(date,hour),  
 				                        booked :isBooked(date, hour),
-				                        save :!isClosed(date, hour) && !isBooked(date, hour)
-				                        }"
+				                        save :!isClosed(date, hour) && !isBooked(date, hour),
+				                        lock :isTrainer()}"
 												@click="bookCourse(date,hour)">
 												<template x-if="isBooked(date, hour)">
 													<span>已預約</span>
@@ -588,7 +592,8 @@
 		
 		         
 
-		let today = dayjs().format('YYYY-MM-DD');
+
+		let today = dayjs().add(1,'day').format('YYYY-MM-DD');
 		  function data() {
 			    return {
 				      beginDate : today,
@@ -651,7 +656,7 @@
 					 },
 					 bookCourse(date,hour){
 					    	  const dateStr = date.format('YYYY-MM-DD');
-					        if(this.isBooked(date,hour) || this.isClosed(date,hour)){
+					        if(this.isBooked(date,hour) || this.isClosed(date,hour) || this.isTrainer() ){
 					          return;
 					  }   
 					        var yes = confirm('是否確定預約 ' + dateStr + ' ' +   hour +':00 - '+(hour+1)+':00 ? ')
@@ -705,6 +710,10 @@
 					      isEnd(){
 					    	  var endDate =  dayjs(today).add(14,'day').format('YYYY-MM-DD');
 					    	  return this.beginDate != endDate;
+					      },
+					      isTrainer(){
+					    	  var logOk = ${LoginOK.type};
+					    	  return logOk == 2;
 					      }
 			      
 			      

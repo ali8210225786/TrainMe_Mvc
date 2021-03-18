@@ -11,7 +11,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import _01_register.model.TrainerBean_H;
 import _09_trainerCourse.dao.TrainerCourseDao;
+import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 @Transactional
@@ -51,6 +53,18 @@ public class TrainerCourseService {
 
 	public List<StudentCourseBean_H> getTrainerCourseById(int trId){
 		return trainerCourseDao.getTrainerCourseById(trId);
+	}
+	
+	public TrainerBean_H getTrainerById(int trId) {
+		return trainerCourseDao.getTrainerById(trId);
+	}
+	
+	public List<TrainerCourseBean_H> getTrainerCourseList(int trId) {
+		return trainerCourseDao.getTrainerCourseList(trId);
+	}
+	
+	public void delectCourse(int trainCourseId) {
+		trainerCourseDao.delectCourse(trainCourseId);
 	}
 	
 		

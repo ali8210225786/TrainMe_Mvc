@@ -63,11 +63,7 @@ public class StudentCourseBean_H implements Serializable{
 	@OneToOne(mappedBy = "studentCourseBean_H" , fetch = FetchType.LAZY)
 	RatingsBean_H ratingsBean_H;
 	
-	
 
-	
-
-	
 
 	public StudentCourseBean_H(Date date, StudentBean_H studentBean_H, Integer time, Integer is_delete,
 			Integer is_rated, Integer is_allowed, TrainerCourseBean_H trainerCourseBean_H) {

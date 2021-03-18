@@ -373,7 +373,7 @@ html .fixWindow {
 								</span>
 							</div>
 							<a
-								href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=search' />">
+								href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=index' />">
 								<img
 								src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}"
 								border="0">
