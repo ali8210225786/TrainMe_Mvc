@@ -333,6 +333,12 @@ a:hover{
     color: #65e7c7;
 }
 
+#notClick i{
+	
+	color:#c0c0c0 !important ;
+	cursor:default !important ;
+}
+
 /* 預約表格樣式調整 */
 .choose_box .tschedule .thead tr th{
     border-bottom: 3px solid #fff;

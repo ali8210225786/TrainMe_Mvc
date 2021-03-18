@@ -44,6 +44,11 @@
 	color: #000;
 }
 
+.modal-header h5{
+     font-weight: bold;
+     color: #000;
+}
+
 .modal-body {
 	padding: 0 0 30px 0;
 	text-align: center;

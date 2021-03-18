@@ -13,6 +13,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous" />
+<link rel="stylesheet" href="<c:url value='/css/style_modal.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
@@ -38,15 +39,13 @@
 .tschedule td {
 	cursor: pointer;
 }
-
-.tschedule .closed, .tschedule .booked, .tschedule .save {
-	border-radius: 10px;
-	width: 50px;
-	/* 	height:95%; */
-	border: 2px solid #fff;
+.tschedule .closed,.tschedule .booked,.tschedule .save{
+	border-radius: 8px;
+	width:50px;
+/* 	height:95%; */
+ 	border:3px solid #fff;
 	margin: 5px;
 }
-
 .tschedule .closed {
 	background: #E7E7E7;
 	color: #999;
@@ -54,84 +53,24 @@
 }
 
 .tschedule .booked {
-	/* 	background: #FF5500;FF8F00 */
+/* 	background: #FF5500;FF8F00 */
 	background-image: linear-gradient(120deg, #FF8F00, #FF5500);
 	color: white;
 	cursor: not-allowed;
 }
-
-.tschedule .save {
+.tschedule .save{
 	color: white;
 	background-image: linear-gradient(120deg, #21d4a7, #0ac2a9);
-	/* 	background: #30BE8F;  */
-	/* 	border:1px solid #eee; */
+/* 	background: #30BE8F;  */
+/* 	border:1px solid #eee; */
 }
-
-.tschedule .save:hover {
+.tschedule .save:hover{
 	background-image: linear-gradient(120deg, #30E9BB, #0DDFC2);
 }
 
-.tschedule .lock {
+
+.tschedule .lock{
 	cursor: not-allowed;
-}
-
-.aside ul li:nth-child(3) a {
-	color: #21d4a7;
-}
-
-.modal-content {
-	background-color: #fff;
-	position: relative;
-	color: #666;
-	width: 100%;
-}
-
-.modal-header {
-	text-align: center;
-	margin: auto;
-	border: none;
-	padding-top: 30px;
-}
-
-.modal-title {
-	font-weight: bold;
-	color: #000;
-}
-
-.modal-header h5 {
-	font-weight: bold;
-	color: #000;
-}
-
-.modal-body {
-	padding: 0 0 30px 0;
-	text-align: center;
-}
-
-.modal-footer {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	border: none;
-	background-color: #21d4a7;
-}
-
-.modal-footer .btn {
-	border-radius: 1px;
-	padding: 10px 50px;
-}
-
-.modal-footer .btn:first-child {
-	background-color: #fff;
-	color: #333;
-	border: none;
-
-	/* border: 1px solid #fff; */
-}
-
-.modal-footer .btn:last-child {
-	background-color: #000;
-	border: none;
 }
 </style>
 </head>
@@ -184,6 +123,10 @@
 			</c:if>
 			<c:if test="${type.equals('search')}">
 				<a href="<c:url value='/searchTrainerAll' />"><i
+					class="fas fa-chevron-left"> </i> 返回</a>
+			</c:if>
+			<c:if test="${type.equals('index')}">
+				<a href="<c:url value='/' />"><i
 					class="fas fa-chevron-left"> </i> 返回</a>
 			</c:if>
 		</div>
@@ -379,6 +322,36 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+<!-- 	<!-- 按鈕 --> -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
+<!--     Launch demo modal -->
+<!--   </button> -->
+  
+<!--   <!-- 跳出視窗 --> -->
+<!--   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+<!--     <div class="modal-dialog modal-dialog-centered"> -->
+<!--       <div class="modal-content"> -->
+<!--         <div class="modal-header"> -->
+<!--           <h5 class="modal-title" id="exampleModalLabel">確定要預約嗎？</h5> -->
+<!--         </div> -->
+<!--         <div class="modal-body"> -->
+<!--             預約時段： -->
+<!--             2020-01-23　 -->
+<!--             09:00-10:00 -->
+<!--         </div> -->
+<!--         <div class="modal-footer"> -->
+<!--           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button> -->
+<!--           <button type="button" class="btn btn-primary">確定</button> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+
+
+
 
 
 	<!-- 預約教練 -->
@@ -406,60 +379,51 @@
 			</div>
 
 			<div class="a">
-
-				<template x-if="isToday()">
-					<span class="pre" id="notClick"><i class="fas fa-angle-left"></i></span>
-				</template>
-				<template x-if="!isToday()">
-					<span class="pre"><i class="fas fa-angle-left"
-						@click="lessDate()"></i></span>
-				</template>
-
-				<div class="choose_box">
-					<div class="sc">
-						<!-- 一進來就會顯示當天起始那一周的時間表 -->
-						<table class="table tschedule">
-							<thead class="thead">
-								<tr>
-									<th scope="col"></th>
-									<template x-for="date in dates" :key="date.day()">
-										<th scope="col">
-											<div x-text="parseDayOfWeek(date.day())"></div>
-											<div x-text="date.format('MM/DD')"></div>
-										</th>
-									</template>
-								</tr>
-							</thead>
-							<tbody>
-								<template x-for="hour in hours" :key="hour">
+								<template x-if="isToday()">
+									<span class="pre"><i class="fas fa-angle-left"
+										@click="lessDate()"></i></span>
+								</template>
+							<div class="list">		
+					<div class="choose_box">
+						<div class="sc">
+							<!-- 一進來就會顯示當天起始那一周的時間表 -->
+							<table class="table tschedule">
+								<thead class="thead">
 									<tr>
-										<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
-										<template x-for="date in dates" :key="date + hour">
-<!-- 											data-toggle="modal" -->
-<%-- 												data-target="#exampleModal${LoginOK.type}" --%>
-											<td 
-												:class="{
-		                       			 closed :isClosed(date,hour),  
-				                        booked :isBooked(date, hour),
-				                        save :!isClosed(date, hour) && !isBooked(date, hour),
-				                        lock :isTrainer()}"
-				                        @click="bookCourse(date,hour)">
-<!-- 												@click="bookCourse(date,hour)" -->
-<!-- 												> -->
-												<template x-if="isBooked(date, hour)">
-													<span>已預約</span>
-												</template>
-												<template x-if="isClosed(date, hour)">
-													<span>已關閉</span>
-												</template>
-												<template
-													x-if="!isClosed(date, hour) && !isBooked(date, hour)">
-													<span>預約</span>
-												</template>
-											</td>
+										<th scope="col"></th>
+										<template x-for="date in dates" :key="date.day()">
+											<th scope="col">
+											
+												<div x-text="parseDayOfWeek(date.day())"></div>
+												<div x-text="date.format('MM/DD')"></div>
+											</th>
 										</template>
 									</tr>
-								</template>
+								</thead>
+								<tbody class="tbody">
+									<template x-for="hour in hours" :key="hour">
+										<tr>
+											<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
+											<template x-for="date in dates" :key="date + hour">
+												<td
+													:class="{
+		                       			 closed :isClosed(date,hour),  
+				                        booked :isBooked(date, hour)"
+													@click="bookCourse(date,hour)">
+													<template x-if="isBooked(date, hour)">
+														<span>已預約</span>
+													</template>
+													<template x-if="isClosed(date, hour)">
+														<span>未開放</span>
+													</template>
+													<template x-if="!isClosed(date, hour) && !isBooked(date, hour)">
+														<button class="save" :class= "lock :isTrainer()"
+															style="border-radius: 5px; background-color: #eee; padding: 15px 20px">預約</button>
+													</template>
+												</td>
+											</template>	
+										</tr>
+									</template>
 
 							</tbody>
 						</table>
@@ -472,62 +436,18 @@
 					</div>
 				</div>
 
-
-				<template x-if="isEnd()">
-					<span class="next" id="notClick"><i
-						class="fas fa-angle-right"></i></span>
-				</template>
-				<template x-if="!isEnd()">
-					<span class="next"><i class="fas fa-angle-right"
-						@click="addDate()"></i></span>
-				</template>
-
-
-
-				<!-- 	確認預約課程的彈跳視窗，會先被隱藏起來 -->
-				<div class="modal fade" id="exampleModal1" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">確定要預約此時段嗎？</h5>
-							</div>
-							<div class="modal-body" id="courseTime"></div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">取消</button>
-								<button id="manageFeedback" class="btn btn-primary"
-									@click="goToBook()">確定</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<!-- 	確認預約課程的彈跳視窗，會先被隱藏起來 -->
-				<div class="modal fade" id="pleaselogin" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">請先登入</h5>
-							</div>
-							<div class="modal-body" id="courseTime"></div>
-							<div class="modal-footer">
-								<button id="manageFeedback" class="btn btn-primary"
-									@click="goToLogin()">確定</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-
-
-
-
-			</div>
+</div>
+							<template x-if="isEnd()">
+								<span class="next"><i class="fas fa-angle-right"
+									@click="addDate()"></i></span>
+							</template>
 		</div>
+
+
+
+		</div>
+
+
 	</div>
 
 
@@ -546,54 +466,127 @@
 			<c:if test="${trainerCourseAndStudentCourseAndRatings.size() != 0}">
 				<c:forEach varStatus="i" begin="0"
 					end="${trainerCourseAndStudentCourseAndRatings.size()-1}">
-					<c:if
-						test="${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() > 0}">
-						<div class="fb">
+					<div class="fb">
 
-							<!-- 會員大頭貼 -->
-							<div class="mb_picture">
-								<c:choose>
-									<c:when
-										test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
-										<img
-											src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
-									</c:when>
-									<c:otherwise>
-										<img
-											src="/upload/${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
-									</c:otherwise>
-								</c:choose>
-							</div>
-
-							<!-- 評價內容 -->
-							<div class="fb_content">
-
-								<!-- 會員名稱時間等等 -->
-								<div class="fc_title">
-									<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getName()}</span>
-									<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getDate()}</span>
-									<label>課程：</label><span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</span>
-								</div>
-
-								<!-- 評價星星 (暫)-->
-								<div class="fc_star">
-									<div class="starss" id="starss">
-										<div class="empty_star">★★★★★</div>
-										<div class="full_star"
-											style="width:${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() * 20}%">★★★★★</div>
-									</div>
-								</div>
-
-								<!-- 留言 -->
-								<div class="sit">
-									<p>${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
-								</div>
-
-							</div>
+						<!-- 會員大頭貼 -->
+						<div class="mb_picture">
+							<c:choose>
+								<c:when
+									test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
+									<img
+										src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+								</c:when>
+								<c:otherwise>
+									<img
+										src="/upload/${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
+								</c:otherwise>
+							</c:choose>
 						</div>
-					</c:if>
+
+						<!-- 評價內容 -->
+						<div class="fb_content">
+
+							<!-- 會員名稱時間等等 -->
+							<div class="fc_title">
+								<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getName()}</span>
+								<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getDate()}</span>
+								<label>課程：</label><span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</span>
+							</div>
+
+							<!-- 評價星星 (暫)-->
+							<div class="fc_star">
+								<div class="starss" id="starss">
+									<div class="empty_star">★★★★★</div>
+									<div class="full_star"
+										style="width:${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getPoint() * 20}%">★★★★★</div>
+								</div>
+							</div>
+
+							<!-- 留言 -->
+							<div class="sit">
+								<p>${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
+							</div>
+
+						</div>
+					</div>
 				</c:forEach>
 			</c:if>
+			<!-- 			<div class="fb"> -->
+			<!-- 				會員大頭貼 -->
+			<!-- 				<div class="mb_picture"> -->
+			<%-- 					<img src="<c:url value='/images/_03_MemberData/member.jpg' />"> --%>
+			<!-- 				</div> -->
+
+			<!-- 				評價內容 -->
+			<!-- 				<div class="fb_content"> -->
+
+			<!-- 					會員名稱時間等等 -->
+			<!-- 					<div class="fc_title"> -->
+			<!-- 						<span>天竺鼠</span> <span>2021-01-27 08:30</span> <label>課程：</label><span>基德老師快樂減重課程快樂減重課程快樂課程</span> -->
+			<!-- 					</div> -->
+
+			<!-- 					評價星星 (暫) -->
+			<!-- 					<div class="fc_star"> -->
+			<!-- 						<div class="starss" id="starss"> -->
+			<%-- 							<img value="1" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="2" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="3" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="4" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="5" src="<c:url value='/images/star1.png' />"> --%>
+			<!-- 						</div> -->
+			<!-- 					</div> -->
+
+			<!-- 					留言 -->
+			<!-- 					<div class="fc_content"> -->
+			<!-- 						<p> -->
+			<!-- 							很認真,很照顧學員<br> 對於第一次使用健身房器材,也講的很詳細,<br> -->
+			<!-- 							以及飲食控制也不怕麻煩請學員每日提供餐食內容物以判斷熱量吸取的狀態。<br> 真心推薦! -->
+			<!-- 						</p> -->
+			<!-- 					</div> -->
+
+			<!-- 				</div> -->
+			<!-- 			</div> -->
+
+			<!-- 			<div class="fb"> -->
+
+			<!-- 				會員大頭貼 -->
+			<!-- 				<div class="mb_picture"> -->
+			<%-- 					<img src="<c:url value='/images/_03_MemberData/member.jpg' />"> --%>
+			<!-- 				</div> -->
+
+			<!-- 				評價內容 -->
+			<!-- 				<div class="fb_content"> -->
+
+			<!-- 					會員名稱時間等等 -->
+			<!-- 					<div class="fc_title"> -->
+			<!-- 						<span>天竺鼠</span> <span>2021-01-27 08:30</span> <label>課程：</label><span>基德老師快樂減重課程快樂減重課程快樂課程</span> -->
+			<!-- 					</div> -->
+
+			<!-- 					評價星星 (暫) -->
+			<!-- 					<div class="fc_star"> -->
+			<!-- 						<div class="starss" id="starss"> -->
+
+			<%-- 							<img value="1" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="2" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="3" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="4" src="<c:url value='/images/star1.png' />"> <img --%>
+			<%-- 								value="5" src="<c:url value='/images/star1.png' />"> --%>
+			<!-- 						</div> -->
+			<!-- 					</div> -->
+
+			<!-- 					留言 -->
+			<!-- 					<div class="fc_content"> -->
+			<!-- 						<p> -->
+			<!-- 							很認真,很照顧學員<br> 對於第一次使用健身房器材,也講的很詳細,<br> -->
+			<!-- 							以及飲食控制也不怕麻煩請學員每日提供餐食內容物以判斷熱量吸取的狀態。<br> 真心推薦! -->
+			<!-- 						</p> -->
+			<!-- 					</div> -->
+
+			<!-- 				</div> -->
+			<!-- 			</div> -->
+
+			<!-- 		</div> -->
+			<!-- 	</div> -->
 
 			<!-- 回到最上面 -->
 			<a
@@ -601,19 +594,8 @@
 				id="gotop"> <i class="fa fa-angle-up"></i>
 			</a>
 
-
-
-
 			<script
 				src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-			<script
-				src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-				integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-				crossorigin="anonymous"></script>
-
-
 			<script>
 		//回到最上面
 		$(function() {
@@ -637,8 +619,7 @@
 		
 		
 		
-// 		 console.log(${empty LoginOK});
-
+		         
 
 		let today = dayjs().add(1,'day').format('YYYY-MM-DD');
 		  function data() {
@@ -648,8 +629,6 @@
 				      hours : [8,9,10,11,12,13,14,15,16,17,18,19,20,21],
 				      closed : [],
 				      booked : [],
-				      change_date:0,
-				      change_hour:0,
 				      init($refs){
 				        this.updateBeginDate();
 				        this.getBookedHours();
@@ -678,6 +657,7 @@
 				    	$.get("/TrainMe/TimeOff/getClosed/" + ${trainerBean.id}, datax,
 				                  function (data) {
 				                	self.closed = data;
+// 				                	 console.log(closed);
 				                  },
 				                  "json"
 				        );
@@ -704,17 +684,30 @@
 					 },
 					 bookCourse(date,hour){
 					    	  const dateStr = date.format('YYYY-MM-DD');
-					    	  this.change_date = dateStr;
-					    	  this.change_hour = hour;
 					        if(this.isBooked(date,hour) || this.isClosed(date,hour) || this.isTrainer() ){
 					          return;
-					  }   
-					        if(${empty LoginOK}){
-					       		 $('#pleaselogin').modal('show')
-					        }else{
-						        $("#courseTime").html(dateStr + '<br><br>' +   hour +':00 - '+(hour+1)+':00 ');					       
-						        $('#exampleModal1').modal('show')
-					        	
+					 		 }   
+					        var yes = confirm('是否確定預約 ' + dateStr + ' ' +   hour +':00 - '+(hour+1)+':00 ? ')
+							if(!yes){
+								
+								event.preventDefault();
+							}
+					        if(yes){
+					        	if(${LoginOK == null}){
+// 					        		console.log(${LoginOK});
+					        		alert("請先登入")
+					        		Show();
+// 		====================希望完成登入後可以直接進入預約頁面效果====================
+// 					        		if(${LoginOK != null}){
+// 					        		window.location.href="/bookCourse";
+// 					        		}
+					        	}else{
+					        		  console.log(${empty LoginOK.id});
+					        		  console.log('111');
+					        		var stId = ${empty LoginOK.id} ? 0 : ${LoginOK.id}
+					        		window.location.href="/TrainMe/bookCourse?tr=" + ${trainerBean.id} +"&st=" + stId
+					        							+ "&date=" + dateStr + "&hour=" + hour;
+					        	}
 					        }
 					        
 					      },
@@ -734,7 +727,7 @@
 					      },
 					      isToday(){
 // 					    	  console.log(this.beginDate == today);
-					    	  return this.beginDate == today;					   
+					    	  return this.beginDate != today;
 					      },
 					      lessDate(){
 					    	  this.beginDate = dayjs(this.beginDate).subtract(7,'day').format('YYYY-MM-DD');
@@ -746,32 +739,18 @@
 					      },
 					      isEnd(){
 					    	  var endDate =  dayjs(today).add(14,'day').format('YYYY-MM-DD');
-					    	  return this.beginDate == endDate;
+					    	  return this.beginDate != endDate;
 					      },
 					      isTrainer(){
-// 					    	  var logOk = ${empty LoginOK} ? 0 : ${LoginOK.type}
-					    	  if(${empty LoginOK}){
-					    		  logOk = 0;
-					    	  }
-					    	  if(!${empty LoginOK}){
-					    		  logOk = "${LoginOK.type}"
-					    	  }
+					    	  var logOk = ${LoginOK.type};
 					    	  return logOk == 2;
-					      },
-					      goToBook() {
-					    	  window.location.href="/TrainMe/bookCourse?tr=" + ${trainerBean.id} +"&st=" + ${LoginOK.id}
-   							+ "&date=" + this.change_date + "&hour=" + this.change_hour;
-					      },
-					      goToLogin(){
-					    	  $('#pleaselogin').modal('hide')
-					    	  Show();
 					      }
+			      
 			      
 			 	}
 		    
 		  }
-		  
-									        	
+		
 		  
 	</script>
 </body>
