@@ -31,6 +31,55 @@
 .aside ul li:nth-child(3) a {
 	color: #21d4a7;
 }
+.modal-content {
+	background-color: #fff;
+	position: relative;
+	color: #666;
+	width: 100%;
+}
+
+.modal-header {
+	text-align: center;
+	margin: auto;
+	border: none;
+	padding-top: 30px;
+}
+
+.modal-title {
+	font-weight: bold;
+	color: #000;
+}
+
+.modal-body {
+	padding: 0 0 30px 0;
+	text-align: center;
+}
+
+.modal-footer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	border: none;
+	background-color: #21d4a7;
+}
+
+.modal-footer .btn {
+	border-radius: 1px;
+	padding: 10px 50px;
+}
+
+.modal-footer .btn:first-child {
+	background-color: #fff;
+	color: #333;
+	border: none;
+
+	/* border: 1px solid #fff; */
+}
+
+.modal-footer .btn:last-child {
+	background-color: #000;
+	border: none;
+}
 </style>
 </head>
 <body>
