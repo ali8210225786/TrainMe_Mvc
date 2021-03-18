@@ -76,11 +76,15 @@
 
             <div class="check_btn">
                 <button class="cancel" id="cancel_btn">取消</button>
-                <button class="save" id="save_btn">送出</button>
+                <button class="save" id="save_btn" data-toggle="modal" data-target="#exampleModal">送出</button>
             </div>
 
          </div>
-    </div>
+<!--     </div> -->
+    
+   
+    
+    
 
 
     
