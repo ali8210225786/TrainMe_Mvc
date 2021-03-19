@@ -224,7 +224,7 @@ table.table td .add {
 					<div class="setting_box upload_file">
 						<label for="name"><h5>教練建議:</h5></label>
 						<textarea name="datdiary_content" id="text" cols="60" rows="15"
-							maxlength="1000" placeholder="限1000字以內">${CourseMsg.datdiary_content}</textarea>
+							maxlength="500" placeholder="限500字以內">${CourseMsg.datdiary_content}</textarea>
 						<p id="feedback"></p>
 					</div>
 
@@ -258,12 +258,12 @@ table.table td .add {
 							$('#feedback').html(`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
 
 							$('#text').keyup(function() {
-												let textMax = 0;
+												let textMax = 1000;
 												let textLength = $(this).val().length;
-												total = textMax + textLength;
+												total = textMax - textLength;
 												$('#feedback')
 														.html(
-																`已經輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
+																`還可以輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
 												//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
 											});
 						});
