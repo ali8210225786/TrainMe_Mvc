@@ -43,6 +43,7 @@ import _09_trainerCourse.model.RatingsAvgBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
+import _12_message.service.MessageService;
 import mail.model.SendingEmail;
 import mail.service.MailService;
 
@@ -76,6 +77,9 @@ public class RegisterController {
 	
 	@Autowired
 	MemberDataService memberDataService;
+	
+	@Autowired
+	MessageService messageService;
 
 	@GetMapping("/")
 	public String index(Model model) {

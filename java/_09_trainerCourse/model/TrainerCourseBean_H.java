@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,6 +38,8 @@ public class TrainerCourseBean_H {
 	@JoinColumn(name="skill_type_id")
 	private SkillTypeBean_H skill_typeBean_H;
 	private Integer price;
+	@Column(columnDefinition = "INT Default 0")
+	private Integer is_delete;
 	
 //	@OneToMany(mappedBy = "trainerCourseBean_H", fetch = FetchType.EAGER)
 //	private Set<StudentCourseBean_H> studentCourseBean_H = new LinkedHashSet<>();
@@ -47,20 +50,6 @@ public class TrainerCourseBean_H {
 		this.price = price;
 	}
 	
-	
-	public TrainerCourseBean_H(Integer id, TrainerBean_H trainerBean_H, SkillBean_H skillBean_H,
-			SkillTypeBean_H skill_typeBean_H, Integer price
-//			, Set<StudentCourseBean_H> studentCourseBean_H
-			) {
-		super();
-		this.id = id;
-		this.trainerBean_H = trainerBean_H;
-		this.skillBean_H = skillBean_H;
-		this.skill_typeBean_H = skill_typeBean_H;
-		this.price = price;
-//		this.studentCourseBean_H = studentCourseBean_H;
-	}
-
 
 //	public Set<StudentCourseBean_H> getStudentCourseBean_H() {
 //		return studentCourseBean_H;
@@ -70,6 +59,18 @@ public class TrainerCourseBean_H {
 //	public void setStudentCourseBean_H(Set<StudentCourseBean_H> studentCourseBean_H) {
 //		this.studentCourseBean_H = studentCourseBean_H;
 //	}
+
+
+	public TrainerCourseBean_H(Integer id, TrainerBean_H trainerBean_H, SkillBean_H skillBean_H,
+			SkillTypeBean_H skill_typeBean_H, Integer price, Integer is_delete) {
+		super();
+		this.id = id;
+		this.trainerBean_H = trainerBean_H;
+		this.skillBean_H = skillBean_H;
+		this.skill_typeBean_H = skill_typeBean_H;
+		this.price = price;
+		this.is_delete = is_delete;
+	}
 
 
 	public TrainerCourseBean_H() {
@@ -116,6 +117,18 @@ public class TrainerCourseBean_H {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
+
+	public Integer getIs_delete() {
+		return is_delete;
+	}
+
+
+	public void setIs_delete(Integer is_delete) {
+		this.is_delete = is_delete;
+	}
+	
+	
 
 	
 	

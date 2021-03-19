@@ -1,6 +1,5 @@
 package _01_register.model;
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,13 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 import _04_money.model.MoneyBean_H;
 import _04_money.model.TrainerAccountBean_H;
-import _03_memberData.model.TrainerLicenseBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.model.TrainerOffBean_H;
 import _11_orderProcess.model.OrdersBean_H;
+import _12_message.model.MessageBean;
+import _13_addfavorite.model.FavoriteBean;
 
 
 
@@ -112,6 +113,12 @@ public class TrainerBean_H extends MemberBean_H {
 	
 	@OneToMany(mappedBy = "trainerBean_H")
 	private Set<TrainerLicenseBean_H> trainerLicenseBean_H = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<MessageBean> messageBean = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "trainerBean_H")
+	private Set<FavoriteBean> favoriteBean = new LinkedHashSet<>();
 	
 	public TrainerBean_H(Integer id, Integer type, String name, String phone, Date birthday, String email, String password,
 			String id_number, String sex, Integer verification, GymBean_H gym, Integer is_delete, String myHash,Double ratings,Integer ratings_size) {
@@ -700,6 +707,36 @@ public class TrainerBean_H extends MemberBean_H {
 	public void setTrainerOffBean_H(Set<TrainerOffBean_H> trainerOffBean_H) {
 		this.trainerOffBean_H = trainerOffBean_H;
 	}
+
+
+
+
+	public Set<MessageBean> getMessageBean() {
+		return messageBean;
+	}
+
+
+
+
+	public void setMessageBean(Set<MessageBean> messageBean) {
+		this.messageBean = messageBean;
+	}
+
+
+
+
+	public Set<FavoriteBean> getFavoriteBean() {
+		return favoriteBean;
+	}
+
+
+
+
+	public void setFavoriteBean(Set<FavoriteBean> favoriteBean) {
+		this.favoriteBean = favoriteBean;
+	}
+	
+	
 
 
 }

@@ -128,7 +128,7 @@
 					</c:otherwise>
 					</c:choose>
 				</p>
-								<button class="df_btn"><a href="<c:url value='/studentMoney/addPoint' />">我要儲值</a></button>
+								<button class="df_btn" onclick="location.href='/TrainMe/studentMoney/addPoint' ">我要儲值</button>
 			</div>
 			
 				<table class="table border">

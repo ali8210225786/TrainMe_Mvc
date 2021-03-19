@@ -27,9 +27,6 @@
 		<jsp:include page="/fragment/nav_st.jsp" />
 	</c:if>
 
-	<c:if test="${LoginOK.type == 2}">
-		<jsp:include page="/fragment/nav_tr.jsp" />
-	</c:if>
 
 
     <!-- ====================================================================== -->
@@ -79,11 +76,15 @@
 
             <div class="check_btn">
                 <button class="cancel" id="cancel_btn">取消</button>
-                <button class="save" id="save_btn">送出</button>
+                <button class="save" id="save_btn" data-toggle="modal" data-target="#exampleModal">送出</button>
             </div>
 
          </div>
-    </div>
+<!--     </div> -->
+    
+   
+    
+    
 
 
     

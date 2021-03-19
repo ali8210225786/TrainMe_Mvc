@@ -25,6 +25,60 @@
 .aside ul li:nth-child(3) a {
 	color: #21d4a7;
 }
+.modal-content {
+	background-color: #fff;
+	position: relative;
+	color: #666;
+	width: 100%;
+}
+
+.modal-header {
+	text-align: center;
+	margin: auto;
+	border: none;
+	padding-top: 30px;
+}
+
+.modal-title {
+	font-weight: bold;
+	color: #000;
+}
+
+.modal-header h5{
+     font-weight: bold;
+     color: #000;
+}
+
+.modal-body {
+	padding: 0 0 30px 0;
+	text-align: center;
+}
+
+.modal-footer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	border: none;
+	background-color: #21d4a7;
+}
+
+.modal-footer .btn {
+	border-radius: 1px;
+	padding: 10px 50px;
+}
+
+.modal-footer .btn:first-child {
+	background-color: #fff;
+	color: #333;
+	border: none;
+
+	/* border: 1px solid #fff; */
+}
+
+.modal-footer .btn:last-child {
+	background-color: #000;
+	border: none;
+}
 </style>
 </head>
 <body>
@@ -94,12 +148,12 @@
 												${waitCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${waitCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 											<td><button type="button" class="btn btn-primary"
-													data-toggle="modal" data-target="#exampleModal">
+													data-toggle="modal" data-target="#exampleModal1${waitCourse.get(i.current).getId()}">
 													取消</button></td>
 										</tr>
 										
 <!-- 										取消課程的彈跳視窗，會先被隱藏起來 -->
-										<div class="modal fade" id="exampleModal" tabindex="-1"
+										<div class="modal fade" id="exampleModal1${waitCourse.get(i.current).getId()}" tabindex="-1"
 											aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">
@@ -152,12 +206,12 @@
 												${comingSoonCourse.get(i.current).getTime() + 1}:00</td>
 											<td>${comingSoonCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 											<td><button type="button" class="btn btn-primary"
-													data-toggle="modal" data-target="#exampleModal">
+													data-toggle="modal" data-target="#exampleModal${comingSoonCourse.get(i.current).getId()}">
 													取消</button></td>
 										</tr>
 										
 <!-- 										取消課程的彈跳視窗，會先被隱藏起來 -->
-										<div class="modal fade" id="exampleModal" tabindex="-1"
+										<div class="modal fade" id="exampleModal${comingSoonCourse.get(i.current).getId()}" tabindex="-1"
 											aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">
@@ -229,7 +283,7 @@
 												</c:choose>
 											</c:if>
 											<td><a
-												href="<c:url value='/st_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i
+												href="<c:url value='/student_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i
 													class="fas fa-book"></i></a></td>
 										</tr>
 									</c:forEach>

@@ -8,14 +8,19 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import _01_register.model.StudentBean_H;
+import _03_memberData.model.Area_H;
+import _03_memberData.model.City_H;
+import _03_memberData.model.TrainerLicenseBean_H;
 import _10_studentCourse.dao.StudentCourseDao;
 import _10_studentCourse.dao.StudentDiaryDao;
 import _10_studentCourse.model.CourseDiaryItemBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 
 @Transactional
-@Component
+@Service
 public class StudentDiaryService {
 	@Autowired
 	StudentDiaryDao studentDiaryDao;
@@ -26,6 +31,22 @@ public class StudentDiaryService {
 	public List<CourseDiaryItemBean_H>  getDiaryItem(int id) {
 	
 		return studentDiaryDao.getDiaryItem(id);
+	}
+	
+	public int saveCourseDiaryItemBean(CourseDiaryItemBean_H cdi) {
+		int n = 0;		
+		n = studentDiaryDao.saveTrainerCourseDiaryItem(cdi);
+		n++;
+		return n;
+	}
+	
+	public void delTrainerCourseDiaryItem(int id) {
+		studentDiaryDao.delTrainerCourseDiaryItem(id);
+	}
+	
+	public void updateStudentCourseDatDiaryContent(StudentCourseBean_H scb) {
+	
+		studentDiaryDao.updateStudentCourseDatDiaryContent(scb);
 	}
 }
 
