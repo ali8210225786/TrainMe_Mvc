@@ -139,6 +139,7 @@ public class StudentCourseController {
 			moneyBean_H2.setTrainerBean_H(trainerBean);
 			moneyBean_H2.setChange_time(changeTime);
 			moneyBean_H2.setChange_amount(-sc.getTrainerCourseBean_H().getPrice());
+			moneyBean_H2.setStudentCourseBean_H(sc);
 			memPointService.saveTrainerRefund(moneyBean_H2);
 		}
 		
