@@ -16,9 +16,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-<!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
-.aside ul li:nth-child(2) a {
+.aside ul li:nth-child(1) a{
 	color: #21d4a7;
 }
 </style>
@@ -44,7 +43,7 @@
 			<!-- 說明 -->
 
 			<div class="explain">
-				<p>您所填寫的資料將反映到BMI、BMR與TDEE的數據上。</p>
+				<p>您所填寫的資料將反映到BMI、BMR與TDEE的數據上，本站所計算之BMR與TDEE數據僅供參考　。</p>
 			</div>
 			<div class="edit_area">
 				<form:form
