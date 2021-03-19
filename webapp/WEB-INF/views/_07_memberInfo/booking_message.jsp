@@ -21,6 +21,67 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
+<style>
+.aside ul li:nth-child(3) a {
+	color: #21d4a7;
+}
+
+.modal-content {
+	background-color: #fff;
+	position: relative;
+	color: #666;
+	width: 100%;
+}
+
+.modal-header {
+	text-align: center;
+	margin: auto;
+	border: none;
+	padding-top: 30px;
+}
+
+.modal-title {
+	font-weight: bold;
+	color: #000;
+}
+
+.modal-header h5 {
+	font-weight: bold;
+	color: #000;
+}
+
+.modal-body {
+	padding: 0 0 30px 0;
+	text-align: center;
+}
+
+.modal-footer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	border: none;
+	background-color: #21d4a7;
+}
+
+.modal-footer .btn {
+	border-radius: 1px;
+	padding: 10px 50px;
+}
+
+.modal-footer .btn:first-child {
+	background-color: #fff;
+	color: #333;
+	border: none;
+
+	/* border: 1px solid #fff; */
+}
+
+.modal-footer .btn:last-child {
+	background-color: #000;
+	border: none;
+}
+
+</style>
 </head>
 <body>
     <c:if test="${LoginOK.type == 1}">
@@ -60,6 +121,7 @@
                         <label>選擇課程</label>
                         <select id="skill" name="skill" required>                 
 	                        <c:if test="${trainerCourses.size() > 0}">
+									<option value="-1">請選擇</option>
 								<c:forEach varStatus="i" begin="0" end="${trainerCourses.size()-1}">
 									<option value="${trainerCourses.get(i.current).getSkillBean_H().getId()}">${trainerCourses.get(i.current).getSkillBean_H().getName()}</option>
 								</c:forEach>
@@ -68,7 +130,7 @@
                         
                     </div>
                     <div class="setting_box">
-                        <label>預計扣除點數</label><p id="price">1500點</p>
+                        <label>預計扣除點數</label><p id="price"></p>
                     </div>
 
                 </form>
@@ -82,6 +144,22 @@
          </div>
 <!--     </div> -->
     
+    <!-- 	確認預約課程的彈跳視窗，會先被隱藏起來 -->
+				<div class="modal fade" id="choiceSkill" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">尚未選擇課程</h5>
+							</div>
+							<div class="modal-body" id="courseTime"></div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">確定</button>
+							</div>
+						</div>
+					</div>
+				</div>
    
     
     
@@ -91,8 +169,14 @@
 </body>
 
 <!-- <script src="./js/jquery-3.5.1.js"></script> -->
+<script
+				src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+				crossorigin="anonymous"></script>
 <script>
 
 	var skillList = document.getElementById('skill');
@@ -124,9 +208,11 @@
 
 	var save_btn = document.getElementById('save_btn');
 	save_btn.addEventListener('click',function(event) {
-// 		console.log("aaa");
-// 		console.log(document.forms[0]);
+		if(skillList.value == -1){
+			$('#choiceSkill').modal('show')
+		}else{
 		 document.forms[0].submit();	
+		}
 	});
 
 </script>

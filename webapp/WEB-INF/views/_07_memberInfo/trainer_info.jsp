@@ -14,6 +14,7 @@
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
+<link rel="stylesheet" href="<c:url value='/css/style_modal.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 
@@ -75,63 +76,9 @@
 	cursor: not-allowed;
 }
 
+
 .aside ul li:nth-child(3) a {
 	color: #21d4a7;
-}
-
-.modal-content {
-	background-color: #fff;
-	position: relative;
-	color: #666;
-	width: 100%;
-}
-
-.modal-header {
-	text-align: center;
-	margin: auto;
-	border: none;
-	padding-top: 30px;
-}
-
-.modal-title {
-	font-weight: bold;
-	color: #000;
-}
-
-.modal-header h5 {
-	font-weight: bold;
-	color: #000;
-}
-
-.modal-body {
-	padding: 0 0 30px 0;
-	text-align: center;
-}
-
-.modal-footer {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	border: none;
-	background-color: #21d4a7;
-}
-
-.modal-footer .btn {
-	border-radius: 1px;
-	padding: 10px 50px;
-}
-
-.modal-footer .btn:first-child {
-	background-color: #fff;
-	color: #333;
-	border: none;
-
-	/* border: 1px solid #fff; */
-}
-
-.modal-footer .btn:last-child {
-	background-color: #000;
-	border: none;
 }
 </style>
 </head>
@@ -435,17 +382,16 @@
 									<tr>
 										<th scope="row" x-text="hour + ':00 - '+ (hour+1) + ':00'"></th>
 										<template x-for="date in dates" :key="date + hour">
-<!-- 											data-toggle="modal" -->
-<%-- 												data-target="#exampleModal${LoginOK.type}" --%>
-											<td 
+											<!-- 											data-toggle="modal" -->
+											<%-- 												data-target="#exampleModal${LoginOK.type}" --%>
+											<td
 												:class="{
 		                       			 closed :isClosed(date,hour),  
 				                        booked :isBooked(date, hour),
 				                        save :!isClosed(date, hour) && !isBooked(date, hour),
 				                        lock :isTrainer()}"
-				                        @click="bookCourse(date,hour)">
-<!-- 												@click="bookCourse(date,hour)" -->
-<!-- 												> -->
+												@click="bookCourse(date,hour)">
+												<!-- 												@click="bookCourse(date,hour)" --> <!-- 												> -->
 												<template x-if="isBooked(date, hour)">
 													<span>已預約</span>
 												</template>
@@ -504,7 +450,7 @@
 				</div>
 
 
-				<!-- 	確認預約課程的彈跳視窗，會先被隱藏起來 -->
+				<!-- 	尚未登入的彈跳視窗，會先被隱藏起來 -->
 				<div class="modal fade" id="pleaselogin" tabindex="-1"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-centered">
@@ -514,8 +460,26 @@
 							</div>
 							<div class="modal-body" id="courseTime"></div>
 							<div class="modal-footer">
-								<button id="manageFeedback" class="btn btn-primary"
+								<button id="manageFeedback" class="btn single"
 									@click="goToLogin()">確定</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!-- 	此時段已經預約課程的彈跳視窗，會先被隱藏起來 -->
+				<div class="modal fade" id="repeatBook" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">此時段你已經有預約其他教練囉！</h5>
+							</div>
+							<div class="modal-body" id="courseTime"></div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">確定</button>
 							</div>
 						</div>
 					</div>
@@ -648,12 +612,17 @@
 				      hours : [8,9,10,11,12,13,14,15,16,17,18,19,20,21],
 				      closed : [],
 				      booked : [],
+				      studentBook :[],
 				      change_date:0,
 				      change_hour:0,
 				      init($refs){
 				        this.updateBeginDate();
 				        this.getBookedHours();
 				        this. getClosedHours();
+				        if(!${empty LoginOK}){
+// 				        	console.log('okkkk');
+							this.getStudentBook();
+				        }
 				        $refs.date.min = today;
 				        var dateEnd = dayjs(today).add(14,'day');
 				        dateEndStr = dayjs(dateEnd).format('YYYY-MM-DD');
@@ -681,6 +650,19 @@
 				                  },
 				                  "json"
 				        );
+				      },getStudentBook(){
+				    	  const self = this;
+				    	  var logOk = 0;
+				    	  if(!${empty LoginOK}){
+				    		  logOk = "${LoginOK.id}"
+				    	  }
+				    	  $.get("/TrainMe/TimeOff/getStudentBooked/" + logOk,
+				                  function (data) {
+				                	self.studentBook = data;
+				                  },
+				                  "json"
+				        );
+				    	  
 				      },
 				      updateBeginDate(){
 					        this.dates = this.generateDates(this.beginDate);
@@ -708,7 +690,12 @@
 					    	  this.change_hour = hour;
 					        if(this.isBooked(date,hour) || this.isClosed(date,hour) || this.isTrainer() ){
 					          return;
-					  }   
+					 		 }  
+					        if(this.isStudentBooked(date, hour)){
+					        	 $('#repeatBook').modal('show')
+					        	 return;
+					        }
+					        
 					        if(${empty LoginOK}){
 					       		 $('#pleaselogin').modal('show')
 					        }else{
@@ -731,6 +718,10 @@
 					    	const dateHourStr = this.toDateHourStr(date, hour);
 						    return this.closed.includes(dateHourStr);
 					        
+					      }, 
+					      isStudentBooked(date, hour){
+					    	  const dateHourStr = this.toDateHourStr(date, hour);
+							   return this.studentBook.includes(dateHourStr);
 					      },
 					      isToday(){
 // 					    	  console.log(this.beginDate == today);
@@ -763,7 +754,7 @@
    							+ "&date=" + this.change_date + "&hour=" + this.change_hour;
 					      },
 					      goToLogin(){
-					    	  $('#pleaselogin').modal('hide')
+					    	  $('#pleaselogin').modal('hide');
 					    	  Show();
 					      }
 			      

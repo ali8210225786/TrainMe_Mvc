@@ -50,6 +50,17 @@ public class TrainerCourseService {
 		}	
 		return list;
 	}
+	
+	public List<String> queryStudentBookList(int stId) {
+		List<String> list = new ArrayList<>();
+		List<StudentCourseBean_H> studentBookedTimes = trainerCourseDao.queryStudentBookList(stId);
+		for(StudentCourseBean_H studentBookedTime : studentBookedTimes) {
+			String studentBookedHour = studentBookedTime.getDate() + "_" + studentBookedTime.getTime();
+//			System.out.println("============================="+bookedTime.getId());
+			list.add(studentBookedHour);
+		}	
+		return list;
+	}
 
 	public List<StudentCourseBean_H> getTrainerCourseById(int trId){
 		return trainerCourseDao.getTrainerCourseById(trId);
