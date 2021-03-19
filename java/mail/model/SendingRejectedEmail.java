@@ -588,7 +588,7 @@ public class SendingRejectedEmail {
 					+ course.getDate()+" "+starCourseTime+":00 ~ "+endCourseTime+":00 " +course.getTrainerCourseBean_H().getSkillBean_H().getName()
 					+"</div>\r\n"
 					+ "\r\n"
-					+ "<div style=\"text-align: center;\">可點擊預約其他課程</div>\r\n"
+					+ "<div style=\"text-align: center;\">歡迎預約其他課程</div>\r\n"
 					+ "\r\n"
 					+ "                        </td>\r\n"
 					+ "                    </tr>\r\n"

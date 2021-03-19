@@ -82,6 +82,7 @@ public class MemPointDaoImpl implements MemPointDao{
 		n++;
 		return n;
 	}
+
 	
 	//學員更新點數資料
 		@Override
