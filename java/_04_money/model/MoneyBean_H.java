@@ -31,7 +31,7 @@ public class MoneyBean_H {
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
 	@JoinColumn(name="st_id")
 	StudentBean_H studentBean_H;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
 	@JoinColumn(name="tr_id")
 	TrainerBean_H trainerBean_H;
 	Date change_time;

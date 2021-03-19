@@ -35,7 +35,7 @@ public class StudentCourseBean_H implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Date date;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
 	@JoinColumn(name="st_id")
 	private StudentBean_H studentBean_H;
 	private Integer time;
