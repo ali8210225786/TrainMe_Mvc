@@ -19,10 +19,9 @@
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-<!-- 暫時代替側邊選單點擊變色的功能的CSS -->
+	
 <style>
-.aside ul li:nth-child(2) a {
+.aside ul li:nth-child(1) a{
 	color: #21d4a7;
 }
 </style>
@@ -52,8 +51,8 @@
 				<div class="title">
 					<h3>個人資料</h3>
 					<a href="<c:url value='/student_info_edit/${LoginOK.id}' />"
-						id="edit_info"><i class="fas fa-pen-square"
-						style="color: #ddd"></i></a>
+						id="edit_info"><i class="fas fa-pen-square"></i>
+					</a>
 				</div>
 
 				<div class="info_wrap">
@@ -124,7 +123,7 @@
 										<span>${LoginOK.weight}</span>
 
 									</div>
-								</div>
+								</div>						
 								<div class="body_data">
 									<div class="data">
 										<p>BMI</p>
@@ -132,12 +131,12 @@
 
 									</div>
 									<div class="data">
-										<p>BMR</p>
+										<p>BMR<a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="BMR（Basal Metabolic Rate）基礎代謝率，是維持身體重要器官運作所需的最低熱量，包括心臟、肝臟、肺、腎、大腦、神經系統、肌肉、皮膚等器官的每日運作。而基礎代謝率會隨著年齡增長，而逐漸下降。"><i class="fas fa-question-circle"></i></a></p>
 										<span>${BMR}</span>
 
 									</div>
 									<div class="data">
-										<p>TDEE</p>
+										<p>TDEE<a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="TDEE（Total Daily Energy Expenditure）每日消耗總熱量，指的是除了BMR外，再加上所有可能消耗熱量的變數後（如：活動程度），計算出每日需要的熱量，TDEE 一般被視為維持體重所需的熱量，因此當攝取的熱量 = TDEE 時，體重維持不變，若有減肥或增重需求，就需攝取低於或高於 TDEE 的熱量。"><i class="fas fa-question-circle"></i></a></p>
 										<span>${TDEE}</span>
 
 									</div>
@@ -166,7 +165,7 @@
 				<div class="info_wrap t">
 
 					<h5>
-						<i class="far fa-list-alt"></i> 即將開始的課程
+						即將開始的課程
 					</h5>
 					<table class="table border">
 						<thead class="thead">
@@ -213,7 +212,7 @@
 				<div class="info_wrap t">
 
 					<h5>
-						<i class="far fa-list-alt"></i> 等待同意的預約
+						等待同意的預約
 					</h5>
 					<table class="table border">
 						<thead class="thead">
@@ -252,11 +251,18 @@
 				<!-- ============體重趨勢圖======================================================= -->
 
 				<div class="info_wrap t">
-					<div class="title">
+					<div class="title" id="weight_info">
 						<h5>
-							<i class="fas fa-weight"></i> 我的體重趨勢圖
+						我的體重趨勢圖
 						</h5>
-						<p>單位:kg</p>
+						<p>(單位:kg)</p>
+						<span>
+						<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="「我的體重趨勢圖」以每月最後修改的體重為數據，學員要記得每個月都量體重哦！">
+						<i class="fas fa-question-circle"></i>
+						</a>
+						</span>
+            
+						
 					</div>
 
 					<canvas id="myChart" width="400" height="150"></canvas>
@@ -265,17 +271,22 @@
 			</div>
 
 		</div>
-</body>
 
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 <script>
-	//選單點選變色
-	//javascript太爛複製教學拿來改也失敗,之後再補...QQ
+
+	//懸浮顯示文字
+	jQuery(document).ready(function($) {
+	   $('[data-toggle="tooltip"]').tooltip();
+	});
+// $('[data-toggle="tooltip"]').tooltip('show')
+
 
 	// 圖表
 	var ctx = document.getElementById('myChart').getContext('2d');
@@ -337,5 +348,5 @@
 	
 </script>
 
-
+</body>
 </html>

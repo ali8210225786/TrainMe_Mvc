@@ -15,49 +15,58 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_rd_page.css' />">
-<link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
+
 
 </head>
 <body>
 	<!-- ============上方導覽列======================================================= -->
-	<jsp:include page="/fragment/nav.jsp"/> 
-
-	<!-- 登入/註冊 -->
-	<jsp:include page="/fragment/login.jsp" />
-	
+<%-- 	<jsp:include page="/fragment/nav.jsp"/>  --%>
     <!-- ====================================================================== -->
     <div class="message">
           
                <!-- 說明 -->
         <div class="sa">
             <div class="b_tutle">
-                <h4>歡迎您加入Train Me</h4>
+                <h4>驗證成功！</h4>
             </div>
 
             <div class="block">
 
 
-                <h5>查收電子郵件</h5>
-                <p>註冊驗證信已發送至</p>
-                <p>
-                <c:choose>
-					<c:when
-						test="${sb_email != null}">
-						${sb_email.email}
-					</c:when>
-					<c:otherwise>
-						${tr_email.email}
-					</c:otherwise>
-				</c:choose>
+                <h5>歡迎加入TrainMe</h5>
                 
-                </p>
-                <p>請點擊郵件內的驗證連結，完成會員啟用。</p>
-                    
+                <!-- <p>歡迎您成為TrainMe的學員！</p>
+                <p>請至個人資料填寫您的身高、體重，系統將自動計算您的BMI等身體資訊。</p> -->
+                <p>網頁將在<span id="div1"></span>秒後導向首頁</p>
+                <p>或者立即<a href="<c:url value='/' />">點此回到首頁</a></p>
+
             </div>
 
 
          </div>
     </div>
 
+    <script src="./js/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+        //設定倒數秒數 
+        var count = 5;
+        //寫一個方法，顯示倒數秒數  數到0後跳轉頁面  
+        function countDown(){
+            //將count顯示在div中
+            document.getElementById("div1").innerHTML= count;
+            //每執行一次，count減1
+            count -= 1;
+            //count=0時，跳轉頁面
+            if(count==0){
+                window.location.href="/TrainMe/";
+            }
+            //每秒執行一次,showTime()
+            setTimeout("countDown()",1000);
+        }
+        //執行countDown方法
+        countDown();
+    </script>
+    
 </body>
+
 </html>
