@@ -361,9 +361,15 @@ table.table td .add {
 // 											});
 							
 							// Delete row on delete button click
-							$(document).on("click", ".delete", function() {
-								$(this).parents("tr").remove();
+							$(document).on("click", ".delete", function(event) {								
 								$(".add-new").removeAttr("disabled");
+								var yes = confirm('確定刪除？');
+			    					if (!yes) {
+			    								 event.preventDefault()
+								    }else{
+								    	$(this).parents("tr").remove();
+								    }
+			    					
 							});
 						});
 	</script>

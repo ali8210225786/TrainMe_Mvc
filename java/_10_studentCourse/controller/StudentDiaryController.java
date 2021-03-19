@@ -65,8 +65,8 @@ public class StudentDiaryController {
 	 courseDiaryItemBean_H.setAction(action);
 	 courseDiaryItemBean_H.setLord(lord);
 	 courseDiaryItemBean_H.setReps(reps);
-	 courseDiaryItemBean_H.setRest(sets);
-	 courseDiaryItemBean_H.setSets(rest);
+	 courseDiaryItemBean_H.setSets(sets);
+	 courseDiaryItemBean_H.setRest(rest);
 	 courseDiaryItemBean_H.setStudentCourseBean_H(CourseMsg);
 	 
 	 studentDiaryService.saveCourseDiaryItemBean(courseDiaryItemBean_H);
