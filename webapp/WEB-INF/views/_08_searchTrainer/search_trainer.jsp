@@ -69,11 +69,8 @@
 				</select></li> <label>地點：</label>
 				<li><select name="city" class="location">
 						<option value="0">請選擇</option>
-						<c:if test="${cities.size() > 0}">
-							<c:forEach varStatus="i" begin="0" end="${cities.size()-1}">
-								<option value="${cities.get(i.current).getId()}">${cities.get(i.current).getName()}</option>
-							</c:forEach>
-						</c:if>
+						<option value="1">台北市</option>
+						<option value="2">新北市</option>
 				</select></li>
 				<li><input type="search" name="keyword" placeholder="輸入關鍵字"
 					class="search_input"></li>
