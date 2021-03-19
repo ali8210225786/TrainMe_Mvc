@@ -34,11 +34,12 @@ public class SearchTrainerService {
 	public List<TrainerCourseBean_H> searchTrainerByCondition(int cityId, int skillTypeId, String keyWord) {
 		List<TrainerCourseBean_H> searchTrainerByCondition = new ArrayList<>();
 		
+		System.out.println(cityId);
 		List<Integer> searchTrainerByCity = searchTrainerDao.searchTrainerByCity(cityId);
 		List<Integer> searchTrainerBySkillType = searchTrainerDao.searchTrainerBySkillType(skillTypeId);
 		List<Integer> searchTrainerByKeyWord = searchTrainerDao.searchTrainerByKeyWord(keyWord);
 		List<Integer> resultTrainerId = new ArrayList<Integer>();
-
+	
 		
 //		// 全部都有輸入
 //		if (cityId != 0 && skillTypeId != 0 && keyWord != "") {}

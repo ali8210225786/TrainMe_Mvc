@@ -85,6 +85,12 @@ public class TrainerCourseController {
 		List<String> BookedTimes = trainerCourseService.queryBookedList(id);
 		return BookedTimes;
 	}
+	
+	@GetMapping("TimeOff/getStudentBooked/{stId}")
+	public @ResponseBody List<String> getStudentBooked(@PathVariable("stId") Integer stId){
+		List<String> studentBookedTimes = trainerCourseService.queryStudentBookList(stId);
+		return studentBookedTimes;
+	}
 
 	@PostMapping(value ="/TimeOff/update/{id}")
 	public @ResponseBody String updateTimeOff(@PathVariable("id") Integer id, @RequestParam("data") String data) {

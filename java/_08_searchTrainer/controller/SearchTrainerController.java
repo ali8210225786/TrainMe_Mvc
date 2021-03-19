@@ -54,7 +54,7 @@ public class SearchTrainerController {
 			@RequestParam("city") int city,
 			@RequestParam("keyword") String keyword
 			) {
-	
+		
 		List<TrainerCourseBean_H> brforeSearch = searchTrainerService.searchTrainerByCondition(city, skillType, keyword);
 		List<TrainerCourseBean_H> trainerOfSkillType = searchTrainerService.getTrainerOfSkillType();
 

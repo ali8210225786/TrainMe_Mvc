@@ -1,5 +1,7 @@
 package _12_message.service;
 
+import java.util.Date;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
+import _04_money.model.MoneyBean_H;
+import _10_studentCourse.model.StudentCourseBean_H;
 import _12_message.dao.MessageDao;
 import _12_message.model.MessageBean;
 
@@ -34,12 +38,66 @@ public class MessageService {
 			msg.setStudentBean_H(sb);
 			msg.setToType(1);
 		}
+		Date now = new Date();
+		java.sql.Date nowDate = new java.sql.Date(now.getTime());
+		msg.setDate(nowDate);
 		
 		messageDao.addMessage(msg);		
 	}
 	
 	//學員預約課程通知(給教練)
+	public void bookMsgToTrainer(StudentCourseBean_H sc) {
+		MessageBean msg = new MessageBean();
+		msg.setIs_read(0);
+		Date now = new Date();
+		java.sql.Date nowDate = new java.sql.Date(now.getTime());
+		msg.setDate(nowDate);
+		msg.setToType(2);
+		msg.setTitle("【預約通知】 有筆一新的預約");
+		msg.setContent("親愛的 " + sc.getTrainerCourseBean_H().getTrainerBean_H().getName() 
+					  +" 教練你好，學員 " + sc.getStudentBean_H().getName() 
+					  + " 希望於 "
+				      + sc.getDate() 
+				      + " " 
+				      + sc.getTime() 
+				      + ":00-" 
+				      + (sc.getTime()+1)  
+				      + ":00" 
+					  +" 預約您的「"
+				      + sc.getTrainerCourseBean_H().getSkillBean_H().getName()
+					  +"」課程，請趕快到「課程管理」回覆唷！");
+		msg.setTrainerBean_H(sc.getTrainerCourseBean_H().getTrainerBean_H());
+		messageDao.addMessage(msg);	
+	}
+	
 	//學員預約課程通知(給學員)
+	public void bookMsgToStudent(StudentCourseBean_H sc) {
+		MessageBean msg = new MessageBean();
+		msg.setIs_read(0);
+		Date now = new Date();
+		java.sql.Date nowDate = new java.sql.Date(now.getTime());
+		msg.setDate(nowDate);
+		msg.setToType(1);
+		msg.setTitle("【預約通知】 你剛剛預約了一堂課程");
+		msg.setContent("親愛的 " + sc.getStudentBean_H().getName() 
+					  +" 你好，你剛剛預約了一堂 "
+					  + sc.getTrainerCourseBean_H().getTrainerBean_H().getName()
+					  + " 教練的「"
+					  + sc.getTrainerCourseBean_H().getSkillBean_H().getName()
+					  + "」課程，將在 "
+				      + sc.getDate() 
+				      + " " 
+				      + sc.getTime() 
+				      + ":00-" 
+				      + (sc.getTime()+1)  
+				      + ":00" 
+					  + " 上課，本堂課程扣款 "
+				      + sc.getTrainerCourseBean_H().getPrice()
+					  + " 點，可以到「我的課程」、「我的點數」中確認唷！");
+		msg.setStudentBean_H(sc.getStudentBean_H());
+		messageDao.addMessage(msg);	
+	}
+	
 	
 	
 	//學員取消課程通知(給教練)
@@ -47,10 +105,35 @@ public class MessageService {
 	//教練不同意課程通知(給學員)
 	
 	//學員儲值成功通知(給學員)
+	public void storedValueMsg(MoneyBean_H mb) {
+		MessageBean msg = new MessageBean();
+		msg.setIs_read(0);
+		Date now = new Date();
+		java.sql.Date nowDate = new java.sql.Date(now.getTime());
+		msg.setDate(nowDate);
+		msg.setToType(1);
+		msg.setTitle("【儲值成功通知】 你剛剛完成了一筆儲值");
+		msg.setContent("親愛的 " + mb.getStudentBean_H().getName()
+					  +" 你好，你剛剛成功儲值了 "
+					  + mb.getChange_amount()
+					  + " 點，目前的點數餘額為 "
+					  + mb.getTotal_amount()
+					  + " 點，可以到「我的點數」中確認唷！");
+		msg.setStudentBean_H(mb.getStudentBean_H());
+		messageDao.addMessage(msg);	
+	}
 	
 	//收藏教練通知(給教練)-再說
 	
+	//查詢未讀訊息數量
+	public Long unreadMessage(int id,int type) {
+		return messageDao.unreadMessage(id, type);
+	}
 	
+	//更換訊息狀態為已讀
+	public void changeIsRead(MessageBean msgb) {
+		messageDao.changeIsRead(msgb);
+	}
 	
 
 }

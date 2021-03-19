@@ -69,11 +69,8 @@
 				</select></li> <label>地點：</label>
 				<li><select name="city" class="location">
 						<option value="0">請選擇</option>
-						<c:if test="${cities.size() > 0}">
-							<c:forEach varStatus="i" begin="0" end="${cities.size()-1}">
-								<option value="${cities.get(i.current).getId()}">${cities.get(i.current).getName()}</option>
-							</c:forEach>
-						</c:if>
+						<option value="1">台北市</option>
+						<option value="2">新北市</option>
 				</select></li>
 				<li><input type="search" name="keyword" placeholder="輸入關鍵字"
 					class="search_input"></li>
@@ -126,13 +123,20 @@
 							<span>${trainerCourseAll.get(i.current).getTrainerBean_H().getName()}</span>
 
 							<!-- 評價星星 (暫)-->
-							<div class="fc_star">
-								<div class="starss">
-				                    <div class="empty_star">★★★★★</div>
-				                    <div class="full_star" style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>
-	                			</div>
-							</div>
-
+								<c:choose>
+									<c:when test="${empty  trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()}">
+										<p>尚未評價</p>
+									</c:when>
+									<c:otherwise>
+										<div class="fc_star">							
+											<div class="starss">
+												 <div class="empty_star">★★★★★</div>												
+						                    	 <div class="full_star" style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>			 
+											</div>	
+											<span>(${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()})</span>		
+										</div>										
+									</c:otherwise>
+								</c:choose>				
 						</div>
 
 						<!-- 內容 -->

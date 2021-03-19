@@ -54,7 +54,7 @@ public class StudentCourseBean_H implements Serializable{
 	@JoinColumn(name="trainer_course_id")
 	private TrainerCourseBean_H trainerCourseBean_H;
 	
-	@OneToMany(mappedBy = "studentCourseBean_H")
+	@OneToMany(mappedBy = "studentCourseBean_H",fetch = FetchType.EAGER)
 	private Set<CourseDiaryItemBean_H> courseDiaryItemBean_H = new LinkedHashSet<>();
 	
 	@OneToMany(mappedBy = "studentCourseBean_H")

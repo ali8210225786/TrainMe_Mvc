@@ -37,10 +37,10 @@
 			<ul class="dropdown">
 				<div class="triangle"></div>
 				<div class="dropdown_box">
-					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人資料</a></li>
+					<li><a href="#">我的通知</a></li>
+					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人主頁</a></li>
 					<li><a href="<c:url value='/trainerCourse/${LoginOK.id}' />">課程管理</a></li>
 					<li><a href="<c:url value='/trainerAccount/${LoginOK.id}' />">帳戶查詢</a></li>
-					<li><a href="#">訂單查詢</a></li>
 					<li><a href="<c:url value='/trainerData/${LoginOK.id}' />">帳號設定</a></li>
 					<hr>
 					<li><a href="<c:url value='/logout' />">登出</a></li>
@@ -49,7 +49,7 @@
 			</li>
 		<li>
 	        <a href="#">
-	        	<i class="far fa-bell"><ss class="jiaobiao">1</ss></i>
+	        	<i class="far fa-bell"><ss class="jiaobiao">${tr_unreadMessage}</ss></i>
 	        </a>
         </li>
    </ul> 

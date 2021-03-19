@@ -281,10 +281,17 @@
 															href="<c:url value='/st_feedback/${beforeCourse.get(i.current).getId()}' />">給評價</a></td>
 													</c:otherwise>
 												</c:choose>
-											</c:if>
-											<td><a
-												href="<c:url value='/student_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i
-													class="fas fa-book"></i></a></td>
+											</c:if>											
+											<c:choose>
+													<c:when test="${empty beforeCourse.get(i.current).getDatdiary_content() &&  empty beforeCourse.get(i.current).getCourseDiaryItemBean_H() }">		
+															<td></td>							
+													</c:when>
+													<c:otherwise>
+														<td><a
+														href="<c:url value='/student_Course_diary/${beforeCourse.get(i.current).getId()}' />"><i
+														class="fas fa-book"></i></a></td>
+													</c:otherwise>
+										 </c:choose>											 
 										</tr>
 									</c:forEach>
 								</c:if>
