@@ -15,12 +15,16 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_rd_page.css' />">
+<link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 
 </head>
 <body>
 	<!-- ============上方導覽列======================================================= -->
 	<jsp:include page="/fragment/nav.jsp"/> 
 
+	<!-- 登入/註冊 -->
+	<jsp:include page="/fragment/login.jsp" />
+	
     <!-- ====================================================================== -->
     <div class="message">
           
@@ -38,11 +42,11 @@
                 <p>
                 <c:choose>
 					<c:when
-						test="${studentBean != null}">
-						${studentBean.email}
+						test="${sb_email != null}">
+						${sb_email.email}
 					</c:when>
 					<c:otherwise>
-						${trainerBean.email}
+						${tr_email.email}
 					</c:otherwise>
 				</c:choose>
                 
