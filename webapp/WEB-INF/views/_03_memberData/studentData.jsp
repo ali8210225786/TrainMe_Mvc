@@ -134,7 +134,7 @@
 
     
 //     console.log(${studentBean.city.id});
-
+	
 // 縣市列表
 	var cityList = document.getElementById('city.id')
 	var areaList = document.getElementById('area.id')

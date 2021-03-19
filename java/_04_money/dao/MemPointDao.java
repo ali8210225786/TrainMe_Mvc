@@ -19,4 +19,6 @@ public interface MemPointDao {
 	public List<MoneyBean_H> getTrainerMoneyDetail(int id);
 
 	public int updateMoney(MoneyBean_H moneyBean_H);
+	
+	public MoneyBean_H getStudentMoneyLast(int id);
 }

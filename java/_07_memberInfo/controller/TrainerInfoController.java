@@ -36,8 +36,9 @@ import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
+import _12_message.service.MessageService;
 
-@SessionAttributes({"LoginOK"})
+@SessionAttributes({"LoginOK", "st_unreadMessage"})
 @Controller
 public class TrainerInfoController {
 	
@@ -58,6 +59,9 @@ public class TrainerInfoController {
 	
 	@Autowired
 	TrainerCourseService trainerCourseService;
+	
+	@Autowired
+	MessageService messageService;
 	
 
 	@GetMapping("/trainer_info/{id}")
@@ -124,6 +128,12 @@ public class TrainerInfoController {
 			
 			StudentCourseBean_H sc = new StudentCourseBean_H(dateS, studentBean, hour, 0, 0, 0, trainerCourseBean);
 			trainerInfoService.addStudentCourse(sc);
+			//傳送預約訊息給教練
+			messageService.bookMsgToTrainer(sc);
+			////傳送預約訊息給學員並更新未讀訊息數量
+			messageService.bookMsgToStudent(sc);
+			Long unreadMessage =  messageService.unreadMessage(studentBean.getId(), studentBean.getType());
+			model.addAttribute("st_unreadMessage", unreadMessage);
 			
 		} catch (ParseException e) {
 			e.printStackTrace();

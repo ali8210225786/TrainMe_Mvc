@@ -38,11 +38,11 @@
                 <p>
                 <c:choose>
 					<c:when
-						test="${studentBean != null}">
-						${studentBean.email}
+						test="${st_email != null}">
+						${st_email}
 					</c:when>
 					<c:otherwise>
-						${trainerBean.email}
+						${tr_email}
 					</c:otherwise>
 				</c:choose>
                 
