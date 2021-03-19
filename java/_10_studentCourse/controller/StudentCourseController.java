@@ -125,7 +125,7 @@ public class StudentCourseController {
 			moneyBean_H1.setStudentBean_H(studentBean_H);
 			moneyBean_H1.setChange_time(changeTime);
 			moneyBean_H1.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
-//			moneyBean_H.setStudentCourseBean_H(sc);
+			moneyBean_H1.setStudentCourseBean_H(sc);
 			memPointService.saveStudentRefund(moneyBean_H1);
 			
 			//教練的費用要被扣回去

@@ -29,20 +29,22 @@ a, a:hover, a:focus {
     /* margin: 20px; */
     background-color: #fff;
     width: 220px;
-    box-shadow:  1px 1px 1px #ddd;
-}
+    box-shadow:  1px 1px 1px #ddd;}
 .aside ul li{
     padding: 25px 30px 25px 30px;
     text-align: center;
     font-family: 'Noto Sans TC', sans-serif;
-    /* background-color:   #fbfcfc  ; */
 }
 .aside ul li:hover{
-    background-color: #fbfcfc ;
+    background-color: #21d4a7 ;
+    transition: 0.8s;
+
+}
+.aside ul li:hover,.aside ul li:hover a{
+    color: #fff;
 }
 .aside ul li:nth-child(1){
-    color: #fff;
-    background-color: #000;
+    border-top: 10px solid #21d4a7;
 }
 .aside ul li a{
     color: #333;
@@ -54,9 +56,9 @@ a, a:hover, a:focus {
     margin-right: 10px;
 }
 
-/* .aside ul li a:hover{
+.aside ul li a:hover{
     color: #fff;
-} */
+}
 
 /* title */
 .mypage_title{
@@ -87,8 +89,12 @@ a, a:hover, a:focus {
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 400;
 }
-.title a{
+.title a i{
+    color: #29dfb1;
     font-size: 30px;
+}
+.title a i:hover{
+    color: #4ef7cd;
 }
 
 /*上方欄*/
@@ -134,10 +140,16 @@ a, a:hover, a:focus {
 .wrap_profile{
     display: flex;
     width: 350px;
-    padding: 0px 10px 10px 10px;
+    padding: 0px 0px 10px 10px;
     /* border: 1px solid red; */
 }
-.left{
+.wrap_right .left{
+    width: 40%;
+}
+.wrap_right .right{
+    width: 60%;
+}
+.wrap_right .left{
     flex-direction: column;
     justify-content: space-around;
 }
@@ -159,9 +171,10 @@ a, a:hover, a:focus {
 .wp_div:nth-child(3) a:hover{
     color: lightsalmon;
 }
-.right{
+.wrap_right .right{
     justify-content:space-around;
     align-items: center;
+    /* width: 60%; */
 }
 
 .body_data{
@@ -171,23 +184,42 @@ a, a:hover, a:focus {
     font-size: 18px;
     font-weight: 400;
 }
+.body_data:first-child .data p{
+    width: 50px;
+}
 .data p{
     display: inline-block;
-    width: 55px;
+    width: 65px;
+    vertical-align: baseline;
     /* border: 1px solid red; */
-
+}
+.data p i{
+    font-size: 14px;
+    margin-left: 3px;
+}
+.data p a{
+    color: #333;
 }
 .data span{
     color:#21d4a7;
     font-weight: 600;
     /* border: 1px solid red; */
 }
+/* 懸浮文字 */
+.tooltip-inner {
+    background: #333;
+    text-align:left;
+    padding: 10px 15px 15px 15px;
+    line-height: 1.5rem;
+    max-width: 400px !important;
+    white-space: pre-wrap;
+}
 
 /* 學員自介 */
 .self_intro{
     font-size: 15px;
     padding: 10px 40px 0px 20px;
-
+    white-space: pre-wrap;
     /* border: 1px solid red; */
 }
 
@@ -310,7 +342,16 @@ tbody tr td i{
     width: 300px;
 }
 
-/* 體重趨勢圖 */
-
-
-
+/* 體重趨勢說明 */
+#weight_info{
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+}
+#weight_info span a i{
+    font-size: 14px;
+    color: #666;
+}
+#weight_info p{
+    margin: 0px 7px ;
+}

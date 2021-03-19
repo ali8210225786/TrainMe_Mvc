@@ -168,12 +168,19 @@
 					</span>
 				</div>
 				<div class="info_div">
-					<label>教練評價</label>
-					<div class="starss">
-						<div class="empty_star">★★★★★</div>
-						<div class="full_star" style="width:${trainerBean.ratings * 20}%">★★★★★</div>
-					</div>
-					<p>(${trainerBean.ratings_size})</p>
+					<label>教練評價</label>					
+					<c:choose>
+						<c:when test="${empty  trainerBean.ratings_size}">
+							<p>尚未評價</p>
+						</c:when>
+						<c:otherwise>
+							<div class="starss">
+								<div class="empty_star">★★★★★</div>
+								<div class="full_star" style="width:${trainerBean.ratings * 20}%">★★★★★</div>
+							</div>
+							<p>(${trainerBean.ratings_size})</p>
+						</c:otherwise>
+					</c:choose>						
 				</div>
 				<div class="info_div">
 					<label>授課區域</label>

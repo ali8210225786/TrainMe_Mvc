@@ -184,10 +184,10 @@ public class TrainerCourseController {
 		memPointService.saveTrainerRefund(moneyBean_H2);
 		
 		//如果要把studentcourse的bean設定進去,會有session衝突的問題,所以先註解掉
-//		moneyBean_H1.setStudentCourseBean_H(sc);
-//		memPointService.saveStudentCourseToMoney(moneyBean_H1);
-//		moneyBean_H2.setStudentCourseBean_H(sc);
-//		memPointService.saveStudentCourseToMoney(moneyBean_H2);
+		moneyBean_H1.setStudentCourseBean_H(sc);
+		memPointService.saveStudentCourseToMoney(moneyBean_H1);
+		moneyBean_H2.setStudentCourseBean_H(sc);
+		memPointService.saveStudentCourseToMoney(moneyBean_H2);
 		
 		studentCourseService.allowCourse(courseId);
 		System.out.println("type=" + type);

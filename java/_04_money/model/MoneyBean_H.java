@@ -28,7 +28,7 @@ public class MoneyBean_H {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
 	@JoinColumn(name="st_id")
 	StudentBean_H studentBean_H;
 	@ManyToOne(cascade=CascadeType.ALL)

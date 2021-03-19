@@ -33,12 +33,17 @@ public class StudentDiaryService {
 		return studentDiaryDao.getDiaryItem(id);
 	}
 	
-//	public int saveTrainerLicenseBean_H(TrainerLicenseBean_H tl) {
-//		int n = 0;		
-//		n = dao.saveTrainerLicenseBean_H(tl);
-//		n++;
-//		return n;
-//	}
+	public int saveCourseDiaryItemBean(CourseDiaryItemBean_H cdi) {
+		int n = 0;		
+		n = studentDiaryDao.saveTrainerCourseDiaryItem(cdi);
+		n++;
+		return n;
+	}
+	
+	public void delTrainerCourseDiaryItem(int id) {
+		studentDiaryDao.delTrainerCourseDiaryItem(id);
+	}
+	
 	public void updateStudentCourseDatDiaryContent(StudentCourseBean_H scb) {
 	
 		studentDiaryDao.updateStudentCourseDatDiaryContent(scb);

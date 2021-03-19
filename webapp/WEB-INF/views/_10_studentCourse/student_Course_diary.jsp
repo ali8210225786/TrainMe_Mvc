@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>教練-個人資料</title>
+<title>學生-上課日誌</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet"
@@ -192,17 +192,22 @@ table.table td .add {
 												<th>總重量</th>
 												<th>次數</th>
 												<th>組數</th>
-												<th>休息時間</th>										
+												<th>休息時間</th>																	
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-<!-- 												<td>John Doe</td> -->
-<!-- 												<td>Administra</td> -->
-<!-- 												<td>555-2222</td> -->
-<!-- 												<td>555-2222</td> -->
-<!-- 												<td>555-2222</td>				 -->
-											</tr>									
+											<c:if test="${CourseDiaryItem.size() > 0}">
+												<c:forEach varStatus="i" begin="0"
+												end="${CourseDiaryItem.size()-1}">
+													<tr>
+														<td>${CourseDiaryItem.get(i.current).getAction()}</td>
+														<td>${CourseDiaryItem.get(i.current).getLord()}</td>
+														<td>${CourseDiaryItem.get(i.current).getReps()}</td>
+														<td>${CourseDiaryItem.get(i.current).getSets()}</td>														
+														<td>${CourseDiaryItem.get(i.current).getRest()}</td>													
+													</tr>
+												</c:forEach>
+											</c:if>						
 										</tbody>
 									</table>
 								</div>

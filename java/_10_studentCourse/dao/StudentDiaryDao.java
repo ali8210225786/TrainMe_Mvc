@@ -40,7 +40,7 @@ public class StudentDiaryDao {
 	
 	// 儲存CourseDiaryItemBean物件，將參數cdi新增到course_diary_item表格內。
 
-			public int saveTrainerCourseDiaryItem_H(CourseDiaryItemBean_H cdi) {
+			public int saveTrainerCourseDiaryItem(CourseDiaryItemBean_H cdi) {
 				int n = 0;
 				Session session = factory.getCurrentSession();
 				session.save(cdi);
@@ -48,9 +48,21 @@ public class StudentDiaryDao {
 
 				return n;
 			}
+			
+			public void delTrainerCourseDiaryItem(int Id) {
+				Session session = factory.getCurrentSession();
+				
+				String hql = "DELETE FROM CourseDiaryItemBean_H WHERE cdi_id = :mid";
+				
+				session.createQuery(hql).setParameter("mid", Id).executeUpdate();		
+			}
+			
+			
 			public void updateStudentCourseDatDiaryContent(StudentCourseBean_H scb) {
 				Session session = factory.getCurrentSession();
 				session.update(scb);
 			}
+			
+		
 	
 }

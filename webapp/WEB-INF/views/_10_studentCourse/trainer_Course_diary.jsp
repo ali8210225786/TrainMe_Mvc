@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>教練-個人資料</title>
+<title>教練-上課日誌</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet"
@@ -28,7 +28,7 @@
 	href="${pageContext.request.contextPath}/css/style_tr_info.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<link rel="stylesheet" href="./css/style_st_lesson.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_lesson.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
 <link rel="stylesheet"
@@ -50,7 +50,6 @@ body {
 	color: #404E67;
 	background: #F5F7FA;
 	font-family: 'Open Sans', sans-serif;
-
 }
 
 .table-wrapper {
@@ -169,8 +168,9 @@ table.table td .add {
 
 
 			<div class="setting_area">
-				<form:form action="/TrainMe/updateStudentCourseDatDiaryContent/${CourseMsg.id}"
-					method="post" modelAttribute="courseDiaryItemBean_VO"
+				<form:form
+					action="/TrainMe/updateStudentCourseDatDiaryContent/${CourseMsg.id}"
+					method="post" modelAttribute="studentCourseBean"
 					enctype="multipart/form-data">
 					<div class="setting_box">
 						<div class="container-lg">
@@ -179,9 +179,7 @@ table.table td .add {
 									<div class="table-title">
 										<div class="row">
 											<div class="col-sm-8">
-												<h2>
-													重量訓練
-												</h2>
+												<h2>重量訓練</h2>
 											</div>
 											<div class="col-sm-4">
 												<button type="button" class="btn btn-info add-new">
@@ -198,22 +196,23 @@ table.table td .add {
 												<th>次數</th>
 												<th>組數</th>
 												<th>休息時間</th>
-												<td><a class="add" title="Add" data-toggle="tooltip"><i
-														class="material-icons">&#xE03B;</i></a> <a class="edit"
-													title="Edit" data-toggle="tooltip"><i
-														class="material-icons">&#xE254;</i></a> <a class="delete"
-													title="Delete" data-toggle="tooltip"><i
-														class="material-icons">&#xE872;</i></a></td>
+												<th>刪除</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-<!-- 												<td>John Doe</td> -->
-<!-- 												<td>Administra</td> -->
-<!-- 												<td>555-2222</td> -->
-<!-- 												<td>555-2222</td> -->
-<!-- 												<td>555-2222</td>				 -->
-											</tr>									
+											<c:if test="${CourseDiaryItem.size() > 0}">
+												<c:forEach varStatus="i" begin="0"
+												end="${CourseDiaryItem.size()-1}">
+													<tr>
+														<td>${CourseDiaryItem.get(i.current).getAction()}</td>
+														<td>${CourseDiaryItem.get(i.current).getLord()}</td>
+														<td>${CourseDiaryItem.get(i.current).getReps()}</td>
+														<td>${CourseDiaryItem.get(i.current).getSets()}</td>														
+														<td>${CourseDiaryItem.get(i.current).getRest()}</td>
+														<td><a href="<c:url value='/delCourseDiaryItem/${CourseMsg.id}/${CourseDiaryItem.get(i.current).getCdi_id()}' />" class="delete" title="Delete"><i class="material-icons">&#xE872;</i></a></td>
+													</tr>
+												</c:forEach>
+											</c:if>	
 										</tbody>
 									</table>
 								</div>
@@ -225,7 +224,7 @@ table.table td .add {
 					<div class="setting_box upload_file">
 						<label for="name"><h5>教練建議:</h5></label>
 						<textarea name="datdiary_content" id="text" cols="60" rows="15"
-							maxlength="1000" placeholder="限1000字以內">${CourseMsg.datdiary_content}</textarea>
+							maxlength="500" placeholder="限500字以內">${CourseMsg.datdiary_content}</textarea>
 						<p id="feedback"></p>
 					</div>
 
@@ -242,10 +241,7 @@ table.table td .add {
 	</div>
 
 
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-		
-	</script>
+
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
@@ -253,26 +249,21 @@ table.table td .add {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
 		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script>
-		// 自我介紹       
-		$(document)
-				.ready(
+// 		自我介紹       
+		$(document).ready(
 						function() {
 							let textMax = ($("#text").val()).length;
+							$('#feedback').html(`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
 
-							$('#feedback')
-									.html(
-											`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
-
-							$('#text')
-									.keyup(
-											function() {
-												let textMax = 0;
+							$('#text').keyup(function() {
+												let textMax = 1000;
 												let textLength = $(this).val().length;
-												total = textMax + textLength;
+												total = textMax - textLength;
 												$('#feedback')
 														.html(
-																`已經輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
+																`還可以輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
 												//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
 											});
 						});
@@ -282,44 +273,39 @@ table.table td .add {
 		content = content.replace(/\n|\r\n/g, "<br>");
 		// 		console.log(content);
 
-		$(document)
-				.ready(
-						function() {
-							$('[data-toggle="tooltip"]').tooltip();
+		$(document).ready(function() {
+// 							$('[data-toggle="tooltip"]').tooltip();
 							var actions = $("table td:last-child").html();
 							// Append table with add row form on add new button click
-							$(".add-new")
-									.click(
-											function() {
+							$(".add-new").click(function() {
 												$(this).attr("disabled",
 														"disabled");
 												var index = $(
 														"table tbody tr:last-child")
 														.index();
 												var row = '<tr>'
-														+ '<td><input style="width:85px;" type="text" class="form-control" path="action" id="action"/></td>'
+														+ '<td><input  style="width:85px;" type="text" class="form-control"  name="action" id="action"/></td>'
 														+ '<td><input  style="width:86px;" type="text" class="form-control" name="lord" id="lord"></td>'
 														+ '<td><input  style="width:86px;" type="text" class="form-control" name="reps" id="reps"></td>'
 														+ '<td><input  style="width:86px;" type="text" class="form-control" name="sets" id="sets"></td>'
-														+ '<td><input  style="width:86px;" type="text" class="form-control" name="rest" id="phone"></td>'
-														+ '<td>' + actions
-														+ '</td>' + '</tr>';
+														+ '<td><input  style="width:86px;" type="text" class="form-control" name="rest" id="rest"></td>'
+														+ '<td><a class="add" title="Add"><i class="material-icons">&#xE03B;</i></a><a class="delete" title="Delete"><i class="material-icons">&#xE872;</i></a></td>'
+														+ '</tr>';
 												$("table").append(row);
-												$("table tbody tr").eq(
-														index + 1).find(
-														".add, .edit").toggle();
-												$('[data-toggle="tooltip"]')
-														.tooltip();
+												$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+												
 											});
 							// Add row on add button click
 							$(document).on(
 									"click",
 									".add",
 									function() {
+									
 										var empty = false;
 										var input = $(this).parents("tr").find(
 												'input[type="text"]');
 										input.each(function() {
+
 											if (!$(this).val()) {
 												$(this).addClass("error");
 												empty = true;
@@ -329,31 +315,61 @@ table.table td .add {
 										});
 										$(this).parents("tr").find(".error")
 												.first().focus();
-										if (!empty) {
-											alert("123");
-											input.each(function() {
-												$(this).parent("td").html(
-														$(this).val());
-											});
+										if (!empty) {	
+		
+											var action = document.getElementById('action').value;
+											var lord = document.getElementById('lord').value;
+											var reps = document.getElementById('reps').value;
+											var sets = document.getElementById('sets').value;
+											var rest = document.getElementById('rest').value;	
+											console.log(action);	
+											 axios.get("/TrainMe/addCourseDiaryItem", {
+										         params: {
+										        	   action: action, 
+													   CourseMsgId: ${CourseMsg.id},
+													   lord: lord,
+													   reps: reps,
+													   sets: sets,
+													   rest: rest
+										         }})
+										     .then(function (res) {
+// 												      window.location.assign(window.location.href)  
+										      })
+										      
+												input.each(function() {		
+													
+													$(this).parent("td").html(
+															$(this).val());														
+												});
+								
 											$(this).parents("tr").find(
 													".add, .edit").toggle();
-											$(".add-new")
-													.removeAttr("disabled");
+											$(".add-new").removeAttr("disabled");
+										
 										}
 									});
+							
 							// Edit row on edit button click
-							$(document).on("click",".edit",
-											function() {$(this).parents("tr").find("td:not(:last-child)").each(function() {
-												$(this).html('<input type="text" style="width:86px;" class="form-control" value="'+ $(this).text()+ '">');});
-												$(this).parents("tr").find(
-														".add, .edit").toggle();
-												$(".add-new").attr("disabled",
-														"disabled");
-											});
+// 							$(document).on("click",".edit",
+// 											function() {$(this).parents("tr").find("td:not(:last-child)").each(function() {											
+// 												$(this).html('<input type="text" name="action" id="action" style="width:86px;" class="form-control" value="'+ $(this).text()+ '"> ');});
+											
+// 											$(this).parents("tr").find(
+// 														".add, .edit").toggle();
+// 												$(".add-new").attr("disabled",
+// 														"disabled");
+// 											});
+							
 							// Delete row on delete button click
-							$(document).on("click", ".delete", function() {
-								$(this).parents("tr").remove();
+							$(document).on("click", ".delete", function(event) {								
 								$(".add-new").removeAttr("disabled");
+								var yes = confirm('確定刪除？');
+			    					if (!yes) {
+			    								 event.preventDefault()
+								    }else{
+								    	$(this).parents("tr").remove();
+								    }
+			    					
 							});
 						});
 	</script>

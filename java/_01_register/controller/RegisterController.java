@@ -164,8 +164,8 @@ public class RegisterController {
 
 		}
 		
-		StudentBean_H sb = memberDataService.getStudentById(studentBean.getId());
-		Integer id = sb.getId();
+//		StudentBean_H sb = memberDataService.getStudentById(studentBean.getId());
+//		Integer id = sb.getId();
 		// 寄驗證信
 		SendingEmail se = new SendingEmail(1, studentBean.getEmail(), studentBean.getHash(), studentBean.getName());
 		se.sendMail();
@@ -266,8 +266,8 @@ public class RegisterController {
 			return "index";
 		}
 		
-		TrainerBean_H tb = memberDataService.getTrainerById(trainerBean.getId());
-		Integer id = tb.getId();
+//		TrainerBean_H tb = memberDataService.getTrainerById(trainerBean.getId());
+//		Integer id = tb.getId();
 
 		// 寄驗證信
 		SendingEmail se = new SendingEmail(2, trainerBean.getEmail(), trainerBean.getHash(), trainerBean.getName());
@@ -278,10 +278,11 @@ public class RegisterController {
 		
 		model.addAttribute("tr_email", trainerBean.getEmail());
 
+		model.addAttribute("tr_email", trainerBean);
+		
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("loginBean", loginBean);
-		model.addAttribute("trainerBean_email",trainerBean);
 		
 		return "redirect:/registerMessage";
 	}
@@ -312,7 +313,8 @@ public class RegisterController {
 			return index(model);
 		}
 		System.out.println("Account Successfully Verified.");
-		return index(model);
+
+		return "_01_register/verifiedSuccessPage";
 
 	}
 

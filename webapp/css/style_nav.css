@@ -54,9 +54,8 @@
             padding-bottom:8px;
             text-decoration: none;
         }
-        
         /* 通知鈴鐺 */
-        ul li:last-child a i{
+        ul li:last-child a .far{
             position: relative;
             font-size: 22px;
             color: #333;
@@ -73,8 +72,9 @@
             text-align: center;
             top: -5px;
             left: 12px;
-            font-size: 10px;
+            font-size: 0.5rem;
             color: #fff;
+            font-family:Arial, Helvetica, sans-serif;
         }
 
         /*logo*/
@@ -105,9 +105,9 @@
             border: 1px solid #59ddb8;
         }
 
-        /*�ӤH�����U�Կ��*/
+        /*個人頁面下拉選單*/
 
-        /* �|���Y�� */
+        /* 會員頭像 */
         .member{
             position: relative;
         }
@@ -115,8 +115,8 @@
             /* display: block; */
             border-radius: 50%;
             overflow:hidden;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             display: flex;
         }
         .member img{
@@ -124,7 +124,7 @@
             object-fit:cover
         }
 
-        /*�U�Կ��*/
+        /*下拉選單*/
         .dropdown_box{
             position: relative;
             border: 1px solid #eee;

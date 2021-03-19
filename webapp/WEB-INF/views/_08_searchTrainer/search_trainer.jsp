@@ -123,13 +123,20 @@
 							<span>${trainerCourseAll.get(i.current).getTrainerBean_H().getName()}</span>
 
 							<!-- 評價星星 (暫)-->
-							<div class="fc_star">
-								<div class="starss">
-				                    <div class="empty_star">★★★★★</div>
-				                    <div class="full_star" style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>
-	                			</div>
-							</div>
-
+								<c:choose>
+									<c:when test="${empty  trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()}">
+										<p>尚未評價</p>
+									</c:when>
+									<c:otherwise>
+										<div class="fc_star">							
+											<div class="starss">
+												 <div class="empty_star">★★★★★</div>												
+						                    	 <div class="full_star" style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>			 
+											</div>	
+											<span>(${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()})</span>		
+										</div>										
+									</c:otherwise>
+								</c:choose>				
 						</div>
 
 						<!-- 內容 -->
