@@ -72,4 +72,6 @@ public class MemberDataDao {
 //		SELECT  *  FROM  trainer_course tc JOIN trainer t ON tc.tr_id = t.id GROUP BY t.id
 		return session.createQuery(hql).getResultList();
 	}
+	
+	
 }

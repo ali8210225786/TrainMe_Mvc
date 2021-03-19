@@ -44,11 +44,12 @@ import _04_money.model.CardBean;
 import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
 import _04_money.validate.CardValidator;
+import _12_message.service.MessageService;
 import mail.model.SendingEmail;
 import mail.service.MailService;
 
 @Controller
-@SessionAttributes({ "LoginOK", "MoneyBean", "cardBean", "cityList", "areaList" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean", "cardBean", "cityList", "areaList", "st_unreadMessage" }) // 此處有LoginOK的識別字串
 public class MoneyController {
 
 	@Autowired
@@ -65,6 +66,9 @@ public class MoneyController {
 	
 	@Autowired
 	MemberDataService memberDataService;
+	
+	@Autowired
+	MessageService messageService;
 
 	@GetMapping("/studentMoney/{id}")
 	public String studentMoney(Model model, @PathVariable("id") Integer id) {
@@ -118,6 +122,12 @@ public class MoneyController {
 		moneyBean_H.setChange_amount(cardBean.getMoney());
 		
 		memPointService.saveMoney(moneyBean_H);
+		
+		//產生儲值成功通知並更新未讀訊息數量
+		MoneyBean_H mb = memPointService.getStudentMoneyLast(studentBean_H.getId());
+		messageService.storedValueMsg(mb);
+		Long unreadMessage =  messageService.unreadMessage(studentBean_H.getId(), studentBean_H.getType());
+		model.addAttribute("st_unreadMessage", unreadMessage);
 		
 		return "redirect:/studentMoney/"+studentBean_H.getId();
 	}

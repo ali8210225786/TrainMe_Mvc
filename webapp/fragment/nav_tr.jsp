@@ -49,7 +49,7 @@
 			</li>
 		<li>
 	        <a href="#">
-	        	<i class="far fa-bell"><ss class="jiaobiao">1</ss></i>
+	        	<i class="far fa-bell"><ss class="jiaobiao">${tr_unreadMessage}</ss></i>
 	        </a>
         </li>
    </ul> 

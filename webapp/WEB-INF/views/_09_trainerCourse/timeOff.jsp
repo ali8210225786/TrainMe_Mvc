@@ -152,7 +152,7 @@
 	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
 	crossorigin="anonymous"></script>
 <script>
-  let today = dayjs().format('YYYY-MM-DD');
+  let today = dayjs().add(1,'day').format('YYYY-MM-DD');
   let dateEndStr = dayjs(today).add(7,'day').format('YYYY-MM-DD');
 //   console.log(dateEnd);
 

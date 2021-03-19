@@ -121,5 +121,12 @@ public class MemPointServiceImpl implements MemPointService {
 		}
 		return dao.saveMoney(moneyBean_H);
 	}
+	
+	@Transactional
+	@Override
+	public MoneyBean_H getStudentMoneyLast(int id) {
+		return dao.getStudentMoneyLast(id);
+	}
+	
 
 }

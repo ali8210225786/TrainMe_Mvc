@@ -48,7 +48,8 @@ import mail.model.SendingEmail;
 import mail.service.MailService;
 
 @Controller
-@SessionAttributes({ "LoginOK", "MoneyBean", "sb_email", "st_email" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean" , "tr_email", "st_email" 
+					,"st_unreadMessage", "tr_unreadMessage"}) // 此處有LoginOK的識別字串
 public class RegisterController {
 
 	@Autowired
@@ -130,7 +131,6 @@ public class RegisterController {
 			result.rejectValue("email", "", "帳號已存在，請重新輸入");
 			errorResponseSt(studentBean, model);
 			return "index";
-
 		}
 
 		// 檢查身分證是否已經存在
@@ -170,7 +170,11 @@ public class RegisterController {
 		SendingEmail se = new SendingEmail(1, studentBean.getEmail(), studentBean.getHash(), studentBean.getName());
 		se.sendMail();
 		
-		model.addAttribute("sb_email", studentBean);
+		//產生註冊成功通知
+		messageService.passVerification(studentBean);
+		
+		model.addAttribute("st_email", studentBean.getEmail());
+		
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
@@ -194,19 +198,12 @@ public class RegisterController {
 	
 //	註冊成功跳轉頁面
 	@GetMapping("registerMessage")
-	public String registerMessage(Model model) {
-//		StudentBean_H studentBean_email = memberDataService.getStudentById(id);
-//		TrainerBean_H trainerBean_email = memberDataService.getTrainerById(id);
-//		model.addAttribute("sb_email", studentBean_email);
-//		model.addAttribute("tr_email", trainerBean_email);
+	public String registerMessage(Model model ,@PathVariable("id") Integer id) {
 		
-//		model.getAttribute("sb_email");
-//		model.getAttribute("tr_email");
-		
-		model.addAttribute("studentBean", new StudentBean_H());
-		model.addAttribute("trainerBean", new TrainerBean_H());
+		model.addAttribute("studentBean",new StudentBean_H());
+		model.addAttribute("trainerBean",new TrainerBean_H());
 		model.addAttribute("loginBean",new LoginBean());	
-
+		
 	return "_01_register/rd_register_message";
 	}
 
@@ -275,6 +272,11 @@ public class RegisterController {
 		// 寄驗證信
 		SendingEmail se = new SendingEmail(2, trainerBean.getEmail(), trainerBean.getHash(), trainerBean.getName());
 		se.sendMail();
+		
+		//產生註冊成功通知
+		messageService.passVerification(trainerBean);
+		
+		model.addAttribute("tr_email", trainerBean.getEmail());
 
 		model.addAttribute("tr_email", trainerBean);
 		
@@ -345,6 +347,10 @@ public class RegisterController {
 						// 登入成功, 把該會員tb登記為LoginOK登入狀態→存進LoginOK
 						// OK, 登入成功, 將tb物件放入Session範圍內，識別字串為"LoginOK",此時其他頁面的控制器只要有"LoginOK"就能接到此會員的資料
 						model.addAttribute("LoginOK", tb);
+						
+						//取得未讀訊息數量
+						Long unreadMessage = messageService.unreadMessage(tb.getId(), tb.getType());
+						model.addAttribute("tr_unreadMessage", unreadMessage);
 					} else {
 						result.rejectValue("userEmail", "", "帳號尚未通過信箱驗證");
 						
@@ -359,6 +365,11 @@ public class RegisterController {
 					if (memberService.checkPass(sb.getType(), sb.getEmail())) {
 						// OK, 登入成功, 將sb物件放入Session範圍內，識別字串為"LoginOK"
 						model.addAttribute("LoginOK", sb);
+						
+						//取得未讀訊息數量
+						Long unreadMessage =  messageService.unreadMessage(sb.getId(), sb.getType());
+						model.addAttribute("st_unreadMessage", unreadMessage);
+						
 						List<MoneyBean_H> money =memPointService.getStudentMoneyDetail(sb.getId());
 						model.addAttribute("MoneyBean", money);
 					} else {
@@ -417,7 +428,7 @@ public class RegisterController {
 
 	@ModelAttribute
 	public void commonData(Model model) {
-
+		
 		List<SkillTypeBean_H> skillTypeAll = searchTrainerService.getSkillTypeAll();
 		List<City_H> cities = addressService.listCities();	
 		Map<String, String> sexMap = new HashMap<>();
