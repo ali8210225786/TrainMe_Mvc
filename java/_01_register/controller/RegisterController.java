@@ -47,7 +47,7 @@ import mail.model.SendingEmail;
 import mail.service.MailService;
 
 @Controller
-@SessionAttributes({ "LoginOK", "MoneyBean" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean", "sb_email", "st_email" }) // 此處有LoginOK的識別字串
 public class RegisterController {
 
 	@Autowired
@@ -160,12 +160,13 @@ public class RegisterController {
 
 		}
 		
-		StudentBean_H sb = memberDataService.getStudentById(studentBean.getId());
-		Integer id = sb.getId();
+//		StudentBean_H sb = memberDataService.getStudentById(studentBean.getId());
+//		Integer id = sb.getId();
 		// 寄驗證信
 		SendingEmail se = new SendingEmail(1, studentBean.getEmail(), studentBean.getHash(), studentBean.getName());
 		se.sendMail();
 		
+		model.addAttribute("sb_email", studentBean);
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
@@ -173,7 +174,7 @@ public class RegisterController {
 		// 伺服器通知客戶端對新網址發出請求。其原本參數狀態不被保留。
 		// 所以如果只用"index"跳轉後網址會有/tr_register
 //		return "redirect:/";
-		return "redirect:/registerMessage/" + id;
+		return "redirect:/registerMessage";
 	}
 
 	// 當有錯誤時的處理 - 學員
@@ -188,12 +189,19 @@ public class RegisterController {
 	}
 	
 //	註冊成功跳轉頁面
-	@GetMapping("registerMessage/{id}")
-	public String registerMessage(Model model ,@PathVariable("id") Integer id) {
-		StudentBean_H studentBean_email = memberDataService.getStudentById(id);
-		TrainerBean_H trainerBean_email = memberDataService.getTrainerById(id);
-		model.addAttribute("studentBean", studentBean_email);
-		model.addAttribute("trainerBean", trainerBean_email);
+	@GetMapping("registerMessage")
+	public String registerMessage(Model model) {
+//		StudentBean_H studentBean_email = memberDataService.getStudentById(id);
+//		TrainerBean_H trainerBean_email = memberDataService.getTrainerById(id);
+//		model.addAttribute("sb_email", studentBean_email);
+//		model.addAttribute("tr_email", trainerBean_email);
+		
+//		model.getAttribute("sb_email");
+//		model.getAttribute("tr_email");
+		
+		model.addAttribute("studentBean", new StudentBean_H());
+		model.addAttribute("trainerBean", new TrainerBean_H());
+		model.addAttribute("loginBean",new LoginBean());	
 
 	return "_01_register/rd_register_message";
 	}
@@ -257,19 +265,20 @@ public class RegisterController {
 			return "index";
 		}
 		
-		TrainerBean_H tb = memberDataService.getTrainerById(trainerBean.getId());
-		Integer id = tb.getId();
+//		TrainerBean_H tb = memberDataService.getTrainerById(trainerBean.getId());
+//		Integer id = tb.getId();
 
 		// 寄驗證信
 		SendingEmail se = new SendingEmail(2, trainerBean.getEmail(), trainerBean.getHash(), trainerBean.getName());
 		se.sendMail();
 
+		model.addAttribute("tr_email", trainerBean);
+		
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("loginBean", loginBean);
-		model.addAttribute("trainerBean_email",trainerBean);
 		
-		return "redirect:/registerMessage/" + id;
+		return "redirect:/registerMessage";
 	}
 
 	// 當有錯誤時的處理 - 教練
@@ -299,7 +308,7 @@ public class RegisterController {
 		}
 		System.out.println("Account Successfully Verified.");
 
-		return index(model);
+		return "_01_register/verifiedSuccessPage";
 
 	}
 
