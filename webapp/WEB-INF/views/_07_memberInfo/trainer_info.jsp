@@ -138,6 +138,7 @@
 	<a id="introduction"></a>
 	<div class="trpg_wrap">
 		<div class="trpg_content">
+		<a href="javascript:;" id="heart" title="收藏教練"><i class="fas fa-heart like"></i></a>
 			<div class="trpg_content_left">
 				<div class="picture">
 					<c:choose>
@@ -586,8 +587,11 @@
 
 
 			<script>
-		//回到最上面
+		
 		$(function() {
+			
+			
+			//回到最上面
 			/* 按下GoTop按鈕時的事件 */
 			$('#gotop').click(function() {
 				$('html,body').animate({
@@ -604,6 +608,15 @@
 					$('#gotop').fadeOut();
 				}
 			});
+			
+			
+			
+		    // 點擊收藏愛心切換顏色
+		    $('#heart').click(function() {
+		        $('.fa-heart').toggleClass('change_color');
+		    })
+			
+		    
 		});
 		
 		
