@@ -88,7 +88,7 @@ public class StudentDiaryController {
 				@PathVariable("id") Integer id, HttpServletRequest request) throws IOException, ServletException {
 			
 			StudentCourseBean_H CourseMsg = studentDiaryService.getCourseMsg(id);
-
+			
 			CourseMsg.setDatdiary_content(newBean.getDatdiary_content());
 
 			studentDiaryService.updateStudentCourseDatDiaryContent(CourseMsg);

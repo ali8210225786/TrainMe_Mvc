@@ -1,5 +1,6 @@
 package _10_studentCourse.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,7 @@ import _09_trainerCourse.model.SkillBean_H;
 import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
+import _10_studentCourse.model.CourseDiaryItemBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
 import _12_message.service.MessageService;
@@ -59,6 +61,9 @@ public class StudentCourseController {
 	@Autowired
 	MessageService messageService;
 
+	@Autowired
+	StudentDiaryService studentDiaryService;
+
 	@GetMapping("/st_info_lesson/{id}")
 	public String stLesson(Model model, @PathVariable("id") Integer id) {
 //		System.out.println("==================okkkkkkkkkkkkkkkkk");
@@ -68,7 +73,7 @@ public class StudentCourseController {
 		List<StudentCourseBean_H> waitCourse = studentCourseService.getWaitCourse(id, nowDate);
 		List<StudentCourseBean_H> beforeCourse = studentCourseService.getBeforeCourse(id, nowDate);
 		List<RatingsBean_H> ratings = studentCourseService.getRatings();
-		
+	
 		
 		
 		
@@ -76,7 +81,7 @@ public class StudentCourseController {
 		model.addAttribute("waitCourse", waitCourse);
 		model.addAttribute("beforeCourse", beforeCourse);
 		model.addAttribute("ratings", ratings);
-		
+
 		
 		
 		return "_10_studentCourse/st_info_lesson";
@@ -139,6 +144,7 @@ public class StudentCourseController {
 			moneyBean_H2.setTrainerBean_H(trainerBean);
 			moneyBean_H2.setChange_time(changeTime);
 			moneyBean_H2.setChange_amount(-sc.getTrainerCourseBean_H().getPrice());
+			moneyBean_H2.setStudentCourseBean_H(sc);
 			memPointService.saveTrainerRefund(moneyBean_H2);
 		}
 		

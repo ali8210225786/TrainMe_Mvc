@@ -35,7 +35,7 @@ public class StudentCourseBean_H implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Date date;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="st_id")
 	private StudentBean_H studentBean_H;
 	private Integer time;
@@ -54,7 +54,7 @@ public class StudentCourseBean_H implements Serializable{
 	@JoinColumn(name="trainer_course_id")
 	private TrainerCourseBean_H trainerCourseBean_H;
 	
-	@OneToMany(mappedBy = "studentCourseBean_H")
+	@OneToMany(mappedBy = "studentCourseBean_H",fetch = FetchType.EAGER)
 	private Set<CourseDiaryItemBean_H> courseDiaryItemBean_H = new LinkedHashSet<>();
 	
 	@OneToMany(mappedBy = "studentCourseBean_H")
