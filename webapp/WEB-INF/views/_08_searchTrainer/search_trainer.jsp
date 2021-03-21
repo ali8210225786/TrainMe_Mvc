@@ -56,8 +56,8 @@
 		<div class="search_trainer">
 
 			<!-- 搜尋bar -->
-			
-			<form action="<c:url value='/searchTrainerByCondition' />"  >
+
+			<form action="<c:url value='/searchTrainerByCondition' />">
 				<label>課程種類：</label>
 				<li><select name="skillType" class="lesson">
 						<option value="0">請選擇</option>
@@ -123,20 +123,22 @@
 							<span>${trainerCourseAll.get(i.current).getTrainerBean_H().getName()}</span>
 
 							<!-- 評價星星 (暫)-->
-								<c:choose>
-									<c:when test="${empty  trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()}">
-										<p>尚未評價</p>
-									</c:when>
-									<c:otherwise>
-										<div class="fc_star">							
-											<div class="starss">
-												 <div class="empty_star">★★★★★</div>												
-						                    	 <div class="full_star" style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>			 
-											</div>	
-											<span>(${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()})</span>		
-										</div>										
-									</c:otherwise>
-								</c:choose>				
+							<c:choose>
+								<c:when
+									test="${empty  trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()}">
+									<p>尚未評價</p>
+								</c:when>
+								<c:otherwise>
+									<div class="fc_star">
+										<div class="starss">
+											<div class="empty_star">★★★★★</div>
+											<div class="full_star"
+												style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>
+										</div>
+										<span>(${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()})</span>
+									</div>
+								</c:otherwise>
+							</c:choose>
 						</div>
 
 						<!-- 內容 -->
@@ -150,16 +152,16 @@
 								</a>
 							</div>
 							<div class="ls_info">
-								<label>課程種類： <span> 
-								
-								
-								<c:if test="${trainerOfSkillType.size() != 0}">
-											<c:forEach varStatus="a" begin="0" end="${trainerOfSkillType.size()-1}">
-												<c:if test="${trainerCourseAll.get(i.current).getTrainerBean_H().getId() == trainerOfSkillType.get(a.current).getTrainerBean_H().getId()}">				
+								<label>課程種類： <span> <c:if
+											test="${trainerOfSkillType.size() != 0}">
+											<c:forEach varStatus="a" begin="0"
+												end="${trainerOfSkillType.size()-1}">
+												<c:if
+													test="${trainerCourseAll.get(i.current).getTrainerBean_H().getId() == trainerOfSkillType.get(a.current).getTrainerBean_H().getId()}">				
 													${trainerOfSkillType.get(a.current).getSkill_typeBean_H().getName()}
 												</c:if>
 											</c:forEach>
-								</c:if>
+										</c:if>
 
 								</span>
 								</label> <label>課程價格： <span>${trainerCourseAll.get(i.current).getPrice()}
@@ -186,8 +188,38 @@
 		</div>
 
 
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled"><a class="page-link" href="#"
+					tabindex="-1" aria-disabled="true">Previous</a></li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			</ul>
+		</nav>
+
+
 	</div>
 
-	
+<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+
+$.post("/TrainMe/totalPage",
+		   function (data, textStatus, jqXHR) {
+	   console.log(data);
+	   
+	   
+		},
+		"json"	
+);
+
+
+
+
+</script>
 </body>
 </html>
