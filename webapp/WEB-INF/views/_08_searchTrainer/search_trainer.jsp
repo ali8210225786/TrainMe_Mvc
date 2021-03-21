@@ -125,7 +125,7 @@
 							<!-- 評價星星 (暫)-->
 								<c:choose>
 									<c:when test="${empty  trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()}">
-										<p>尚未評價</p>
+										<p class="norate">目前無評價</p>
 									</c:when>
 									<c:otherwise>
 										<div class="fc_star">							
@@ -148,6 +148,8 @@
 									href="<c:url value='/trainer_info/${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}?type=search' />">
 									${trainerCourseAll.get(i.current).getTrainerBean_H().getCourse()}
 								</a>
+								
+								<a href="javascript:;" id="heart" title="收藏教練"><i class="fas fa-heart like"></i></a>
 							</div>
 							<div class="ls_info">
 								<label>課程種類： <span> 
@@ -187,7 +189,21 @@
 
 
 	</div>
-
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script>
+	
+	
+	
+		// 點擊收藏愛心切換顏色
+		$(document).ready(function() {
+		  $('#heart').click(function() {
+		    $('.like').toggleClass('change_color');
+		  })
+		})
+	
+	
+	</script>
 	
 </body>
 </html>
