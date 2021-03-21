@@ -38,7 +38,7 @@ import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _12_message.service.MessageService;
 
-@SessionAttributes({"LoginOK", "st_unreadMessage"})
+@SessionAttributes({"LoginOK"})
 @Controller
 public class TrainerInfoController {
 	
@@ -130,10 +130,7 @@ public class TrainerInfoController {
 			trainerInfoService.addStudentCourse(sc);
 			//傳送預約訊息給教練
 			messageService.bookMsgToTrainer(sc);
-			////傳送預約訊息給學員並更新未讀訊息數量
-			messageService.bookMsgToStudent(sc);
-			Long unreadMessage =  messageService.unreadMessage(studentBean.getId(), studentBean.getType());
-			model.addAttribute("st_unreadMessage", unreadMessage);
+			//傳送預約訊息給學員並更新未讀訊息數量
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -145,6 +142,8 @@ public class TrainerInfoController {
 	
 	@ModelAttribute
 	public void commonData(Model model) {
+		
+		
 		
 		// 為了for註冊、登入from:from表單
 		StudentBean_H studentBean = new StudentBean_H();

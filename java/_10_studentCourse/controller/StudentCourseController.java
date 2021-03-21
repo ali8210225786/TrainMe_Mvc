@@ -32,6 +32,7 @@ import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
+import _12_message.service.MessageService;
 
 @SessionAttributes({ "LoginOK", "comingSoonCourse", "waitCourse", "beforeCourse", "type" })
 @Controller
@@ -54,6 +55,9 @@ public class StudentCourseController {
 	
 	@Autowired
 	MemberDataService memberDataService;
+	
+	@Autowired
+	MessageService messageService;
 
 	@GetMapping("/st_info_lesson/{id}")
 	public String stLesson(Model model, @PathVariable("id") Integer id) {
@@ -116,6 +120,8 @@ public class StudentCourseController {
 		MoneyBean_H moneyBean_H1=new MoneyBean_H();
 		MoneyBean_H moneyBean_H2=new MoneyBean_H();
 		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
+		//學員取消課程通知(給教練)
+		messageService.cancelMsgToTrainer(sc);
 		Date date = new Date();
 		java.sql.Date changeTime = new java.sql.Date(date.getTime());
 		if(type.equals("comingSoon")) {

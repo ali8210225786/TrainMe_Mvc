@@ -706,7 +706,7 @@
 					        if(${empty LoginOK}){
 					       		 $('#pleaselogin').modal('show')
 					        }else{
-						        $("#courseTime").html(dateStr + '<br><br>' +   hour +':00 - '+(hour+1)+':00 ');					       
+						        $("#courseTime").html(dateStr + '<br>' +   hour +':00 - '+(hour+1)+':00 ');					       
 						        $('#exampleModal1').modal('show')
 					        	
 					        }
