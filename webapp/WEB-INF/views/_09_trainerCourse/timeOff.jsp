@@ -107,9 +107,6 @@
 										<div x-text="date.format('MM/DD')"></div>
 									</th>
 								</template>
-
-
-
 							</tr>
 						</thead>
 						<tbody>
