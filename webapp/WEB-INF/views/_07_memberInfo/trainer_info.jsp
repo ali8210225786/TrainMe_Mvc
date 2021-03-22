@@ -76,7 +76,6 @@
 	cursor: not-allowed;
 }
 
-
 .aside ul li:nth-child(3) a {
 	color: #21d4a7;
 }
@@ -130,15 +129,45 @@
 					class="fas fa-chevron-left"> </i> 返回</a>
 			</c:if>
 			<c:if test="${type.equals('search')}">
-				<a href="<c:url value='/searchTrainerAll' />"><i
-					class="fas fa-chevron-left"> </i> 返回</a>
+			
+				<c:if test="${LoginOK.type == 1}">
+					<a class="trTitle"
+						href="<c:url value='/searchTrainerAll?stId=${LoginOK.id}' />"><i
+						class="fas fa-chevron-left"> </i> 返回
+					</a>
+				</c:if>
+				<c:if test="${LoginOK.type != 1}">
+					<a href="<c:url value='/searchTrainerAll' />"><i
+						class="fas fa-chevron-left"> </i> 返回</a>
+				</c:if>
+				
 			</c:if>
 		</div>
 	</div>
-	<a id="introduction"></a>
 	<div class="trpg_wrap">
 		<div class="trpg_content">
-		<a href="javascript:;" id="heart" title="收藏教練"><i class="fas fa-heart like"></i></a>
+
+			<!-- 					<a href="javascript:;" id="heart" title="收藏教練"><i class="fas fa-heart like"></i></a> -->
+
+			<c:if test="${st_favorite.size() >= 0}">
+
+				<c:choose>
+					<c:when test="${isFavorite}">
+						<a href="javascript:;" title="收藏教練" id="heart" class="heart">
+							<i class="fas fa-heart like change_color"
+							id="tr_${trainerBean.getId()}"></i>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href="javascript:;" title="收藏教練" id="heart" class="heart">
+							<i class="fas fa-heart like" id="tr_${trainerBean.getId()}"></i>
+						</a>
+					</c:otherwise>
+				</c:choose>
+
+			</c:if>
+
+
 			<div class="trpg_content_left">
 				<div class="picture">
 					<c:choose>
@@ -169,7 +198,7 @@
 					</span>
 				</div>
 				<div class="info_div">
-					<label>教練評價</label>					
+					<label>教練評價</label>
 					<c:choose>
 						<c:when test="${empty  trainerBean.ratings_size}">
 							<p>尚未評價</p>
@@ -177,11 +206,12 @@
 						<c:otherwise>
 							<div class="starss">
 								<div class="empty_star">★★★★★</div>
-								<div class="full_star" style="width:${trainerBean.ratings * 20}%">★★★★★</div>
+								<div class="full_star"
+									style="width:${trainerBean.ratings * 20}%">★★★★★</div>
 							</div>
 							<p>(${trainerBean.ratings_size})</p>
 						</c:otherwise>
-					</c:choose>						
+					</c:choose>
 				</div>
 				<div class="info_div">
 					<label>授課區域</label>
@@ -392,27 +422,27 @@
 										<template x-for="date in dates" :key="date + hour">
 											<!-- 											data-toggle="modal" -->
 											<%-- 												data-target="#exampleModal${LoginOK.type}" --%>
-											<td
-												:class="{
+										<td
+											:class="{
 		                       			 closed :isClosed(date,hour),  
 				                        booked :isBooked(date, hour),
 				                        save :!isClosed(date, hour) && !isBooked(date, hour),
 				                        lock :isTrainer()}"
-												@click="bookCourse(date,hour)">
-												<!-- 												@click="bookCourse(date,hour)" --> <!-- 												> -->
-												<template x-if="isBooked(date, hour)">
-													<span>已預約</span>
-												</template>
-												<template x-if="isClosed(date, hour)">
-													<span>已關閉</span>
-												</template>
-												<template
-													x-if="!isClosed(date, hour) && !isBooked(date, hour)">
-													<span>預約</span>
-												</template>
-											</td>
-										</template>
-									</tr>
+											@click="bookCourse(date,hour)">
+											<!-- 												@click="bookCourse(date,hour)" --> <!-- 												> -->
+											<template x-if="isBooked(date, hour)">
+												<span>已預約</span>
+											</template>
+											<template x-if="isClosed(date, hour)">
+												<span>已關閉</span>
+											</template>
+											<template
+												x-if="!isClosed(date, hour) && !isBooked(date, hour)">
+												<span>預約</span>
+											</template>
+										</td>
+								</template>
+								</tr>
 								</template>
 
 							</tbody>
@@ -474,8 +504,8 @@
 						</div>
 					</div>
 				</div>
-				
-				
+
+
 				<!-- 	此時段已經預約課程的彈跳視窗，會先被隱藏起來 -->
 				<div class="modal fade" id="repeatBook" tabindex="-1"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -612,9 +642,38 @@
 			
 			
 		    // 點擊收藏愛心切換顏色
-		    $('#heart').click(function() {
-		        $('.fa-heart').toggleClass('change_color');
-		    })
+			$('.heart').click(function(e) {
+				
+				
+				
+				var trId = e.target.id;
+				var trIdStr = trId.substring(3, trId.length);
+				
+				
+				if($('#' + trId).hasClass('change_color')){
+					var id = "${LoginOK.id}" == "" ? 0 : ${LoginOK.id}
+					$.post("/TrainMe/deleteFavorite/" + id , {tr_id : trIdStr},
+		              		   function (data, textStatus, jqXHR) {
+						console.log("okkkk");
+								},
+								"json"	
+		                 );
+					
+				}else{
+					var id = "${LoginOK.id}" == "" ? 0 : ${LoginOK.id}
+					$.post("/TrainMe/addFavorite/" + id, {tr_id : trIdStr},
+		              		   function (data, textStatus, jqXHR) {
+								
+								},
+								"json"	
+		                 );
+					
+				}
+				
+				
+				
+				$('#' + trId).toggleClass('change_color');
+			});
 			
 		    
 		});

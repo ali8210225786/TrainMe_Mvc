@@ -34,14 +34,26 @@
 <body>
 
 	<!-- ============上方導覽列======================================================= -->
-	<jsp:include page="/fragment/nav_st.jsp" />
+	<c:if test="${LoginOK.type == 1}">
+		<jsp:include page="/fragment/nav_st.jsp" />
+	</c:if>
+
+	<c:if test="${LoginOK.type == 2}">
+		<jsp:include page="/fragment/nav_tr.jsp" />
+	</c:if>
 
 
 
 	<div class="container">
 
 		<!-- ============左側選單======================================================= -->
-		<jsp:include page="/fragment/sidebar_st.jsp" />
+		<c:if test="${LoginOK.type == 1}">
+			<jsp:include page="/fragment/sidebar_st.jsp" />
+		</c:if>
+
+		<c:if test="${LoginOK.type == 2}">
+			<jsp:include page="/fragment/sidebar_tr.jsp" />
+		</c:if>
 
 		<!-- ============右側網頁======================================================= -->
 
@@ -76,18 +88,16 @@
 										<div class="mail_title">
 											<span x-text="message.title"></span>
 										</div>
+										<div class="date">
+											<span x-text="message.date"></span>
+										</div>
 									</div>
 									<div id="notice" class="notice nn1">
 										<div class="n_div">
-											<div class="icon" style="background-color: #21d4a7">
-												<i class="fas fa-info"></i>
-											</div>
-											<div class="notice_area" style="width: 700px">
+											<div class="notice_area">
 												<p x-text="message.content"></p>
 												<!-- 	                                        <button class="btn_notice">填寫個人資訊</button> -->
-												<div class="date">
-													<span x-text="message.date"></span>
-												</div>
+
 											</div>
 										</div>
 									</div>
@@ -117,9 +127,9 @@
 						<!--                                     <div class="notice_area"> -->
 						<!--                                         <p>親愛的會員你好，TrainMe 希望帶你認識更多好教練，趕快填好個人資料，一起運動吧!</p> -->
 						<!--                                         <button class="btn_notice">填寫個人資訊</button> -->
-						<!--                                         <div class="date"> -->
-						<!--                                             <span>2020-10-22 00:00:00</span> -->
-						<!--                                         </div> -->
+						<!-- 						                                        <div class="date"> -->
+						<!-- 						                                            <span>2020-10-22 00:00:00</span> -->
+						<!-- 						                                        </div> -->
 						<!--                                     </div> -->
 						<!--                                 </div> -->
 						<!--                             </div> -->

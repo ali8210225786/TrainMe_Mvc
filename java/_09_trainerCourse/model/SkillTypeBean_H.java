@@ -18,8 +18,8 @@ public class SkillTypeBean_H {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	@OneToMany(mappedBy = "skill_typeBean_H")
-	private Set<TrainerCourseBean_H> books = new LinkedHashSet<>();
+//	@OneToMany(mappedBy = "skill_typeBean_H")
+//	private Set<TrainerCourseBean_H> books = new LinkedHashSet<>();
 	
 	public SkillTypeBean_H(Integer id, String name) {
 		super();
