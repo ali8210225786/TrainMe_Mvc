@@ -127,7 +127,7 @@ public class StudentCourseController {
 		messageService.cancelMsgToTrainer(sc);
 		Date date = new Date();
 		java.sql.Date changeTime = new java.sql.Date(date.getTime());
-		if(type.equals("comingSoon")) {
+		if(type.equals("waitCourse")) {
 
 			//學員取消課程後要存進新的一筆退款
 			StudentBean_H studentBean_H =(StudentBean_H) model.getAttribute("LoginOK");
@@ -136,7 +136,15 @@ public class StudentCourseController {
 			moneyBean_H1.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
 			moneyBean_H1.setStudentCourseBean_H(sc);
 			memPointService.saveStudentRefund(moneyBean_H1);
-			
+		}	else {
+			//學員取消課程後要存進新的一筆退款
+			StudentBean_H studentBean_H =(StudentBean_H) model.getAttribute("LoginOK");
+			moneyBean_H1.setStudentBean_H(studentBean_H);
+			moneyBean_H1.setChange_time(changeTime);
+			moneyBean_H1.setChange_amount(sc.getTrainerCourseBean_H().getPrice());
+			moneyBean_H1.setStudentCourseBean_H(sc);
+			memPointService.saveStudentRefund(moneyBean_H1);
+
 			//教練的費用要被扣回去
 			TrainerBean_H trainerBean =sc.getTrainerCourseBean_H().getTrainerBean_H();
 			moneyBean_H2.setTrainerBean_H(trainerBean);
@@ -145,6 +153,7 @@ public class StudentCourseController {
 			moneyBean_H2.setStudentCourseBean_H(sc);
 			memPointService.saveTrainerRefund(moneyBean_H2);
 		}
+		
 		
 		System.out.println(type);
 		model.addAttribute("type",type);
