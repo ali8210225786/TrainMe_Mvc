@@ -97,6 +97,7 @@ public class MoneyController {
 		}
 		model.addAttribute("cardBean", cardBean);
 		return "/_04_money/st_checkout";
+			    
 	}
 
 	@SuppressWarnings("unchecked")

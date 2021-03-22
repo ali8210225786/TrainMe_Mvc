@@ -449,21 +449,14 @@
 						</table>
 					</div>
 
-
-
-					<div class="sc">
-						<!-- 一進來就會顯示當天起始那一周的時間表 -->
-					</div>
 				</div>
 
 
 				<template x-if="isEnd()">
-					<span class="next" id="notClick"><i
-						class="fas fa-angle-right"></i></span>
+					<span class="next" id="notClick"><i	class="fas fa-angle-right"></i></span>
 				</template>
 				<template x-if="!isEnd()">
-					<span class="next"><i class="fas fa-angle-right"
-						@click="addDate()"></i></span>
+					<span class="next"><i class="fas fa-angle-right" @click="addDate()"></i></span>
 				</template>
 
 

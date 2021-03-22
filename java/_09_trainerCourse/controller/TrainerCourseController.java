@@ -178,11 +178,11 @@ public class TrainerCourseController {
 		acceptEmail.sendAcceptMail();
 		
 		//教練同意後money要新增一筆學員扣款
-		moneyBean_H1.setStudentBean_H(sb);
-		moneyBean_H1.setChange_time(changeTime);
-		moneyBean_H1.setChange_amount(-sc.getTrainerCourseBean_H().getPrice());
+//		moneyBean_H1.setStudentBean_H(sb);
+//		moneyBean_H1.setChange_time(changeTime);
+//		moneyBean_H1.setChange_amount(-sc.getTrainerCourseBean_H().getPrice());
 //		moneyBean_H1.setStudentCourseBean_H(sc);
-		memPointService.saveStudentRefund(moneyBean_H1);
+//		memPointService.saveStudentRefund(moneyBean_H1);
 		
 		
 		//money新增一筆教練費用
@@ -193,8 +193,8 @@ public class TrainerCourseController {
 		memPointService.saveTrainerRefund(moneyBean_H2);
 		
 		//如果要把studentcourse的bean設定進去,會有session衝突的問題,所以先註解掉
-		moneyBean_H1.setStudentCourseBean_H(sc);
-		memPointService.saveStudentCourseToMoney(moneyBean_H1);
+//		moneyBean_H1.setStudentCourseBean_H(sc);
+//		memPointService.saveStudentCourseToMoney(moneyBean_H1);
 		moneyBean_H2.setStudentCourseBean_H(sc);
 		memPointService.saveStudentCourseToMoney(moneyBean_H2);
 		

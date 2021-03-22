@@ -236,8 +236,8 @@
 		//新增
 		function addtr() {
 			var lsname = document.getElementById('lsname').value;
-			
-		if(lsname != ""){
+			var value = document.getElementById('lsname').value.trim();
+		if(value != ""){
 			$.post("/TrainMe/addLicense", 
 					{  lsname: lsname, 
 					   trainerBeanId: ${trainerBean.id}

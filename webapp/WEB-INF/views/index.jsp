@@ -235,6 +235,12 @@ html .fixWindow {
 	position: fixed;
 	width: 100%;
 }
+    #contact .card:hover i,#contact .card:hover h4{
+	color: #87d37c;
+    }
+    a {
+        color:black;
+    }
 </style>
 </head>
 <body>
@@ -496,6 +502,58 @@ html .fixWindow {
 			</p>
 		</div>
 	</div>
+	 <section id="contact">
+       <div class="container">
+           <h3 class="text-center text-uppercase">聯絡我們</h3>
+           <p class="text-center w-75 m-auto">想成為TrainMe平台的教練或是學員嗎?歡迎諮詢</p>
+           <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+               <div class="card border-0">
+                  <div class="card-body text-center">
+                    <i class="fas fa-map-marker-alt fa-5x mb-3" aria-hidden="true"></i>   
+                    <h4 class="text-uppercase mb-5">辦公室</h4>
+                   <address>10608台北市大安區忠孝東路三段1號</address>
+                  </div>
+                </div>
+             </div>
+             <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+               <div class="card border-0">
+                  <div class="card-body text-center">
+                    <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
+                    <h4 class="text-uppercase mb-5">客服專線</h4>
+                    <p>02-11111111
+                    <br>服務時間: 06:00~24:00
+                    <br>以上皆為付費電話，
+                    <br>依一般市話及行動電話費率標準計費
+					</p>
+                  </div>
+                </div>
+             </div>
+             <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+               <div class="card border-0">
+                  <div class="card-body text-center">
+                  <a href="mailto:trainme015@gmail.com">
+                  <i class="fas fa-envelope fa-5x mb-3" aria-hidden="true"></i>             
+                    <h4 class="text-uppercase mb-5">客服信箱</h4>
+                    </a>
+                    <p>寫信聯繫客服</p>
+                  </div>                                            
+                </div>
+             </div>
+             <div class="col-sm-12 col-md-6 col-lg-3 my-5">    
+               <div class="card border-0">
+                  <div class="card-body text-center">   
+                    <a href="<c:url value='/Contact/' />">            
+                    	<i class="far fa-user-circle fa-5x mb-3" aria-hidden="true"></i>        
+                    	<h4 class="text-uppercase mb-5">電子信箱</h4>                
+                	</a>    
+                 <p>請將您的寶貴意見以填寫表單方式送出<br>我們將於工作日由專人以郵件回覆您的問題</p>                         
+                  </div>
+                </div>
+             </div>
+           </div>
+       </div>
+    </section>	
 	<!-- footer -->
 
 	<footer>
