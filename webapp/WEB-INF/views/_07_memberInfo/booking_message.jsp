@@ -245,6 +245,7 @@
 		if(getPrice>${studentMoney.getTotal_amount()}){
 			$('#insufficient').modal('show')
 // 			window.location.href = "/TrainMe/studentMoney/addPoint";
+			return;
 		}
 		 document.forms[0].submit();	
 		}

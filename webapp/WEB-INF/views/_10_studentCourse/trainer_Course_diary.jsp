@@ -255,7 +255,7 @@ table.table td .add {
 		$(document).ready(
 						function() {
 							let textMax = ($("#text").val()).length;
-							$('#feedback').html(`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
+							$('#feedback').html(`還可以輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
 
 							$('#text').keyup(function() {
 												let textMax = 1000;
@@ -296,11 +296,7 @@ table.table td .add {
 												
 											});
 							// Add row on add button click
-							$(document).on(
-									"click",
-									".add",
-									function() {
-									
+							$(document).on("click",".add",function() {	
 										var empty = false;
 										var input = $(this).parents("tr").find(
 												'input[type="text"]');

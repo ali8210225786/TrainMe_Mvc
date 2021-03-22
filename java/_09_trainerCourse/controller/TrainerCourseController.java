@@ -32,6 +32,7 @@ import _09_trainerCourse.model.TrainerOffBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
+import _12_message.service.MessageService;
 import mail.model.SendingAcceptEmail;
 import mail.model.SendingRejectedEmail;
 
@@ -57,6 +58,9 @@ public class TrainerCourseController {
 	
 	@Autowired
 	MemPointService memPointService;
+	
+	@Autowired
+	MessageService messageService;
 
 	@GetMapping("/TimeOff/{id}")
 	public String timeOff(Model model) {
@@ -143,11 +147,14 @@ public class TrainerCourseController {
 		StudentBean_H sb = memberDataService.getStudentById(stid);
 		
 		//寄拒絕預約的信
-		StudentCourseBean_H sc=studentCourseService.getStudentCourse(courseId);
+		StudentCourseBean_H sc = studentCourseService.getStudentCourse(courseId);
 		SendingRejectedEmail rejectedEmail=new SendingRejectedEmail(sb.getEmail(), sb.getName(), stId ,sc);
 		rejectedEmail.sendingRejectedEmail();
 		
 		studentCourseService.cancelCourse(courseId);
+		//傳送拒絕訊息給學員
+		messageService.refuseMsg(sc);
+		
 		model.addAttribute("type", type);
 		return "redirect:/trainerCourse/" + trid;
 	}
@@ -192,6 +199,9 @@ public class TrainerCourseController {
 		memPointService.saveStudentCourseToMoney(moneyBean_H2);
 		
 		studentCourseService.allowCourse(courseId);
+		//傳送同意訊息給學員
+		messageService.agreeMsg(sc);
+		
 		System.out.println("type=" + type);
 		model.addAttribute("type", type);
 		return "redirect:/trainerCourse/" + trid;

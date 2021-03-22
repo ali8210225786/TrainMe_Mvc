@@ -37,7 +37,7 @@
 			<ul class="dropdown">
 				<div class="triangle"></div>
 				<div class="dropdown_box">
-					<li><a href="#">我的通知</a></li>
+					<li><a href="<c:url value='/message/${LoginOK.id}' />">我的通知</a></li>
 					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人主頁</a></li>
 					<li><a href="<c:url value='/trainerCourse/${LoginOK.id}' />">課程管理</a></li>
 					<li><a href="<c:url value='/trainerAccount/${LoginOK.id}' />">帳戶查詢</a></li>
@@ -48,24 +48,24 @@
 			</ul>
 			</li>
 		<li>
-	        <a href="#">
-	        	<i class="far fa-bell"><ss class="jiaobiao">${tr_unreadMessage}</ss></i>
+	        <a href="<c:url value='/message/${LoginOK.id}' />">
+	        	<i class="far fa-bell"><span class="jiaobiao" id="unread"></span></i>
 	        </a>
         </li>
    </ul> 
 </header>
-<!-- <script> -->
-<!-- // 	// 導覽列 -->
-<!-- // 	// 往下捲動再往上時顯示導覽列 -->
-<!-- // // 	var prevScrollpos = window.pageYOffset; -->
-<!-- // // 	window.onscroll = function() { -->
-<!-- // // 		var currentScrollPos = window.pageYOffset; -->
-<!-- // // 		if (prevScrollpos > currentScrollPos) { -->
-<!-- // // 			document.getElementById("navbar").style.top = "0"; -->
-<!-- // // 		} else { -->
-<!-- // // 			document.getElementById("navbar").style.top = "-90px"; -->
-<!-- // // 		} -->
-<!-- // // 		prevScrollpos = currentScrollPos; -->
-<!-- // // 	} -->
 
-<!-- </script> -->
+<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$.post("/TrainMe/unRead/" + ${LoginOK.id}, {type : ${LoginOK.type}},
+		   function (data, textStatus, jqXHR) {
+	   
+	   		$('#unread').html(data);
+	   
+		},
+		"json"	
+);
+
+</script>

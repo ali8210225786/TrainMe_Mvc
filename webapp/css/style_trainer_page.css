@@ -16,7 +16,10 @@ a:hover{
     0% {opacity: 0;}
     100% {opacity: 1;}
     }
-
+header{
+/* 	border-bottom: 2px solid #eee; */
+	box-shadow: none;
+}
 #trainer_navbar{
     position: fixed; /* Make it stick/fixed */
     top:80px; /* Stay on top */
@@ -29,6 +32,7 @@ a:hover{
     padding: 10px 200px;
     z-index: 2;
 }
+
 #bt{
     background: transparent;
     border: none;
@@ -72,6 +76,13 @@ a:hover{
     display: flex;
     justify-content:space-around;
     align-items: center;
+    position: relative;
+}
+.trpg_content #heart{
+    position: absolute;
+    right: 0.5rem;
+    top: 0.8rem;
+    font-size: 22px;
 }
 .si{
     font-size: 18px;
@@ -123,6 +134,22 @@ a:hover{
     font-size: 20px;
     font-weight: 500;
     font-family: 'Noto Sans TC', sans-serif;
+}
+.page_title_t i{
+    font-size: 20px;
+    padding-right: 10px;
+}
+.page_title_t {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.like{
+    color: #ddd;
+  }
+.change_color{
+    color: red;
 }
 
 .info_div label, .info_div p{

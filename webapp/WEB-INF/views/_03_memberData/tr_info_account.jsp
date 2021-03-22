@@ -236,7 +236,8 @@
 		//新增
 		function addtr() {
 			var lsname = document.getElementById('lsname').value;
-
+			
+		if(lsname != ""){
 			$.post("/TrainMe/addLicense", 
 					{  lsname: lsname, 
 					   trainerBeanId: ${trainerBean.id}
@@ -244,7 +245,10 @@
 					 function () {
 					      window.location.assign(window.location.href)  
 					 }
-			);		
+			);	
+		}else{
+			$('#lsname').css('border-color','#f50000');
+		}
 		}
 		//刪除
 		$('.del_btn').on('click', function(event) {

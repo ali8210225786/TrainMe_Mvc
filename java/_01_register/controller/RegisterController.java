@@ -48,8 +48,7 @@ import mail.model.SendingEmail;
 import mail.service.MailService;
 
 @Controller
-@SessionAttributes({ "LoginOK", "MoneyBean" , "tr_email", "st_email" 
-					,"st_unreadMessage", "tr_unreadMessage"}) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean" , "tr_email", "st_email" }) // 此處有LoginOK的識別字串
 public class RegisterController {
 
 	@Autowired
@@ -366,9 +365,6 @@ public class RegisterController {
 						// OK, 登入成功, 將sb物件放入Session範圍內，識別字串為"LoginOK"
 						model.addAttribute("LoginOK", sb);
 						
-						//取得未讀訊息數量
-						Long unreadMessage =  messageService.unreadMessage(sb.getId(), sb.getType());
-						model.addAttribute("st_unreadMessage", unreadMessage);
 						
 						List<MoneyBean_H> money =memPointService.getStudentMoneyDetail(sb.getId());
 						model.addAttribute("MoneyBean", money);
