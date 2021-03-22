@@ -29,6 +29,8 @@ import _03_memberData.model.TrainerLicenseBean_H;
 import _03_memberData.service.AddressService;
 import _03_memberData.service.GymService;
 import _03_memberData.service.MemberDataService;
+import _04_money.model.MoneyBean_H;
+import _04_money.service.MemPointService;
 import _07_memberInfo.service.TrainerInfoService;
 import _08_searchTrainer.service.SearchTrainerService;
 import _09_trainerCourse.model.SkillBean_H;
@@ -36,9 +38,10 @@ import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
+import _10_studentCourse.service.StudentCourseService;
 import _12_message.service.MessageService;
 
-@SessionAttributes({"LoginOK", "st_unreadMessage"})
+@SessionAttributes({"LoginOK", "st_unreadMessage","studentMoney"})
 @Controller
 public class TrainerInfoController {
 	
@@ -62,6 +65,12 @@ public class TrainerInfoController {
 	
 	@Autowired
 	MessageService messageService;
+	
+	@Autowired
+	MemPointService memPointService;
+	
+	@Autowired
+	StudentCourseService studentCourseService;
 	
 
 	@GetMapping("/trainer_info/{id}")
@@ -94,11 +103,13 @@ public class TrainerInfoController {
 		List<TrainerCourseBean_H> trainerCourses = trainerInfoService.getTrainerCourse(trId);
 		String bookTime = date + " " + hour + ":00 - " + (hour+1) + ":00";
 		
+		MoneyBean_H studentMoney =memPointService.getStudentMoneyLast(stId);
 		model.addAttribute("hour", hour);
 		model.addAttribute("date", date);
 		model.addAttribute("bookTime", bookTime);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("trainerCourses", trainerCourses);
+		model.addAttribute("studentMoney", studentMoney);
 		
 		return "/_07_memberInfo/booking_message";
 	}
@@ -125,9 +136,21 @@ public class TrainerInfoController {
 //			date = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			dateS = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(date).getTime() );
 //			sd = new java.sql.Date(ud.getTime());
+			java.util.Date now = new java.util.Date();
+			java.sql.Date changeTime = new java.sql.Date(now.getTime());
+			StudentBean_H sb = memberDataService.getStudentById(stId);
 			
 			StudentCourseBean_H sc = new StudentCourseBean_H(dateS, studentBean, hour, 0, 0, 0, trainerCourseBean);
 			trainerInfoService.addStudentCourse(sc);
+			
+			MoneyBean_H moneyBean_H1=new MoneyBean_H();
+			//學員預約後money要新增一筆學員扣款
+			moneyBean_H1.setStudentBean_H(sb);
+			moneyBean_H1.setChange_time(changeTime);
+			moneyBean_H1.setChange_amount(-trainerCourseBean.getPrice());
+			moneyBean_H1.setStudentCourseBean_H(sc);
+			memPointService.saveStudentRefund(moneyBean_H1);
+			
 			//傳送預約訊息給教練
 			messageService.bookMsgToTrainer(sc);
 			////傳送預約訊息給學員並更新未讀訊息數量
