@@ -133,6 +133,7 @@ public class TrainerCourseController {
 		java.util.Date now = new java.util.Date();
 		Date nowDate = new Date(now.getTime());
 		List<StudentCourseBean_H> scSet = trainerCourseService.getTrainerCourseById(id);
+		
 		model.addAttribute("StudentCourse", scSet);
 		model.addAttribute("Now", nowDate);
 		return "/_09_trainerCourse/tr_course";

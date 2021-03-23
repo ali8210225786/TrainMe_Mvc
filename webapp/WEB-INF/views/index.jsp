@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -596,105 +598,114 @@ line-height: 26px;
       </div>
     </section><!-- End Facts Section -->
 
-	 <section id="contact">
-       <div class="container">    
-       <div>
-<h3 class="text-center text-uppercase">聯絡我們</h3>
-<br>
-<p class="text-center w-75 m-auto">想成為TrainMe平台的教練或是學員嗎?想了解更多嗎?歡迎諮詢</p>
-<br>
-<br>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7432711166844!2d121.53559291552197!3d25.042785144092026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97d255598df%3A0x47ea748e8f3f53aa!2z5ZyL56uL6Ie65YyX56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1616412938598!5m2!1szh-TW!2stw" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div>
-           <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4 my-5">
-               <div class="card border-0">
-                  <div class="card-body text-center">
-                    <i class="fas fa-map-marker-alt fa-5x mb-3" aria-hidden="true"></i>   
-                    <h4 class="text-uppercase mb-5">辦公室</h4>
-                   <address>10608台北市大安區忠孝東路三段1號</address>
-                  </div>
-                </div>
-             </div>
-             <div class="col-sm-12 col-md-6 col-lg-4 my-5">
-               <div class="card border-0">
-                  <div class="card-body text-center">
-                    <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
-                    <h4 class="text-uppercase mb-5">客服專線</h4>
-                    <address>02-11111111                  
-					</address>
-                  </div>
-                </div>
-             </div>
-             <div class="col-sm-12 col-md-6 col-lg-4 my-5">
-               <div class="card border-0">
-                  <div class="card-body text-center">
-                  <a href="mailto:trainme015@gmail.com" style="text-decoration:none;">
-                  <i class="fas fa-envelope fa-5x mb-3" aria-hidden="true"></i>             
-                    <h4 class="text-uppercase mb-5">客服信箱</h4>
-                    </a>
-                    <address>寫信聯繫客服</address>
-                  </div>                                            
-                </div>
-             </div>
-                <div class="container">    
-             <div class="row">
-             <div class="col-sm-12 col-md-12 col-lg-12 my-5">    
-               <div class="card border-0">
-                  <div class="card-body text-center">   
-                    <a href="<c:url value='/Contact/' />" style="text-decoration:none;">            
-                    	<i class="far fa-user-circle fa-5x mb-3" aria-hidden="true"></i>        
-                    	<h4 class="text-uppercase mb-5">電子信箱</h4>                
-                	</a>    
-                 <address>請將您的寶貴意見以填寫表單方式送出<br>我們將於工作日由專人以郵件回覆您的問題</address>                      
-                  </div>
-                </div>
-<!--              </div> -->
-<!--              </div> -->
-              <section id="contact" class="contact section-bg">
-<!--       <div class="container"> -->
-<!--         <div class="row"> -->
-          <div class="col-lg-12 contact-form-wrap">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="form-row">
-                <div class="col-md-6 form-group">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="email">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea class="form-control" name="message" rows="8" data-rule="required" data-msg="Please write something for us"></textarea>
-                <div class="validate"></div>
-              </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Contact Us Section -->
-             </div>
-           </div>
-       </div>
-    </section>	
-    
-    
+	<section id="contact">
+		<div class="container">
+			<div>
+				<h3 class="text-center text-uppercase">聯絡我們</h3>
+				<br>
+				<p class="text-center w-75 m-auto">想成為TrainMe平台的教練或是學員嗎?想了解更多嗎?歡迎諮詢</p>
+				<br> <br>
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7432711166844!2d121.53559291552197!3d25.042785144092026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97d255598df%3A0x47ea748e8f3f53aa!2z5ZyL56uL6Ie65YyX56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1616412938598!5m2!1szh-TW!2stw"
+					width="100%" height="380" frameborder="0" style="border: 0"
+					allowfullscreen></iframe>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-md-6 col-lg-4 my-5">
+					<div class="card border-0">
+						<div class="card-body text-center">
+							<i class="fas fa-map-marker-alt fa-5x mb-3" aria-hidden="true"></i>
+							<h4 class="text-uppercase mb-5">辦公室</h4>
+							<address>10608台北市大安區忠孝東路三段1號</address>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-6 col-lg-4 my-5">
+					<div class="card border-0">
+						<div class="card-body text-center">
+							<i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
+							<h4 class="text-uppercase mb-5">客服專線</h4>
+							<address>02-11111111</address>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-6 col-lg-4 my-5">
+					<div class="card border-0">
+						<div class="card-body text-center">
+							<a href="mailto:trainme015@gmail.com"
+								style="text-decoration: none;"> <i
+								class="fas fa-envelope fa-5x mb-3" aria-hidden="true"></i>
+								<h4 class="text-uppercase mb-5">客服信箱</h4>
+							</a>
+							<address>寫信聯繫客服</address>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-lg-12 my-5">
+							<div class="card border-0">
+								<div class="card-body text-center">
+									<i class="far fa-user-circle fa-5x mb-3" aria-hidden="true"></i>
+										<h4 class="text-uppercase mb-5">電子信箱</h4>
+									<address>
+										請將您的寶貴意見以填寫表單方式送出<br>我們將於工作日由專人以郵件回覆您的問題
+									</address>
+								</div>
+							</div>
+							<section id="contact" class="contact section-bg">
+								<div class="col-lg-12 contact-form-wrap">
+									<form:form action="/TrainMe/contactUs/" method="post"
+										role="form" class="php-email-form"
+										modelAttribute="contactBean" enctype="multipart/form-data">
+										<div class="form-row">
+											<div class="col-md-6 form-group">
+												<label for="lname">姓名</label>
+												<form:input type="text" id="name" path="userName"
+													class="form-control" required="required" />
+											</div>
+											<div class="col-md-6 form-group">
+												<label for="email">Email</label>
+												<form:input id="userEmail" path="userEmail"
+													class="form-control" type="email" required="required" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="q_category">問題類型</label>
+											<form:select id="q_category" path="q_category"
+												class="form-control">
+												<option value="教練相關問題">教練相關問題</option>
+												<option value="學員相關問題">學員相關問題</option>
+												<option value="儲值點數問題">儲值點數問題</option>
+												<option value="其他問題">其他問題</option>
+											</form:select>
+										</div>
+										<div class="form-group">
+											<label for="subject">請問您遇到了什麼問題?</label>
+											<form:input id="subject" path="subject" class="form-control"
+												type="text" required="required" />
+										</div>
+										<div class="form-group">
+											<label for="message">問題描述</label>
+											<form:textarea id="message" path="message"
+												class="form-control" rows="8" style="height:200px"
+												required="required" />
+										</div>								
+										<div class="text-center">									
+											<button type="submit">傳送訊息</button>
+										</div>
+									</form:form>
+								</div>
+						</div>
+					</div>
+	</section>
+	</div>
+	</div>
+	</div>
+		<!-- End Contact Us Section -->
+	</section>
+
+
 	<!-- footer -->
 
 	<footer>
