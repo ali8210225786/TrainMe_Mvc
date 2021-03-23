@@ -384,7 +384,8 @@ address {
 	<div class="splide">
 		<div class="splide__track">
 			<ul class="splide__list">
-
+				<c:if test="${trainerAndCourse.size() > 0}">
+					<c:forEach varStatus="i" begin="0" end="${trainerAndCourse.size()-1}">
 				<a class="splide__slide"
 					href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=index' />">
 
@@ -398,11 +399,7 @@ address {
 					<!--                                 <div class="ratings"> --> <!--                                     <div class="empty-stars"></div> -->
 					<!--                                     <div class="full-stars" style="width:80%"></div>                             -->
 					<!--                                 </div> --> <!--                                 <p>(18)</p> -->
-					<!--                             </span> --> <!--                         </div> -->
-
-					<c:if test="${trainerAndCourse.size() > 0}">
-						<c:forEach varStatus="i" begin="0"
-							end="${trainerAndCourse.size()-1}">
+					<!--                             </span> --> <!--                         </div> -->		
 							<div class="p_t">
 								<p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
 								<span>
