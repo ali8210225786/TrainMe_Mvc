@@ -26,9 +26,10 @@
 	href="${pageContext.request.contextPath}/css/style_nav.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style_tr_info.css">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style_tr_dairy.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_lesson.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
 <link rel="stylesheet"
@@ -46,108 +47,129 @@
 	color: #21d4a7;
 }
 
-body {
-	color: #404E67;
-	background: #F5F7FA;
-	font-family: 'Open Sans', sans-serif;
-}
+/* body { */
+/* 	color: #404E67; */
+/* 	background: #F5F7FA; */
+/* 	font-family: 'Open Sans', sans-serif; */
+/* } */
+/* .table-responsive{ */
+/* 	display: flex; */
+/*     justify-content: center; */
+/*     align-items: center; */
+/*     flex-direction: column; */
+/* } */
+/* .table-wrapper { */
+/* 	width: 690px; */
+/* 	margin: 0px auto; */
+/* 	background: #fff; */
+/* /* 	padding: 20px; */ */
+/* 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
+/* } */
 
-.table-wrapper {
-	width: 690px;
-	margin: 30px auto;
-	background: #fff;
-	padding: 20px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-}
+/* .table-title { */
+/* 	padding-bottom: 10px; */
+/* 	margin: 0 0 10px; */
+/* } */
 
-.table-title {
-	padding-bottom: 10px;
-	margin: 0 0 10px;
-}
+/* .table-title h2 { */
+/* 	margin: 6px 0 0; */
+/* 	font-size: 22px; */
+/* } */
 
-.table-title h2 {
-	margin: 6px 0 0;
-	font-size: 22px;
-}
+/* .table-title .add-new { */
+/* 	float: right; */
+/* 	height: 30px; */
+/* /* 	font-weight: bold; */ */
+/* 	font-size: 12px; */
+/* 	text-shadow: none; */
+/* 	min-width: 100px; */
+/* 	border-radius: 50px; */
+/* 	line-height: 13px; */
+/* } */
 
-.table-title .add-new {
-	float: right;
-	height: 30px;
-	font-weight: bold;
-	font-size: 12px;
-	text-shadow: none;
-	min-width: 100px;
-	border-radius: 50px;
-	line-height: 13px;
-}
+/* /* .table-title .add-new i { */ */
+/* /* 	margin-right: 4px; */ */
+/* /* } */ */
 
-.table-title .add-new i {
-	margin-right: 4px;
-}
+/* table.table { */
+/* 	table-layout: fixed; */
+/* } */
 
-table.table {
-	table-layout: fixed;
-}
+/* table.table tr th, table.table tr td { */
+/* 	border-color: #e9e9e9; */
+/* 	text-align: center; */
+/* } */
 
-table.table tr th, table.table tr td {
-	border-color: #e9e9e9;
-	text-align: center;
-}
+/* table.table th i { */
+/* 	font-size: 13px; */
+/* 	margin: 0 5px; */
+/* 	cursor: pointer; */
+/* } */
 
-table.table th i {
-	font-size: 13px;
-	margin: 0 5px;
-	cursor: pointer;
-}
+/* table.table th:last-child { */
+/* 	width: 100px; */
+/* } */
 
-table.table th:last-child {
-	width: 100px;
-}
+/* table.table td a { */
+/* 	cursor: pointer; */
+/* 	display: inline-block; */
+/* 	margin: 0 5px; */
+/* 	min-width: 24px; */
+/* } */
 
-table.table td a {
-	cursor: pointer;
-	display: inline-block;
-	margin: 0 5px;
-	min-width: 24px;
-}
+/* table.table td a.edit { */
+/* 	color: #666; */
+/* } */
 
-table.table td a.add {
-	color: #27C46B;
-}
+/* table.table td a.delete { */
+/* 	color: #666; */
+/* } */
 
-table.table td a.edit {
-	color: #FFC107;
-}
+/* table.table td i { */
+/* 	font-size: 19px; */
+/* } */
 
-table.table td a.delete {
-	color: #E34724;
-}
+/* table.table td a.add i { */
+/* 	font-size: 24px; */
+/* 	margin-right: -1px; */
+/* 	position: relative; */
+/* 	top: 3px; */
+/* } */
 
-table.table td i {
-	font-size: 19px;
-}
+/* table.table .form-control { */
+/* 	height: 32px; */
+/* 	line-height: 32px; */
+/* 	box-shadow: none; */
+/* 	border-radius: 2px; */
+/* } */
 
-table.table td a.add i {
-	font-size: 24px;
-	margin-right: -1px;
-	position: relative;
-	top: 3px;
-}
+/* table.table .form-control.error { */
+/* 	border-color: #f50000; */
+/* } */
 
-table.table .form-control {
-	height: 32px;
-	line-height: 32px;
-	box-shadow: none;
-	border-radius: 2px;
-}
-
-table.table .form-control.error {
-	border-color: #f50000;
-}
-
-table.table td .add {
-	display: none;
-}
+/* table.table td .add { */
+/* 	display: none; */
+/* } */
+/* .table-responsive{ */
+/* 	padding:0px; */
+/* } */
+/* .addbtn{ */
+/* 	padding: 6px 25px; */
+/* 	background-color: #21d4a7; */
+/* 	border: none; */
+/* 	color: #fff; */
+/* } */
+/* .addbtn:hover{ */
+/* 	color: #fff; */
+/* 	background-color: #29dfb1; */
+/* } */
+/* .setting_title{ */
+/* 	display: flex; */
+/*     justify-content: space-between; */
+/*     align-items: center;     */
+/*     margin-bottom: 10px;  */
+/*     	color: #fff; */
+/* } */
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 </head>
@@ -162,32 +184,30 @@ table.table td .add {
 		<jsp:include page="/fragment/sidebar_tr.jsp" />
 
 		<div class="content">
+		  <div class="back">
+            <a href="#"><i class="fas fa-chevron-left"></i>　返回課程管理</a>
+          </div>
 			<div class="title">
-				<h3>上課日誌</h3>
+				<h3>課程管理 > 填寫上課日誌</h3>
 			</div>
 
 
 			<div class="setting_area">
+			<div class="setting_box">
+			<div class="setting_title">
+			<label><h5>重量訓練</h5></label>
+			<button type="button" class="btn add-new addbtn">
+			新增
+			</button>
+			</div>
 				<form:form
 					action="/TrainMe/updateStudentCourseDatDiaryContent/${CourseMsg.id}"
 					method="post" modelAttribute="studentCourseBean"
 					enctype="multipart/form-data">
-					<div class="setting_box">
-						<div class="container-lg">
+					<div class="container-lg">
+					
 							<div class="table-responsive">
 								<div class="table-wrapper">
-									<div class="table-title">
-										<div class="row">
-											<div class="col-sm-8">
-												<h2>重量訓練</h2>
-											</div>
-											<div class="col-sm-4">
-												<button type="button" class="btn btn-info add-new">
-													<i class="fa fa-plus"></i>新增
-												</button>
-											</div>
-										</div>
-									</div>
 									<table class="table table-bordered">
 										<thead>
 											<tr>
@@ -218,16 +238,17 @@ table.table td .add {
 								</div>
 							</div>
 						</div>
-					</div>
+						</div>
+					
 
 
 					<div class="setting_box upload_file">
-						<label for="name"><h5>教練建議:</h5></label>
+						<label style="width:140px"><h5>教練建議</h5><p id="feedback"></p></label>
 						<textarea name="datdiary_content" id="text" cols="60" rows="15"
 							maxlength="500" placeholder="限500字以內">${CourseMsg.datdiary_content}</textarea>
-						<p id="feedback"></p>
+							
+						
 					</div>
-
 
 					<div class="edit_box e_button">
 						<button class="save">更新</button>
@@ -255,15 +276,15 @@ table.table td .add {
 		$(document).ready(
 						function() {
 							let textMax = ($("#text").val()).length;
-							$('#feedback').html(`還可以輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
+							$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}textMax}</span> 個字 `);
 
 							$('#text').keyup(function() {
-												let textMax = 1000;
+												let textMax = 500;
 												let textLength = $(this).val().length;
 												total = textMax - textLength;
 												$('#feedback')
 														.html(
-																`還可以輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
+																`尚可輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
 												//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
 											});
 						});
