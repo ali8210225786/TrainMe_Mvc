@@ -23,6 +23,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
+<script
+	src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 </head>
 <body>
 	<c:if test="${LoginOK == null}">
@@ -56,8 +58,8 @@
 		<div class="search_trainer">
 
 			<!-- 搜尋bar -->
-			
-			<form action="<c:url value='/searchTrainerByCondition' />"  >
+
+			<form action="<c:url value='/searchTrainerByCondition' />">
 				<label>課程種類：</label>
 				<li><select name="skillType" class="lesson">
 						<option value="0">請選擇</option>
@@ -123,45 +125,65 @@
 							<span>${trainerCourseAll.get(i.current).getTrainerBean_H().getName()}</span>
 
 							<!-- 評價星星 (暫)-->
-								<c:choose>
-									<c:when test="${empty  trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()}">
-										<p class="norate">目前無評價</p>
-									</c:when>
-									<c:otherwise>
-										<div class="fc_star">							
-											<div class="starss">
-												 <div class="empty_star">★★★★★</div>												
-						                    	 <div class="full_star" style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>			 
-											</div>	
-											<span>(${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()})</span>		
-										</div>										
-									</c:otherwise>
-								</c:choose>				
+							<c:choose>
+								<c:when
+									test="${empty  trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()}">
+									<p class="norate">目前無評價</p>
+								</c:when>
+								<c:otherwise>
+									<div class="fc_star">
+										<div class="starss">
+											<div class="empty_star">★★★★★</div>
+											<div class="full_star"
+												style="width:${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings() * 20}%">★★★★★</div>
+										</div>
+										<span>(${trainerCourseAll.get(i.current).getTrainerBean_H().getRatings_size()})</span>
+									</div>
+								</c:otherwise>
+							</c:choose>
 						</div>
 
 						<!-- 內容 -->
-						<div class="fb_content">
+						<div class="fb_content" x-data="data()" x-init="init()">
 
 							<!-- 課程資訊 -->
 							<div class="fc_title">
+							
+							<c:if test="${LoginOK.type == 1}">
+								<a class="trTitle"
+									href="<c:url value='/trainer_info/${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}?type=search&stId=${LoginOK.id}' />">
+									${trainerCourseAll.get(i.current).getTrainerBean_H().getCourse()}
+								</a>
+							</c:if>
+							
+							<c:if test="${LoginOK.type != 1}">
 								<a class="trTitle"
 									href="<c:url value='/trainer_info/${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}?type=search' />">
 									${trainerCourseAll.get(i.current).getTrainerBean_H().getCourse()}
 								</a>
-								
-								<a href="javascript:;" id="heart" title="收藏教練"><i class="fas fa-heart like"></i></a>
+							</c:if>
+
+
+							<c:if test="${st_favorite.size() >= 0}">
+								<a href="javascript:;" class="heart" title="收藏教練"> <i
+										class="fas fa-heart like" :class="{ change_color : isLike(${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}) }"
+										id="tr_${trainerCourseAll.get(i.current).getTrainerBean_H().getId()}"></i>
+								</a>
+							</c:if>
+
+
 							</div>
 							<div class="ls_info">
-								<label>課程種類： <span> 
-								
-								
-								<c:if test="${trainerOfSkillType.size() != 0}">
-											<c:forEach varStatus="a" begin="0" end="${trainerOfSkillType.size()-1}">
-												<c:if test="${trainerCourseAll.get(i.current).getTrainerBean_H().getId() == trainerOfSkillType.get(a.current).getTrainerBean_H().getId()}">				
+								<label>課程種類： <span> <c:if
+											test="${trainerOfSkillType.size() != 0}">
+											<c:forEach varStatus="a" begin="0"
+												end="${trainerOfSkillType.size()-1}">
+												<c:if
+													test="${trainerCourseAll.get(i.current).getTrainerBean_H().getId() == trainerOfSkillType.get(a.current).getTrainerBean_H().getId()}">				
 													${trainerOfSkillType.get(a.current).getSkill_typeBean_H().getName()}
 												</c:if>
 											</c:forEach>
-								</c:if>
+										</c:if>
 
 								</span>
 								</label> <label>課程價格： <span>${trainerCourseAll.get(i.current).getPrice()}
@@ -176,6 +198,7 @@
 								</p>
 							</div>
 
+
 						</div>
 
 
@@ -188,22 +211,92 @@
 		</div>
 
 
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled"><a class="page-link" href="#"
+					tabindex="-1" aria-disabled="true">Previous</a></li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			</ul>
+		</nav>
+
+
 	</div>
-	
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
 	<script>
-	
-	
-	
 		// 點擊收藏愛心切換顏色
-		$(document).ready(function() {
-		  $('#heart').click(function() {
-		    $('.like').toggleClass('change_color');
-		  })
-		})
-	
-	
+		$('.heart').click(function(e) {
+			
+				
+			
+			var trId = e.target.id;
+			var trIdStr = trId.substring(3, trId.length);
+			
+			
+			if($('#' + trId).hasClass('change_color')){
+				var id = "${LoginOK.id}" == "" ? 0 : ${LoginOK.id}
+				$.post("/TrainMe/deleteFavorite/" + id , {tr_id : trIdStr},
+	              		   function (data, textStatus, jqXHR) {
+					console.log("okkkk");
+							},
+							"json"	
+	                 );
+				
+			}else{
+				var id = "${LoginOK.id}" == "" ? 0 : ${LoginOK.id}
+				$.post("/TrainMe/addFavorite/" + id, {tr_id : trIdStr},
+	              		   function (data, textStatus, jqXHR) {
+							
+							},
+							"json"	
+	                 );
+				
+			}
+			
+			
+			
+			$('#' + trId).toggleClass('change_color');
+		});
+
+		
+		
+		
+		function data() {
+			return{
+				favoriteTr : [],
+				init(){
+					
+					const self = this;
+					var id = "${LoginOK.id}" == "" ? 0 : ${LoginOK.id}
+					$.get("/TrainMe/favoriteList/" + id,
+			                  function (data) {	
+								console.log(data);
+			                	 self.favoriteTr = data;
+			                  },
+			                  "json"
+			        );
+				},
+				isLike(trId){
+					return this.favoriteTr.includes(trId);
+				},
+				
+				
+				
+			}
+		}
+
+		// $.post("/TrainMe/totalPage",
+		// 		   function (data, textStatus, jqXHR) {
+		// 	   console.log(data);
+
+		// 		},
+		// 		"json"	
+		// );
 	</script>
-	
 </body>
 </html>

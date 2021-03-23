@@ -18,10 +18,10 @@ public class FavoriteBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.REFRESH)
 	@JoinColumn(name="st_id")
 	private StudentBean_H studentBean_H;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.REFRESH)
 	@JoinColumn(name="tr_id")
 	private TrainerBean_H trainerBean_H;
 
@@ -32,6 +32,10 @@ public class FavoriteBean {
 		this.id = id;
 		this.studentBean_H = studentBean_H;
 		this.trainerBean_H = trainerBean_H;
+		
+	}
+	
+	public FavoriteBean() {
 		
 	}
 

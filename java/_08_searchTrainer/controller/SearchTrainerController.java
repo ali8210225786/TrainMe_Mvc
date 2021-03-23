@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import _01_register.model.GymBean_H;
 import _01_register.model.StudentBean_H;
@@ -22,6 +24,8 @@ import _03_memberData.service.AddressService;
 import _08_searchTrainer.service.SearchTrainerService;
 import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
+import _13_addfavorite.model.FavoriteBean;
+import _13_addfavorite.service.FavoriteService;
 
 @Controller
 public class SearchTrainerController {
@@ -32,16 +36,23 @@ public class SearchTrainerController {
 	AddressService addressService;
 	@Autowired
 	MemberService_H memberService;
+	@Autowired
+	FavoriteService favoriteService;
 
 	
 	
 	
 
 	@GetMapping("/searchTrainerAll")
-	public String SearchTrainerAll(Model model) {
+	public String SearchTrainerAll(Model model, @RequestParam(value="stId", required=false) Integer stId) {
 		List<TrainerCourseBean_H> trainerCourseAll = searchTrainerService.getTrainerCourseAll();
 		List<TrainerCourseBean_H> trainerOfSkillType = searchTrainerService.getTrainerOfSkillType();
-
+	
+		if (stId != null) {
+			List<FavoriteBean> st_favorite = favoriteService.getFavoriteList(stId);
+			System.out.println("=============================================>"+st_favorite.size());
+			model.addAttribute("st_favorite", st_favorite);
+		}
 	
 		model.addAttribute("trainerCourseAll", trainerCourseAll);
 		model.addAttribute("trainerOfSkillType", trainerOfSkillType);
@@ -65,6 +76,15 @@ public class SearchTrainerController {
 		
 		return "/_08_searchTrainer/search_trainer";
 	}
+	
+	
+	@PostMapping("totalPage")
+	public @ResponseBody String getTotalPage(Model model) {
+		Integer totle =  searchTrainerService.getTrainerCourseCount();
+		return totle.toString();
+	}
+	
+
 	
 	
 	

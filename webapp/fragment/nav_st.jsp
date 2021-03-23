@@ -14,7 +14,7 @@
 		</li>
 		<div class="items">
 			<li><a href="#about">關於我們</a></li>
-			<li><a href="<c:url value='/searchTrainerAll' />">尋找教練</a></li>
+			<li><a href="<c:url value='/searchTrainerAll?stId=${LoginOK.id}' />">尋找教練</a></li>
 			<li><a href="#">購物商城</a></li>
 			<li><a href="#">運動論壇</a></li>
 		</div>
@@ -42,7 +42,7 @@
 					<li><a href="<c:url value='/message/${LoginOK.id}' />">我的通知</a></li>
 					<li><a href="<c:url value='/st_info_lesson/${LoginOK.id}' />">我的課程</a></li>
 					<li><a href="<c:url value='/studentMoney/${LoginOK.id}' />">我的點數</a></li>
-					<li><a href="#">收藏教練</a></li>
+					<li><a href="<c:url value='/favoriteTrainer/${LoginOK.id}' />">收藏教練</a></li>
 					<li><a href="<c:url value='/studentData/${LoginOK.id}' />">帳號設定</a></li>
 					<hr>
 					<li><a href="<c:url value='/logout' />">登出</a></li>

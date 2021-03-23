@@ -40,6 +40,8 @@ import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
 import _12_message.service.MessageService;
+import _13_addfavorite.model.FavoriteBean;
+import _13_addfavorite.service.FavoriteService;
 
 @SessionAttributes({"LoginOK","studentMoney"})
 @Controller
@@ -67,16 +69,27 @@ public class TrainerInfoController {
 	MessageService messageService;
 	
 	@Autowired
-	MemPointService memPointService;
+	FavoriteService favoriteService;
 	
 	@Autowired
-	StudentCourseService studentCourseService;
+	MemPointService memPointService;
+
 	
 
 	@GetMapping("/trainer_info/{id}")
 	public String TrainerInfo(Model model,
 			@PathVariable("id") Integer id,
-			@RequestParam("type") String type) {
+			@RequestParam("type") String type,
+			@RequestParam(value="stId", required=false) Integer stId) {
+		
+		if (stId != null) {
+			List<FavoriteBean> st_favorite = favoriteService.getFavoriteList(stId);
+			Boolean isFavorite = favoriteService.isFavorite(stId, id);
+			model.addAttribute("isFavorite", isFavorite);
+			model.addAttribute("st_favorite", st_favorite);
+		}
+		
+		
 		TrainerBean_H trainerBean = memberDataService.getTrainerById(id);		
 		GymBean_H gym =  gymService.getGym(trainerBean.getGym().getId());
 		List<TrainerCourseBean_H> trainerCourses = trainerInfoService.getTrainerCourse(id);
