@@ -26,7 +26,7 @@
 	href="${pageContext.request.contextPath}/css/style_nav.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style_tr_info.css">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style_tr_dairy.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">

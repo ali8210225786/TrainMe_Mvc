@@ -27,6 +27,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style_tr_info.css">
 <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style_tr_dairy.css">
+<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="./css/style_st_lesson.css">
 <link rel="stylesheet"
@@ -42,115 +44,115 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
-.aside ul li:nth-child(2) a {
+.aside ul li:nth-child(3) a {
 	color: #21d4a7;
 }
-.datdiary_content{
-    white-space: pre-wrap;
-}
-body {
-	color: #404E67;
-	background: #F5F7FA;
-	font-family: 'Open Sans', sans-serif;
+/* .datdiary_content{ */
+/*     white-space: pre-wrap; */
+/* } */
+/* body { */
+/* 	color: #404E67; */
+/* 	background: #F5F7FA; */
+/* 	font-family: 'Open Sans', sans-serif; */
 
-}
+/* } */
 
-.table-wrapper {
-	width: 690px;
-	margin: 30px auto;
-	background: #fff;
-	padding: 20px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-}
+/* .table-wrapper { */
+/* 	width: 690px; */
+/* 	margin: 30px auto; */
+/* 	background: #fff; */
+/* 	padding: 20px; */
+/* 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
+/* } */
 
-.table-title {
-	padding-bottom: 10px;
-	margin: 0 0 10px;
-}
+/* .table-title { */
+/* 	padding-bottom: 10px; */
+/* 	margin: 0 0 10px; */
+/* } */
 
-.table-title h2 {
-	margin: 6px 0 0;
-	font-size: 22px;
-}
+/* .table-title h2 { */
+/* 	margin: 6px 0 0; */
+/* 	font-size: 22px; */
+/* } */
 
-.table-title .add-new {
-	float: right;
-	height: 30px;
-	font-weight: bold;
-	font-size: 12px;
-	text-shadow: none;
-	min-width: 100px;
-	border-radius: 50px;
-	line-height: 13px;
-}
+/* .table-title .add-new { */
+/* 	float: right; */
+/* 	height: 30px; */
+/* 	font-weight: bold; */
+/* 	font-size: 12px; */
+/* 	text-shadow: none; */
+/* 	min-width: 100px; */
+/* 	border-radius: 50px; */
+/* 	line-height: 13px; */
+/* } */
 
-.table-title .add-new i {
-	margin-right: 4px;
-}
+/* .table-title .add-new i { */
+/* 	margin-right: 4px; */
+/* } */
 
-table.table {
-	table-layout: fixed;
-}
+/* table.table { */
+/* 	table-layout: fixed; */
+/* } */
 
-table.table tr th, table.table tr td {
-	border-color: #e9e9e9;
-	text-align: center;
-}
+/* table.table tr th, table.table tr td { */
+/* 	border-color: #e9e9e9; */
+/* 	text-align: center; */
+/* } */
 
-table.table th i {
-	font-size: 13px;
-	margin: 0 5px;
-	cursor: pointer;
-}
+/* table.table th i { */
+/* 	font-size: 13px; */
+/* 	margin: 0 5px; */
+/* 	cursor: pointer; */
+/* } */
 
-table.table th:last-child {
-	width: 100px;
-}
+/* table.table th:last-child { */
+/* 	width: 100px; */
+/* } */
 
-table.table td a {
-	cursor: pointer;
-	display: inline-block;
-	margin: 0 5px;
-	min-width: 24px;
-}
+/* table.table td a { */
+/* 	cursor: pointer; */
+/* 	display: inline-block; */
+/* 	margin: 0 5px; */
+/* 	min-width: 24px; */
+/* } */
 
-table.table td a.add {
-	color: #27C46B;
-}
+/* table.table td a.add { */
+/* 	color: #27C46B; */
+/* } */
 
-table.table td a.edit {
-	color: #FFC107;
-}
+/* table.table td a.edit { */
+/* 	color: #FFC107; */
+/* } */
 
-table.table td a.delete {
-	color: #E34724;
-}
+/* table.table td a.delete { */
+/* 	color: #E34724; */
+/* } */
 
-table.table td i {
-	font-size: 19px;
-}
+/* table.table td i { */
+/* 	font-size: 19px; */
+/* } */
 
-table.table td a.add i {
-	font-size: 24px;
-	margin-right: -1px;
-	position: relative;
-	top: 3px;
-}
+/* table.table td a.add i { */
+/* 	font-size: 24px; */
+/* 	margin-right: -1px; */
+/* 	position: relative; */
+/* 	top: 3px; */
+/* } */
 
-table.table .form-control {
-	height: 32px;
-	line-height: 32px;
-	box-shadow: none;
-	border-radius: 2px;
-}
+/* table.table .form-control { */
+/* 	height: 32px; */
+/* 	line-height: 32px; */
+/* 	box-shadow: none; */
+/* 	border-radius: 2px; */
+/* } */
 
-table.table .form-control.error {
-	border-color: #f50000;
-}
+/* table.table .form-control.error { */
+/* 	border-color: #f50000; */
+/* } */
 
-table.table td .add {
-	display: none;
-}
+/* table.table td .add { */
+/* 	display: none; */
+/* } */
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 </head>
@@ -165,26 +167,23 @@ table.table td .add {
 		<jsp:include page="/fragment/sidebar_st.jsp" />
 
 		<div class="content">
+		 <div class="back">
+            <a href="#"><i class="fas fa-chevron-left"></i>　返回我的課程</a>
+          </div>
+          
 			<div class="title">
-				<h3>上課日誌</h3>
+				<h3>我的課程 > 上課日誌</h3>
 			</div>
 
 
 			<div class="setting_area">
 			
-					<div class="setting_box">
+					<div class="setting_box" style="border:none;">
+					<label><h5>重量訓練</h5></label>	
+					
 						<div class="container-lg">
 							<div class="table-responsive">
 								<div class="table-wrapper">
-									<div class="table-title">
-										<div class="row">
-											<div class="col-sm-8">
-												<h2>
-													重量訓練
-												</h2>
-											</div>
-										</div>
-									</div>
 									<table class="table table-bordered">
 										<thead>
 											<tr>
@@ -215,8 +214,8 @@ table.table td .add {
 						</div>
 					</div>
 
-					<div class="setting_box upload_file">
-						<label for="name"><h5>教練建議:</h5></label>
+					<div class="setting_box" style="border:none;">
+						<label><h5>教練建議</h5></label>
 							<div class="datdiary_content">${CourseMsg.datdiary_content}</div>
 					</div>
 
