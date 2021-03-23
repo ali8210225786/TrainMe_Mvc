@@ -1,5 +1,6 @@
 package _04_money.controller;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -50,6 +52,8 @@ public class AccountController {
 
 	@Autowired
 	MemPointService memPointService;
+	
+
 
 	
 
@@ -59,6 +63,16 @@ public class AccountController {
 		List<TrainerAccountBean_H> account =memPointService.getAccountDetail(id);
 		model.addAttribute("AccountBean", account);
 		return "/_04_money/tr_bank";
+	}
+	
+	@GetMapping("accountDetails/{id}")
+	public String accountDetails(@PathVariable("id")Integer id,
+			@RequestParam("date")Date date, Model model) {
+		List<MoneyBean_H> trMonthPoint = memPointService.getMonthPoint(date, id);
+		System.out.println("==================================>"+trMonthPoint);
+		
+		model.addAttribute("trMonthPoint", trMonthPoint);
+		return "/_04_money/tr_point";
 	}
 
 }

@@ -1,5 +1,6 @@
 package _04_money.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import _01_register.model.StudentBean_H;
@@ -23,4 +24,6 @@ public interface MemPointService {
 	public int saveTrainerRefund(MoneyBean_H moneyBean_H);
 	
 	public int saveStudentCourseToMoney(MoneyBean_H moneyBean_H);
+	
+	public List<MoneyBean_H> getMonthPoint(Date date, int trId);
 }

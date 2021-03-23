@@ -1,5 +1,6 @@
 package _04_money.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -126,6 +127,19 @@ public class MemPointServiceImpl implements MemPointService {
 	@Override
 	public MoneyBean_H getStudentMoneyLast(int id) {
 		return dao.getStudentMoneyLast(id);
+	}
+	
+	@Transactional
+	@Override
+	public List<MoneyBean_H> getMonthPoint(java.sql.Date date, int trId) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int month = cal.get(Calendar.MONTH);
+		if(month == 0) {
+			month = 12;
+		}
+		
+		return dao.getMonthPoint(month, trId);
 	}
 	
 

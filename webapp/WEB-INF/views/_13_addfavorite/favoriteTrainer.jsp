@@ -171,12 +171,12 @@
 				
 				if($('#tr_' + trId).hasClass('change_color')){
 					
-						console.log("okkkk");
+// 						console.log("okkkk");
 					$.post("/TrainMe/deleteFavorite/" + ${LoginOK.id} , {tr_id : trId}
 		                 );
 					
 				}else{
-					console.log("nooo");
+// 					console.log("nooo");
 					$.post("/TrainMe/addFavorite/" + ${LoginOK.id}, {tr_id : trId}
 		                 );
 					
