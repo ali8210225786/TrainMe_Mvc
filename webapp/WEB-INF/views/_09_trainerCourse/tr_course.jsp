@@ -172,8 +172,9 @@
 						<table class="table border">
 							<thead class="thead">
 								<tr>
-									<th scope="col" class="class_name">上課學員</th>
-									<th scope="col">課程名稱</th>
+									<th scope="col">上課學員</th>
+									<th scope="col" class="class_name">課程名稱</th>
+									<th scope="col">課程點數</th>
 									<th scope="col">預約課程時段</th>
 									<th scope="col">是否同意</th>
 								</tr>
@@ -185,8 +186,9 @@
 									<c:if
 										test="${StudentCourse.get(i.current).getIs_allowed()== 0 && StudentCourse.get(i.current).getIs_delete()==0 &&StudentCourse.get(i.current).getDate()> Now}">
 										<tr>
-											<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
-											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+											<td>${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
+											<td class="class_name">${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 											<td>${StudentCourse.get(i.current).getDate()}
 
 												${StudentCourse.get(i.current).getTime()}:00 -
@@ -259,9 +261,11 @@
 						<table class="table border b_c">
 							<thead class="thead">
 								<tr>
-									<th scope="col" class="class_name">上課學員</th>
-									<th scope="col">課程名稱</th>
-									<th scope="col">預約課程時段</th>
+									<th scope="col">上課學員</th>
+									<th scope="col" class="class_name">課程名稱</th>
+									<th scope="col">課程點數</th>
+									<th scope="col">預約時段</th>
+									<th scope="col">學員資料</th>
 								</tr>
 							</thead>
 							<tbody class="tr_height">
@@ -271,12 +275,14 @@
 									<c:if
 										test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()> Now }">
 										<tr>
-											<td class="class_name"><a href="javascript:" class="studentData" data-id="${StudentCourse.get(i.current).getStudentBean_H().getId()}">${StudentCourse.get(i.current).getStudentBean_H().getName()}</a></td>
-											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+											<td>${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
+											<td  class="class_name">${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+											<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 											<td>${StudentCourse.get(i.current).getDate()}
 
 												${StudentCourse.get(i.current).getTime()}:00 -
 												${StudentCourse.get(i.current).getTime() + 1}:00</td>
+											<td><a href="javascript:" class="studentData" data-id="${StudentCourse.get(i.current).getStudentBean_H().getId()}">查看</a></td>
 										</tr>
 									</c:if>
 								</c:forEach>
@@ -290,9 +296,10 @@
 						<table class="table border">
 							<thead class="thead">
 								<tr>
-									<th scope="col" class="class_name">上課學員</th>
-									<th scope="col">課程名稱</th>
-									<th scope="col">預約課程時段</th>
+									<th scope="col">上課學員</th>
+									<th scope="col" class="class_name">課程名稱</th>
+									<th scope="col">課程點數</th>
+									<th scope="col">上課時段</th>
 									<th scope="col">上課日誌</th>
 								</tr>
 							</thead>
@@ -303,8 +310,9 @@
 										<c:if
 											test="${StudentCourse.get(i.current).getIs_allowed()== 1 && StudentCourse.get(i.current).getDate()< Now  }">
 											<tr>
-												<td class="class_name">${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
-												<td>${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+												<td>${StudentCourse.get(i.current).getStudentBean_H().getName()}</td>
+												<td class="class_name">${StudentCourse.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</td>
+												<td >${StudentCourse.get(i.current).getTrainerCourseBean_H().getPrice()}</td>
 												<td>${StudentCourse.get(i.current).getDate()}
 
 													${StudentCourse.get(i.current).getTime()}:00 -
@@ -333,6 +341,7 @@
 
 
 			</div>
+		</div>
 
 
 

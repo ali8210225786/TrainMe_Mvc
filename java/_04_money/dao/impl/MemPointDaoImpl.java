@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -108,6 +110,45 @@ public class MemPointDaoImpl implements MemPointDao{
 			String hql2 = "FROM MoneyBean_H WHERE id =" + lastId;
 			return (MoneyBean_H) session.createQuery(hql2).getSingleResult();
 		}
+		
+	//查詢教練本月的入帳點數
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MoneyBean_H> getMonthPoint(int month, int trId) {
+		Session session = factory.getCurrentSession();
+		int[] bigMonth = {1,3,5,7,8,10,12};
+		int[] smallMonth = {4,6,9,11};
+		int[] February = {2};
+		String hql = null;
+		switch (month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			hql = "FROM MoneyBean_H WHERE tr_id =:trId AND change_time BETWEEN "
+					+ "'2021-" + month + "-01' and '2021-" + month + "-31' ";
+			break;
+			
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			hql = "FROM MoneyBean_H WHERE tr_id =:trId AND change_time BETWEEN "
+				+ "'2021-" + month + "-01' and '2021-" + month + "-30' ";
+			break;
+			
+		case 2:
+			hql = "FROM MoneyBean_H WHERE tr_id =:trId AND change_time BETWEEN "
+				+ "'2021-" + month + "-01' and '2021-" + month + "-28' AND change_amount > 0";
+			break;
+		}
+		
+		
+		return session.createQuery(hql).setParameter("trId", trId).getResultList();
+	}	
 
 
 	//教練新增點數資料
