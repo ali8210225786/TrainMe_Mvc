@@ -24,6 +24,10 @@
 	color: #21d4a7;
 }
 </style>
+
+<script
+	src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
+	defer></script>
 </head>
 <body>
 	<!-- ============上方導覽列======================================================= -->
@@ -47,78 +51,158 @@
 				<div class="title">
 					<h3>收藏教練</h3>
 				</div>
-				 <!-- 說明 -->
+				<!-- 說明 -->
 
-        <div class="explain explain_s">
-            <label>排序依據：</label>
-            <a href="#">加入順序優先</a>
-            <a href="#">評價數量優先</a>
-            <a href="#">高評價優先</a>
-        </div>
+				<div class="explain explain_s">
+					<label>排序依據：</label> <a href="#">加入順序優先</a> <a href="#">評價數量優先</a>
+					<a href="#">高評價優先</a>
+				</div>
 
-            <div class="favorite">
-                    
-                <!-- 每個教練框 -->
-                <a href="javascript:;"><!-- 超連結至教練個人頁面的a -->
-                    <div class="trainer">
-                        <div class="bgcolor">
-                            <span id="heart"><i class="fas fa-heart like"></i></span>
-                            <div class="tr_picture">
-                                <img src="./images/ud.jpg">    
-                            </div>
-                            <h6>基德</h6>
-                        </div>
-                                    
-                        <div class="trainer_wrap">
-                            <div class="twbox">
-                                            
-                                <div class="tw">
-                                    <label>教練評價</label>
-                                        <div class="rating">
-                                            <span class="star">★</span> 
-                                            <span>5.0</span> 
-                                        </div>
-                                </div>
-                                    <div class="tw">
-                                        <label>授課地點</label> <span>新北市新店區</span>
-                                    </div>
-                                </div>
-                                    <div class="twbox">
-                                        <div class="tw">
-                                        <label>課程類型</label> <span>重訓、減脂</span>
-                                        </div>
-                                        <div class="tw">
-                                            <label>課程價格</label> <span>1500up</span>
-                                        </div>
-                                    </div>
+				<div class="favorite" x-data="data()" x-init="init()">
 
-                                
+					<template x-for="trainerX in trainers" :key="trainerX.id">
 
-                        </div>
+						<!-- 每個教練框 -->
+						<a href="javascript:;"> <!-- 超連結至教練個人頁面的a -->
+							<div class="trainer">
+								<div class="bgcolor">
+									<span  @click="toggle(trainerX.trId)"><i :id="'tr_' + trainerX.trId" class="fas fa-heart like change_color" ></i></span>
+
+									<template x-if="!trainerX.profile_image">
+										<div class="tr_picture">
+											<img
+												src="<c:url value="/images/_03_MemberData/upimage.png" />">
+										</div>
+									</template>
+
+									<template x-if="trainerX.profile_image">
+										<div class="tr_picture" x-html="image(trainerX.profile_image)" >
+										</div>
+										
+									</template>
 
 
-                    </div>
-                </a>
-                
-                </div>
+									<h6 x-text="trainerX.name"></h6>
+								</div>
+								<div class="trainer_wrap">
+									<div class="twbox">
+
+										<div class="tw">
+											<label>教練評價</label>
+											<div class="rating">
+												<template x-if="trainerX.ratings == 0">
+													<span>尚無評價</span>
+												</template>
+												<template x-if="trainerX.ratings != 0">
+													<!-- 	=========================== 不知道為何會找不到，可是顯示正常 ================================= -->
+													<span class="star">★</span>
+<!-- 													<span x-text="trainerX.ratings"></span> -->
+												</template>
+											</div>
+										</div>
+										<div class="tw">
+											<label>授課地點</label> <span
+												x-text="trainerX.city + trainerX.area"></span>
+										</div>
+									</div>
+									<div class="twbox">
+										<div class="tw">
+											<label>課程類型</label> <span
+												x-text="parseStr(trainerX.skillType)"></span>
+										</div>
+										<div class="tw">
+											<label>課程價格</label> <span x-text="trainerX.price+'  up'"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</template>
+				</div>
 
 
-    
-        </div>
-    </div>
-</div>
+
+			</div>
+		</div>
+	</div>
 
 
-<script
+	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
+	<script>
 
 	//點擊收藏愛心切換顏色
-	$(document).ready(function() {
-	  $('#heart').click(function() {
-	    $('.like').toggleClass('change_color');
-	  })
-	})
+// 	$(document).ready(function() {
+// 	  $('#heart').click(function() {
+// 	    $('.like').toggleClass('change_color');
+// 	  })
+// 	})
+	
+	function data() {
+		return{
+			trainers : [],
+			init(){
+				const self = this;
+				$.get("/TrainMe/allFavorite/" + ${LoginOK.id} ,
+		                  function (data) {
+		                 	self.trainers = data
+		                 	 console.log(data);
+		                  },
+		                  "json"
+		        );
+				
+			},
+			parseStr(skillTypes){
+				var str = ""
+				for(skillType of skillTypes){
+					
+					str += skillType +"、";
+				}
+				return str.substring(0, str.length-1)
+			},
+			image(profile_image){
+				var url = '<img src="/upload/' + profile_image +'">';
+// 				console.log(url);
+				return url;
+			},
+			toggle(trId){
+				console.log(trId);
+				console.log($('#tr_' + trId).hasClass('change_color'));
+				
+				if($('#tr_' + trId).hasClass('change_color')){
+					
+						console.log("okkkk");
+					$.post("/TrainMe/deleteFavorite/" + ${LoginOK.id} , {tr_id : trId}
+		                 );
+					
+				}else{
+					console.log("nooo");
+					$.post("/TrainMe/addFavorite/" + ${LoginOK.id}, {tr_id : trId}
+		                 );
+					
+				}
+				
+				
+				
+				 $('#tr_'+ trId).toggleClass('change_color');
+			},
+// 			isLike(trId){
+// 				for(tr of this.trainers){
+// 					if(this.trainers.includes(trId)){
+// 						return true;
+// 					}
+// 				}
+// 				return false;
+// 			}
+			
+			
+			
+			
+			
+			
+			
+		}
+	}
 
 
 </script>

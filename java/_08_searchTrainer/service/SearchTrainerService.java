@@ -77,36 +77,13 @@ public class SearchTrainerService {
 		return searchTrainerByCondition;
 	}
 	
+	//找出全部有課程的教練有幾筆
+		public Integer getTrainerCourseCount() {
+			return searchTrainerDao.getTrainerCourseCount();
+		}
 	
 	
-//	public List<TrainerCourseBean_H> searchTrainerByCondition(int cityId, int skillTypeId, String keyWord) {
-//		
-//	    List<TrainerCourseBean_H> searchTrainerByCity = searchTrainerDao.searchTrainerByCity(cityId);
-//		List<TrainerCourseBean_H> searchTrainerBySkillType = searchTrainerDao.searchTrainerBySkillType(skillTypeId);
-//		List<TrainerCourseBean_H> searchTrainerByKeyWord = searchTrainerDao.searchTrainerByKeyWord(keyWord);
-//		
-//		if (cityId != 0 && skillTypeId != 0 ) {
-//			searchTrainerByCity.retainAll(searchTrainerBySkillType);
-//			return searchTrainerByCity ;
-//		}
-////		// 全部都有輸入
-////		if (cityId != 0 && skillTypeId != 0 && keyWord != "") {}
-////		// 只輸入地址、類型
-////		if (cityId != 0 && skillTypeId != 0 && keyWord == "") {}
-////		// 只輸入地址、關鍵字
-////		if (cityId != 0 && skillTypeId == 0 && keyWord != "") {}
-////		// 只輸入類型、關鍵字
-////		if (cityId == 0 && skillTypeId != 0 && keyWord != "") {}
-////		// 只輸入地址
-////		if (cityId != 0 && skillTypeId == 0 && keyWord == "") {}
-////		// 只輸入類型
-////		if (cityId == 0 && skillTypeId != 0 && keyWord == "") {}
-////		// 只輸入關鍵字
-////		if (cityId == 0 && skillTypeId == 0 && keyWord != "") {}
-//		
-//		
-//		return null;
-//	}
+	
 
 	
 	

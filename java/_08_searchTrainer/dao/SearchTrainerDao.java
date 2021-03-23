@@ -68,6 +68,14 @@ public class SearchTrainerDao {
 		return (TrainerCourseBean_H) session.createQuery(hql).setParameter("trId", trId).getSingleResult();
 	}
 	
+	//找出全部有課程的教練有幾筆
+	public Integer getTrainerCourseCount() {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT COUNT(*) FROM TrainerCourseBean_H group by trainerBean_H";
+		return  (Integer) session.createQuery(hql).getSingleResult();
+	}
+	
+	
 	
 	
 }

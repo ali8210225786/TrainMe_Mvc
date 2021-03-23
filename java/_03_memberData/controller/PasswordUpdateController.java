@@ -1,6 +1,5 @@
 package _03_memberData.controller;
 
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +17,9 @@ import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
 import _01_register.service.MemberService_H;
+import _01_register.validate.StudentPasswordUpdateValidator;
 import _01_register.validate.StudentValidator;
+import _01_register.validate.TrainerPasswordUpdateValidator;
 import _01_register.validate.TrainerValidator;
 import _03_memberData.service.MemberDataService;
 
@@ -36,11 +37,11 @@ public class PasswordUpdateController {
 	MemberService_H memberService;
 
 	@Autowired
-	StudentValidator st_validator;
-	
+	StudentPasswordUpdateValidator st_validator;
+
 	@Autowired
-	TrainerValidator tr_validator;
-	
+	TrainerPasswordUpdateValidator tr_validator;
+
 //跳轉學員修改密碼頁面
 	@GetMapping("/st_PasswordUpdate/{id}")
 	public String stPasswordUpdate(Model model, @PathVariable("id") Integer id) {
@@ -61,7 +62,7 @@ public class PasswordUpdateController {
 
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("LoginOK", trainerBean);
-		
+
 		return "/_03_memberData/tr_passwordUpdate";
 	}
 
@@ -73,24 +74,26 @@ public class PasswordUpdateController {
 		st_validator.validate(newBean, result);
 
 		StudentBean_H oldBean = memberDataService.getStudentById(id);
-		
+
 		MemberBean_H mb = null;
-		
-		try {
-			mb = memberService.checkOldPassword_H(oldBean.getEmail(), GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getOldpassword())));
-			if (mb == null) {
-				result.rejectValue("oldpassword", "", "該密碼不存在");
-			}else if(newBean.getNewpassword().equals(newBean.getNewpasswordcheck())){
-				oldBean.setPassword(GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getNewpassword())));
-				memberDataService.updateStudent(oldBean);	
+
+		mb = memberService.checkOldPassword_H(oldBean.getEmail(),
+				GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getOldpassword())));
+		if (mb == null) {
+			result.rejectValue("oldpassword", "", "該密碼不存在");
+		} else if (!result.hasErrors()) {
+			try {
+				oldBean.setPassword(
+						GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getNewpassword())));
+				memberDataService.updateStudent(oldBean);
 				return "redirect:/studentData/" + id;
+			} catch (RuntimeException ex) {
+				result.rejectValue("oldpassword", "", ex.getMessage());
+				ex.printStackTrace();
 			}
-		} catch (RuntimeException ex) {
-			result.rejectValue("oldpassword", "", ex.getMessage());
-			ex.printStackTrace();
 		}
-		
 		return "/_03_memberData/st_passwordUpdate";
+
 	}
 
 //讀取教練修改密碼頁面
@@ -101,23 +104,26 @@ public class PasswordUpdateController {
 		tr_validator.validate(newBean, result);
 
 		TrainerBean_H oldBean = memberDataService.getTrainerById(id);
-		
+
 		MemberBean_H mb = null;
-		
-		try {
-			mb = memberService.checkOldPassword_H(oldBean.getEmail(), GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getOldpassword())));
-			if (mb == null) {
-				result.rejectValue("oldpassword", "", "該密碼不存在");
-			}else if(newBean.getNewpassword().equals(newBean.getNewpasswordcheck())){
-				oldBean.setPassword(GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getNewpassword())));
-				memberDataService.updateTrainer(oldBean);	
+
+		mb = memberService.checkOldPassword_H(oldBean.getEmail(),
+				GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getOldpassword())));
+		if (mb == null) {
+			result.rejectValue("oldpassword", "", "該密碼不存在");
+		} else if (!result.hasErrors()) {
+			try {
+				oldBean.setPassword(
+						GlobalService.getMD5Endocing(GlobalService.encryptString(newBean.getNewpassword())));
+				memberDataService.updateTrainer(oldBean);
 				return "redirect:/trainerData/" + id;
+
+			} catch (RuntimeException ex) {
+				result.rejectValue("oldpassword", "", ex.getMessage());
+				ex.printStackTrace();
 			}
-		} catch (RuntimeException ex) {
-			result.rejectValue("oldpassword", "", ex.getMessage());
-			ex.printStackTrace();
 		}
-		
+
 		return "/_03_memberData/tr_passwordUpdate";
 	}
 

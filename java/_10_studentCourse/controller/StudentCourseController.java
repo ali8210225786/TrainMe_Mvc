@@ -34,6 +34,7 @@ import _09_trainerCourse.service.TrainerCourseService;
 import _10_studentCourse.model.CourseDiaryItemBean_H;
 import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
+import _10_studentCourse.service.StudentDiaryService;
 import _12_message.service.MessageService;
 
 @SessionAttributes({ "LoginOK", "comingSoonCourse", "waitCourse", "beforeCourse", "type" })
@@ -72,8 +73,6 @@ public class StudentCourseController {
 		List<StudentCourseBean_H> beforeCourse = studentCourseService.getBeforeCourse(id, nowDate);
 		List<RatingsBean_H> ratings = studentCourseService.getRatings();
 	
-		
-		
 		
 		model.addAttribute("comingSoonCourse", comingSoonCourse);
 		model.addAttribute("waitCourse", waitCourse);
