@@ -44,7 +44,7 @@
     font-size: 16px;      
 }
 .setting_area{
-    width: 600px;
+    width: 70%;
     display: flex;
     justify-content: center;
 }
@@ -58,6 +58,10 @@
 .setting_box label{
     width: 150px;
     color: #666;
+    display: inline-flex;
+}
+.setting_box select {
+    width: 350px;
 }
 .check_btn{
     margin-top: 20px;
