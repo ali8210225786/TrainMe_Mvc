@@ -110,6 +110,7 @@
 								<c:if test="${nowDays - otherDays < 90}">
 									<tr>
 										<td>${AccountBean.get(i.current).time}</td>
+										</a>
 										<td>${AccountBean.get(i.current).getNote()}</td>
 										<td>111111111111</td>
 										<td>${AccountBean.get(i.current).getTrainerBean_H().getBank_account()}</td>

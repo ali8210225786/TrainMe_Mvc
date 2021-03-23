@@ -68,11 +68,7 @@
 	<!-- 自我介紹 -->
 
 	<div class="st_info_wrap">
-		<div class="self_intro">
-			<p>自我介紹</p>
-
-			<p id="introduction"></p>
-		</div>
+		<div class="self_intro"><p>自我介紹</p><p id="introduction"></p></div>
 	</div>
 </div>
 

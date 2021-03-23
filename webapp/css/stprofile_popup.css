@@ -137,7 +137,7 @@ label {
     padding: 0px 25px;
     /* border: 1px solid red; */
 }
-.self_intro p:first-child{
+.self_intro p{
     margin: 15px 0;
     font-weight: 400;
     color: #666;
