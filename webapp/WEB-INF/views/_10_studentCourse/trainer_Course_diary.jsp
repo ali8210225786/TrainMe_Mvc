@@ -185,7 +185,7 @@
 
 		<div class="content">
 		  <div class="back">
-            <a href="#"><i class="fas fa-chevron-left"></i>　返回課程管理</a>
+            <a href="<c:url value='/trainerCourse/${LoginOK.id}' />"><i class="fas fa-chevron-left"></i>　返回課程管理</a>
           </div>
 			<div class="title">
 				<h3>課程管理 > 填寫上課日誌</h3>

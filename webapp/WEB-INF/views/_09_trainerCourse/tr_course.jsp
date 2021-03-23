@@ -317,10 +317,15 @@
 
 													${StudentCourse.get(i.current).getTime()}:00 -
 													${StudentCourse.get(i.current).getTime() + 1}:00</td>
-												<td><a
-													href="<c:url value='/trainer_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i
-														class="fas fa-book"></i></a></td>
-											</tr>
+												<c:choose>
+													<c:when test="${empty StudentCourse.get(i.current).getDatdiary_content() &&  empty StudentCourse.get(i.current).getCourseDiaryItemBean_H()}">		
+															<td><a href="<c:url value='/trainer_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i class="fas fa-pen"></i></a></td>					
+													</c:when>
+													<c:otherwise>
+															<td><a href="<c:url value='/trainer_Course_diary/${StudentCourse.get(i.current).getId()}' />"><i class="fas fa-book"></i></a></td>
+													</c:otherwise>		
+												</c:choose>									
+											</tr>											
 										</c:if>
 									</c:forEach>
 								</c:if>

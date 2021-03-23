@@ -44,6 +44,7 @@ import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
 import _12_message.service.MessageService;
+import mail.model.ContactBean;
 import mail.model.SendingEmail;
 import mail.service.MailService;
 
@@ -97,6 +98,7 @@ public class RegisterController {
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);		
 		model.addAttribute("trainerAndCourse", trainerAndCourse);	
+		model.addAttribute("contactBean" , new ContactBean());
 
 		return "index";
 	}
@@ -390,6 +392,7 @@ public class RegisterController {
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerAndCourse", trainerAndCourse);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 		return "index";
 	}
 
