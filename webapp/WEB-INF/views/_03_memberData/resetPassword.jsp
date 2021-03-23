@@ -14,6 +14,7 @@
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
+<link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_rd_page.css' />">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script> --%>
@@ -22,6 +23,8 @@
 	<!-- ============上方導覽列======================================================= -->
 	<jsp:include page="/fragment/nav.jsp"/> 
 
+
+    <jsp:include page="/fragment/login.jsp"/> 
    <!-- ====================================================================== -->
     <div class="message">
           
@@ -50,12 +53,10 @@
                 </div>
 
                 </form:form>
-
             </div>
-
-
          </div>
     </div>
+
 
 <!-- 	<div align="center"> -->
 <!-- 		<h2>重置密碼</h2> -->
@@ -102,4 +103,40 @@
 <!-- // 	}); -->
 <!-- 	</script> -->
 </body>
+
+<script>
+   
+
+// 導覽列
+
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            document.getElementById("navbar").style.top = "0";
+        } else {
+            document.getElementById("navbar").style.top = "-90px";
+        }
+        prevScrollpos = currentScrollPos;
+        } 
+        
+        
+        // 解決有錯誤資料時跳轉頁面問題
+	    <c:if test="${studentBean.getHasError()}">
+			   Show();
+			   register_st()	   	
+	    </c:if>
+	    <c:if test="${trainerBean.getHasError()}">
+			   Show();
+			   register_tr()
+	    </c:if>
+	    <c:if test="${loginBean.getHasError()}">
+			   Show();
+	    </c:if>
+        
+
+
+      </script>
+
+
 </html>
