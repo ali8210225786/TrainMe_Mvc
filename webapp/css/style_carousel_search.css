@@ -1,22 +1,29 @@
 .carousel {
   position: relative;
 }
-
-.slider .ad {
+.carousel-item img{
+  height: 80vh;
+}
+.slider{
+  position: relative;
+  height: 100%;
+}
+.carousel .ad {
   width: 500px;
   position: absolute;
   left: 20%;
   top: 30%;
   color: #fff;
+  /* background-color: white; */
 }
-.slider h3 {
+.carousel h3 {
   padding: 0 0 10px;
   font-size: 30px;
   line-height: 35px;
   color: #00ffb7;
   font-family: "Noto Sans TC", sans-serif;
 }
-.slider p {
+.carousel p {
   padding: 3px;
   line-height: 22px;
   font-family: "Noto Sans TC", sans-serif;
@@ -70,3 +77,12 @@
 /* @media screen and (min-width: 768px) {
     
 } */
+
+.new{
+  position: relative;
+  height: calc(100vh - 80vh);
+  background-color: #21d4a7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
