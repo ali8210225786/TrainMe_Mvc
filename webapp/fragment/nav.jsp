@@ -9,44 +9,19 @@
     <header id="navbar">
         <ul>
             <li class="logo">
-                <a href="<c:url value='/' />"><img src="${pageContext.request.contextPath}/images/index/logo_black.png"></a>
+                <a href="<c:url value='/' />"><img src="${pageContext.request.contextPath}/images/index/logo_black.png" id="logoimg"></a>
 <!--                 <a href="#"><img src="../images/index/logo_black.png"></a> -->
             </li>
                 <div class="items">
-                    <li><a href="#about">關於我們</a></li>
-                    <li><a href="<c:url value='/searchTrainerAll' />">尋找教練</a></li>
-                    <li><a href="#">購物商城</a></li>
-                    <li><a href="#">運動論壇</a></li>
+                    <li><a class="nav-underline" href="#about">關於我們</a></li>
+                    <li><a class="nav-underline" href="<c:url value='/searchTrainerAll' />">尋找教練</a></li>
+                    <li><a class="nav-underline" href="#contact">聯絡我們</a></li>
+<!--                     <li><a href="#">購物商城</a></li> -->
+<!--                     <li><a href="#">運動論壇</a></li> -->
                 </div>
             <li>
                 <button class="nav_btn" onclick="Show();">登入/註冊</button>
             </li>    
-            
-
-
-
-
-
-
-<!--             <li class="member"> -->
-<!--                 <a href="#"> -->
-<%--                         <img src="${pageContext.request.contextPath}/images/index/member.jpg"> --%>
-<!--                 </a> -->
-<!--                 <ul class="dropdown"> -->
-<!--                     <div class="triangle"></div> -->
-<!--                     <div class="dropdown_box"> -->
-<!--                         <li><a href="#">個人資料</a></li> -->
-<!--                         <li><a href="#">我的課程</a></li> -->
-<%--                         <li><a href="<c:url value='/_06_st_point/st_point.jsp' />">我的點數</a></li> --%>
-<!--                         <li><a href="#">訂單查詢</a></li> -->
-<%--                         <li><a href="<c:url value='/_03MemberData/studentData.jsp' />">帳號設定</a></li> --%>
-<!--                         <hr> -->
-<!--                         <li><a href="#">登出</a></li> -->
-<!--                     </div> -->
-<!--                 </ul> -->
-<!--             </li> -->
-       
-        
        
        
     </header>

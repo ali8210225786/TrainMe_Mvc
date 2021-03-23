@@ -21,28 +21,34 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
-<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/style.css"
+	rel="stylesheet">
 <%-- <link href="${pageContext.request.contextPath}/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"> --%>
 <%-- <link href="${pageContext.request.contextPath}/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"> --%>
 <%-- <link href="${pageContext.request.contextPath}/assets/vendor/venobox/venobox.css" rel="stylesheet"> --%>
 
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="assets/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="assets/vendor/boxicons/css/boxicons.min.css"
+	rel="stylesheet">
+<link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+<link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
 <%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css">    --%>
-<link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
+<link rel="stylesheet"
+	href="<c:url value='/css/style_nav_change.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/css/style_carousel_search.css' />">
+<%-- <link rel="stylesheet" href="<c:url value='/css/style_hot_trainer' />"> --%>
 
 
 <style>
 /* 	       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');  */
-
 /*教練推薦*/
 .hot_trainer {
 	text-align: center;
@@ -63,24 +69,30 @@
 
 .splide__slide {
 	position: relative;
-	/* width: 280px; */
-	height: 320px;
+	width: 14rem;
+	height: 18rem;
 	/* background-color: black; */
 	/* background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); */
 	box-shadow: 0px 0px 5px 0.6px #999;
 }
 
-.splide__slide img {
+.splide__slide .tr_img {
+	/* position: absolute; */
 	width: 100%;
-	height: 100%;
-	/* opacity: 0.5; */
+	height: 202px;
+	display: flex;
+}
+
+.splide__slide .tr_img img {
+	width: 100%;
+	object-fit: cover
 }
 
 .splide__slide .p_t {
 	position: absolute;
 	width: 100%;
 	bottom: 0px;
-	background-color: rgba(0, 0, 0, 0.7);;
+	background-color: #000;
 	padding: 7px 0px 10px;
 	color: aliceblue;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -248,14 +260,17 @@ html .fixWindow {
 	position: fixed;
 	width: 100%;
 }
-    #contact .card:hover i,#contact .card:hover h4{
+
+#contact .card:hover i, #contact .card:hover h4 {
 	color: #2dc997;
-    }
-    a {
-        color:black;
-    }
-address{
-line-height: 26px;
+}
+
+a {
+	color: black;
+}
+
+address {
+	line-height: 26px;
 }
 </style>
 </head>
@@ -272,6 +287,9 @@ line-height: 26px;
 	<c:if test="${LoginOK.type == 2}">
 		<jsp:include page="/fragment/nav_tr.jsp" />
 	</c:if>
+
+	<!-- <!-- 登入/註冊 -->
+	<jsp:include page="/fragment/login.jsp" />
 
 
 	<!-- 橫幅/搜尋 -->
@@ -291,233 +309,126 @@ line-height: 26px;
 					<div class="carousel-item active">
 						<img
 							src="${pageContext.request.contextPath}/images/index/banner_25001.jpg"
-							class="d-block w-100" alt="...">
-						<div class="ad">
-							<h3>健身教練與學員的專屬媒合平台</h3>
-							<p>
-								教練課程價錢、時段公開透明<br> 省去詢問時間，免於被健身業務打擾<br>
-								透過評價系統，讓您篩選最適合自己的教練！
-							</p>
-						</div>
+							class="d-block w-100">
 					</div>
 					<div class="carousel-item">
 						<img
 							src="${pageContext.request.contextPath}/images/index/banner_25002.jpg"
-							class="d-block w-100" alt="...">
-						<div class="ad">
-							<h3>健身教練與學員的專屬媒合平台</h3>
-							<p>
-								教練課程價錢、時段公開透明<br> 省去詢問時間，免於被健身業務打擾<br>
-								透過評價系統，讓您篩選最適合自己的教練！
-							</p>
-						</div>
+							class="d-block w-100">
 					</div>
 					<div class="carousel-item">
 						<img
 							src="${pageContext.request.contextPath}/images/index/banner_25003.jpg"
-							class="d-block w-100" alt="...">
-						<div class="ad">
-							<h3>健身教練與學員的專屬媒合平台</h3>
-							<p>
-								教練課程價錢、時段公開透明<br> 省去詢問時間，免於被健身業務打擾<br>
-								透過評價系統，讓您篩選最適合自己的教練！
-							</p>
-						</div>
+							class="d-block w-100">
 					</div>
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators"
-					role="button" data-slide="prev"> <span
-					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Next</span>
-				</a>
+				<!-- 				<a class="carousel-control-prev" href="#carouselExampleIndicators" -->
+				<!-- 					role="button" data-slide="prev"> <span -->
+				<!-- 					class="carousel-control-prev-icon" aria-hidden="true"></span> <span -->
+				<!-- 					class="sr-only">Previous</span> -->
+				<!-- 				</a> <a class="carousel-control-next" href="#carouselExampleIndicators" -->
+				<!-- 					role="button" data-slide="next"> <span -->
+				<!-- 					class="carousel-control-next-icon" aria-hidden="true"></span> <span -->
+				<!-- 					class="sr-only">Next</span> -->
+				<!-- 				</a> -->
 			</div>
 
 		</div>
-		<form class="search_trainer" action="<c:url value='/searchTrainerByCondition' />">
-			<li>
-			<select name="skillType" class="lesson">
+		<form class="search_trainer"
+			action="<c:url value='/searchTrainerByCondition' />">
+			<li><select name="skillType" class="lesson">
 					<option value="0">請選擇</option>
 					<c:if test="${skillTypeAll.size() > 0}">
 						<c:forEach varStatus="i" begin="0" end="${skillTypeAll.size()-1}">
 							<option value="${skillTypeAll.get(i.current).getId()}">${skillTypeAll.get(i.current).getName()}</option>
 						</c:forEach>
 					</c:if>
-			</select>
-			</li>
-			<li>
-			<select name="city" class="location">
+			</select></li>
+			<li><select name="city" class="location">
 					<option value="0">地點</option>
 					<option value="1">台北市</option>
 					<option value="2">新北市</option>
-			</select>
-			</li>
+			</select></li>
 			<li><input type="search" name="keyword" placeholder="輸入關鍵字"
 				class="search_input"></li>
 			<li><button class="search_btn">搜尋教練</button></li>
 		</form>
+
+		<div class="ad">
+			<h3>健身教練與學員的專屬媒合平台</h3>
+			<p>
+				教練課程價錢、時段公開透明<br> 省去詢問時間，免於被健身業務打擾<br>
+				透過評價系統，讓您篩選最適合自己的教練！
+			</p>
+		</div>
 	</div>
 
+	<!-- 	大概介紹 -->
+
+	<div class="new">
+
+		<div class="intro"></div>
+
+
+	</div>
 
 
 	<!-- 人氣教練 -->
 
-	<span class="hot_trainer"> <img
-		src="data:image/png;base64,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">
+
+
+	<span class="hot_trainer">
 		<h3>本月人氣教練</h3>
 	</span>
+
 	<div class="splide">
 		<div class="splide__track">
 			<ul class="splide__list">
 
-				<c:if test="${trainerAndCourse.size() > 0}">
-					<c:forEach varStatus="i" begin="0"
-						end="${trainerAndCourse.size()-1}">
-						<div class="splide__slide">
+				<a class="splide__slide"
+					href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=index' />">
+
+					<div class="tr_img">
+						<img
+							src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}">
+					</div> <!--                         <div class="p_t"> --> <!--                             <p class="t_name">林瑪莉</p> -->
+					<!--                             <span> --> <!--                                 <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+					<!--                                 <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+					<!--                             </span> --> <!--                             <span> -->
+					<!--                                 <div class="ratings"> --> <!--                                     <div class="empty-stars"></div> -->
+					<!--                                     <div class="full-stars" style="width:80%"></div>                             -->
+					<!--                                 </div> --> <!--                                 <p>(18)</p> -->
+					<!--                             </span> --> <!--                         </div> -->
+
+					<c:if test="${trainerAndCourse.size() > 0}">
+						<c:forEach varStatus="i" begin="0"
+							end="${trainerAndCourse.size()-1}">
 							<div class="p_t">
 								<p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
 								<span>
 									<p class="t_location">
 										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
-									<p class="t_ltimes">
-										<i class="fas fa-user-friends"></i>20次課程媒合
-									</p>
-								</span> 
-								<span>
+									
+								</span> <span>
 									<div class="ratings">
 										<div class="empty-stars"></div>
-										<div class="full-stars" style="width: ${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings() * 20}%"></div>
+										<div class="full-stars"
+											style="width: ${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings() * 20}%"></div>
 									</div>
-									<p>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</p>				
+									<p>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</p>
 								</span>
 							</div>
-							<a
-								href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=index' />">
-								<img
-								src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}"
-								border="0">
-							</a>
-						</div>
+						</c:forEach>
+					</c:if>
 
-						<!--                 <div class="splide__slide"> -->
-						<!--                     <div class="p_t"> -->
-						<!--                         <p class="t_name">林瑪莉</p> -->
-						<!--                         <span> -->
-						<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
-						<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
-						<!--                         </span> -->
-						<!--                         <span> -->
-						<!--                             <div class="ratings"> -->
-						<!--                                 <div class="empty-stars"></div> -->
-						<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
-						<!--                             </div> -->
-						<!--                             <p>(18)</p> -->
-						<!--                         </span> -->
-						<!--                     </div> -->
-						<%--                     <img src="${pageContext.request.contextPath}/images/index/2.png"> --%>
-						<!--                 </div> -->
+				</a>
 
-						<!--                 <div class="splide__slide"> -->
-						<!--                     <div class="p_t"> -->
-						<!--                         <p class="t_name">林瑪莉</p> -->
-						<!--                         <span> -->
-						<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
-						<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
-						<!--                         </span> -->
-						<!--                         <span> -->
-						<!--                             <div class="ratings"> -->
-						<!--                                 <div class="empty-stars"></div> -->
-						<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
-						<!--                             </div> -->
-						<!--                             <p>(18)</p> -->
-						<!--                         </span> -->
-						<!--                     </div> -->
-						<%--                     <img src="${pageContext.request.contextPath}/images/index/3.jpg"> --%>
-						<!--                 </div> -->
 
-						<!--                 <div class="splide__slide"> -->
-						<!--                     <div class="p_t"> -->
-						<!--                         <p class="t_name">林瑪莉</p> -->
-						<!--                         <span> -->
-						<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
-						<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
-						<!--                         </span> -->
-						<!--                         <span> -->
-						<!--                             <div class="ratings"> -->
-						<!--                                 <div class="empty-stars"></div> -->
-						<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
-						<!--                             </div> -->
-						<!--                             <p>(18)</p> -->
-						<!--                         </span> -->
-						<!--                     </div> -->
-						<%--                     <img src="${pageContext.request.contextPath}/images/index/1.jpg"> --%>
-						<!--                 </div> -->
 
-						<!--                 <div class="splide__slide"> -->
-						<!--                     <div class="p_t"> -->
-						<!--                         <p class="t_name">林瑪莉</p> -->
-						<!--                         <span> -->
-						<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
-						<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
-						<!--                         </span> -->
-						<!--                         <span> -->
-						<!--                             <div class="ratings"> -->
-						<!--                                 <div class="empty-stars"></div> -->
-						<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
-						<!--                             </div> -->
-						<!--                             <p>(18)</p> -->
-						<!--                         </span> -->
-						<!--                     </div> -->
-						<%--                     <img src="${pageContext.request.contextPath}/images/index/2.png"> --%>
-						<!--                 </div> -->
-
-						<!--                 <div class="splide__slide"> -->
-						<!--                     <div class="p_t"> -->
-						<!--                         <p class="t_name">林瑪莉</p> -->
-						<!--                         <span> -->
-						<!--                             <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
-						<!--                             <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
-						<!--                         </span> -->
-						<!--                         <span> -->
-						<!--                             <div class="ratings"> -->
-						<!--                                 <div class="empty-stars"></div> -->
-						<!--                                 <div class="full-stars" style="width:80%"></div>                             -->
-						<!--                             </div> -->
-						<!--                             <p>(18)</p> -->
-						<!--                         </span> -->
-						<!--                     </div> -->
-						<%--                     <img src="${pageContext.request.contextPath}/images/index/3.jpg"> --%>
-						<!--                 </div> -->
-
-					</c:forEach>
-				</c:if>
 			</ul>
 		</div>
 	</div>
-	<!-- <!-- 登入/註冊 -->
-	<jsp:include page="/fragment/login.jsp" />
-	
-	<div class="other">
-		<div class="about">
-			<h3>為什麼要找私人健身教練？</h3>
-			<p>
-				私人健身教練會客製化學員的教練課程，依學員時間、身體狀態安排課程，並視情況調整進度，彈性更高、學習更能建立信心，許多教練也會為學生客製化個人的增肌減脂飲食菜單及課後的自主訓練菜單。
-				許多人會想看書或看影片在家自己練，但常因此忽略細節，甚至因為出力不當造成運動傷害，以至於喪失信心與興趣。私人健身教練採「平衡訓練，以全身為訓練範圍，在過程中重量搭配、角度位置、技術，到安全措施全部包辦。</p>
-		</div>
-		<div class="about">
-			<h3>小型健身房收費與特點</h3>
-			<p>
-				> 收費方式：以上課次數、課程項目計費<br> > 教練費用：單堂教練費用700-3000元，團體課程費用300-1000元<br>
-				> 使用限制：預約制或有課程時才能使用<br> >
-				優點：使用人數較少，小班制團體課品質相對有保障，對於想嘗試健身但比較害羞的群體來說也是很好的選擇<br> >
-				缺點：營業據點較少，團體課的多樣性比較低
-			</p>
-		</div>
-	</div>
-	
+
 	<!-- ======= About Section ======= -->
     <section id="about">
       <div class="container">
@@ -754,52 +665,76 @@ line-height: 26px;
 	<script
 		src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
 	<!-- Vendor JS Files -->
-<!--   <script src="assets/vendor/jquery/jquery.min.js"></script> -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!--   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script> -->
-<!--   <script src="assets/vendor/php-email-form/validate.js"></script> -->
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/superfish/superfish.min.js"></script>
-  <script src="assets/vendor/hoverIntent/hoverIntent.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+	<!--   <script src="assets/vendor/jquery/jquery.min.js"></script> -->
+	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!--   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script> -->
+	<!--   <script src="assets/vendor/php-email-form/validate.js"></script> -->
+	<script src="assets/vendor/counterup/counterup.min.js"></script>
+	<script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+	<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script src="assets/vendor/superfish/superfish.min.js"></script>
+	<script src="assets/vendor/hoverIntent/hoverIntent.js"></script>
+	<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+	<script src="assets/vendor/venobox/venobox.min.js"></script>
+	<script src="assets/vendor/aos/aos.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-	
-	
+	<!-- Template Main JS File -->
+	<script src="assets/js/main.js"></script>
+
+
 	<script>
    
 
 // 導覽列
 
+		$(document).ready(function() {
+			$("#logoimg").attr('src','${pageContext.request.contextPath}/images/index/logo_w.png');
+		})
+
+ 		
         var prevScrollpos = window.pageYOffset;
         window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
             document.getElementById("navbar").style.top = "0";
+        
         } else {
             document.getElementById("navbar").style.top = "-90px";
         }
         prevScrollpos = currentScrollPos;
         } 
         
+        
+        //捲動變色
+        window.addEventListener('scroll',function(e){
+
+            let header = document.querySelector('header');
+            
+            let windowPosition = window.scrollY > 0;
+            header.classList.toggle('scrolling-nav', windowPosition);
+        })
+        
+        //捲動換logo
+        $(window).scroll(function (event) {
+            if ($(window).scrollTop() > 0) {
+                $("#logoimg").attr("src","${pageContext.request.contextPath}/images/index/logo_black.png");
+            } else {
+                $("#logoimg").attr("src","${pageContext.request.contextPath}/images/index/logo_w.png");
+            }
+        });
 
 
 // 教練推薦
 
         document.addEventListener( 'DOMContentLoaded', function () {
             new Splide( '.splide', {
-            width: '1200px',
-            // fixedWidth: '12rem',
-            // fixedHeight: '8rem',
+            width: '1115px',
+            fixedWidth: '14rem',
+            fixedHeight: '18rem',
             padding: {
-                left:20,
-                right:20,
-            },               
+            left:0,
+            right:0,
+            },                   
             perPage: 4,
             perMove: 1,
             gap: 40,
