@@ -1,7 +1,9 @@
 	package _02_login.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.regex.Pattern;
 
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _00_init.util.GlobalService;
+import _01_register.model.GymBean_H;
 import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
@@ -33,8 +36,12 @@ import _01_register.service.MemberService_H;
 import _01_register.validate.StudentValidator;
 import _01_register.validate.TrainerValidator;
 import _02_login.model.LoginBean;
+import _03_memberData.model.City_H;
+import _03_memberData.service.AddressService;
 import _03_memberData.service.MemberDataService;
 import _04_money.model.MoneyBean_H;
+import _08_searchTrainer.service.SearchTrainerService;
+import _09_trainerCourse.model.SkillTypeBean_H;
 import mail.model.SendingEmail_newpassword;
 
 @Controller
@@ -49,6 +56,12 @@ public class ResetPasswordController {
 
 	@Autowired
 	MemberService_H memberService;
+	
+	@Autowired
+	AddressService addressService;
+	
+	@Autowired
+	SearchTrainerService searchTrainerService;
 
 	private static final Pattern Email_PATTERN = Pattern
 			.compile("^\\w{1,63}@[a-zA-Z0-9]{2,63}\\.[a-zA-Z]{2,63}(\\.[a-zA-Z]{2,63})?$");
@@ -57,8 +70,13 @@ public class ResetPasswordController {
 	@GetMapping("/ResetPassword")
 	public String stPasswordUpdate(Model model) {
 
+		
+		StudentBean_H studentBean = new StudentBean_H();
+		TrainerBean_H trainerBean = new TrainerBean_H();
 		LoginBean loginBean = new LoginBean();
 
+		model.addAttribute("studentBean", studentBean);
+		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
 
 		return "/_03_memberData/resetPassword";
@@ -120,5 +138,23 @@ public class ResetPasswordController {
 			sb.append(str.charAt(number));
 		}
 		return sb.toString();
+	}
+	@ModelAttribute
+	public void commonData(Model model) {
+		
+		List<SkillTypeBean_H> skillTypeAll = searchTrainerService.getSkillTypeAll();
+		List<City_H> cities = addressService.listCities();	
+		Map<String, String> sexMap = new HashMap<>();
+		Map<Integer, String> gymMap = new HashMap<>();
+		List<GymBean_H> gymList = memberService.getGymList_H();
+		for (GymBean_H gym : gymList) {
+			gymMap.put(gym.getId(), gym.getName());
+		}
+		sexMap.put("M", "男");
+		sexMap.put("F", "女");
+		model.addAttribute("sexMap", sexMap);
+		model.addAttribute("gymList", gymMap);
+		model.addAttribute("cities", cities);	
+		model.addAttribute("skillTypeAll", skillTypeAll);
 	}
 }

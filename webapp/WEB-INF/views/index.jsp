@@ -19,6 +19,17 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
+<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath}/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath}/assets/vendor/venobox/venobox.css" rel="stylesheet"> --%>
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
 <%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css">    --%>
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
@@ -236,11 +247,14 @@ html .fixWindow {
 	width: 100%;
 }
     #contact .card:hover i,#contact .card:hover h4{
-	color: #87d37c;
+	color: #2dc997;
     }
     a {
         color:black;
     }
+address{
+line-height: 26px;
+}
 </style>
 </head>
 <body>
@@ -483,8 +497,7 @@ html .fixWindow {
 	</div>
 	<!-- <!-- 登入/註冊 -->
 	<jsp:include page="/fragment/login.jsp" />
-
-
+	
 	<div class="other">
 		<div class="about">
 			<h3>為什麼要找私人健身教練？</h3>
@@ -502,12 +515,99 @@ html .fixWindow {
 			</p>
 		</div>
 	</div>
+	
+	<!-- ======= About Section ======= -->
+    <section id="about">
+      <div class="container">
+        <div class="row about-container">
+
+          <div class="col-lg-6 content order-lg-1 order-2">
+            <h2 class="title">關於我們</h2>
+            <p>
+              TraineMe平台是由一群熱愛運動的團隊共同打造，我們團隊希望提供一個公開透明，自由選擇的平台，讓一個想健身的人透過TraineMe平台，尋找喜歡的教練，根據自己的需求，選擇適合的課程。
+              健身教練也能透過TraineMe平台媒合學員，並且能即時開課，展現自己所學。藉由TraineMe平台能讓學員與教練達到互利共享的雙贏空間。
+            </p>
+            
+            <div class="icon-box">
+              <div class="icon"><i class="far fa-handshake"></i></div>
+              <h4 class="title"><a href="">健身教練與學員的專屬媒合平台</a></h4>
+              <p class="description">讓中小型健身房的教練與學員快速媒合</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="far fa-hand-paper"></i></div>
+              <h4 class="title"><a href="">興趣當先，拒絕廢話</a></h4>
+              <p class="description">教練課程價錢、時段公開透明，省去詢問時間，免於被健身業務打擾</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-dumbbell"></i></div>
+              <h4 class="title"><a href="">輕鬆開始，輕鬆結束</a></h4>
+              <p class="description">平台提供各種教練課程供學員自由選擇，不受合約約束</p>
+            </div>
+            
+             <div class="icon-box">
+              <div class="icon"><i class="far fa-star"></i></div>
+              <h4 class="title"><a href="">簡單高效，評價透明</a></h4>
+              <p class="description">透過評價系統，讓學員篩選最適合自己的教練</p>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6 background order-lg-2 order-1">
+          	<img src="./assets/img/about-img.jpg">
+          </div>
+       
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+     <!-- ======= Facts Section ======= -->
+    <section id="facts">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">TraineMe Growth</h3>
+          <p class="section-description">TraineMe平台近期成長</p>
+        </div>
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">168</span>
+            <p>學員</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">50</span>
+            <p>教練</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">268</span>
+            <p>媒合數</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">8</span>
+            <p>合作中小型健身房</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Facts Section -->
+
 	 <section id="contact">
-       <div class="container">
-           <h3 class="text-center text-uppercase">聯絡我們</h3>
-           <p class="text-center w-75 m-auto">想成為TrainMe平台的教練或是學員嗎?歡迎諮詢</p>
+       <div class="container">    
+       <div>
+<h3 class="text-center text-uppercase">聯絡我們</h3>
+<br>
+<p class="text-center w-75 m-auto">想成為TrainMe平台的教練或是學員嗎?想了解更多嗎?歡迎諮詢</p>
+<br>
+<br>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7432711166844!2d121.53559291552197!3d25.042785144092026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97d255598df%3A0x47ea748e8f3f53aa!2z5ZyL56uL6Ie65YyX56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1616412938598!5m2!1szh-TW!2stw" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
            <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+            <div class="col-sm-12 col-md-6 col-lg-4 my-5">
                <div class="card border-0">
                   <div class="card-body text-center">
                     <i class="fas fa-map-marker-alt fa-5x mb-3" aria-hidden="true"></i>   
@@ -516,44 +616,85 @@ html .fixWindow {
                   </div>
                 </div>
              </div>
-             <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+             <div class="col-sm-12 col-md-6 col-lg-4 my-5">
                <div class="card border-0">
                   <div class="card-body text-center">
                     <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
                     <h4 class="text-uppercase mb-5">客服專線</h4>
-                    <p>02-11111111
-                    <br>服務時間: 06:00~24:00
-                    <br>以上皆為付費電話，
-                    <br>依一般市話及行動電話費率標準計費
-					</p>
+                    <address>02-11111111                  
+					</address>
                   </div>
                 </div>
              </div>
-             <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+             <div class="col-sm-12 col-md-6 col-lg-4 my-5">
                <div class="card border-0">
                   <div class="card-body text-center">
-                  <a href="mailto:trainme015@gmail.com">
+                  <a href="mailto:trainme015@gmail.com" style="text-decoration:none;">
                   <i class="fas fa-envelope fa-5x mb-3" aria-hidden="true"></i>             
                     <h4 class="text-uppercase mb-5">客服信箱</h4>
                     </a>
-                    <p>寫信聯繫客服</p>
+                    <address>寫信聯繫客服</address>
                   </div>                                            
                 </div>
              </div>
-             <div class="col-sm-12 col-md-6 col-lg-3 my-5">    
+                <div class="container">    
+             <div class="row">
+             <div class="col-sm-12 col-md-12 col-lg-12 my-5">    
                <div class="card border-0">
                   <div class="card-body text-center">   
-                    <a href="<c:url value='/Contact/' />">            
+                    <a href="<c:url value='/Contact/' />" style="text-decoration:none;">            
                     	<i class="far fa-user-circle fa-5x mb-3" aria-hidden="true"></i>        
                     	<h4 class="text-uppercase mb-5">電子信箱</h4>                
                 	</a>    
-                 <p>請將您的寶貴意見以填寫表單方式送出<br>我們將於工作日由專人以郵件回覆您的問題</p>                         
+                 <address>請將您的寶貴意見以填寫表單方式送出<br>我們將於工作日由專人以郵件回覆您的問題</address>                      
                   </div>
                 </div>
+<!--              </div> -->
+<!--              </div> -->
+              <section id="contact" class="contact section-bg">
+<!--       <div class="container"> -->
+<!--         <div class="row"> -->
+          <div class="col-lg-12 contact-form-wrap">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="email">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" name="message" rows="8" data-rule="required" data-msg="Please write something for us"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Contact Us Section -->
              </div>
            </div>
        </div>
     </section>	
+    
+    
 	<!-- footer -->
 
 	<footer>
@@ -601,6 +742,24 @@ html .fixWindow {
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
+	<!-- Vendor JS Files -->
+<!--   <script src="assets/vendor/jquery/jquery.min.js"></script> -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script> -->
+<!--   <script src="assets/vendor/php-email-form/validate.js"></script> -->
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/superfish/superfish.min.js"></script>
+  <script src="assets/vendor/hoverIntent/hoverIntent.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+	
+	
 	<script>
    
 
