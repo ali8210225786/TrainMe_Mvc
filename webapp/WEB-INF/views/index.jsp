@@ -42,14 +42,12 @@
 <link rel="stylesheet"
 	href="<c:url value='/css/style_nav_change.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
-<link rel="stylesheet"
-	href="<c:url value='/css/style_carousel_search.css' />">
+<link rel="stylesheet"	href="<c:url value='/css/style_carousel_search.css' />">
 <%-- <link rel="stylesheet" href="<c:url value='/css/style_hot_trainer' />"> --%>
 
 
 <style>
 /* 	       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');  */
-
 </style>
 </head>
 <body>
@@ -145,68 +143,78 @@
 
 	<div class="new">
 
-   <div class="intro">    
-    <div class="box">
-        <i class="far fa-hand-point-up"></i>
-        <span>快速預約</span>
-    </div>
-    <div class="p">
-        選擇您需要的課程與時段一鍵預約
-    </div>
-   </div>
-   <i class="fas fa-angle-right"></i>
+		<div class="intro">
+			<div class="box">
+				<i class="far fa-hand-point-up"></i> <span>快速預約</span>
+			</div>
+			<div class="p">選擇您需要的課程與時段一鍵預約</div>
+		</div>
+		<i class="fas fa-angle-right"></i>
 
-   <div class="intro">    
-    <div class="box">
-        <i class="fas fa-coins"></i>
-        <span>點數購課</span>
-    </div>
-    <div class="p">
-        儲值點數加贈點，快速購課不煩惱
-    </div>
-   </div>
-   <i class="fas fa-angle-right"></i>
-   <div class="intro">    
-    <div class="box">
-        <i class="far fa-thumbs-up"></i>
-        <span>評價系統</span>
-    </div>
-    <div class="p">
-        評價機制，增加選擇教練的參考依據
-    </div>
-   </div>
-   <i class="fas fa-angle-right"></i>
+		<div class="intro">
+			<div class="box">
+				<i class="fas fa-coins"></i> <span>點數購課</span>
+			</div>
+			<div class="p">儲值點數加贈點，快速購課不煩惱</div>
+		</div>
+		<i class="fas fa-angle-right"></i>
+		<div class="intro">
+			<div class="box">
+				<i class="far fa-thumbs-up"></i> <span>評價系統</span>
+			</div>
+			<div class="p">評價機制，增加選擇教練的參考依據</div>
+		</div>
+		<i class="fas fa-angle-right"></i>
 
-   <div class="intro">    
-    <div class="box">
-        <i class="fas fa-weight"></i>
-        <span>體態紀錄</span>
-    </div>
-    <div class="p">
-        學員每月體重變化一目瞭然
-    </div>
-   </div>
+		<div class="intro">
+			<div class="box">
+				<i class="fas fa-weight"></i> <span>體態紀錄</span>
+			</div>
+			<div class="p">學員每月體重變化一目瞭然</div>
+		</div>
 
 
 
-</div>
+	</div>
 
 
 	<!-- 人氣教練 -->
 
 
-<div class="hot_tr">
-	<span class="hot_trainer">
-		<h3>精選人氣教練</h3>
-	</span>
+	<div class="hot_tr">
+		<span class="hot_trainer">
+			<h2 class="title">精選人氣教練</h2> <!-- 		<h3>精選人氣教練</h3> -->
+		</span>
 
-	<div class="splide">
-		<div class="splide__track">
-			<ul class="splide__list">
-				<c:if test="${trainerAndCourse.size() > 0}">
-					<c:forEach varStatus="i" begin="0" end="${trainerAndCourse.size()-1}">
-				<a class="splide__slide"
-					href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=index' />">
+		<div class="splide">
+			<div class="splide__track">
+				<ul class="splide__list">
+					<c:if test="${trainerAndCourse.size() > 0}">
+						<c:forEach varStatus="i" begin="0"
+							end="${trainerAndCourse.size()-1}">
+							<a class="splide__slide"
+								href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=index' />">
+
+								<div class="tr_img">
+									<img
+										src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}">
+								</div> <!--                         <div class="p_t"> --> <!--                             <p class="t_name">林瑪莉</p> -->
+								<!--                             <span> --> <!--                                 <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+								<!--                                 <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+								<!--                             </span> --> <!--                             <span> -->
+								<!--                                 <div class="ratings"> --> <!--                                     <div class="empty-stars"></div> -->
+								<!--                                     <div class="full-stars" style="width:80%"></div>                             -->
+								<!--                                 </div> --> <!--                                 <p>(18)</p> -->
+								<!--                             </span> --> <!--                         </div> -->
+								<div class="p_t">
+									<p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
+									<span>
+										<p class="t_location">
+											<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
+										<p class="t_location">
+											<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
+
+									</span> <span class="rt_v">
 
 					<div class="tr_img">
 						<img
@@ -223,7 +231,7 @@
 								<p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
 								<span>
 									<p class="t_location">
-										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
+										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getGym().getCity().getName()}${trainerAndCourse.get(i.current).getTrainerBean_H().getGym().getArea().getName()}</p>
 									<p class="t_location">
 										<i class="fas fa-dumbbell"></i>
 										${trainerAndCourse.get(i.current).getSkill_typeBean_H().getName()}...									
@@ -236,102 +244,114 @@
 											<div class="empty-stars"></div>
 											<div class="full-stars"
 												style="width: ${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings() * 20}%"></div>
-										</div>
-										<span>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</span>
-									
-								</span>
-							</div>
+										</div> <span>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</span>
+
+									</span>
+								</div>
 							</a>
 						</c:forEach>
 					</c:if>
 
-				
 
 
 
-			</ul>
+
+				</ul>
+			</div>
 		</div>
 	</div>
-</div>
 	<!-- ======= About Section ======= -->
-    <section id="about">
-      <div class="container">
-        <div class="row about-container">
+	<section id="about">
+		<h2 class="title h2">關於我們</h2>
+		<div class="container">
+			<p>TraineMe是由一群熱愛運動的團隊共同打造，讓想健身的人透過平台尋找喜歡的教練，根據自己的需求，選擇適合的課程。健身教練也能透過平台媒合學員，並且能即時開課，展現自己所學。藉由TraineMe讓學員與教練達到互利共享的雙贏空間。</p>
+			<div class="row about-container">
 
-          <div class="col-lg-6 content order-lg-1 order-2">
-            <h2 class="title">關於我們</h2>
-            <p>
-              TraineMe是由一群熱愛運動的團隊共同打造，讓想健身的人透過平台尋找喜歡的教練，根據自己的需求，選擇適合的課程。
-      健身教練也能透過平台媒合學員，並且能即時開課，展現自己所學。藉由TraineMe讓學員與教練達到互利共享的雙贏空間。
-            </p>
-            
-            <div class="icon-box">
-              <div class="icon"><i class="far fa-handshake"></i></div>
-              <h4 class="title"><a href="">健身教練與學員的專屬媒合平台</a></h4>
-              <p class="description">讓中小型健身房的教練與學員快速媒合</p>
-            </div>
+				<div class="col-lg-6 content order-lg-1 order-2">
 
-            <div class="icon-box">
-              <div class="icon"><i class="far fa-hand-paper"></i></div>
-              <h4 class="title"><a href="">興趣當先，拒絕廢話</a></h4>
-              <p class="description">教練課程價錢、時段公開透明，省去詢問時間，免於被健身業務打擾</p>
-            </div>
+					<!--             <p> -->
+					<!--               TraineMe是由一群熱愛運動的團隊共同打造，讓想健身的人透過平台尋找喜歡的教練，根據自己的需求，選擇適合的課程。 -->
+					<!--       健身教練也能透過平台媒合學員，並且能即時開課，展現自己所學。藉由TraineMe讓學員與教練達到互利共享的雙贏空間。 -->
+					<!--             </p> -->
 
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-dumbbell"></i></div>
-              <h4 class="title"><a href="">輕鬆開始，輕鬆結束</a></h4>
-              <p class="description">平台提供各種教練課程供學員自由選擇，不受合約約束</p>
-            </div>
-            
-             <div class="icon-box">
-              <div class="icon"><i class="far fa-star"></i></div>
-              <h4 class="title"><a href="">簡單高效，評價透明</a></h4>
-              <p class="description">透過評價系統，讓學員篩選最適合自己的教練</p>
-            </div>
+					<div class="icon-box">
+						<div class="icon">
+							<i class="far fa-handshake"></i>
+						</div>
+						<h4 class="title">健身教練與學員的專屬媒合平台
+						</h4>
+						<p class="description">讓中小型健身房的教練與學員快速媒合</p>
+					</div>
 
-          </div>
+					<div class="icon-box">
+						<div class="icon">
+							<i class="far fa-hand-paper"></i>
+						</div>
+						<h4 class="title">興趣當先，拒絕廢話</h4>
+						<p class="description">教練課程價錢、時段公開透明，省去詢問時間，免於被健身業務打擾</p>
+					</div>
 
-          <div class="col-lg-6 background order-lg-2 order-1">
-<!--           	<img src="./assets/img/about-img.jpg"> -->
-          </div>
-       
-        </div>
+					<div class="icon-box">
+						<div class="icon">
+							<i class="fas fa-dumbbell"></i>
+						</div>
+						<h4 class="title">輕鬆開始，輕鬆結束</h4>
+						<p class="description">平台提供各種教練課程供學員自由選擇，不受合約約束</p>
+					</div>
 
-      </div>
-    </section><!-- End About Section -->
-     <!-- ======= Facts Section ======= -->
-    <section id="facts">
-      <div class="container">
-        <div class="section-header">
-          <h3 class="section-title">TraineMe Growth</h3>
-          <p class="section-description">TraineMe平台近期成長</p>
-        </div>
-        <div class="row counters">
+					<div class="icon-box">
+						<div class="icon">
+							<i class="far fa-star"></i>
+						</div>
+						<h4 class="title">簡單高效，評價透明</h4>
+						<p class="description">透過評價系統，讓學員篩選最適合自己的教練</p>
+					</div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">168</span>
-            <p>學員</p>
-          </div>
+				</div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">50</span>
-            <p>教練</p>
-          </div>
+				<div class="col-lg-6 background order-lg-2 order-1">
+					<!--           	<img src="./assets/img/about-img.jpg"> -->
+				</div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">268</span>
-            <p>媒合數</p>
-          </div>
+			</div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">8</span>
-            <p>合作中小型健身房</p>
-          </div>
+		</div>
+	</section>
+	<!-- End About Section -->
+	<!-- ======= Facts Section ======= -->
+	<section id="facts">
+		<div class="container">
+			<div class="section-header">
+				<h3 class="section-title">TraineMe Growth</h3>
+				<p class="section-description">TraineMe平台近期成長</p>
+			</div>
+			<div class="row counters">
 
-        </div>
+				<div class="col-lg-3 col-6 text-center">
+					<span data-toggle="counter-up">33</span>
+					<p>學員</p>
+				</div>
 
-      </div>
-    </section><!-- End Facts Section -->
+				<div class="col-lg-3 col-6 text-center">
+					<span data-toggle="counter-up">18</span>
+					<p>教練</p>
+				</div>
+
+				<div class="col-lg-3 col-6 text-center">
+					<span data-toggle="counter-up">46</span>
+					<p>媒合課堂數</p>
+				</div>
+
+				<div class="col-lg-3 col-6 text-center">
+					<span data-toggle="counter-up">8</span>
+					<p>合作健身房/工作室</p>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+	<!-- End Facts Section -->
 
 	<section id="contact">
 		<div class="container">
@@ -339,139 +359,204 @@
 				<h3 class="text-center text-uppercase">聯絡我們</h3>
 				<br>
 				<p class="text-center w-75 m-auto">想成為TrainMe平台的教練或是學員嗎?想了解更多嗎?歡迎諮詢</p>
-				<br> <br>
-<!-- 				<iframe -->
-<!-- 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7432711166844!2d121.53559291552197!3d25.042785144092026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97d255598df%3A0x47ea748e8f3f53aa!2z5ZyL56uL6Ie65YyX56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1616412938598!5m2!1szh-TW!2stw" -->
-<!-- 					width="100%" height="380" frameborder="0" style="border: 0" -->
-<!-- 					allowfullscreen></iframe> -->
+				<!-- 				<iframe -->
+				<!-- 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7432711166844!2d121.53559291552197!3d25.042785144092026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97d255598df%3A0x47ea748e8f3f53aa!2z5ZyL56uL6Ie65YyX56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1616412938598!5m2!1szh-TW!2stw" -->
+				<!-- 					width="100%" height="380" frameborder="0" style="border: 0" -->
+				<!-- 					allowfullscreen></iframe> -->
 			</div>
-			<div class="row">
-				<div class="col-sm-12 col-md-6 col-lg-4 my-5">
-					<div class="card border-0">
-						<div class="card-body text-center">
-							<i class="fas fa-map-marker-alt fa-5x mb-3" aria-hidden="true"></i>
-							<h4 class="text-uppercase mb-5">辦公室</h4>
-							<address>10608台北市大安區忠孝東路三段1號</address>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-12 col-md-6 col-lg-4 my-5">
-					<div class="card border-0">
-						<div class="card-body text-center">
-							<i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
-							<h4 class="text-uppercase mb-5">客服專線</h4>
-							<address>02-11111111</address>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-12 col-md-6 col-lg-4 my-5">
-					<div class="card border-0">
-						<div class="card-body text-center">
-							<a href="mailto:trainme015@gmail.com"
-								style="text-decoration: none;"> <i
-								class="fas fa-envelope fa-5x mb-3" aria-hidden="true"></i>
-								<h4 class="text-uppercase mb-5">客服信箱</h4>
-							</a>
-							<address>寫信聯繫客服</address>
-						</div>
-					</div>
-				</div>
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-12 col-md-12 col-lg-12 my-5">
-							<div class="card border-0">
-								<div class="card-body text-center">
-									<i class="far fa-user-circle fa-5x mb-3" aria-hidden="true"></i>
-										<h4 class="text-uppercase mb-5">電子信箱</h4>
-									<address>
-										請將您的寶貴意見以填寫表單方式送出<br>我們將於工作日由專人以郵件回覆您的問題
-									</address>
-								</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-lg-12 my-1">
+						<section id="contact" class="contact section-bg">
+							<div class="col-lg-12 contact-form-wrap">
+								<form:form action="/TrainMe/contactUs/" method="post"
+									role="form" class="php-email-form" modelAttribute="contactBean"
+									enctype="multipart/form-data">
+									<div class="form-row">
+										<div class="col-md-6 form-group">
+											<label for="lname">姓名</label>
+											<form:input type="text" id="name" path="userName"
+												class="form-control" required="required" />
+										</div>
+										<div class="col-md-6 form-group">
+											<label for="email">Email</label>
+											<form:input id="userEmail" path="userEmail"
+												class="form-control" type="email" required="required" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="q_category">問題類型</label>
+										<form:select id="q_category" path="q_category"
+											class="form-control">
+											<option value="教練相關問題">教練相關問題</option>
+											<option value="學員相關問題">學員相關問題</option>
+											<option value="儲值點數問題">儲值點數問題</option>
+											<option value="其他問題">其他問題</option>
+										</form:select>
+									</div>
+									<div class="form-group">
+										<label for="subject">請問您遇到了什麼問題?</label>
+										<form:input id="subject" path="subject" class="form-control"
+											type="text" required="required" />
+									</div>
+									<div class="form-group">
+										<label for="message">問題描述</label>
+										<form:textarea id="message" path="message"
+											class="form-control" rows="8" style="height:200px"
+											required="required" />
+									</div>
+									<div class="text-center">
+										<button type="submit">傳送訊息</button>
+									</div>
+								</form:form>
 							</div>
-							<section id="contact" class="contact section-bg">
-								<div class="col-lg-12 contact-form-wrap">
-									<form:form action="/TrainMe/contactUs/" method="post"
-										role="form" class="php-email-form"
-										modelAttribute="contactBean" enctype="multipart/form-data">
-										<div class="form-row">
-											<div class="col-md-6 form-group">
-												<label for="lname">姓名</label>
-												<form:input type="text" id="name" path="userName"
-													class="form-control" required="required" />
-											</div>
-											<div class="col-md-6 form-group">
-												<label for="email">Email</label>
-												<form:input id="userEmail" path="userEmail"
-													class="form-control" type="email" required="required" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="q_category">問題類型</label>
-											<form:select id="q_category" path="q_category"
-												class="form-control">
-												<option value="教練相關問題">教練相關問題</option>
-												<option value="學員相關問題">學員相關問題</option>
-												<option value="儲值點數問題">儲值點數問題</option>
-												<option value="其他問題">其他問題</option>
-											</form:select>
-										</div>
-										<div class="form-group">
-											<label for="subject">請問您遇到了什麼問題?</label>
-											<form:input id="subject" path="subject" class="form-control"
-												type="text" required="required" />
-										</div>
-										<div class="form-group">
-											<label for="message">問題描述</label>
-											<form:textarea id="message" path="message"
-												class="form-control" rows="8" style="height:200px"
-												required="required" />
-										</div>								
-										<div class="text-center">									
-											<button type="submit">傳送訊息</button>
-										</div>
-									</form:form>
-								</div>
-						</div>
 					</div>
+				</div>
+<!-- 				<div class="row"> -->
+<!-- 					<div class="col-sm-12 col-md-6 col-lg-4 my-1"> -->
+<!-- 						<div class="card border-0"> -->
+<!-- 							<div class="card-body text-center"> -->
+<!-- 								<i class="fas fa-map-marker-alt fa-5x mb-3" aria-hidden="true"></i> -->
+<!-- 								<h4 class="text-uppercase mb-5">辦公室</h4> -->
+<!-- 								<address>台北市大安區忠孝東路三段1號</address> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-12 col-md-6 col-lg-4 my-1"> -->
+<!-- 						<div class="card border-0"> -->
+<!-- 							<div class="card-body text-center"> -->
+<!-- 								<i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i> -->
+<!-- 								<h4 class="text-uppercase mb-5">客服專線</h4> -->
+<!-- 								<address>02-27110908</address> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-sm-12 col-md-6 col-lg-4 my-1"> -->
+<!-- 						<div class="card border-0"> -->
+<!-- 							<div class="card-body text-center"> -->
+<!-- 								<a href="mailto:trainme015@gmail.com" -->
+<!-- 									style="text-decoration: none;"> <i -->
+<!-- 									class="fas fa-envelope fa-5x mb-3" aria-hidden="true"></i> -->
+<!-- 									<h4 class="text-uppercase mb-5">客服信箱</h4> -->
+<!-- 								</a> -->
+<!-- 								<address>寫信聯繫客服</address> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					<!-- 				<div class="container"> -->
+					<!-- 					<div class="row"> -->
+					<!-- 						<div class="col-sm-12 col-md-12 col-lg-12 my-5"> -->
+					<!-- 							<div class="card border-0"> -->
+					<!-- 								<div class="card-body text-center"> -->
+					<!-- 									<i class="far fa-user-circle fa-5x mb-3" aria-hidden="true"></i> -->
+					<!-- 										<h4 class="text-uppercase mb-5">電子信箱</h4> -->
+					<!-- 									<address> -->
+					<!-- 										請將您的寶貴意見以填寫表單方式送出<br>我們將於工作日由專人以郵件回覆您的問題 -->
+					<!-- 									</address> -->
+					<!-- 								</div> -->
+					<!-- 							</div> -->
+					<!-- 							<section id="contact" class="contact section-bg"> -->
+					<!-- 								<div class="col-lg-12 contact-form-wrap"> -->
+					<%-- 									<form:form action="/TrainMe/contactUs/" method="post" --%>
+					<%-- 										role="form" class="php-email-form" --%>
+					<%-- 										modelAttribute="contactBean" enctype="multipart/form-data"> --%>
+					<!-- 										<div class="form-row"> -->
+					<!-- 											<div class="col-md-6 form-group"> -->
+					<!-- 												<label for="lname">姓名</label> -->
+					<%-- 												<form:input type="text" id="name" path="userName" --%>
+					<%-- 													class="form-control" required="required" /> --%>
+					<!-- 											</div> -->
+					<!-- 											<div class="col-md-6 form-group"> -->
+					<!-- 												<label for="email">Email</label> -->
+					<%-- 												<form:input id="userEmail" path="userEmail" --%>
+					<%-- 													class="form-control" type="email" required="required" /> --%>
+					<!-- 											</div> -->
+					<!-- 										</div> -->
+					<!-- 										<div class="form-group"> -->
+					<!-- 											<label for="q_category">問題類型</label> -->
+					<%-- 											<form:select id="q_category" path="q_category" --%>
+					<%-- 												class="form-control"> --%>
+					<!-- 												<option value="教練相關問題">教練相關問題</option> -->
+					<!-- 												<option value="學員相關問題">學員相關問題</option> -->
+					<!-- 												<option value="儲值點數問題">儲值點數問題</option> -->
+					<!-- 												<option value="其他問題">其他問題</option> -->
+					<%-- 											</form:select> --%>
+					<!-- 										</div> -->
+					<!-- 										<div class="form-group"> -->
+					<!-- 											<label for="subject">請問您遇到了什麼問題?</label> -->
+					<%-- 											<form:input id="subject" path="subject" class="form-control" --%>
+					<%-- 												type="text" required="required" /> --%>
+					<!-- 										</div> -->
+					<!-- 										<div class="form-group"> -->
+					<!-- 											<label for="message">問題描述</label> -->
+					<%-- 											<form:textarea id="message" path="message" --%>
+					<%-- 												class="form-control" rows="8" style="height:200px" --%>
+					<%-- 												required="required" /> --%>
+					<!-- 										</div>								 -->
+					<!-- 										<div class="text-center">									 -->
+					<!-- 											<button type="submit">傳送訊息</button> -->
+					<!-- 										</div> -->
+					<%-- 									</form:form> --%>
+					<!-- 								</div> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
+				</div>
 	</section>
 	</div>
 	</div>
 	</div>
-		<!-- End Contact Us Section -->
+	<!-- End Contact Us Section -->
 	</section>
 
 
 	<!-- footer -->
 
-	<footer>
-		<div class="container">
-			<div class="footer-item">
-				<h3>本站地圖</h3>
-				<nav>
-					<a href="#">關於我們</a> <a href="#">搜尋教練</a> <a href="#">購物商城</a> <a
-						href="#">運動論壇</a>
-				</nav>
-			</div>
+	    <footer>
+        <div class="container">
+            <div class="footer-item">
+                <div class="title">
+                    <div class="circle">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    </div>
+                    <span>聯絡地址</span>
+                </div>
+                    <span>台北市大安區忠孝東路三段1號</span>
+            </div>
 
-			<div class="footer-item">
-				<h3>本站地圖</h3>
-				<nav>
-					<a href="#">關於我們</a> <a href="#">搜尋教練</a> <a href="#">購物商城</a> <a
-						href="#">運動論壇</a>
-				</nav>
-			</div>
+            <div class="footer-item">
+                <div class="title">
+                    <div class="circle">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    </div>
+                    <span>客服專線</span>
+                </div>
+                    <span>(02) 2711-0908</span>
+            </div>
 
-			<div class="footer-item">
-				<h3>本站地圖</h3>
-				<nav>
-					<a href="#">關於我們</a> <a href="#">搜尋教練</a> <a href="#">購物商城</a> <a
-						href="#">運動論壇</a>
-				</nav>
-			</div>
+            <div class="footer-item">
+                <div class="title">
+                    <div class="circle">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <span>客服信箱</span>
+                </div>
+                <span><a href="mailto:trainme015@gmail.com" style="text-decoration: none;">點此寫信聯繫客服</a></span>
+<!--                     <span><a href=""></a></span> -->
+            </div>
 
-		</div>
-		<div class="copyright">Copyright &copy; 2021 Train Me</div>
-	</footer>
+        </div>
+        <div class="copyright">
+            <span>
+                Copyright &copy; 2021 Train Me
+            </span>
+        </div>
+    </footer>
+
+
+	<!-- 回到最上面 -->
+	<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#"
+		id="gotop"> <i class="fa fa-angle-up"></i>
+	</a>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -547,21 +632,39 @@
             }
         });
 
+		//回到最上面
+		/* 按下GoTop按鈕時的事件 */
+		$('#gotop').click(function() {
+			$('html,body').animate({
+				scrollTop : 0
+			}, 'slow'); /* 返回到最頂 速度slow */
+			return false;
+		});
+
+		/* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 400) {
+				$('#gotop').fadeIn();
+			} else {
+				$('#gotop').fadeOut();
+			}
+		});
 
 // 教練推薦
 
         document.addEventListener( 'DOMContentLoaded', function () {
             new Splide( '.splide', {
-            width: '1115px',
+            width: '1120px',
+           
             fixedWidth: '14rem',
             fixedHeight: '18rem',
             padding: {
-            left:0,
-            right:0,
+            left:10,
+            right:15,
             },                   
             perPage: 4,
             perMove: 1,
-            gap: 40,
+            gap: 36,
             rewind : true,
             pagination :false,
             // arrowPath: 'M339.7,10l-65.1,65.3L611.3,500L274.6,924.7l65.1,65.3l385.7-490.2L339.7,10z'
