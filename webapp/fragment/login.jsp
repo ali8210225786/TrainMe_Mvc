@@ -24,7 +24,7 @@
                 <div class="wrap">
                     <div class="box">
                         <div class="group">
-                            <label>姓名</label><br>
+                            <label >姓名</label><br>
                             <form:input path='name' class="input_field" placeholder="請輸入您的姓名" required="required" />
                         </div>
                         <div class="msgbox">
@@ -189,16 +189,16 @@
 
                     <div class="box">
                         <div class="group">
-                            <label>姓名</label><br>
-                            <form:input path="name" class="input_field" placeholder="請輸入您的姓名"
-							required="required" />
+                            <label id="fillIn">姓名</label><br>
+                            <form:input path="name" class="input_field stName" placeholder="請輸入您的姓名"
+							required="required" value="" />
                         </div>
                         <div class="msgbox">
 							<form:errors path="name" cssClass="error" />
                         </div>
                         <div class="group">
                             <label>e-mail</label><br>
-                            <form:input path="email" class="input_field"
+                            <form:input path="email" class="input_field stEmail"
 							placeholder="請輸入您的e-mail信箱" required="required" />                           
                         </div>
                         <div class="msgbox">
@@ -206,7 +206,7 @@
                         </div>
                         <div class="group">
                             <label>密碼</label><br>
-                            <form:input path="password" class="input_field pw"
+                            <form:input path="password" class="input_field pw stPw" type="password"
 							placeholder="請輸入您的密碼" required="required" />
                         </div>
                         <div class="msgbox">
@@ -214,7 +214,7 @@
                         </div>
                         <div class="group">
                             <label>確認密碼</label><br>
-                            <form:input path="passwordcheck" class="input_field pw"
+                            <form:input path="passwordcheck" class="input_field pw stPwCheck" type="password"
 							placeholder="請再次輸入您的密碼" required="required" />
                         </div>
                         <div class="msgbox">
@@ -224,7 +224,7 @@
                     <div class="box">
                         <div class="group">
                             <label>手機</label><br>
-                            <form:input path="phone" class="input_field" placeholder="請輸入您的手機"
+                            <form:input path="phone" class="input_field stPhone" placeholder="請輸入您的手機"
 							required="required" />
                         </div>
                         <div class="msgbox">
@@ -232,7 +232,7 @@
                         </div>
                         <div class="group">
                             <label>身分證字號</label><br>
-                            <form:input path="id_number" class="input_field"
+                            <form:input path="id_number" class="input_field stIdNumber"
 							placeholder="請輸入您的身分證字號" required="required" />
                         </div>
                         <div class="msgbox">
@@ -241,7 +241,7 @@
                         <div class="group">
                             <label>生日</label><br>
                             <form:input path="birthday" type="date"
-							class="input_field birthday" required="required" />
+							class="input_field birthday stBir" required="required" />
                         </div>
                         <div class="msgbox">
 							<form:errors path="birthday" cssClass="error" />
@@ -337,6 +337,16 @@
 
 	resetPassword();
 	
+	var fillIn =  document.getElementById('fillIn');
+	fillIn.addEventListener("click",function(){
+	       document.getElementsByClassName('stName')[0].value='阿明';
+	       document.getElementsByClassName('stEmail')[0].value='ali8210225786@gmail.com';
+	       document.getElementsByClassName('stPw')[0].value='a12345';
+	       document.getElementsByClassName('stPwCheck')[0].value='a12345';
+	       document.getElementsByClassName('stPhone')[0].value='0986465432';
+	       document.getElementsByClassName('stIdNumber')[0].value='E255884358';
+	       document.getElementsByClassName('stBir')[0].value='1993-09-03';
+	});
 	
 	
 </script>

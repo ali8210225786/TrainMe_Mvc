@@ -62,6 +62,10 @@ $.post("/TrainMe/unRead/" + ${LoginOK.id}, {type : ${LoginOK.type}},
 		   function (data, textStatus, jqXHR) {
 	   
 	   		$('#unread').html(data);
+	   		
+	   		if(data == 0){
+	   			$("#unread").remove();
+	   		}
 	   
 		},
 		"json"	

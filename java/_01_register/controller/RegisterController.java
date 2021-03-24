@@ -199,7 +199,7 @@ public class RegisterController {
 	
 //	註冊成功跳轉頁面
 	@GetMapping("registerMessage")
-	public String registerMessage(Model model ,@PathVariable("id") Integer id) {
+	public String registerMessage(Model model) {
 		
 		model.addAttribute("studentBean",new StudentBean_H());
 		model.addAttribute("trainerBean",new TrainerBean_H());
