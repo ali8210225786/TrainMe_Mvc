@@ -71,7 +71,7 @@
 
 					</div>
 					<div class="edit_box">
-						<label>自我介紹（150字以內）</label><br>
+						<label id="fillIn">自我介紹（150字以內）</label><br>
 						<div class="explain">
 							<p>教練將藉由自我介紹了解您。您可以在此填寫平常的運動習慣、是否有過健身經驗、目前的身體狀態或飲食習慣等資訊。</p>
 						</div>
@@ -139,6 +139,13 @@
 			 introduction.setCustomValidity(""); // be sure to leave this empty!
 		 }
 		}
+		 
+		 var fillIn =  document.getElementById('fillIn');
+			fillIn.addEventListener("click",function(){
+			       document.getElementById('introduction').value='教練好，我是阿明，我平常大概每周固定運動兩到三次，最近想開始健身，但不知道健身器材要如何使用，再加上也不想去連鎖健身房被推銷，因此加入TrainMe，希望可以在上面找到適合的教練，讓我可以早日變成巨巨!!';
+			});
+		 
+		 
 		 
 	</script>
 </body>
