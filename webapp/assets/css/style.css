@@ -1,3 +1,10 @@
+.hot_trainer h3{
+	color: #333;
+  font-weight: 700;
+  font-size: 32px;
+  padding-top: 8px;
+}
+
 /* About Us Section
 --------------------------------*/
 #about {
@@ -7,7 +14,7 @@
 }
 
 #about .about-container .background {
-  min-height: 545px;
+  min-height: 320px;
   background: url(../img/about-img.png) center no-repeat;
   margin-bottom: 10px;
 }
