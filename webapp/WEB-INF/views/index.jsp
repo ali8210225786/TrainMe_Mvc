@@ -195,9 +195,9 @@
 	<!-- 人氣教練 -->
 
 
-
+<div class="hot_tr">
 	<span class="hot_trainer">
-		<h3>本月人氣教練</h3>
+		<h3>精選人氣教練</h3>
 	</span>
 
 	<div class="splide">
@@ -250,7 +250,7 @@
 			</ul>
 		</div>
 	</div>
-
+</div>
 	<!-- ======= About Section ======= -->
     <section id="about">
       <div class="container">
