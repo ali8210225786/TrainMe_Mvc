@@ -39,12 +39,12 @@ public class CardValidator implements Validator {
 //			errors.rejectValue("name", "", "姓名欄位格式不正確");
 //		}
 
-//		if ((cb.getCardNo1()+cb.getCardNo2()+cb.getCardNo3()+cb.getCardNo4()).length() != 16 ) {
-//			errors.rejectValue("cardNo1", "", "信用卡欄位不完整");
-//		}
-		if ((cb.getCardNo1().length() != 16)){
+		if ((cb.getCardNo1()+cb.getCardNo2()+cb.getCardNo3()+cb.getCardNo4()).length() != 16 ) {
 			errors.rejectValue("cardNo1", "", "信用卡欄位不完整");
 		}
+//		if ((cb.getCardNo1().length() != 16)){
+//			errors.rejectValue("cardNo1", "", "信用卡欄位不完整");
+//		}
 //		if (cb.getExpiryMonth().equals("-1") && !cb.getExpiryYear().equals("-1"))
 //		 {
 //			errors.rejectValue("expiryMonth", "", "請選擇到期月份");

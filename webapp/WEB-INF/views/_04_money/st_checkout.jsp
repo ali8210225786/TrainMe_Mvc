@@ -89,13 +89,23 @@ table, td {
 							<div>
 								<form:errors path="cardName" cssClass="error" />
 							</div>
-							<div class="form-group">
+							<div class="form-group  align-items-end">
 								<label for="cc-number" class="control-label mb-1">信用卡卡號</label>
-								<form:input path="cardNo1" name="cc-number" type="tel"
-									class="form-control cc-number identified visa"
-									required="required" autocomplete="off" />
-								<span class="invalid-feedback">Enter a valid 12 to 16
-									digit card number</span>
+
+								<div class="row align-items-center" style="margin-left: 2px;">
+									<form:input path='cardNo1' required="true" maxlength="4"
+										size="4" type="text" class="form-control col-md-2" />
+									-
+									<form:input path='cardNo2' required="required" maxlength="4"
+										size="4" type="text" class="form-control col-md-2" />
+									-
+									<form:input path='cardNo3' required="required" maxlength="4"
+										size="4" type="text" class="form-control col-md-2" />
+									-
+									<form:input path='cardNo4' required="required" maxlength="4"
+										size="4" type="text" class="form-control col-md-2" />
+								</div>
+
 							</div>
 							<div>
 								<form:errors path="cardNo1" cssClass="error" />
@@ -104,11 +114,9 @@ table, td {
 								<div class="col-6">
 									<div class="form-group">
 										<label for="cc-exp" class="control-label mb-1">有效期限</label>
-										<form:input path="expiryMonth" name="cc-exp" type="tel"
+										<form:input path="expiryMonth" name="cc-exp" type="tel" maxlength="4"
 											class="form-control cc-exp" required="required"
 											placeholder="MM / YY" autocomplete="cc-exp" />
-										<span class="invalid-feedback">Enter the expiration
-											date</span>
 									</div>
 									<div>
 										<form:errors path="expiryMonth" cssClass="error" />
@@ -117,20 +125,9 @@ table, td {
 								<div class="col-6">
 									<label for="x_card_code" class="control-label mb-1">CVV</label>
 									<div class="input-group">
-										<form:input path="cardCVV" name="x_card_code" type="tel"
+										<form:input path="cardCVV" name="x_card_code" type="tel" maxlength="3"
 											class="form-control cc-cvc" required="required"
 											autocomplete="off" />
-										<span class="invalid-feedback order-last">Enter the
-											3-digit code on back</span>
-										<div class="input-group-append">
-											<div class="input-group-text">
-												<span class="fa fa-question-circle fa-lg"
-													data-toggle="popover" data-container="body"
-													data-html="true" data-title="CVV"
-													data-content="<div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
-													data-trigger="hover"></span>
-											</div>
-										</div>
 									</div>
 								</div>
 								<div>
@@ -143,8 +140,6 @@ table, td {
 									class="form-control" value="" data-val="true"
 									data-val-required="Please enter the ZIP/Postal code"
 									autocomplete="postal-code" />
-								<span class="help-block" data-valmsg-for="x_zip"
-									data-valmsg-replace="true"></span>
 							</div>
 							<div>
 								<form:errors path="tel" cssClass="error" />
@@ -155,8 +150,6 @@ table, td {
 								<form:input path="email" name="x_prom" type="text"
 									class="form-control" value="" data-val="true"
 									data-val-required="Please enter the Promotion  code" />
-								<span class="help-block" data-valmsg-for="x_promotion"
-									data-valmsg-replace="true"></span>
 							</div>
 							<div>
 								<form:errors path="email" cssClass="error" />
@@ -166,19 +159,15 @@ table, td {
 								<form:input path="address" name="x_prom" type="text"
 									class="form-control" value="" data-val="true"
 									data-val-required="Please enter the Promotion  code" />
-								<span class="help-block" data-valmsg-for="x_promotion"
-									data-valmsg-replace="true"></span>
 							</div>
-							
-														
+
 							<form:input style="display: none;" path="money" />
-										
+
 							<div>
 								<button id="payment-button" type="submit"
 									class="btn btn-lg btn-info btn-block">
 									<i class="fa fa-lock fa-lg"></i>&nbsp; <span
-										id="payment-button-amount">Pay </span> <span
-										id="payment-button-sending" style="display: none;">Sending…</span>
+										id="payment-button-amount">Pay </span>
 								</button>
 							</div>
 						</form:form>

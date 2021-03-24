@@ -6,6 +6,9 @@ import _03_memberData.model.City_H;
 public class CardBean {
 
 	String cardNo1;
+	String cardNo2;
+	String cardNo3;
+	String cardNo4;
 	String expiryMonth;
 	String cardCVV;
 	String cardName;
@@ -19,10 +22,15 @@ public class CardBean {
 		
 	};
 
-	public CardBean(String cardNo1, String expiryMonth, String cardCVV, String cardName, String tel, String email,
-			String address, Integer money) {
+	
+	
+	public CardBean(String cardNo1, String cardNo2, String cardNo3, String cardNo4, String expiryMonth, String cardCVV,
+			String cardName, String tel, String email, String address, Integer money) {
 		super();
 		this.cardNo1 = cardNo1;
+		this.cardNo2 = cardNo2;
+		this.cardNo3 = cardNo3;
+		this.cardNo4 = cardNo4;
 		this.expiryMonth = expiryMonth;
 		this.cardCVV = cardCVV;
 		this.cardName = cardName;
@@ -32,7 +40,44 @@ public class CardBean {
 		this.money = money;
 	}
 
-	
+
+
+	public String getCardNo2() {
+		return cardNo2;
+	}
+
+
+
+	public void setCardNo2(String cardNo2) {
+		this.cardNo2 = cardNo2;
+	}
+
+
+
+	public String getCardNo3() {
+		return cardNo3;
+	}
+
+
+
+	public void setCardNo3(String cardNo3) {
+		this.cardNo3 = cardNo3;
+	}
+
+
+
+	public String getCardNo4() {
+		return cardNo4;
+	}
+
+
+
+	public void setCardNo4(String cardNo4) {
+		this.cardNo4 = cardNo4;
+	}
+
+
+
 	public Integer getMoney() {
 		return money;
 	}
