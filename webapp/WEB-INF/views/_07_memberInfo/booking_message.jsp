@@ -143,7 +143,7 @@
 		</div>
 
 		<div class="check_btn">
-			<button class="cancel" id="cancel_btn">取消</button>
+			<button class="cancel" id="cancel_btn" onclick="location.href='/TrainMe/trainer_info/${trainerBean.id}?type=search&stId=${LoginOK.id}'">取消</button>
 			<button class="save" id="save_btn" data-toggle="modal"
 				data-target="#exampleModal">送出</button>
 		</div>
@@ -237,11 +237,17 @@
 	var save_btn = document.getElementById('save_btn');
 	save_btn.addEventListener('click',function(event) {
 
-		if(skillList.value == -1){
+		if(skillList.value == -1){	
 			$('#choiceSkill').modal('show')
 		}else{
 // 			alert(${studentMoney.getTotal_amount()});
 // 			alert(getPrice);
+		if(${studentMoney.getTotal_amount() == null} ){
+			$('#insufficient').modal('show')
+// 			window.location.href = "/TrainMe/studentMoney/addPoint";
+			return;
+		}
+	
 		if(getPrice>${studentMoney.getTotal_amount()}){
 			$('#insufficient').modal('show')
 // 			window.location.href = "/TrainMe/studentMoney/addPoint";

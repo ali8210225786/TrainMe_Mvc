@@ -27,7 +27,7 @@ public class MessageService {
 	public void passVerification(MemberBean_H mb) {
 		MessageBean msg = new MessageBean();
 		msg.setTitle("【TrainMe通知】 歡迎加入TrainMe！");
-		msg.setContent("親愛的會員你好，TrainMe 希望帶你認識更多好教練，趕快填好個人資料，一起運動吧！");
+		msg.setContent("親愛的會員你好，TrainMe 希望帶你認識更多好教練，趕快到「個人主頁」及「帳號設定」，一起運動吧！");
 		msg.setIs_read(0);
 		if (mb instanceof TrainerBean_H) {
 			TrainerBean_H tb = (TrainerBean_H) mb;

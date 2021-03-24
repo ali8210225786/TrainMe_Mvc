@@ -117,6 +117,7 @@ public class TrainerInfoController {
 		String bookTime = date + " " + hour + ":00 - " + (hour+1) + ":00";
 		
 		MoneyBean_H studentMoney =memPointService.getStudentMoneyLast(stId);
+		
 		model.addAttribute("hour", hour);
 		model.addAttribute("date", date);
 		model.addAttribute("bookTime", bookTime);
