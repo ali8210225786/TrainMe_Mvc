@@ -42,8 +42,8 @@
                 <p>
                 <c:choose>
 					<c:when
-						test="${sb_email != null}">
-						${sb_email.email}
+						test="${st_email != null}">
+						${st_email.email}
 					</c:when>
 					<c:otherwise>
 						${tr_email.email}

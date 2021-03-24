@@ -89,9 +89,6 @@ public class MemberDataService {
 		Random random = new Random();
 		//篩選教練評價
 		for (int j = 0; j < list.size(); j++) {
-			if(list.get(j).getTrainerBean_H().getRatings() == null) {
-				return null;
-			}
 			if (list.get(j).getTrainerBean_H().getRatings() >= 4 ) {
 				filterRatings.add(list.get(j));
 			}
