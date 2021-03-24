@@ -174,7 +174,7 @@ public class RegisterController {
 		//產生註冊成功通知
 		messageService.passVerification(studentBean);
 		
-		model.addAttribute("st_email", studentBean.getEmail());
+		model.addAttribute("st_email", studentBean);
 		
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerBean", trainerBean);
@@ -195,6 +195,7 @@ public class RegisterController {
 		studentBean.setHasError(true);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 
 	}
 	
@@ -278,8 +279,6 @@ public class RegisterController {
 		
 		//產生註冊成功通知
 		messageService.passVerification(trainerBean);
-		
-		model.addAttribute("tr_email", trainerBean.getEmail());
 
 		model.addAttribute("tr_email", trainerBean);
 		
@@ -298,6 +297,7 @@ public class RegisterController {
 		trainerBean.setHasError(true);
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 
 	}
 
