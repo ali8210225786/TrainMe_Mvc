@@ -37,8 +37,8 @@
 			<ul class="dropdown">
 				<div class="triangle"></div>
 				<div class="dropdown_box">
-					<li><a href="<c:url value='/message/${LoginOK.id}' />">我的通知</a></li>
 					<li><a href="<c:url value='/tr_info_account/${LoginOK.id}' />">個人資料</a></li>
+					<li><a href="<c:url value='/message/${LoginOK.id}' />">我的通知</a></li>
 					<li><a href="<c:url value='/trainerCourse/${LoginOK.id}' />">課程管理</a></li>
 					<li><a href="<c:url value='/trainerAccount/${LoginOK.id}' />">帳戶查詢</a></li>
 					<li><a href="<c:url value='/trainerData/${LoginOK.id}' />">帳號設定</a></li>

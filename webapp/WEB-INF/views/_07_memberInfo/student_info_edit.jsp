@@ -20,6 +20,9 @@
 .aside ul li:nth-child(1) a{
 	color: #21d4a7;
 }
+.aside ul li:nth-child(1) a:hover{
+	color: #fff;
+}
 </style>
 </head>
 <body>
