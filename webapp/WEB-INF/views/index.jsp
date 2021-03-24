@@ -197,7 +197,8 @@
 
 <div class="hot_tr">
 	<span class="hot_trainer">
-		<h3>精選人氣教練</h3>
+	<h2 class="title">精選人氣教練</h2>
+<!-- 		<h3>精選人氣教練</h3> -->
 	</span>
 
 	<div class="splide">
@@ -253,15 +254,20 @@
 </div>
 	<!-- ======= About Section ======= -->
     <section id="about">
+          <h2 class="title h2">關於我們</h2>
       <div class="container">
-        <div class="row about-container">
-
-          <div class="col-lg-6 content order-lg-1 order-2">
-            <h2 class="title">關於我們</h2>
             <p>
               TraineMe是由一群熱愛運動的團隊共同打造，讓想健身的人透過平台尋找喜歡的教練，根據自己的需求，選擇適合的課程。
       健身教練也能透過平台媒合學員，並且能即時開課，展現自己所學。藉由TraineMe讓學員與教練達到互利共享的雙贏空間。
             </p>
+        <div class="row about-container">
+
+          <div class="col-lg-6 content order-lg-1 order-2">
+            
+<!--             <p> -->
+<!--               TraineMe是由一群熱愛運動的團隊共同打造，讓想健身的人透過平台尋找喜歡的教練，根據自己的需求，選擇適合的課程。 -->
+<!--       健身教練也能透過平台媒合學員，並且能即時開課，展現自己所學。藉由TraineMe讓學員與教練達到互利共享的雙贏空間。 -->
+<!--             </p> -->
             
             <div class="icon-box">
               <div class="icon"><i class="far fa-handshake"></i></div>
@@ -550,16 +556,17 @@
 
         document.addEventListener( 'DOMContentLoaded', function () {
             new Splide( '.splide', {
-            width: '1115px',
+            width: '1120px',
+           
             fixedWidth: '14rem',
             fixedHeight: '18rem',
             padding: {
-            left:0,
-            right:0,
+            left:10,
+            right:15,
             },                   
             perPage: 4,
             perMove: 1,
-            gap: 40,
+            gap: 36,
             rewind : true,
             pagination :false,
             // arrowPath: 'M339.7,10l-65.1,65.3L611.3,500L274.6,924.7l65.1,65.3l385.7-490.2L339.7,10z'

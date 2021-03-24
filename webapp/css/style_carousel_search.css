@@ -132,7 +132,7 @@
 
 .hot_tr{
 	background-color: #fff;
-		padding: 50px 0px 0px 0px;
+		padding: 50px 0px 40px 0px;
 }
 .hot_trainer {
 	text-align: center;
@@ -140,22 +140,33 @@
 
 }
 
-.hot_trainer h3 {
-    display: inline-block;
-	font-size: 22px;
-	text-align: center;
-	color: #666;
-	box-shadow: 0 3px #21d4a7;
-    padding:10px 0px;
-	font-family: 'Noto Sans TC', sans-serif;
-	width: 140px;
+.hot_trainer h2 {
+	color: #333;
+	font-weight: bold;
+	font-size: 32px;
+/*   margin-left: 80px; */
+/*   font-weight: 500; */
+/*   margin-bottom: 5px; */
+/*   font-size: 18px; */
+/* 	font-family: 'Noto Sans TC', sans-serif; */
 }
 
 .splide {
 	margin: auto;
+/* 	background-color: #000; */
+}
+/* .splide__track{ */
+/* 	margin: auto; */
+/* 	padding:10px; */
+/* } */
+.splide__list{
+	height: 19rem;
+/* 	background-color: #eee; */
+	padding:10px;
 }
 
 .splide__slide {
+	margin-top:10px;
 	position: relative;
 	width: 14rem;
 	height: 18rem;

@@ -1,7 +1,7 @@
 /* About Us Section
 --------------------------------*/
 #about {
-  background: #fff;
+  background: #fafafa;
   padding: 80px 0;
 }
 
@@ -12,9 +12,12 @@
 }
 
 #about .about-container .content {
-  background: #fff;
+  background: #fafafa;
 }
-
+#about .h2{
+  text-align: center;
+  padding:20px 0px;
+}
 #about .about-container .title {
   color: #333;
   font-weight: 700;
@@ -28,8 +31,9 @@
   }
 }
 
-#about .about-container p {
+#about p {
   line-height: 26px;
+  margin-bottom:30px;
 }
 
 #about .about-container p:last-child {
@@ -37,7 +41,7 @@
 }
 
 #about .about-container .icon-box {
-  background: #fff;
+  background: #fafafa;
   background-size: cover;
   padding: 20px 0 30px 0;
 }
@@ -67,6 +71,7 @@
   margin-bottom: 5px;
   font-size: 18px;
   text-transform: uppercase;
+  font-family: 'Noto Sans TC', sans-serif;    
 }
 
 #about .about-container .icon-box .title a {
@@ -78,6 +83,8 @@
   line-height: 24px;
   font-size: 14px;
 }
+
+
 
 /* Facts Section
 --------------------------------*/
