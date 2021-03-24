@@ -153,11 +153,11 @@
     color: #333;
     font-weight: 500;
 }
-.result .ls_info label{
-    display: inline-block;
-    width: 200px;
-    /* color: #999; */
-}
+/* .result .ls_info label{ */
+/*     display: inline-block; */
+/*     width: 200px; */
+/*     color: #999; */
+/* } */
 .result .ls_info label span{
     color: #05c18b;
 }
