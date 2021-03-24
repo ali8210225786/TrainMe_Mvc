@@ -1,172 +1,182 @@
 .carousel {
-  position: relative;
+	position: relative;
 }
-.carousel-item img{
-  height: 80vh;
+
+.carousel-item img {
+	height: 80vh;
 }
-.slider{
-  position: relative;
-  height: 100%;
+
+.slider {
+	position: relative;
+	height: 100%;
 }
+
 .carousel .ad {
-  width: 500px;
-  position: absolute;
-  left: 20%;
-  top: 30%;
-  color: #fff;
-  /* background-color: white; */
+	width: 500px;
+	position: absolute;
+	left: 20%;
+	top: 30%;
+	color: #fff;
+	/* background-color: white; */
 }
+
 .carousel h3 {
-  padding: 0 0 10px;
-  font-size: 30px;
-  line-height: 35px;
-  color: #00ffb7;
-  font-family: "Noto Sans TC", sans-serif;
+	padding: 0 0 10px;
+	font-size: 30px;
+	line-height: 35px;
+	color: #00ffb7;
+	font-family: "Noto Sans TC", sans-serif;
 }
+
 .carousel p {
-  padding: 3px;
-  line-height: 22px;
-  font-family: "Noto Sans TC", sans-serif;
+	padding: 3px;
+	line-height: 22px;
+	font-family: "Noto Sans TC", sans-serif;
 }
 
 /*搜尋*/
 .search_trainer {
-  position: absolute;
-  top: 70%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+	position: absolute;
+	top: 70%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
+
 .search_trainer li {
-  margin: 0px 10px;
+	margin: 0px 10px;
 }
+
 .search_trainer select {
-  width: 150px;
+	width: 150px;
 }
-.search_trainer select,
-.search_input,
+
+.search_trainer select, .search_input, .search_btn {
+	padding: 15px 30px;
+	border-radius: 10px;
+	border: none;
+	font-size: 16px;
+	font-family: "Noto Sans TC", sans-serif;
+	text-align: center;
+	vertical-align: baseline;
+}
+
 .search_btn {
-  padding: 15px 30px;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
-  font-family: "Noto Sans TC", sans-serif;
-  text-align: center;
-  vertical-align: baseline;
+	padding: 20px 30px;
 }
-.search_btn {
-  padding: 20px 30px; 
-}
+
 .search_trainer .search_input {
-  width: 200px;
+	width: 200px;
 }
+
 .search_trainer .search_btn {
-  background-color: #59ddb8;
-  color: #fff;
-  /* font-weight: bold; */
-  font-family: "Noto Sans TC", sans-serif;
-  cursor: pointer;
+	background-color: #59ddb8;
+	color: #fff;
+	/* font-weight: bold; */
+	font-family: "Noto Sans TC", sans-serif;
+	cursor: pointer;
 }
+
 .search_trainer .search_btn:hover {
-  padding: 19px 29px;
-  color: rgb(5, 230, 192);
-  background-color: #fff;
-  border: 1px solid #59ddb8;
+	padding: 19px 29px;
+	color: rgb(5, 230, 192);
+	background-color: #fff;
+	border: 1px solid #59ddb8;
 }
 
 /* @media screen and (min-width: 768px) {
     
 } */
+.new {
+	position: relative;
+	height: calc(100vh - 80vh);
+	/* background-color: #21d4a7; */
+	background-color: #eee;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
-.new{
-  position: relative;
-  height: calc(100vh - 80vh);
-  /* background-color: #21d4a7; */
-  background-color: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.intro {
+	/* border: 1px solid #eee; */
+	/* background-color: #fff; */
+	width: 19rem;
+	height: 8rem;
+	color: #777;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: "Noto Sans TC", sans-serif;
+	margin: 0px 40px;
 }
-.intro{
-  /* border: 1px solid #eee; */
-  /* background-color: #fff; */
-  width: 19rem;
-  height: 8rem;
-  color: #777;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Noto Sans TC", sans-serif;
-  margin: 0px 40px;
-}
-.new .fa-angle-right{
+
+.new .fa-angle-right {
 	color: #777;
 }
-.intro .box{
-  display: flex;
-  align-items: center;
-    justify-content: center;
-/*   border: 1px solid red; */
-}
-.intro .box i{
-  font-size: 18px;
-  margin-right: 8px;
-}
-.intro .box span{
-  letter-spacing: 0.1rem;
-  font-size: 18px;
-  font-weight: 500;
-}
-.intro .p{
-  margin-top: 15px;
-  font-size: 14px;
-  text-align: center;
+
+.intro .box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/*   border: 1px solid red; */
 }
 
+.intro .box i {
+	font-size: 18px;
+	margin-right: 8px;
+}
 
+.intro .box span {
+	letter-spacing: 0.1rem;
+	font-size: 18px;
+	font-weight: 500;
+}
 
-
+.intro .p {
+	margin-top: 15px;
+	font-size: 14px;
+	text-align: center;
+}
 
 /*人氣教練*/
-
-.hot_tr{
+.hot_tr {
 	background-color: #fff;
-		padding: 50px 0px 40px 0px;
+	padding: 50px 0px 40px 0px;
 }
+
 .hot_trainer {
 	text-align: center;
 	display: block;
-
 }
 
 .hot_trainer h2 {
 	color: #333;
 	font-weight: bold;
 	font-size: 32px;
-/*   margin-left: 80px; */
-/*   font-weight: 500; */
-/*   margin-bottom: 5px; */
-/*   font-size: 18px; */
-/* 	font-family: 'Noto Sans TC', sans-serif; */
+	/*   margin-left: 80px; */
+	/*   font-weight: 500; */
+	/*   margin-bottom: 5px; */
+	/*   font-size: 18px; */
+	/* 	font-family: 'Noto Sans TC', sans-serif; */
 }
 
 .splide {
 	margin: auto;
-/* 	background-color: #000; */
+	/* 	background-color: #000; */
 }
 /* .splide__track{ */
 /* 	margin: auto; */
 /* 	padding:10px; */
 /* } */
-.splide__list{
+.splide__list {
 	height: 19rem;
-/* 	background-color: #eee; */
-	padding:10px;
+	/* 	background-color: #eee; */
+	padding: 10px;
 }
 
 .splide__slide {
-	margin-top:10px;
+	margin-top: 10px;
 	position: relative;
 	width: 14rem;
 	height: 18rem;
@@ -203,28 +213,33 @@
 	text-align: center;
 	margin: 10px 0px;
 }
-.p_t span{
-        display: flex;
-        justify-content: space-around;
-        font-size: 13px;
-        margin: 0px 10px;
-    }
-.p_t span p{
-    margin:2px 0px;
+
+.p_t span {
+	display: flex;
+	justify-content: space-around;
+	font-size: 13px;
+	margin: 0px 10px;
 }
-.p_t span:last-child{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 5px;
-/*         margin-top:-10px; */
-        font-size: 13px;
+
+.p_t span p {
+	margin: 2px 0px;
 }
-.rt_v span{
-       padding-left: 10px;
+
+.p_t span:last-child {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	/*         margin-top:-10px; */
+	font-size: 13px;
 }
-.p_t span i{
-        margin: 0px 10px 0px 0px ;
+
+.rt_v span {
+	padding-left: 10px;
+}
+
+.p_t span i {
+	margin: 0px 10px 0px 0px;
 }
 
 /* <p class="t_name">教練名稱</p>
@@ -232,8 +247,6 @@
                     <p class="t_ltimes">20次課程媒合</p> */
 
 /*評價星星*/
-
-
 .ratings {
 	position: relative;
 	bottom: 30%;
@@ -273,57 +286,84 @@
 }
 
 }
-
-/* footer */
 footer {
-	padding: 100px 0 0 0;
-	background: #888
+	padding: 50px 0 0 0;
+	background: #666;
+	color: #fff;
 }
 
 footer .container {
+	max-width: 1000px;
 	display: flex;
-	width: 1200px;
-	margin: auto;
-	font-family: 'Noto Sans TC', sans-serif;
+	justify-content: center;
+	align-items: center;
 }
 
-.footer-item h3 {
-	font-size: 20px;
-	color: #fff;
-	border-bottom: 1px solid #fff;
-	margin-bottom: .5em;
-	padding-bottom: .5em;
-}
-
-.footer-item {
-	width: 0;
-	flex-grow: 1;
-	margin: 0 20px;
-}
-
-.footer-item nav {
+footer .footer-item {
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 200px;
+}
+
+footer .footer-item span {
+	margin-top: 10px;
+	font-size: 10px;
+}
+
+footer .footer-item .title {
+	font-size: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	flex-direction: column;
 }
 
-.footer-item nav a {
-	color: #fff;
-	font-size: 14px;
-	line-height: 1.2;
-	text-decoration: none;
-	padding: 5px 0;
+footer .footer-item span a {
+	color: #fff
 }
 
-.copyright {
+footer .footer-item span a:hover {
+	color: #59ddb8
+}
+
+footer .footer-item .title i {
+	color: #666;
+	font-size: 20px;
+}
+
+footer .circle {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+
+footer .footer-item .title span {
+	margin-top: 10px;
+	font-size: 15px;
+	font-weight: 400;
+	font-family: "Noto Sans TC", sans-serif;
+}
+
+footer .copyright {
 	width: 100%;
 	text-align: center;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	margin: 100px 0 0;
-	padding: 10px 0px;
+	margin: 50px 0 0;
 	background-color: #000;
 	color: #fff;
+	font-size: 0.8rem;
+	padding: 20px;
+	/* background-color: #21d4a7;
+            text-align: center;
+            color: #fff;
+            font-size: 0.8rem; */
 }
-
 /*其他區塊*/
 .other {
 	display: flex;
@@ -376,4 +416,27 @@ a {
 
 address {
 	line-height: 26px;
+}
+
+/* 回到最上面按鈕 */
+#gotop {
+	position: fixed;
+	z-index: 90;
+	right: 30px;
+	bottom: 31px;
+	display: none;
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	background: #65e7c7;
+	line-height: 50px;
+	border-radius: 50%;
+	transition: all 0.5s;
+	text-align: center;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0
+		rgba(0, 0, 0, 0.12);
+}
+
+#gotop:hover {
+	background: #7af8d8;
 }
