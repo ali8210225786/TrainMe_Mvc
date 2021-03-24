@@ -225,7 +225,9 @@
 									<p class="t_location">
 										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
 									<p class="t_location">
-										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
+										<i class="fas fa-dumbbell"></i>
+										${trainerAndCourse.get(i.current).getSkill_typeBean_H().getName()}...									
+									</p>
 									
 								</span>
 								<span class="rt_v">
