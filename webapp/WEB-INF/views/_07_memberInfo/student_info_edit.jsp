@@ -101,7 +101,8 @@
 		 var options = 	document.getElementsByTagName('option');
 	
 		 for(option of options){
-			 if(option.value == ${LoginOK.activity} ){
+			 var activity = "${LoginOK.activity}";
+			 if(option.value == activity ){
 				 option.setAttribute('selected','selected');
 			 }			 
 		 }
