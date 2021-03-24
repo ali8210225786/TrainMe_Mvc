@@ -186,7 +186,9 @@
 										</c:if>
 
 								</span>
-								</label> <label>課程價格： <span>${trainerCourseAll.get(i.current).getPrice()}
+								</label>
+								<br>
+								<label>課程價格： <span>${trainerCourseAll.get(i.current).getPrice()}
 										up</span></label>
 							</div>
 
