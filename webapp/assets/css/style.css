@@ -1,3 +1,10 @@
+.hot_trainer h3{
+	color: #333;
+  font-weight: 700;
+  font-size: 32px;
+  padding-top: 8px;
+}
+
 /* About Us Section
 --------------------------------*/
 #about {
@@ -7,7 +14,7 @@
 }
 
 #about .about-container .background {
-  min-height: 545px;
+  min-height: 320px;
   background: url(../img/about-img.png) center no-repeat;
   margin-bottom: 10px;
 }
@@ -96,7 +103,8 @@
 --------------------------------*/
 #facts {
   font-family: 'Noto Sans TC', sans-serif; 
-  background: #fafafa;
+/*   background: #fafafa; */	
+background: #fff;
   padding: 80px 0 60px 0;
 }
 
@@ -127,7 +135,8 @@
 
 .section-header .section-description {
   text-align: center;
-  font-size: 20px;
+  margin-top: 10px;
+  font-size: 18px;
   padding-bottom: 40px;
   color: #999;
 }
@@ -136,7 +145,8 @@
 --------------------------------------------------------------*/
 #contact {
   font-family: 'Noto Sans TC', sans-serif; 
-  background: #fff;
+/*   background: #fff; */
+  background: #fafafa;
   padding: 80px 0 60px 0;
 }
 #contact h3{

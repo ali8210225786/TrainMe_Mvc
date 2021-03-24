@@ -179,87 +179,71 @@
 
 
 	<!-- 人氣教練 -->
+ <!-- 人氣教練 -->
 
 
-	<div class="hot_tr">
-		<span class="hot_trainer">
-			<h2 class="title">精選人氣教練</h2> <!-- 		<h3>精選人氣教練</h3> -->
-		</span>
+<div class="hot_tr">
+ <span class="hot_trainer">
+  <h3>精選人氣教練</h3>
+ </span>
 
-		<div class="splide">
-			<div class="splide__track">
-				<ul class="splide__list">
-					<c:if test="${trainerAndCourse.size() > 0}">
-						<c:forEach varStatus="i" begin="0"
-							end="${trainerAndCourse.size()-1}">
-							<a class="splide__slide"
-								href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=index' />">
+ <div class="splide">
+  <div class="splide__track">
+   <ul class="splide__list">
+    <c:if test="${trainerAndCourse.size() > 0}">
+     <c:forEach varStatus="i" begin="0" end="${trainerAndCourse.size()-1}">
+    <a class="splide__slide"
+     href="<c:url value='/trainer_info/${trainerAndCourse.get(i.current).getTrainerBean_H().getId()}?type=index' />">
 
-								<div class="tr_img">
-									<img
-										src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}">
-								</div> <!--                         <div class="p_t"> --> <!--                             <p class="t_name">林瑪莉</p> -->
-								<!--                             <span> --> <!--                                 <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
-								<!--                                 <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
-								<!--                             </span> --> <!--                             <span> -->
-								<!--                                 <div class="ratings"> --> <!--                                     <div class="empty-stars"></div> -->
-								<!--                                     <div class="full-stars" style="width:80%"></div>                             -->
-								<!--                                 </div> --> <!--                                 <p>(18)</p> -->
-								<!--                             </span> --> <!--                         </div> -->
-								<div class="p_t">
-									<p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
-									<span>
-										<p class="t_location">
-											<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
-										<p class="t_location">
-											<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
+     <div class="tr_img">
+      <img
+       src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}">
+     </div> <!--                         <div class="p_t"> --> <!--                             <p class="t_name">林瑪莉</p> -->
+     <!--                             <span> --> <!--                                 <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+     <!--                                 <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+     <!--                             </span> --> <!--                             <span> -->
+     <!--                                 <div class="ratings"> --> <!--                                     <div class="empty-stars"></div> -->
+     <!--                                     <div class="full-stars" style="width:80%"></div>                             -->
+     <!--                                 </div> --> <!--                                 <p>(18)</p> -->
+     <!--                             </span> --> <!--                         </div> -->  
+       <div class="p_t">
+        <p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
+        <span>
+         <p class="t_location">
+          <i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getGym().getCity().getName()}${trainerAndCourse.get(i.current).getTrainerBean_H().getGym().getArea().getName()}</p>
+         <p class="t_location">
+          <i class="fas fa-dumbbell"></i>
+          ${trainerAndCourse.get(i.current).getSkill_typeBean_H().getName()}...         
+         </p>
+         
+        </span>
+        <span class="rt_v">
+         
+          <div class="ratings">
+           <div class="empty-stars"></div>
+           <div class="full-stars"
+            style="width: ${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings() * 20}%"></div>
+          </div>
+          <span>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</span>
+         
+        </span>
+       </div>
+       </a>
+      </c:forEach>
+     </c:if>
 
-									</span> <span class="rt_v">
+    
 
-					<div class="tr_img">
-						<img
-							src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}">
-					</div> <!--                         <div class="p_t"> --> <!--                             <p class="t_name">林瑪莉</p> -->
-					<!--                             <span> --> <!--                                 <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
-					<!--                                 <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
-					<!--                             </span> --> <!--                             <span> -->
-					<!--                                 <div class="ratings"> --> <!--                                     <div class="empty-stars"></div> -->
-					<!--                                     <div class="full-stars" style="width:80%"></div>                             -->
-					<!--                                 </div> --> <!--                                 <p>(18)</p> -->
-					<!--                             </span> --> <!--                         </div> -->		
-							<div class="p_t">
-								<p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
-								<span>
-									<p class="t_location">
-										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getGym().getCity().getName()}${trainerAndCourse.get(i.current).getTrainerBean_H().getGym().getArea().getName()}</p>
-									<p class="t_location">
-										<i class="fas fa-dumbbell"></i>
-										${trainerAndCourse.get(i.current).getSkill_typeBean_H().getName()}...									
-									</p>
-									
-								</span>
-								<span class="rt_v">
-									
-										<div class="ratings">
-											<div class="empty-stars"></div>
-											<div class="full-stars"
-												style="width: ${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings() * 20}%"></div>
-										</div> <span>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</span>
 
-									</span>
-								</div>
-							</a>
-						</c:forEach>
-					</c:if>
+
+   </ul>
+  </div>
+ </div>
+</div>
 
 
 
 
-
-				</ul>
-			</div>
-		</div>
-	</div>
 	<!-- ======= About Section ======= -->
 	<section id="about">
 		<h2 class="title h2">關於我們</h2>
