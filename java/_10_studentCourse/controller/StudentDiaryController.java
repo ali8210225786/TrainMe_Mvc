@@ -93,7 +93,7 @@ public class StudentDiaryController {
 
 			studentDiaryService.updateStudentCourseDatDiaryContent(CourseMsg);
 			
-			return "/TrainMe/tr_course/" + id;
+			return "/_09_trainerCourse/tr_course";
 		}
 	
 	}
