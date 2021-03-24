@@ -41,7 +41,7 @@
                                <div class="choose_point">
                     <p>支付2000元</p>
                     <h5>儲值2000點</h5>
-                    <button onclick="alertCookie(10000)" >購買點數</button>
+                    <button onclick="alertCookie(2000)" >購買點數</button>
                 </div>
 
 
@@ -56,7 +56,7 @@
                             <span>20點</span>
                         </div>
                     </div>
-                    <button onclick="alertCookie(10000)" >購買點數</button>
+                    <button onclick="alertCookie(3000)" >購買點數</button>
                 </div>
 
 
@@ -69,7 +69,7 @@
                             <span>50點</span>
                         </div>
                     </div>
-                    <button onclick="alertCookie(10000)" >購買點數</button>
+                    <button onclick="alertCookie(5000)" >購買點數</button>
                 </div>
 
 
@@ -82,7 +82,7 @@
                             <span>70點</span>
                         </div>
                     </div>
-                    <button onclick="alertCookie(10000)" >購買點數</button>
+                    <button onclick="alertCookie(7000)" >購買點數</button>
 
                 </div>
 

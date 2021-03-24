@@ -35,24 +35,27 @@ public class CardValidator implements Validator {
 
 		
 		
-		if (cb.getName() != null && cb.getName().length() < 1 || cb.getName().length() > 5) {
-			errors.rejectValue("name", "", "姓名欄位格式不正確");
-		}
+//		if (cb.getName() != null && cb.getName().length() < 1 || cb.getName().length() > 5) {
+//			errors.rejectValue("name", "", "姓名欄位格式不正確");
+//		}
 
 		if ((cb.getCardNo1()+cb.getCardNo2()+cb.getCardNo3()+cb.getCardNo4()).length() != 16 ) {
 			errors.rejectValue("cardNo1", "", "信用卡欄位不完整");
 		}
-		if (cb.getExpiryMonth().equals("-1") && !cb.getExpiryYear().equals("-1"))
+//		if ((cb.getCardNo1().length() != 16)){
+//			errors.rejectValue("cardNo1", "", "信用卡欄位不完整");
+//		}
+//		if (cb.getExpiryMonth().equals("-1") && !cb.getExpiryYear().equals("-1"))
+//		 {
+//			errors.rejectValue("expiryMonth", "", "請選擇到期月份");
+//		}
+//		if (cb.getExpiryYear().equals("-1") && !cb.getExpiryMonth().equals("-1"))
+//		 {
+//			errors.rejectValue("expiryMonth", "", "請選擇到期年份");
+//		}
+		if (cb.getExpiryMonth().length()!=4 ||!TEL_PATTERN.matcher(cb.getExpiryMonth()).matches())
 		 {
-			errors.rejectValue("expiryMonth", "", "請選擇到期月份");
-		}
-		if (cb.getExpiryYear().equals("-1") && !cb.getExpiryMonth().equals("-1"))
-		 {
-			errors.rejectValue("expiryMonth", "", "請選擇到期年份");
-		}
-		if (cb.getExpiryYear().equals("-1") && cb.getExpiryMonth().equals("-1"))
-		 {
-			errors.rejectValue("expiryMonth", "", "請選擇到期月份及年份");
+			errors.rejectValue("expiryMonth", "", "到期月份及年份不完整");
 		}
 		if (cb.getCardCVV().length()<3)
 		 {
