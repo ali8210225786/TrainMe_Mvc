@@ -42,7 +42,11 @@ public class SearchTrainerService {
 	
 		
 //		// 全部都有輸入
-//		if (cityId != 0 && skillTypeId != 0 && keyWord != "") {}
+		if (cityId != 0 && skillTypeId != 0 && keyWord != "") {
+			searchTrainerByCity.retainAll(searchTrainerBySkillType);
+			searchTrainerByCity.retainAll(searchTrainerByKeyWord);
+			resultTrainerId.addAll(searchTrainerByCity);
+		}
 		// 只輸入地址、類型
 		if (cityId != 0 && skillTypeId != 0 && keyWord == "") {
 			searchTrainerByCity.retainAll(searchTrainerBySkillType);

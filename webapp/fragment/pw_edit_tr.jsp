@@ -17,12 +17,12 @@
 			</div>
 			<div class="edit_box">
 				<label>輸入新的密碼</label><br> 
-					<form:input path="newpassword" placeholder="請輸入您的新密碼" required="required" />
+					<form:input path="newpassword" placeholder="請輸入您的新密碼" required="required" type="password" />
 					<form:errors path="newpassword" style = "font-size: 1px; color: red;" />
 			</div>
 			<div class="edit_box">
 				<label>再一次輸入新的密碼</label>
-					<form:input path="newpasswordcheck" placeholder="再一次輸入新的密碼" required="required" />
+					<form:input path="newpasswordcheck" placeholder="再一次輸入新的密碼" required="required" type="password" />
 					<form:errors path="newpasswordcheck" style = "font-size: 1px; color: red;" />
 			</div>
 			<div class="edit_box e_button">
