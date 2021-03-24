@@ -216,6 +216,30 @@
 
 									</span> <span class="rt_v">
 
+					<div class="tr_img">
+						<img
+							src="/upload/${trainerAndCourse.get(i.current).getTrainerBean_H().getProfile_image()}">
+					</div> <!--                         <div class="p_t"> --> <!--                             <p class="t_name">林瑪莉</p> -->
+					<!--                             <span> --> <!--                                 <p class="t_location"><i class="fas fa-map-marker-alt"></i>台北市</p> -->
+					<!--                                 <p class="t_ltimes"><i class="fas fa-user-friends"></i>20次課程媒合</p> -->
+					<!--                             </span> --> <!--                             <span> -->
+					<!--                                 <div class="ratings"> --> <!--                                     <div class="empty-stars"></div> -->
+					<!--                                     <div class="full-stars" style="width:80%"></div>                             -->
+					<!--                                 </div> --> <!--                                 <p>(18)</p> -->
+					<!--                             </span> --> <!--                         </div> -->		
+							<div class="p_t">
+								<p class="t_name">${trainerAndCourse.get(i.current).getTrainerBean_H().getName()}</p>
+								<span>
+									<p class="t_location">
+										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
+									<p class="t_location">
+										<i class="fas fa-dumbbell"></i>
+										${trainerAndCourse.get(i.current).getSkill_typeBean_H().getName()}...									
+									</p>
+									
+								</span>
+								<span class="rt_v">
+									
 										<div class="ratings">
 											<div class="empty-stars"></div>
 											<div class="full-stars"

@@ -106,7 +106,13 @@ public class MemPointDaoImpl implements MemPointDao{
 			Session session = factory.getCurrentSession();
 			
 			String hql = "SELECT MAX(id) FROM MoneyBean_H WHERE st_id =:stId";
-			int lastId = (int) session.createQuery(hql).setParameter("stId", stId).getSingleResult();
+			int lastId;
+			try {
+				lastId = (int) session.createQuery(hql).setParameter("stId", stId).getSingleResult();
+			} catch (NullPointerException e) {
+				
+				return null;
+			}
 			String hql2 = "FROM MoneyBean_H WHERE id =" + lastId;
 			return (MoneyBean_H) session.createQuery(hql2).getSingleResult();
 		}

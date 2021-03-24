@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>學員-個人資料</title>
+<title>學員-個人主頁</title>
 
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet"
@@ -52,7 +52,7 @@
 			<!-- ============個人資料======================================================= -->
 			<div class="content">
 				<div class="title">
-					<h3>個人資料</h3>
+					<h3>個人主頁</h3>
 					<a href="<c:url value='/student_info_edit/${LoginOK.id}' />"
 						id="edit_info"><i class="fas fa-pen-square"></i>
 					</a>

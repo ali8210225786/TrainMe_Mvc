@@ -42,9 +42,10 @@ public class FavoriteInfo {
 
 
 	public static FavoriteInfo create(FavoriteBean fb) {
+		Double ratings = fb.getTrainerBean_H().getRatings() == null ? 0.0 : fb.getTrainerBean_H().getRatings();
 		
 		return new FavoriteInfo(fb.getId(),fb.getTrainerBean_H().getId(), fb.getTrainerBean_H().getName(), fb.getTrainerBean_H().getProfile_image(),
-				fb.getTrainerBean_H().getRatings(),
+				ratings,
 				fb.getTrainerBean_H().getGym().getCity().getName(),
 				fb.getTrainerBean_H().getGym().getArea().getName());
 	}

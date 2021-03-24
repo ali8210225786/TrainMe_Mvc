@@ -24,10 +24,10 @@ public class MessageBean {
 	private Date date;
 	private String title;
 	private String content;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="st_id")
 	private StudentBean_H studentBean_H;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="tr_id")
 	private TrainerBean_H trainerBean_H;
 	@Column(columnDefinition = "INT Default 0")

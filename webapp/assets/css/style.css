@@ -7,8 +7,8 @@
 }
 
 #about .about-container .background {
-  min-height: 300px;
-  background: url(../img/about-img.jpg) center no-repeat;
+  min-height: 545px;
+  background: url(../img/about-img.png) center no-repeat;
   margin-bottom: 10px;
 }
 

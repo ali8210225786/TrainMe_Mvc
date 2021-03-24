@@ -93,7 +93,7 @@ public class RegisterController {
 		
 		//首頁人氣教練推薦		
 		List<TrainerCourseBean_H> trainerAndCourse = memberDataService.getTrainerAndCourse();
-		
+
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);		
@@ -174,11 +174,12 @@ public class RegisterController {
 		//產生註冊成功通知
 		messageService.passVerification(studentBean);
 		
-		model.addAttribute("st_email", studentBean.getEmail());
+		model.addAttribute("st_email", studentBean);
 		
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 
 		// 伺服器通知客戶端對新網址發出請求。其原本參數狀態不被保留。
 		// 所以如果只用"index"跳轉後網址會有/tr_register
@@ -194,6 +195,7 @@ public class RegisterController {
 		studentBean.setHasError(true);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 
 	}
 	
@@ -203,7 +205,8 @@ public class RegisterController {
 		
 		model.addAttribute("studentBean",new StudentBean_H());
 		model.addAttribute("trainerBean",new TrainerBean_H());
-		model.addAttribute("loginBean",new LoginBean());	
+		model.addAttribute("loginBean",new LoginBean());
+		model.addAttribute("contactBean" , new ContactBean());
 		
 	return "_01_register/rd_register_message";
 	}
@@ -276,14 +279,13 @@ public class RegisterController {
 		
 		//產生註冊成功通知
 		messageService.passVerification(trainerBean);
-		
-		model.addAttribute("tr_email", trainerBean.getEmail());
 
 		model.addAttribute("tr_email", trainerBean);
 		
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 		
 		return "redirect:/registerMessage";
 	}
@@ -295,6 +297,7 @@ public class RegisterController {
 		trainerBean.setHasError(true);
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 
 	}
 
