@@ -87,14 +87,14 @@ public class MoneyController {
 	@GetMapping("/studentMoney/checkout")
 	public String stCheckout(Model model) {
 		CardBean cardBean = new CardBean();
-		if (cardBean.getCity() != null) {
-			List<Area_H> areas = addressService.listAreas(cardBean.getCity().getId());
-			Map<Integer, String> areaMap = new HashMap<>();
-			for (Area_H area : areas) {
-				areaMap.put(area.getId(), area.getName());
-			}
-			model.addAttribute("areaList", areaMap);
-		}
+//		if (cardBean.getCity() != null) {
+//			List<Area_H> areas = addressService.listAreas(cardBean.getCity().getId());
+//			Map<Integer, String> areaMap = new HashMap<>();
+//			for (Area_H area : areas) {
+//				areaMap.put(area.getId(), area.getName());
+//			}
+//			model.addAttribute("areaList", areaMap);
+//		}
 		model.addAttribute("cardBean", cardBean);
 		return "/_04_money/st_checkout";
 			    
@@ -120,6 +120,8 @@ public class MoneyController {
 		Date date = new Date();
 		java.sql.Date changeTime = new java.sql.Date(date.getTime());
 		moneyBean_H.setChange_time(changeTime);
+		System.out.println("cardBean.getMoney()="+cardBean.getMoney());
+		
 		moneyBean_H.setChange_amount(cardBean.getMoney());
 		
 		memPointService.saveMoney(moneyBean_H);

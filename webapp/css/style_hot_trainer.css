@@ -9,6 +9,8 @@
         font-size: 18px;
         text-align: center;
         color: #666;
+		box-shadow: 0 3px #21d4a7;
+		padding-bottom:5px;
         font-family: 'Noto Sans TC', sans-serif;
     }
 
@@ -53,28 +55,36 @@
         text-align: center;
         margin: 8px;
     }
-    .p_t span{
+    
+	.p_t span{
         display: flex;
         justify-content: space-around;
         /* padding: 5px; */
         font-size: 13px;
         margin: 0px 10px;
     }
+    .p_t .rt_v{
+        display: inline-block;
+        /* padding: 5px; */
+        font-size: 13px;
+        margin: 0px;
+    }
+    .rt_v span{
+		padding-left: 10px;
+		display: inline-block;
+    }
     .p_t span i{
         margin: 0px 10px 0px 0px ;
     }
-
+    .rating{
+     	 display: flex;
+        justify-content: space-around;
+    }
     /* <p class="t_name">教練名稱</p>
                 <p class="t_location">地點</p>
                 <p class="t_ltimes">20次課程媒合</p> */
 
     /*評價星星*/
-
-    .p_t span:nth-child(3) p{
-        /* vertical-align: middle; */
-        margin: 6px 0px 0px -80px;
-        font-size: 15px;
-    }
 
     .ratings {
         position: relative;
@@ -84,6 +94,7 @@
         display: inline-block;
         color: #b1b1b1;
         overflow: hidden;
+        font-size: 14pt;
     }
     .full-stars {
         position: absolute;
@@ -95,7 +106,7 @@
     }
     .empty-stars:before, .full-stars:before {
         content:"\2605\2605\2605\2605\2605";
-        font-size: 15pt;
+        font-size: 14pt;
     }
     .empty-stars:before {
         -webkit-text-stroke: 1px #848484;
