@@ -179,6 +179,7 @@ public class RegisterController {
 		model.addAttribute("studentBean", new StudentBean_H());
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 
 		// 伺服器通知客戶端對新網址發出請求。其原本參數狀態不被保留。
 		// 所以如果只用"index"跳轉後網址會有/tr_register
@@ -203,7 +204,8 @@ public class RegisterController {
 		
 		model.addAttribute("studentBean",new StudentBean_H());
 		model.addAttribute("trainerBean",new TrainerBean_H());
-		model.addAttribute("loginBean",new LoginBean());	
+		model.addAttribute("loginBean",new LoginBean());
+		model.addAttribute("contactBean" , new ContactBean());
 		
 	return "_01_register/rd_register_message";
 	}
@@ -284,6 +286,7 @@ public class RegisterController {
 		model.addAttribute("trainerBean", new TrainerBean_H());
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("loginBean", loginBean);
+		model.addAttribute("contactBean" , new ContactBean());
 		
 		return "redirect:/registerMessage";
 	}
