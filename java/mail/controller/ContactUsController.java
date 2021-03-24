@@ -52,13 +52,6 @@ public class ContactUsController {
 	@Autowired
 	MemberService_H memberService;
 
-//跳轉聯絡我們頁面
-	@GetMapping("/Contact")
-	public String stPasswordUpdate(Model model) {
-
-		model.addAttribute("contactBean" , new ContactBean());
-		return "/_01_register/contactUs";
-	}
 //讀取聯絡我們頁面
 	@PostMapping("/contactUs")
 	public String contactUs(@ModelAttribute("contactBean") ContactBean contactBean, Model model,
@@ -72,8 +65,8 @@ public class ContactUsController {
 	
 		SendingContactUsEmail scue = new SendingContactUsEmail(username, useremail, q_category, subject, message);
 		scue.sendMail();
-			
-		return "/_01_register/contactUs";
+		
+		return "redirect:/";
 	}
 
 

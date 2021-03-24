@@ -168,7 +168,7 @@
 
 		<div class="content">
 		 <div class="back">
-            <a href="#"><i class="fas fa-chevron-left"></i>　返回我的課程</a>
+            <a href="<c:url value='/st_info_lesson/${LoginOK.id}' />"><i class="fas fa-chevron-left"></i>　返回我的課程</a>
           </div>
           
 			<div class="title">
