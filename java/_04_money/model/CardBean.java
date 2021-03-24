@@ -33,6 +33,7 @@ public class CardBean {
 		this.cardNo4 = cardNo4;
 		this.expiryMonth = expiryMonth;
 		this.cardCVV = cardCVV;
+		
 		this.cardName = cardName;
 		this.tel = tel;
 		this.email = email;
