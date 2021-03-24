@@ -242,13 +242,17 @@
 		}else{
 // 			alert(${studentMoney.getTotal_amount()});
 // 			alert(getPrice);
-		if(${studentMoney.getTotal_amount() == null} ){
+		
+		var stPrice = ("${studentMoney}" == "") ? 0 : ${studentMoney.getTotal_amount()}
+		console.log(stPrice);
+
+		if(stPrice == 0){
 			$('#insufficient').modal('show')
 // 			window.location.href = "/TrainMe/studentMoney/addPoint";
 			return;
 		}
 	
-		if(getPrice>${studentMoney.getTotal_amount()}){
+		if(getPrice > stPrice){
 			$('#insufficient').modal('show')
 // 			window.location.href = "/TrainMe/studentMoney/addPoint";
 			return;
