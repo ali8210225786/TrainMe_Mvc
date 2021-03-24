@@ -93,7 +93,7 @@ public class RegisterController {
 		
 		//首頁人氣教練推薦		
 		List<TrainerCourseBean_H> trainerAndCourse = memberDataService.getTrainerAndCourse();
-		
+
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("trainerBean", trainerBean);
 		model.addAttribute("loginBean", loginBean);		
