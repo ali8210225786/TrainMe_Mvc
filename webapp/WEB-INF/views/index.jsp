@@ -49,229 +49,7 @@
 
 <style>
 /* 	       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');  */
-/*教練推薦*/
-.hot_trainer {
-	text-align: center;
-	display: block;
-	margin: 20px 0px 0px 0px;
-}
 
-.hot_trainer h3 {
-	font-size: 18px;
-	text-align: center;
-	color: #666;
-	font-family: 'Noto Sans TC', sans-serif;
-}
-
-.splide {
-	margin: auto;
-}
-
-.splide__slide {
-	position: relative;
-	width: 14rem;
-	height: 18rem;
-	/* background-color: black; */
-	/* background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); */
-	box-shadow: 0px 0px 5px 0.6px #999;
-}
-
-.splide__slide .tr_img {
-	/* position: absolute; */
-	width: 100%;
-	height: 202px;
-	display: flex;
-}
-
-.splide__slide .tr_img img {
-	width: 100%;
-	object-fit: cover
-}
-
-.splide__slide .p_t {
-	position: absolute;
-	width: 100%;
-	bottom: 0px;
-	background-color: #000;
-	padding: 7px 0px 10px;
-	color: aliceblue;
-	font-family: 'Noto Sans TC', sans-serif;
-}
-
-.t_name {
-	font-size: 18px;
-	font-weight: 700;
-	text-align: center;
-	margin: 8px;
-}
-
-.p_t span {
-	display: flex;
-	justify-content: space-around;
-	/* padding: 5px; */
-	font-size: 13px;
-	margin: 0px 10px;
-}
-
-.p_t span i {
-	margin: 0px 10px 0px 0px;
-}
-
-/* <p class="t_name">教練名稱</p>
-                    <p class="t_location">地點</p>
-                    <p class="t_ltimes">20次課程媒合</p> */
-
-/*評價星星*/
-.p_t span:nth-child(3) p {
-	/* vertical-align: middle; */
-	margin: 6px 0px 0px -80px;
-	font-size: 15px;
-}
-
-.ratings {
-	position: relative;
-	bottom: 20%;
-	left: 4%;
-	vertical-align: middle;
-	display: inline-block;
-	color: #b1b1b1;
-	overflow: hidden;
-}
-
-.full-stars {
-	position: absolute;
-	left: 0;
-	top: 0;
-	white-space: nowrap;
-	overflow: hidden;
-	color: #fde16d;
-}
-
-.empty-stars:before, .full-stars:before {
-	content: "\2605\2605\2605\2605\2605";
-	font-size: 15pt;
-}
-
-.empty-stars:before {
-	-webkit-text-stroke: 1px #848484;
-}
-
-.full-stars:before {
-	-webkit-text-stroke: 1px orange;
-}
-/* Webkit-text-stroke is not supported on firefox or IE */
-
-/* Firefox */
-@
--moz-document url-prefix() { .full-stars { color:#ECBE24;
-	
-}
-
-}
-
-/* footer */
-footer {
-	padding: 100px 0 0 0;
-	background: #888
-}
-
-footer .container {
-	display: flex;
-	width: 1200px;
-	margin: auto;
-	font-family: 'Noto Sans TC', sans-serif;
-}
-
-.footer-item h3 {
-	font-size: 20px;
-	color: #fff;
-	border-bottom: 1px solid #fff;
-	margin-bottom: .5em;
-	padding-bottom: .5em;
-}
-
-.footer-item {
-	width: 0;
-	flex-grow: 1;
-	margin: 0 20px;
-}
-
-.footer-item nav {
-	display: flex;
-	flex-direction: column;
-}
-
-.footer-item nav a {
-	color: #fff;
-	font-size: 14px;
-	line-height: 1.2;
-	text-decoration: none;
-	padding: 5px 0;
-}
-
-.copyright {
-	width: 100%;
-	text-align: center;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	margin: 100px 0 0;
-	padding: 10px 0px;
-	background-color: #000;
-	color: #fff;
-}
-
-/*其他區塊*/
-.other {
-	display: flex;
-	justify-content: space-around;
-	margin: auto;
-	width: 100%;
-	max-width: 60%;
-	height: 400px;
-}
-
-.about {
-	width: 50%;
-	margin: 0px 30px;
-}
-
-.about p {
-	font-family: 'sans-seri', 'Noto Sans TC',;
-	line-height: 1.7;
-	font-size: 12px;
-}
-
-.about h3 {
-	font-family: 'Noto Sans TC', sans-serif;
-	margin: 20px;
-	text-align: center;
-	color: #888;
-}
-
-/* @media screen and (min-width: 768px) {
-            
-        } */
-html .noscroll {
-	position: fixed;
-	overflow-y: scroll;
-	width: 100%;
-}
-
-html .fixWindow {
-	position: fixed;
-	width: 100%;
-}
-
-#contact .card:hover i, #contact .card:hover h4 {
-	color: #2dc997;
-}
-
-a {
-	color: black;
-}
-
-address {
-	line-height: 26px;
-}
 </style>
 </head>
 <body>
@@ -367,10 +145,51 @@ address {
 
 	<div class="new">
 
-		<div class="intro"></div>
+   <div class="intro">    
+    <div class="box">
+        <i class="far fa-hand-point-up"></i>
+        <span>快速預約</span>
+    </div>
+    <div class="p">
+        選擇您需要的課程與時段一鍵預約
+    </div>
+   </div>
+   <i class="fas fa-angle-right"></i>
+
+   <div class="intro">    
+    <div class="box">
+        <i class="fas fa-coins"></i>
+        <span>點數購課</span>
+    </div>
+    <div class="p">
+        儲值點數加贈點，快速購課不煩惱
+    </div>
+   </div>
+   <i class="fas fa-angle-right"></i>
+   <div class="intro">    
+    <div class="box">
+        <i class="far fa-thumbs-up"></i>
+        <span>評價系統</span>
+    </div>
+    <div class="p">
+        評價機制，增加選擇教練的參考依據
+    </div>
+   </div>
+   <i class="fas fa-angle-right"></i>
+
+   <div class="intro">    
+    <div class="box">
+        <i class="fas fa-weight"></i>
+        <span>體態紀錄</span>
+    </div>
+    <div class="p">
+        學員每月體重變化一目瞭然
+    </div>
+   </div>
 
 
-	</div>
+
+</div>
 
 
 	<!-- 人氣教練 -->
@@ -405,20 +224,26 @@ address {
 								<span>
 									<p class="t_location">
 										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
+									<p class="t_location">
+										<i class="fas fa-map-marker-alt"></i>${trainerAndCourse.get(i.current).getTrainerBean_H().getCity().getName()}</p>
 									
-								</span> <span>
-									<div class="ratings">
-										<div class="empty-stars"></div>
-										<div class="full-stars"
-											style="width: ${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings() * 20}%"></div>
-									</div>
-									<p>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</p>
+								</span>
+								<span class="rt_v">
+									
+										<div class="ratings">
+											<div class="empty-stars"></div>
+											<div class="full-stars"
+												style="width: ${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings() * 20}%"></div>
+										</div>
+										<span>(${trainerAndCourse.get(i.current).getTrainerBean_H().getRatings_size()})</span>
+									
 								</span>
 							</div>
+							</a>
 						</c:forEach>
 					</c:if>
 
-				</a>
+				
 
 
 
@@ -465,7 +290,7 @@ address {
           </div>
 
           <div class="col-lg-6 background order-lg-2 order-1">
-          	<img src="./assets/img/about-img.jpg">
+<!--           	<img src="./assets/img/about-img.jpg"> -->
           </div>
        
         </div>
@@ -513,10 +338,10 @@ address {
 				<br>
 				<p class="text-center w-75 m-auto">想成為TrainMe平台的教練或是學員嗎?想了解更多嗎?歡迎諮詢</p>
 				<br> <br>
-				<iframe
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7432711166844!2d121.53559291552197!3d25.042785144092026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97d255598df%3A0x47ea748e8f3f53aa!2z5ZyL56uL6Ie65YyX56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1616412938598!5m2!1szh-TW!2stw"
-					width="100%" height="380" frameborder="0" style="border: 0"
-					allowfullscreen></iframe>
+<!-- 				<iframe -->
+<!-- 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7432711166844!2d121.53559291552197!3d25.042785144092026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97d255598df%3A0x47ea748e8f3f53aa!2z5ZyL56uL6Ie65YyX56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1616412938598!5m2!1szh-TW!2stw" -->
+<!-- 					width="100%" height="380" frameborder="0" style="border: 0" -->
+<!-- 					allowfullscreen></iframe> -->
 			</div>
 			<div class="row">
 				<div class="col-sm-12 col-md-6 col-lg-4 my-5">
