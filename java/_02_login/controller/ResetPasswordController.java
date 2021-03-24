@@ -85,6 +85,10 @@ public class ResetPasswordController {
 	@PostMapping("/resetPassword")
 	public String resetPassword(@ModelAttribute("loginBean") LoginBean loginBean, BindingResult result, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
+		StudentBean_H studentBean = new StudentBean_H();
+		TrainerBean_H trainerBean = new TrainerBean_H();
+		model.addAttribute("trainerBean", trainerBean);
+		model.addAttribute("studentBean", studentBean);
 		String useremail = loginBean.getUserEmail();
 		String newpassword = getRandomString(6);
 		String realpassword = GlobalService.getMD5Endocing(GlobalService.encryptString(newpassword));
@@ -151,14 +155,9 @@ public class ResetPasswordController {
 		}
 		sexMap.put("M", "男");
 		sexMap.put("F", "女");
-		StudentBean_H studentBean = new StudentBean_H();
-		TrainerBean_H trainerBean = new TrainerBean_H();
-		
 		model.addAttribute("sexMap", sexMap);
 		model.addAttribute("gymList", gymMap);
 		model.addAttribute("cities", cities);	
 		model.addAttribute("skillTypeAll", skillTypeAll);
-		model.addAttribute("studentBean", studentBean);
-		model.addAttribute("trainerBean", trainerBean);
 	}
 }
