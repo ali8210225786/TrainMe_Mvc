@@ -465,7 +465,7 @@ address {
           </div>
 
           <div class="col-lg-6 background order-lg-2 order-1">
-          	<img src="./assets/img/about-img.jpg">
+<!--           	<img src="./assets/img/about-img.jpg"> -->
           </div>
        
         </div>
