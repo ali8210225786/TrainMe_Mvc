@@ -43,8 +43,11 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
-.aside ul li:nth-child(2) a {
+.aside ul li:nth-child(3) a{
 	color: #21d4a7;
+}
+.aside ul li:nth-child(3) a:hover{
+	color: #fff;
 }
 
 /* body { */

@@ -24,8 +24,11 @@
 
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
-.aside ul li:nth-child(4) a {
+.aside ul li:nth-child(4) a{
 	color: #21d4a7;
+}
+.aside ul li:nth-child(4) a:hover{
+	color: #fff;
 }
 </style>
 </head>
