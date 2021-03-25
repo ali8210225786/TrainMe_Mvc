@@ -278,18 +278,18 @@
 
 		// 自我介紹       
 		$(document).ready(function() {
-							var x = ($("#text").val()).length;					
+							var x = ($("#text").val().replace(/\s*/g,"")).length;					
 							if(x == 0){
 								var textMax = 500;
 							}else{
-								var textMax = 500 - ($("#text").val()).length;
+								var textMax = 500 - ($("#text").val().replace(/\s*/g,"")).length;
 							};
 							$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}textMax}</span> 個字 `);
 							$('#text').on('input propertychange',typeChange)
 
 							function typeChange(){	
 								let textMax = 500;	
-								let textLength = $('#text').val().length;
+								let textLength = $('#text').val().replace(/\s*/g,"").length;
 								total = textMax - textLength;
 								$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}total}</span> 個字 `);
 							};
