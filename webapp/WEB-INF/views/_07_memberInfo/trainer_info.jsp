@@ -16,10 +16,10 @@
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_modal.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
-<link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 
 <%-- <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />"> --%>
 <link rel="stylesheet" href="<c:url value='/css/style_timeset.css' />">
+<link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 
 <link rel="stylesheet"
 	href="<c:url value='/css/style_trainer_page.css' />">
@@ -36,6 +36,7 @@
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
 <style type="text/css">
+
 .tschedule td {
 	cursor: pointer;
 }
@@ -254,7 +255,7 @@
 				<div class="info_div">
 					<span><i class="fas fa-home"></i><a href="">官方網站</a></span>
 				</div>
-				<div class="info_div">
+				<div class="info_div" style="line-height: 1.3;">
 					<span>${gym.getIntroduction()}</span>
 				</div>
 			</div>
@@ -321,7 +322,7 @@
 		</div>
 
 		<div class="trpg_content si">
-			<div class="lcs">
+			<div class="lcs" style="line-height: 1.3;">
 				<!-- 				<li>AASFP 亞洲運動及體適能專業學院高級私人體適能教練</li> -->
 				<!-- 				<li>ACE 美國運動體適能協會私人教練</li> -->
 				<!-- 				<li>AFAA PFT 美國有氧體適能協會個人體適能顧問</li> -->
@@ -330,7 +331,7 @@
 				<c:if test="${trainerLicenseBean.size() != 0}">
 					<c:forEach varStatus="i" begin="0"
 						end="${trainerLicenseBean.size()-1}">
-						<li>${trainerLicenseBean.get(i.current).getName()}</li>
+						<li style="line-height: 1.3;">${trainerLicenseBean.get(i.current).getName()}</li>
 					</c:forEach>
 				</c:if>
 			</div>
@@ -530,7 +531,7 @@
 	<!-- 學員評價 -->
 
 	<a name="feedback"></a>
-	<div class="trpg_wrap">
+	<div class="trpg_wrap" style="line-height: 1.3;">
 		<div class="title">
 			<h4>學員評價</h4>
 		</div>
@@ -564,7 +565,7 @@
 							<div class="fb_content">
 
 								<!-- 會員名稱時間等等 -->
-								<div class="fc_title">
+								<div class="fc_title" style="line-height: 1.3;">
 									<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getName()}</span>
 									<span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getDate()}</span>
 									<label>課程：</label><span>${trainerCourseAndStudentCourseAndRatings.get(i.current).getTrainerCourseBean_H().getSkillBean_H().getName()}</span>
@@ -580,8 +581,7 @@
 								</div>
 
 								<!-- 留言 -->
-								<div class="sit">
-									<p>${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
+								<div class="sit"><p style="line-height: 1.3;">${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
 								</div>
 
 							</div>
