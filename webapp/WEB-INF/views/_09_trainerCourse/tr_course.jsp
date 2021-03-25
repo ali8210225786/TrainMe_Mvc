@@ -179,7 +179,7 @@
 									<th scope="col" class="class_name">課程名稱</th>
 									<th scope="col">課程點數</th>
 									<th scope="col">預約課程時段</th>
-									<th scope="col">是否同意</th>
+									<th scope="col" >是否同意</th>
 								</tr>
 							</thead>
 							<tbody class="tr_height">
@@ -196,12 +196,12 @@
 
 												${StudentCourse.get(i.current).getTime()}:00 -
 												${StudentCourse.get(i.current).getTime() + 1}:00</td>
-											<td><button type="button" class="btn btn-primary"
+											<td ><span class="btn btn-primary"
 														data-toggle="modal" data-target="#exampleModal${StudentCourse.get(i.current).getId()}">
-														同意</button>
-													<button type="button" class="btn btn-primary"
+														同意</span>
+													<span  class="btn btn-primary"
 														data-toggle="modal" data-target="#exampleModal1${StudentCourse.get(i.current).getId()}">
-														取消</button></td>
+														取消</span></td>
 										</tr>
 									</c:if>
 								

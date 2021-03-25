@@ -294,26 +294,47 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script>
 // 		自我介紹       
-		$(document).ready(
-						function() {
-							var x = ($("#text").val()).length;					
+		$(document).ready(function() {		
+							var x = ($("#text").val().trim()).length;								
 							if(x == 0){
 								var textMax = 500;
 							}else{
-								var textMax = 500 - ($("#text").val()).length;
+								var textMax = 500 - ($("#text").val().trim()).length;
 							};
 							$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}textMax}</span> 個字 `);
-
-							$('#text').keyup(function() {	
-												let textMax = 500;
-												let textLength = $(this).val().length;
-												total = textMax - textLength;
-												$('#feedback')
-														.html(
-																`尚可輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
-												//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
-											});
+							$('#text').on('input propertychange',typeChange)
+		
+							var fillIn = document.getElementById('fillIn')
+							fillIn.addEventListener("click",function(){
+								document.getElementById('action').value = "仰臥起坐";
+								document.getElementById('lord').value = "7kg";
+								document.getElementById('reps').value = "20下";
+								document.getElementById('sets').value = "5組";
+								document.getElementById('rest').value = "20秒";
+							});
+							var fillIn1 = document.getElementById('fillIn1')
+							fillIn1.addEventListener("click",function(){
+								document.getElementById('action').value = "機械式捲腹";
+								document.getElementById('lord').value = "15kg";
+								document.getElementById('reps').value = "15下";
+								document.getElementById('sets').value = "4組";
+								document.getElementById('rest').value = "40秒";
+							});
+							var fillIn2 = document.getElementById('fillIn2')
+							fillIn2.addEventListener("click",function(){
+								document.getElementById('text').value = "雖然是初學者，但學習快速、動作標準，但手部肌肉較不足，建議之後可以再加強手部的訓練。";
+								typeChange();
+							});
+							
+							function typeChange(){	
+								let textMax = 500;	
+								let textLength = $('#text').val().trim().length;
+								total = textMax - textLength;
+								$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}total}</span> 個字 `);
+							};
+						
 						});
+		
 
 		// 將換行、空白符號轉換成<br>，存入資料庫
 		var content = $("#text").val();
@@ -418,27 +439,34 @@
 		
 		
 		
-		var fillIn = document.getElementById('fillIn')
-		fillIn.addEventListener("click",function(){
-			document.getElementById('action').value = "仰臥起坐";
-			document.getElementById('lord').value = "7kg";
-			document.getElementById('reps').value = "20下";
-			document.getElementById('sets').value = "5組";
-			document.getElementById('rest').value = "20秒";
-		});
-		var fillIn1 = document.getElementById('fillIn1')
-		fillIn1.addEventListener("click",function(){
-			document.getElementById('action').value = "機械式捲腹";
-			document.getElementById('lord').value = "15kg";
-			document.getElementById('reps').value = "15下";
-			document.getElementById('sets').value = "4組";
-			document.getElementById('rest').value = "40秒";
-		});
-		var fillIn2 = document.getElementById('fillIn2')
-		fillIn2.addEventListener("click",function(){
-			document.getElementById('text').value = "雖然是初學者，但學習快速、動作標準，但手部肌肉較不足，建議之後可以再加強手部的訓練。";
-			
-		});
+// 		var fillIn = document.getElementById('fillIn')
+// 		fillIn.addEventListener("click",function(){
+// 			document.getElementById('action').value = "仰臥起坐";
+// 			document.getElementById('lord').value = "7kg";
+// 			document.getElementById('reps').value = "20下";
+// 			document.getElementById('sets').value = "5組";
+// 			document.getElementById('rest').value = "20秒";
+// 		});
+// 		var fillIn1 = document.getElementById('fillIn1')
+// 		fillIn1.addEventListener("click",function(){
+// 			document.getElementById('action').value = "機械式捲腹";
+// 			document.getElementById('lord').value = "15kg";
+// 			document.getElementById('reps').value = "15下";
+// 			document.getElementById('sets').value = "4組";
+// 			document.getElementById('rest').value = "40秒";
+// 		});
+// 		let textMax = 500;
+// 		var fillIn2 = document.getElementById('fillIn2')
+// 		fillIn2.addEventListener("click",function(){
+// 			document.getElementById('text').value = "雖然是初學者，但學習快速、動作標準，但手部肌肉較不足，建議之後可以再加強手部的訓練。";
+// 			typeChange();
+// 			$('#text').on('input propertychange',typeChange);
+// 			function typeChange(){		
+// 				let textLength = $('#text').val().length;
+// 				total = textMax - textLength;
+// 				$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}total}</span> 個字 `);
+// 			};
+// 		});
 	</script>
 </body>
 </html>

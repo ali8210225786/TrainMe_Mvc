@@ -129,6 +129,9 @@
 // 					alert("自我介紹最多150個字");
 // // 					 event.preventDefault();
 // 				}
+				
+				 checkWordCount();
+
 			 
 		 })
 		 

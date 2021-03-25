@@ -96,7 +96,7 @@
 												<template x-if="trainerX.ratings != 0">
 													<!-- 	=========================== 不知道為何會找不到，可是顯示正常 ================================= -->
 													<span class="star">★</span>
-<!-- 													<span x-text="trainerX.ratings"></span> -->
+													<span x-text="trainerX.ratings"></span>
 												</template>
 											</div>
 										</div>
