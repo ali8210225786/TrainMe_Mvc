@@ -220,16 +220,11 @@
 		</div>
 	</div>
 	</div>
-
-	<!-- footer -->
-	<jsp:include page="/fragment/footer.jsp" />
-	
 	
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 	
-
 		/*
 		 var tab=document.getElementById('tab') //獲取表格元素
 		 var rows=tab.rows; //返回包含表格中所有行的一個數組。

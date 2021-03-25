@@ -167,7 +167,7 @@ table, td {
 								<button id="payment-button" type="submit"
 									class="btn btn-lg btn-info btn-block">
 									<i class="fa fa-lock fa-lg"></i>&nbsp; <span
-										id="payment-button-amount">Pay </span>
+										id="payment-button-amount">付款</span>
 								</button>
 							</div>
 						</form:form>

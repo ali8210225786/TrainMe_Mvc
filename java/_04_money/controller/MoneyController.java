@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,11 +46,16 @@ import _04_money.model.MoneyBean_H;
 import _04_money.service.MemPointService;
 import _04_money.validate.CardValidator;
 import _12_message.service.MessageService;
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutALL;
+import ecpay.payment.integration.domain.AioCheckOutWebATM;
+import example.ExampleAllInOne;
 import mail.model.SendingEmail;
 import mail.service.MailService;
 
+
 @Controller
-@SessionAttributes({ "LoginOK", "MoneyBean", "cardBean", "cityList", "areaList", "st_unreadMessage" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean", "cardBean", "cityList", "areaList", "st_unreadMessage","abc" }) // 此處有LoginOK的識別字串
 public class MoneyController {
 
 	@Autowired
@@ -78,11 +84,21 @@ public class MoneyController {
 		return "/_04_money/st_point";
 	}
 
+	public static AllInOne all;
+	@SuppressWarnings("static-access")
 	@GetMapping("/studentMoney/addPoint")
 	public String addPoint(Model model) {
-
-		return "/_04_money/st_add_point";
+		LoginBean a = new LoginBean();
+		ExampleAllInOne e = new ExampleAllInOne();
+		ExampleAllInOne.initial();
+		String abc = e.genAioCheckOutALL();
+		a.setPassword(abc);
+		model.addAttribute("abc", a);
+//		return "/_04_money/st_add_point";
+		return "/_01_register/NewFile";
 	}
+	
+	
 
 	@GetMapping("/studentMoney/checkout")
 	public String stCheckout(Model model) {
