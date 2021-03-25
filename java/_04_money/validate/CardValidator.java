@@ -32,15 +32,15 @@ public class CardValidator implements Validator {
 		
 
 		CardBean cb = (CardBean) target;
-
+		String cardNum=cb.getCardNo1()+cb.getCardNo2()+cb.getCardNo3()+cb.getCardNo4();
 		
 		
 //		if (cb.getName() != null && cb.getName().length() < 1 || cb.getName().length() > 5) {
 //			errors.rejectValue("name", "", "姓名欄位格式不正確");
 //		}
 
-		if ((cb.getCardNo1()+cb.getCardNo2()+cb.getCardNo3()+cb.getCardNo4()).length() != 16 ) {
-			errors.rejectValue("cardNo1", "", "信用卡欄位不完整");
+		if (cardNum.length() != 16 ||!TEL_PATTERN.matcher(cardNum).matches()) {
+			errors.rejectValue("cardNo1", "", "信用卡欄位不正確");
 		}
 //		if ((cb.getCardNo1().length() != 16)){
 //			errors.rejectValue("cardNo1", "", "信用卡欄位不完整");
@@ -61,14 +61,14 @@ public class CardValidator implements Validator {
 		 {
 			errors.rejectValue("cardCVV", "", "CVV欄位不完整");
 		}
-		if (cb.getCardName().length() > 5  || TEL_PATTERN.matcher(cb.getCardName()).matches()) {
+		if (cb.getCardName().length() > 25  || TEL_PATTERN.matcher(cb.getCardName()).matches()) {
 			errors.rejectValue("cardName", "", "姓名欄位格式不正確");
 		}
 		if (!TEL_PATTERN.matcher(cb.getTel()).matches()) {
 			errors.rejectValue("tel", "", "電話欄位只能為數字");
 		}
 		if (!Email_PATTERN.matcher(cb.getEmail()).matches()) {
-			errors.rejectValue("expiryYear", "", "必須包含@符號，必須包含點，點和@之間必須有字元");
+			errors.rejectValue("email", "", "必須包含@符號，必須包含點，點和@之間必須有字元");
 		}
 //		
 //		if (st.getBirthday() == null) {
