@@ -19,6 +19,8 @@
 <!-- 	<link rel="stylesheet" href="../css/style_footer.css"> -->
     <link rel="stylesheet" href="../css/style_nav.css">
     <link rel="stylesheet" href="../css/style_add_point.css">
+    <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
    
