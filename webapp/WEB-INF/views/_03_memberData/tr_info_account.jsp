@@ -29,12 +29,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="./css/style_st_lesson.css">
+<link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
-.aside ul li:nth-child(5) a{
+.aside ul li:nth-child(1) a{
 	color: #21d4a7;
 }
-.aside ul li:nth-child(5) a:hover{
+.aside ul li:nth-child(1) a:hover{
 	color: #fff;
 }
 </style>
@@ -220,7 +221,10 @@
 	</div>
 	</div>
 
-
+	<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
+	
+	
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>

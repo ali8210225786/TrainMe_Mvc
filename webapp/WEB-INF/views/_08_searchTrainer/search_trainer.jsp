@@ -23,6 +23,12 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
+<link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
+<style>
+footer {
+	margin-top:120px;
+}
+</style>
 <script
 	src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 </head>
@@ -227,10 +233,43 @@
 
 	</div>
 
+	<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
+
+	<!-- 回到最上面 -->
+	<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#"
+		id="gotop"> <i class="fa fa-angle-up"></i>
+	</a>
+	
+	
+
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
 	<script>
+	
+
+	//回到最上面
+	/* 按下GoTop按鈕時的事件 */
+	$('#gotop').click(function() {
+		$('html,body').animate({
+			scrollTop : 0
+		}, 'slow'); /* 返回到最頂 速度slow */
+		return false;
+	});
+
+	/* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 400) {
+			$('#gotop').fadeIn();
+		} else {
+			$('#gotop').fadeOut();
+		}
+	});
+	
+	
+	
 		// 點擊收藏愛心切換顏色
 		$('.heart').click(function(e) {
 			
