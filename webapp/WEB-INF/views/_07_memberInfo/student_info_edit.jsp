@@ -20,6 +20,9 @@
 .aside ul li:nth-child(1) a{
 	color: #21d4a7;
 }
+.aside ul li:nth-child(1) a:hover{
+	color: #fff;
+}
 </style>
 </head>
 <body>
@@ -101,7 +104,8 @@
 		 var options = 	document.getElementsByTagName('option');
 	
 		 for(option of options){
-			 if(option.value == ${LoginOK.activity} ){
+			 var activity = "${LoginOK.activity}";
+			 if(option.value == activity ){
 				 option.setAttribute('selected','selected');
 			 }			 
 		 }
