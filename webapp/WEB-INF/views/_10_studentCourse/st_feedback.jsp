@@ -47,7 +47,7 @@
             <div class="back">
                 <a href="<c:url value='/st_info_lesson/${LoginOK.id}' />"><i class="fas fa-chevron-left"></i>　返回我的課程</a>
               </div>
-            <div class="title"><h3>我的課程 > 給予評價</h3></div>
+            <div class="title"><h3 id="fillIn">我的課程 > 給予評價</h3></div>
               
 
                 <div class="edit_area feedback_ar">
@@ -154,7 +154,27 @@ let feedback_content = document.getElementById("feedbackContent");
   
 });
 
+    var fillIn = document.getElementById('fillIn')
+    fillIn.addEventListener("click",function(){
+     document.getElementById('feedbackContent').value = "很幸運昨天接觸到薇均教練"
+     + "教練總是很有耐心的教器材如何正確且安全的使用，"
+     + "耐心解說每個動作甚至分解動作一步一步帶著我做，"
+     + "時時確認訓練時的感受度，還會錄影做紀錄，"
+     + "下次忘記還可以喚起記憶，"
+     + "教練也總是在快撐不下去的時候鼓勵我，"
+     + "就會覺得自己好像沒那麼糟，我一定可以的！"
+     + "循序漸進的上課節奏，讓人願意持續踏進健身房，"
+     + "除了運動，也關心著飲食並給予建議，"
+     + "因為每天記錄飲食所以吃東西都會更加留心，"
+     + "教練用調整來改變我的飲食習慣，"
+     + "而不是給壓力逼迫改變，"
+     + "薇均教練教學認真且非常有耐心，"
+     + "讓新手學員很安心，"
+     + "五星教練，推推!!";
+      
 
+
+    });
       
       
       

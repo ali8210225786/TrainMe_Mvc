@@ -277,26 +277,23 @@
 }
 
 		// 自我介紹       
-		$(document)
-				.ready(
-						function() {
-							let textMax = ($("#text").val()).length;
-					
-							$('#feedback')
-									.html(
-											`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
+		$(document).ready(function() {
+							var x = ($("#text").val()).length;					
+							if(x == 0){
+								var textMax = 500;
+							}else{
+								var textMax = 500 - ($("#text").val()).length;
+							};
+							$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}textMax}</span> 個字 `);
+							$('#text').on('input propertychange',typeChange)
 
-							$('#text')
-									.keyup(
-											function() {
-												let textMax = 0;
-												let textLength = $(this).val().length;
-												total = textMax + textLength;
-												$('#feedback')
-														.html(
-																`已經輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
-												//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
-											});
+							function typeChange(){	
+								let textMax = 500;	
+								let textLength = $('#text').val().length;
+								total = textMax - textLength;
+								$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}total}</span> 個字 `);
+							};
+						
 						});
 		
 		// 將換行、空白符號轉換成<br>，存入資料庫
