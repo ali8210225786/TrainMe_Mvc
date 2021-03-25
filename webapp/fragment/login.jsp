@@ -41,14 +41,14 @@
 
                         <div class="group">
                             <label>密碼</label><br>
-                            <form:input path="password" class="input_field pw" placeholder="請輸入您的密碼" required="required" />
+                            <form:input type="password" path="password" class="input_field pw" placeholder="請輸入您的密碼" required="required" />
                         </div>
                         <div class="msgbox">
 							<form:errors path="password" cssClass="error" />
                         </div>
                         <div class="group">
                             <label>確認密碼</label><br>
-                            <form:input path="passwordcheck" class="input_field pw"	placeholder="請再次輸入您的密碼" required="required" />
+                            <form:input type="password" path="passwordcheck" class="input_field pw"	placeholder="請再次輸入您的密碼" required="required" />
                         </div>
                         <div class="msgbox">
 							<form:errors path="passwordcheck" cssClass="error" />
