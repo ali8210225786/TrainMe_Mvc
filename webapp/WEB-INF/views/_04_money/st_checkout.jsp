@@ -71,7 +71,7 @@ table, td {
 				<div id="pay-invoice" class="card">
 					<div class="card-body">
 						<div class="card-title">
-							<h3 class="text-center" id="fillIn">Pay Invoice</h3>
+							<h3 class="text-center" id="fillIn">TrainMe Money</h3>
 						</div>
 						<hr>
 						<form:form method="POST" modelAttribute="cardBean"
