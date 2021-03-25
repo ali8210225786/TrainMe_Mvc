@@ -112,7 +112,7 @@
 									<c:when
 										test="${trainerCourseAll.get(i.current).getTrainerBean_H().getProfile_image() == null}">
 										<img
-											src="<c:url value="/images/_03_MemberData/upimage.png" />">
+											src="<c:url value="/images/_03_MemberData/member.jpg" />">
 									</c:when>
 									<c:otherwise>
 										<img

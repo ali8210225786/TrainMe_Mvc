@@ -71,7 +71,7 @@
 									<template x-if="!trainerX.profile_image">
 										<div class="tr_picture">
 											<img
-												src="<c:url value="/images/_03_MemberData/upimage.png" />">
+												src="<c:url value="/images/_03_MemberData/member.jpg" />">
 										</div>
 									</template>
 
