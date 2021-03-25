@@ -474,7 +474,7 @@
 								<c:when
 									test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
 									<img
-										src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+										src="${pageContext.request.contextPath}/images/_03_MemberData/member.jpg">
 								</c:when>
 								<c:otherwise>
 									<img
