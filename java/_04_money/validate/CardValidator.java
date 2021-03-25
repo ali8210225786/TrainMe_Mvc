@@ -61,14 +61,14 @@ public class CardValidator implements Validator {
 		 {
 			errors.rejectValue("cardCVV", "", "CVV欄位不完整");
 		}
-		if (cb.getCardName().length() > 10  || TEL_PATTERN.matcher(cb.getCardName()).matches()) {
+		if (cb.getCardName().length() > 25  || TEL_PATTERN.matcher(cb.getCardName()).matches()) {
 			errors.rejectValue("cardName", "", "姓名欄位格式不正確");
 		}
 		if (!TEL_PATTERN.matcher(cb.getTel()).matches()) {
 			errors.rejectValue("tel", "", "電話欄位只能為數字");
 		}
 		if (!Email_PATTERN.matcher(cb.getEmail()).matches()) {
-			errors.rejectValue("expiryYear", "", "必須包含@符號，必須包含點，點和@之間必須有字元");
+			errors.rejectValue("email", "", "必須包含@符號，必須包含點，點和@之間必須有字元");
 		}
 //		
 //		if (st.getBirthday() == null) {
