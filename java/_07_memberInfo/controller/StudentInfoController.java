@@ -22,6 +22,8 @@ import _01_register.model.MemberBean_H;
 import _01_register.model.StudentBean_H;
 import _01_register.model.TrainerBean_H;
 import _03_memberData.service.MemberDataService;
+import _04_money.model.MoneyBean_H;
+import _04_money.service.MemPointService;
 import _07_memberInfo.model.StudentDataBean_H;
 import _07_memberInfo.service.StudentInfoService;
 import _10_studentCourse.model.StudentCourseBean_H;
@@ -40,6 +42,9 @@ public class StudentInfoController {
 	@Autowired
 	StudentCourseService studentCourseService;
 
+	@Autowired
+	MemPointService memPointService;
+
 	@GetMapping("/student_info/{id}")
 	public String StudentInfo(Model model, @PathVariable("id") Integer id) {
 
@@ -49,7 +54,7 @@ public class StudentInfoController {
 		model.addAttribute("age", age);
 		if (studentBean.getHeigth() != null && studentBean.getWeight() != null) {
 
-			double BMI = studentInfoService.calBMI(studentBean.getHeigth(),studentBean.getWeight());
+			double BMI = studentInfoService.calBMI(studentBean.getHeigth(), studentBean.getWeight());
 			double BMR = studentInfoService.calBMR(studentBean);
 			double TDEE = studentInfoService.calTDEE(studentBean);
 			model.addAttribute("BMI", BMI);
@@ -58,6 +63,7 @@ public class StudentInfoController {
 			model.addAttribute("StudentDataBean", studentDataBean);
 		}
 
+		MoneyBean_H moneyBean = memPointService.getStudentMoneyLast(id);
 		Date now = new Date();
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 //		System.out.println("======================1");
@@ -66,6 +72,8 @@ public class StudentInfoController {
 		model.addAttribute("comingSoonCourse", comingSoonCourse);
 		model.addAttribute("waitCourse", waitCourse);
 		model.addAttribute("LoginOK", studentBean);
+		model.addAttribute("MoneyBean", moneyBean);
+		
 		return "/_07_memberInfo/student_info";
 	}
 
