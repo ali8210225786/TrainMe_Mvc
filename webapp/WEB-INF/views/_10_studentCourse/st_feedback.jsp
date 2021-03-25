@@ -17,6 +17,14 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+.aside ul li:nth-child(3) a{
+	color: #21d4a7;
+}
+.aside ul li:nth-child(3) a:hover{
+	color: #fff;
+}
+</style>
 </head>
 <body>
 

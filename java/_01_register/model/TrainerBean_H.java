@@ -82,7 +82,7 @@ public class TrainerBean_H extends MemberBean_H {
 	private String bank_account;
 	private String course;
 	private String introduction;
-	@Column(columnDefinition = "INT Default 0")
+	@Column(columnDefinition = "Double Default 0")
 	private Double ratings;
 	private Integer ratings_size;
 	

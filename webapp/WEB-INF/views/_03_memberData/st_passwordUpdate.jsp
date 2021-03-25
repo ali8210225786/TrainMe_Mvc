@@ -18,8 +18,11 @@
 <script src="../js/jquery-3.5.1.js"></script>
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
-.aside ul li:nth-child(6) a {
+.aside ul li:nth-child(6) a{
 	color: #21d4a7;
+}
+.aside ul li:nth-child(6) a:hover{
+	color: #fff;
 }
 </style>
 </head>

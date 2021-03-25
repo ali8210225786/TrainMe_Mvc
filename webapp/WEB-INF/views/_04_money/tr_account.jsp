@@ -31,8 +31,11 @@
 <!-- <link rel="stylesheet" href="./css/style_st_lesson.css"> -->
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
-.aside ul li:nth-child(2) a {
+.aside ul li:nth-child(4) a{
 	color: #21d4a7;
+}
+.aside ul li:nth-child(4) a:hover{
+	color: #fff;
 }
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
