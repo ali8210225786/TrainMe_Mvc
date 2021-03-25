@@ -63,10 +63,10 @@
 					<template x-for="trainerX in trainers" :key="trainerX.id">
 
 						<!-- 每個教練框 -->
-						<a href="javascript:;"> <!-- 超連結至教練個人頁面的a -->
-							<div class="trainer">
+					<div class="trainer">
+						<a href="javascript:;" @click="goLook(trainerX.trId)"> <!-- 超連結至教練個人頁面的a -->
 								<div class="bgcolor">
-									<span  @click="toggle(trainerX.trId)"><i :id="'tr_' + trainerX.trId" class="fas fa-heart like change_color" ></i></span>
+									<span class="love" @click="toggle(trainerX.trId)"><i :id="'tr_' + trainerX.trId" class="fas fa-heart like change_color" ></i></span>
 
 									<template x-if="!trainerX.profile_image">
 										<div class="tr_picture">
@@ -96,7 +96,7 @@
 												<template x-if="trainerX.ratings != 0">
 													<!-- 	=========================== 不知道為何會找不到，可是顯示正常 ================================= -->
 													<span class="star">★</span>
-<!-- 													<span x-text="trainerX.ratings"></span> -->
+													<span x-text="trainerX.ratings"></span>
 												</template>
 											</div>
 										</div>
@@ -115,8 +115,8 @@
 										</div>
 									</div>
 								</div>
-							</div>
 						</a>
+							</div>
 					</template>
 				</div>
 
@@ -172,28 +172,21 @@
 				if($('#tr_' + trId).hasClass('change_color')){
 					
 // 						console.log("okkkk");
-					$.post("/TrainMe/deleteFavorite/" + ${LoginOK.id} , {tr_id : trId}
-		                 );
+					$.post("/TrainMe/deleteFavorite/" + ${LoginOK.id} , {tr_id : trId});
 					
 				}else{
 // 					console.log("nooo");
-					$.post("/TrainMe/addFavorite/" + ${LoginOK.id}, {tr_id : trId}
-		                 );
+					$.post("/TrainMe/addFavorite/" + ${LoginOK.id}, {tr_id : trId});
 					
 				}
-				
-				
-				
 				 $('#tr_'+ trId).toggleClass('change_color');
+						event.stopPropagation();
+						return false;
 			},
-// 			isLike(trId){
-// 				for(tr of this.trainers){
-// 					if(this.trainers.includes(trId)){
-// 						return true;
-// 					}
-// 				}
-// 				return false;
-// 			}
+			goLook(trId){
+				window.location.href="<c:url value='/trainer_info/" + trId + "?type=search&stId=${LoginOK.id}' />";
+					
+			}
 			
 			
 			
