@@ -12,8 +12,9 @@ public class MessageInfo {
 	private String content;
 	private Integer is_read;
 	private Integer toType;
+	private String kind;
 	
-	private MessageInfo(Integer id, Date date, String title, String content, Integer is_read, Integer toType) {
+	private MessageInfo(Integer id, Date date, String title, String content, Integer is_read, Integer toType, String kind) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -21,11 +22,12 @@ public class MessageInfo {
 		this.content = content;
 		this.is_read = is_read;
 		this.toType = toType;
+		this.kind = kind;
 	}
 	
 	public static MessageInfo create(MessageBean mb) {
 		return new MessageInfo(mb.getId(), mb.getDate(), mb.getTitle()
-				, mb.getContent(), mb.getIs_read(), mb.getToType());
+				, mb.getContent(), mb.getIs_read(), mb.getToType(), mb.getKind());
 	}
 	
 	
