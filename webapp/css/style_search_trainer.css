@@ -105,6 +105,14 @@
     display: flex;
     justify-content: center;
   }  
+    .result .fb:last-child{
+    border-bottom: 1px solid #fff;
+    width: 850px;
+    padding: 50px 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }  
 
     .result .mpb{
     display: flex;
@@ -202,4 +210,28 @@
 }
 .change_color{
   color: red;
+}
+
+
+/* 回到最上面按鈕 */
+#gotop {
+	position: fixed;
+	z-index: 90;
+	right: 30px;
+	bottom: 31px;
+	display: none;
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	background: #65e7c7;
+	line-height: 50px;
+	border-radius: 50%;
+	transition: all 0.5s;
+	text-align: center;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0
+		rgba(0, 0, 0, 0.12);
+}
+
+#gotop:hover {
+	background: #7af8d8;
 }
