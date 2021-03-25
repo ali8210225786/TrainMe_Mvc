@@ -40,12 +40,12 @@ footer .footer-item span a:hover {
 	color: #59ddb8
 }
 
-footer .footer-item .title i {
+footer .footer-item .circle .title i {
 	color: #666;
 	font-size: 20px;
 }
 
-footer .circle {
+footer .title .circle {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
@@ -53,6 +53,7 @@ footer .circle {
 	justify-content: center;
 	align-items: center;
 	background-color: #fff;
+	color: #666;
 	margin-bottom: 10px;
 }
 

@@ -16,6 +16,7 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
     crossorigin="anonymous"
     />
+<!-- 	<link rel="stylesheet" href="../css/style_footer.css"> -->
     <link rel="stylesheet" href="../css/style_nav.css">
     <link rel="stylesheet" href="../css/style_add_point.css">
 </head>
@@ -31,7 +32,7 @@
         
             <div class="b_tutle">
                 <h4>儲值點數</h4>
-                <p class="re_p">請選擇儲值方案</p>
+                <p class="re_p">請選擇您需要的儲值方案</p>
             </div>
 
             <div class="block">
@@ -102,6 +103,9 @@
 
          </div>
     </div>
+
+<!-- footer -->
+<%-- 	<jsp:include page="/fragment/footer.jsp" /> --%>
 
 
     
