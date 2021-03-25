@@ -394,7 +394,7 @@
 	 $.get("/TrainMe/queryStudent?stId=" + stId,
              function (data) {
            	 console.log(data);
-           	 
+           	 	
 				$("#profile_image").html('<img src="<c:url value="/images/'+data.profile_image +'"  />">');
 				$("#name").text(data.name);
 				$("#nickname").text(data.nickname);

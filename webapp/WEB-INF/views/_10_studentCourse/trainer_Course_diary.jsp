@@ -43,11 +43,8 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
-.aside ul li:nth-child(3) a{
+.aside ul li:nth-child(2) a {
 	color: #21d4a7;
-}
-.aside ul li:nth-child(3) a:hover{
-	color: #fff;
 }
 
 /* body { */
@@ -214,8 +211,8 @@
 									<table class="table table-bordered">
 										<thead>
 											<tr>
-												<th>訓練動作</th>
-												<th>總重量</th>
+												<th id="fillIn">訓練動作</th>
+												<th id="fillIn1">總重量</th>
 												<th>次數</th>
 												<th>組數</th>
 												<th>休息時間</th>
@@ -246,7 +243,7 @@
 
 
 					<div class="setting_box upload_file">
-						<label style="width:140px"><h5>教練建議</h5><p id="feedback"></p></label>
+						<label style="width:140px"><h5 id="fillIn2">教練建議</h5><p id="feedback"></p></label>
 						<textarea name="datdiary_content" id="text" cols="60" rows="15"
 							maxlength="500" placeholder="限500字以內">${CourseMsg.datdiary_content}</textarea>
 							
@@ -392,6 +389,30 @@
 			    					
 							});
 						});
+					
+				var fillIn = document.getElementById('fillIn')
+				fillIn.addEventListener("click",function(){
+					document.getElementById('action').value = "仰臥起坐";
+					document.getElementById('lord').value = "7kg";
+					document.getElementById('reps').value = "20下";
+					document.getElementById('sets').value = "5組";
+					document.getElementById('rest').value = "20秒";
+				});
+				var fillIn1 = document.getElementById('fillIn1')
+				fillIn1.addEventListener("click",function(){
+					document.getElementById('action').value = "機械式捲腹";
+					document.getElementById('lord').value = "15kg";
+					document.getElementById('reps').value = "15下";
+					document.getElementById('sets').value = "4組";
+					document.getElementById('rest').value = "40秒";
+				});
+				var fillIn2 = document.getElementById('fillIn2')
+				fillIn2.addEventListener("click",function(){
+					document.getElementById('text').value = "雖然是初學者，但學習快速、動作標準，但手部肌肉較不足，建議之後可以再加強手部的訓練。";
+					
+				});
+		
+		
 	</script>
 </body>
 </html>
