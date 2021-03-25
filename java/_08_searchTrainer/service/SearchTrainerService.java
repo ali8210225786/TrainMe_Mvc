@@ -54,8 +54,8 @@ public class SearchTrainerService {
 		}
 		// 只輸入地址、關鍵字
 		if (cityId != 0 && skillTypeId == 0 && keyWord != "") {
-			searchTrainerByCity.retainAll(searchTrainerByKeyWord);
-			resultTrainerId.addAll(searchTrainerByCity);
+			searchTrainerByKeyWord.retainAll(searchTrainerByCity);
+			resultTrainerId.addAll(searchTrainerByKeyWord);
 		}
 		// 只輸入類型、關鍵字
 		if (cityId == 0 && skillTypeId != 0 && keyWord != "") {
