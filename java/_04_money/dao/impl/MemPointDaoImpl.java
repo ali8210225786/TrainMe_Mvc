@@ -62,7 +62,7 @@ public class MemPointDaoImpl implements MemPointDao{
 	@Override
 	public List <TrainerAccountBean_H> getAccountDetail(int id) {
 		
-		String hql = "FROM TrainerAccountBean_H WHERE tr_id = :trid ORDER BY time";
+		String hql = "FROM TrainerAccountBean_H WHERE tr_id = :trid ORDER BY time DESC";
 		Session session = factory.getCurrentSession();
 		
 		@SuppressWarnings("unchecked")

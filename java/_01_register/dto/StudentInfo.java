@@ -57,10 +57,10 @@ public class StudentInfo {
 			this.nickname = "";
 		}
 		
-		if (nickname != null) {
+		if (profile_image != null) {
 			this.profile_image = profile_image;
 		}else {
-			this.profile_image = "/_03_MemberData/upimage.png";
+			this.profile_image = "/_03_MemberData/member.jpg";
 		}
 		
 		if (introduction != null) {
