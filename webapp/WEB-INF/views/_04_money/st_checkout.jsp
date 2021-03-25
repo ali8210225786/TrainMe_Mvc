@@ -71,7 +71,7 @@ table, td {
 				<div id="pay-invoice" class="card">
 					<div class="card-body">
 						<div class="card-title">
-							<h3 class="text-center">Pay Invoice</h3>
+							<h3 class="text-center" id="fillIn">Pay Invoice</h3>
 						</div>
 						<hr>
 						<form:form method="POST" modelAttribute="cardBean"
@@ -195,44 +195,20 @@ table, td {
 // 		alert(value);
 		 money = document.getElementById('money');
          money.value = value;
-		
-		// 縣市列表
-		var cityList = document.getElementById('city.id')
-		var areaList = document.getElementById('area.id')
-	    cityList.addEventListener("change",function (e) {
-	    	
-			const cityId = e.target.value;
-	        var areaList = document.getElementById('area.id');
-	        if(areaList.firstChild){
-	        	areaList.innerHTML = "";
-	        }
-
-	        getAreaList(cityId);
-	        
-	    })
-	    
-	// 行政區列表
-	    function getAreaList(cityId) {
-	        axios.get("/TrainMe/getareaList", {
-	    	    params: {
-	    	    	cityId: cityId
-	    	    }})
-		    .then(function (res) {
-		        var areas = res.data;
-//	 	        console.log(areas);
-		        for(area of areas){
-//	 	        	  console.log(area);
-		            var option = document.createElement("option");
-		            option.value = area.id;
-		            option.innerHTML = area.name;
-		            areaList.appendChild(option);
-	      	    }
-
-	   		 })
-
-			
-
-		}
+	
+         var fillIn = document.getElementById('fillIn');
+ 		fillIn.addEventListener("click",function(){
+ 			document.getElementById('cardName').value = "李淑芬";
+ 			document.getElementById('cardNo1').value = "3422";
+ 			document.getElementById('cardNo2').value = "5422";
+ 			document.getElementById('cardNo3').value = "9845";
+ 			document.getElementById('cardNo4').value = "8533";
+ 			document.getElementById('expiryMonth').value = "0225";
+ 			document.getElementById('cardCVV').value = "112";
+ 			document.getElementById('tel').value = "0986465432";
+ 			document.getElementById('email').value = "ali8210225786@gmail.com";
+ 			document.getElementById('address').value = "台北市萬華區洛陽街69號";
+ 		})
 		
 		
 	

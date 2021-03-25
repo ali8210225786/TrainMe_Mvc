@@ -91,9 +91,9 @@ public class StudentDiaryController {
 			
 			CourseMsg.setDatdiary_content(newBean.getDatdiary_content());
 
-			studentDiaryService.updateStudentCourseDatDiaryContent(CourseMsg);
-			
-			return "/_09_trainerCourse/tr_course";
+			studentDiaryService.updateStudentCourseDatDiaryContent(CourseMsg);		
+			Integer trid = CourseMsg.getTrainerCourseBean_H().getTrainerBean_H().getId();
+			return "redirect:/trainerCourse/" + trid;
 		}
 	
 	}
