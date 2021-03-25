@@ -11,25 +11,27 @@ import javax.mail.internet.MimeMessage;
 
 import _10_studentCourse.model.StudentCourseBean_H;
 
-public class SendingRejectedEmail {
+public class SendingBookCourse {
 
 	
 	private String userEmail;
 	private String name;
-	private String stId;
+	private Integer stId;
+	private Integer trId;
 	private StudentCourseBean_H course;
 	
 	
-	public SendingRejectedEmail(String userEmail, String name, String stId,StudentCourseBean_H course) {
+	public SendingBookCourse(String userEmail, String name, Integer stId,Integer trId,StudentCourseBean_H course) {
 		super();
 		this.userEmail = userEmail;
 		this.name = name;
 		this.stId = stId;
+		this.trId = trId;
 		this.course = course;
 	}
 
 
-	public void sendingRejectedEmail() {
+	public void sendingBookEmail() {
 		// Enter the email address and password for the account from which verification link will be send
 		String email = "trainme015@gmail.com";
 		String password = "Trainme0!";
@@ -55,7 +57,7 @@ public class SendingRejectedEmail {
 			message.setFrom(new InternetAddress(email));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
 			// 設定信件標題
-			message.setSubject("教練已取消您的預約課程!");
+			message.setSubject("有一筆新的預約!");
 			
 			// 設定信件內容
 //			message.setText("Click this link to confirm your email address and complete setup for your account."
@@ -578,17 +580,14 @@ public class SendingRejectedEmail {
 					+ "                        \r\n"
 					+ "                        <td valign=\"top\" class=\"mcnTextContent\" style=\"padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;\">\r\n"
 					+ "                        \r\n"
-					+ "                            <div style=\"text-align: center;\">Oops!</div>\r\n"
-					+ "\r\n"
 					+ "<div style=\"text-align: center;\">"
-					+ "親愛的 "+ name +" 您好:"
+					+ "親愛的 "+ name +" 教練您好:"
 					+"</div>\r\n"
 					+ "\r\n"
-					+ "<div style=\"text-align: center;\">教練已經取消了您的預約<br>\r\n"
-					+ course.getDate()+" "+starCourseTime+":00 ~ "+endCourseTime+":00 " +course.getTrainerCourseBean_H().getSkillBean_H().getName()
+					+ "<div style=\"text-align: center;\">"+ course.getStudentBean_H().getName()  + " 預約了在 " + course.getDate()+" "+starCourseTime+":00 ~ "+endCourseTime+":00 的「" +course.getTrainerCourseBean_H().getSkillBean_H().getName() + "」課程"
 					+"</div>\r\n"
 					+ "\r\n"
-					+ "<div style=\"text-align: center;\">歡迎預約其他課程</div>\r\n"
+					+ "<div style=\"text-align: center;\">請趕快到「課程管理」回覆唷！</div>\r\n"
 					+ "\r\n"
 					+ "                        </td>\r\n"
 					+ "                    </tr>\r\n"
@@ -615,7 +614,7 @@ public class SendingRejectedEmail {
 					+ "                    <tbody>\r\n"
 					+ "                        <tr>\r\n"
 					+ "                            <td align=\"center\" valign=\"middle\" class=\"mcnButtonContent\" style=\"font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 18px; padding: 15px;\">\r\n"
-					+ "                                <a class=\"mcnButton \" title=\"更多課程\" href=\"http://localhost:9091/TrainMe/\" target=\"_blank\" style=\"font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;\">更多課程</a>\r\n"
+					+ "                                <a class=\"mcnButton \" title=\"TrainMe\" href=\"http://localhost:9091/TrainMe/\" target=\"_blank\" style=\"font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;\">TrainMe</a>\r\n"
 					+ "                            </td>\r\n"
 					+ "                        </tr>\r\n"
 					+ "                    </tbody>\r\n"

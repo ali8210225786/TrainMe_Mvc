@@ -79,7 +79,7 @@ table, td {
 							action="/TrainMe/studentMoney/checkout">
 
 							<div class="form-group">
-								<label for="cc-number" class="control-label mb-1">持卡人姓名</label>
+								<label for="cc-number" class="control-label mb-1 name">持卡人姓名</label>
 								<form:input path="cardName" name="cc-number" type="tel"
 									class="form-control cc-number identified visa"
 									required="required" autocomplete="off" />
@@ -116,7 +116,7 @@ table, td {
 										<label for="cc-exp" class="control-label mb-1">有效期限</label>
 										<form:input path="expiryMonth" name="cc-exp" type="tel" maxlength="4"
 											class="form-control cc-exp" required="required"
-											placeholder="MM / YY" autocomplete="cc-exp" />
+											placeholder="MMYY" autocomplete="cc-exp" />
 									</div>
 									<div>
 										<form:errors path="expiryMonth" cssClass="error" />
@@ -195,21 +195,22 @@ table, td {
 // 		alert(value);
 		 money = document.getElementById('money');
          money.value = value;
-	
-         var fillIn = document.getElementById('fillIn');
- 		fillIn.addEventListener("click",function(){
- 			document.getElementById('cardName').value = "李淑芬";
- 			document.getElementById('cardNo1').value = "3422";
- 			document.getElementById('cardNo2').value = "5422";
- 			document.getElementById('cardNo3').value = "9845";
- 			document.getElementById('cardNo4').value = "8533";
- 			document.getElementById('expiryMonth').value = "0225";
- 			document.getElementById('cardCVV').value = "112";
- 			document.getElementById('tel').value = "0986465432";
- 			document.getElementById('email').value = "ali8210225786@gmail.com";
- 			document.getElementById('address').value = "台北市萬華區洛陽街69號";
- 		})
 		
+// 		
+		
+		var fillIn = document.getElementById('fillIn');
+		fillIn.addEventListener("click",function(){
+			document.getElementById('cardName').value = "李淑芬";
+			document.getElementById('cardNo1').value = "3422";
+			document.getElementById('cardNo2').value = "5422";
+			document.getElementById('cardNo3').value = "9845";
+			document.getElementById('cardNo4').value = "8533";
+			document.getElementById('expiryMonth').value = "0225";
+			document.getElementById('cardCVV').value = "112";
+			document.getElementById('tel').value = "0986465432";
+			document.getElementById('email').value = "ali8210225786@gmail.com";
+			document.getElementById('address').value = "台北市萬華區洛陽街69號";
+		})
 		
 	
 	</script>

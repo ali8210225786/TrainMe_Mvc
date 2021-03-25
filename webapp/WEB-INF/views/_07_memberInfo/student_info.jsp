@@ -64,7 +64,7 @@
 						<c:choose>
 							<c:when test="${empty  LoginOK.profile_image}">
 								<img id="photo" name="photo"
-									src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+									src="${pageContext.request.contextPath}/images/_03_MemberData/member.jpg">
 							</c:when>
 							<c:otherwise>
 								<img id="photo" name="photo"

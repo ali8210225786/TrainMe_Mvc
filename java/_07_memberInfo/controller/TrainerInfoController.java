@@ -42,6 +42,8 @@ import _10_studentCourse.service.StudentCourseService;
 import _12_message.service.MessageService;
 import _13_addfavorite.model.FavoriteBean;
 import _13_addfavorite.service.FavoriteService;
+import mail.model.SendingAcceptEmail;
+import mail.model.SendingBookCourse;
 
 @SessionAttributes({"LoginOK","studentMoney"})
 @Controller
@@ -165,6 +167,10 @@ public class TrainerInfoController {
 			moneyBean_H1.setStudentCourseBean_H(sc);
 			memPointService.saveStudentRefund(moneyBean_H1);
 			
+			
+			//寄預約訊息給教練
+			SendingBookCourse bookEmail = new SendingBookCourse(trainerCourseBean.getTrainerBean_H().getEmail(), trainerCourseBean.getTrainerBean_H().getName(), stId, trId, sc);
+			bookEmail.sendingBookEmail();
 			//傳送預約訊息給教練
 			messageService.bookMsgToTrainer(sc);
 	
