@@ -29,12 +29,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="./css/style_st_lesson.css">
+<link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
-.aside ul li:nth-child(5) a{
+.aside ul li:nth-child(1) a{
 	color: #21d4a7;
 }
-.aside ul li:nth-child(5) a:hover{
+.aside ul li:nth-child(1) a:hover{
 	color: #fff;
 }
 </style>
@@ -220,7 +221,10 @@
 	</div>
 	</div>
 
-
+	<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
+	
+	
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
@@ -273,26 +277,23 @@
 }
 
 		// 自我介紹       
-		$(document)
-				.ready(
-						function() {
-							let textMax = ($("#text").val()).length;
-					
-							$('#feedback')
-									.html(
-											`已經輸入 <span style="color:red;">${'${'}textMax}</span> 個字 `);
+		$(document).ready(function() {
+							var x = ($("#text").val()).length;					
+							if(x == 0){
+								var textMax = 500;
+							}else{
+								var textMax = 500 - ($("#text").val()).length;
+							};
+							$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}textMax}</span> 個字 `);
+							$('#text').on('input propertychange',typeChange)
 
-							$('#text')
-									.keyup(
-											function() {
-												let textMax = 0;
-												let textLength = $(this).val().length;
-												total = textMax + textLength;
-												$('#feedback')
-														.html(
-																`已經輸入 <span style="color:red;">${'${'}total}</span> 個字 `);
-												//$('#feedback').html("已經輸入 <span style='color:red;'>" + totle + "</span> 個字");
-											});
+							function typeChange(){	
+								let textMax = 500;	
+								let textLength = $('#text').val().length;
+								total = textMax - textLength;
+								$('#feedback').html(`尚可輸入<span style="color:red;">${'${'}total}</span> 個字 `);
+							};
+						
 						});
 		
 		// 將換行、空白符號轉換成<br>，存入資料庫
