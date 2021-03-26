@@ -613,7 +613,7 @@ public class SendingAcceptEmail {
 					+ "                    <tbody>\r\n"
 					+ "                        <tr>\r\n"
 					+ "                            <td align=\"center\" valign=\"middle\" class=\"mcnButtonContent\" style=\"font-family: Arial; font-size: 18px; padding: 15px;\">\r\n"
-					+ "                                <a class=\"mcnButton \" title=\"查看課程\" href=\"http://localhost:8082/TrainMe/st_info_lesson?key=" + stId + "\"  target=\"_blank\" style=\"font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;\">查看課程</a>\r\n"
+					+ "                                <a class=\"mcnButton \" title=\"查看課程\" href=\"http://localhost:9091/TrainMe/\"  target=\"_blank\" style=\"font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;\">查看課程</a>\r\n"
 					+ "                            </td>\r\n"
 					+ "                        </tr>\r\n"
 					+ "                    </tbody>\r\n"

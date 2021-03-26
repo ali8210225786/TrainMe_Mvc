@@ -64,7 +64,7 @@
 						<c:choose>
 							<c:when test="${empty  LoginOK.profile_image}">
 								<img id="photo" name="photo"
-									src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+									src="${pageContext.request.contextPath}/images/_03_MemberData/member.jpg">
 							</c:when>
 							<c:otherwise>
 								<img id="photo" name="photo"
@@ -91,12 +91,14 @@
 								</div>
 								<div class="wp_div">
 									<p>
-										點數餘額 : <span> <c:choose>
-												<c:when test="${MoneyBean.size() == 0}">
+										點數餘額 : <span> 
+											
+										<c:choose>
+												<c:when test="${TotalAmount == null}">
 													0
 												</c:when>
 												<c:otherwise>
-												${MoneyBean.get((MoneyBean.size()-1)).total_amount} 	
+												${TotalAmount.getTotal_amount()} 	
 												</c:otherwise>
 
 											</c:choose>

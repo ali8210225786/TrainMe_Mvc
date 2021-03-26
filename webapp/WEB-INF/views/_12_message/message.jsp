@@ -99,7 +99,32 @@
 										<div class="n_div">
 											<div class="notice_area">
 												<p x-text="message.content"></p>
-												<!-- 	                                        <button class="btn_notice">填寫個人資訊</button> -->
+												
+												<template x-if="isTrPass(message.kind)">
+												<button class="btn_notice" @click="goTrInfo()">個人主頁</button>
+												<button class="btn_notice" @click="goTrData()">帳號設定</button>
+												</template>
+												
+												<template x-if="isStPass(message.kind)">
+												<button class="btn_notice" @click="goStInfo()">個人資料</button>
+												<button class="btn_notice" @click="goStData()">帳號設定</button>
+												</template>
+												
+												<template x-if="isTrBook(message.kind)">
+												<button class="btn_notice" @click="goTrCourse()">課程管理</button>
+												</template>
+												
+												<template x-if="isAllowToSt(message.kind)">
+												<button class="btn_notice" @click="goStCourse()">課程管理</button>
+												</template>
+												
+												<template x-if="isRejectToSt(message.kind)">
+												<button class="btn_notice" @click="goStCourse()">課程管理</button>
+												</template>
+												
+												<template x-if="isStPrice(message.kind)">
+												<button class="btn_notice" @click="goStPrint()">我的點數</button>
+												</template>
 
 											</div>
 										</div>
@@ -375,7 +400,45 @@
                    }
                    
 			},
-			
+			isTrPass(kind){
+				return kind == "trPass";
+			},
+			isStPass(kind){
+				return kind == "stPass";
+			},
+			isTrBook(kind){
+				return kind == "trBook";
+			},
+			isAllowToSt(kind){
+				return kind == "allowToSt";
+			},
+			isRejectToSt(kind){
+				return kind == "rejectToSt";
+			},
+			isStPrice(kind){
+				return kind == "stPrice";
+			},
+			goTrInfo(){
+				window.location.href="<c:url value='/tr_info_account/${LoginOK.id}' />";
+			},
+			goTrData(){
+				window.location.href="<c:url value='/trainerData/${LoginOK.id}' />";
+			},
+			goStInfo(){
+				window.location.href="<c:url value='/student_info_edit/${LoginOK.id}' />";
+			},
+			goStData(){
+				window.location.href="<c:url value='/studentData/${LoginOK.id}' />";
+			},
+			goTrCourse(){
+				window.location.href="<c:url value='/trainerCourse/${LoginOK.id}' />";
+			},
+			goStCourse(){
+				window.location.href="<c:url value='/st_info_lesson/${LoginOK.id}' />";
+			},
+			goStPrint(){
+				window.location.href="<c:url value='/studentMoney/${LoginOK.id}' />";
+			}
 			
 			
 			

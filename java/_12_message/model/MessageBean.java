@@ -33,11 +33,12 @@ public class MessageBean {
 	@Column(columnDefinition = "INT Default 0")
 	private Integer is_read;
 	private Integer toType;
+	private String kind;
 	
 	
 	
 	public MessageBean(Integer id, Date date, String title, String content, StudentBean_H studentBean_H,
-			TrainerBean_H trainerBean_H, Integer is_read, Integer toType) {
+			TrainerBean_H trainerBean_H, Integer is_read, Integer toType, String kind) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -47,6 +48,7 @@ public class MessageBean {
 		this.trainerBean_H = trainerBean_H;
 		this.is_read = is_read;
 		this.toType = toType;
+		this.kind = kind;
 	}
 
 	public MessageBean() {
@@ -115,6 +117,14 @@ public class MessageBean {
 
 	public void setToType(Integer toType) {
 		this.toType = toType;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 
 	

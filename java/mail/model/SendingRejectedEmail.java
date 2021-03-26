@@ -55,7 +55,7 @@ public class SendingRejectedEmail {
 			message.setFrom(new InternetAddress(email));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
 			// 設定信件標題
-			message.setSubject("教練已同意您的預約課程!");
+			message.setSubject("教練已取消您的預約課程!");
 			
 			// 設定信件內容
 //			message.setText("Click this link to confirm your email address and complete setup for your account."
@@ -615,7 +615,7 @@ public class SendingRejectedEmail {
 					+ "                    <tbody>\r\n"
 					+ "                        <tr>\r\n"
 					+ "                            <td align=\"center\" valign=\"middle\" class=\"mcnButtonContent\" style=\"font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 18px; padding: 15px;\">\r\n"
-					+ "                                <a class=\"mcnButton \" title=\"更多課程\" href=\"http://localhost:8082/TrainMe/searchTrainerAll\" target=\"_blank\" style=\"font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;\">更多課程</a>\r\n"
+					+ "                                <a class=\"mcnButton \" title=\"更多課程\" href=\"http://localhost:9091/TrainMe/\" target=\"_blank\" style=\"font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;\">更多課程</a>\r\n"
 					+ "                            </td>\r\n"
 					+ "                        </tr>\r\n"
 					+ "                    </tbody>\r\n"

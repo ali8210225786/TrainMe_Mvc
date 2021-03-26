@@ -43,9 +43,9 @@ public class SearchTrainerService {
 		
 //		// 全部都有輸入
 		if (cityId != 0 && skillTypeId != 0 && keyWord != "") {
-			searchTrainerByCity.retainAll(searchTrainerBySkillType);
-			searchTrainerByCity.retainAll(searchTrainerByKeyWord);
-			resultTrainerId.addAll(searchTrainerByCity);
+			searchTrainerByKeyWord.retainAll(searchTrainerByCity);
+			searchTrainerByKeyWord.retainAll(searchTrainerByKeyWord);
+			resultTrainerId.addAll(searchTrainerByKeyWord);
 		}
 		// 只輸入地址、類型
 		if (cityId != 0 && skillTypeId != 0 && keyWord == "") {
@@ -54,8 +54,8 @@ public class SearchTrainerService {
 		}
 		// 只輸入地址、關鍵字
 		if (cityId != 0 && skillTypeId == 0 && keyWord != "") {
-			searchTrainerByCity.retainAll(searchTrainerByKeyWord);
-			resultTrainerId.addAll(searchTrainerByCity);
+			searchTrainerByKeyWord.retainAll(searchTrainerByCity);
+			resultTrainerId.addAll(searchTrainerByKeyWord);
 		}
 		// 只輸入類型、關鍵字
 		if (cityId == 0 && skillTypeId != 0 && keyWord != "") {

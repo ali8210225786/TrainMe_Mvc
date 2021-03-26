@@ -36,7 +36,6 @@
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
 <style type="text/css">
-
 .tschedule td {
 	cursor: pointer;
 }
@@ -129,19 +128,23 @@
 				<a href="<c:url value='/tr_info_account/${LoginOK.id}' />"><i
 					class="fas fa-chevron-left"> </i> 返回</a>
 			</c:if>
-			<c:if test="${type.equals('search')}">
+			<c:if test="${type.equals('favorite')}">
+				<a href="<c:url value='/favoriteTrainer/${LoginOK.id}' />"><i
+					class="fas fa-chevron-left"> </i> 返回</a>
+			</c:if>
 			
+			<c:if test="${type.equals('search')}">
+
 				<c:if test="${LoginOK.type == 1}">
 					<a class="trTitle"
 						href="<c:url value='/searchTrainerAll?stId=${LoginOK.id}' />"><i
-						class="fas fa-chevron-left"> </i> 返回
-					</a>
+						class="fas fa-chevron-left"> </i> 返回 </a>
 				</c:if>
 				<c:if test="${LoginOK.type != 1}">
 					<a href="<c:url value='/searchTrainerAll' />"><i
 						class="fas fa-chevron-left"> </i> 返回</a>
 				</c:if>
-				
+
 			</c:if>
 		</div>
 	</div>
@@ -174,7 +177,7 @@
 					<c:choose>
 						<c:when test="${empty  trainerBean.profile_image}">
 							<img
-								src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+								src="${pageContext.request.contextPath}/images/_03_MemberData/member.jpg">
 						</c:when>
 						<c:otherwise>
 							<img src="/upload/${trainerBean.profile_image}">
@@ -423,27 +426,27 @@
 										<template x-for="date in dates" :key="date + hour">
 											<!-- 											data-toggle="modal" -->
 											<%-- 												data-target="#exampleModal${LoginOK.type}" --%>
-										<td
-											:class="{
+											<td
+												:class="{
 		                       			 closed :isClosed(date,hour),  
 				                        booked :isBooked(date, hour),
 				                        save :!isClosed(date, hour) && !isBooked(date, hour),
 				                        lock :isTrainer()}"
-											@click="bookCourse(date,hour)">
-											<!-- 												@click="bookCourse(date,hour)" --> <!-- 												> -->
-											<template x-if="isBooked(date, hour)">
-												<span>已預約</span>
-											</template>
-											<template x-if="isClosed(date, hour)">
-												<span>已關閉</span>
-											</template>
-											<template
-												x-if="!isClosed(date, hour) && !isBooked(date, hour)">
-												<span>預約</span>
-											</template>
-										</td>
-								</template>
-								</tr>
+												@click="bookCourse(date,hour)">
+												<!-- 												@click="bookCourse(date,hour)" --> <!-- 												> -->
+												<template x-if="isBooked(date, hour)">
+													<span>已預約</span>
+												</template>
+												<template x-if="isClosed(date, hour)">
+													<span>已關閉</span>
+												</template>
+												<template
+													x-if="!isClosed(date, hour) && !isBooked(date, hour)">
+													<span>預約</span>
+												</template>
+											</td>
+										</template>
+									</tr>
 								</template>
 
 							</tbody>
@@ -454,10 +457,12 @@
 
 
 				<template x-if="isEnd()">
-					<span class="next" id="notClick"><i	class="fas fa-angle-right"></i></span>
+					<span class="next" id="notClick"><i
+						class="fas fa-angle-right"></i></span>
 				</template>
 				<template x-if="!isEnd()">
-					<span class="next"><i class="fas fa-angle-right" @click="addDate()"></i></span>
+					<span class="next"><i class="fas fa-angle-right"
+						@click="addDate()"></i></span>
 				</template>
 
 
@@ -552,7 +557,7 @@
 									<c:when
 										test="${empty  trainerCourseAndStudentCourseAndRatings.get(i.current).getStudentBean_H().getProfile_image()}">
 										<img
-											src="${pageContext.request.contextPath}/images/_03_MemberData/upimage.png">
+											src="${pageContext.request.contextPath}/images/_03_MemberData/member.jpg">
 									</c:when>
 									<c:otherwise>
 										<img
@@ -581,7 +586,8 @@
 								</div>
 
 								<!-- 留言 -->
-								<div class="sit"><p style="line-height: 1.3;">${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
+								<div class="sit">
+									<p style="line-height: 1.3;">${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
 								</div>
 
 							</div>
