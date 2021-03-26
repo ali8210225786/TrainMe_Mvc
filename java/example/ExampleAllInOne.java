@@ -216,6 +216,7 @@ public class ExampleAllInOne {
 	
 	public static String genAioCheckOutDevide(){
 		AioCheckOutDevide obj = new AioCheckOutDevide();
+		
 		obj.setMerchantTradeNo("testCompany50007");
 		obj.setMerchantTradeDate("2017/01/01 08:05:23");
 		obj.setTotalAmount("50");
@@ -236,7 +237,7 @@ public class ExampleAllInOne {
 		obj.setMerchantTradeDate("2017/01/01 08:05:23");
 		obj.setTotalAmount(price);
 		obj.setTradeDesc("test Description");
-		obj.setItemName("TestItem");
+		obj.setItemName("儲值點數");
 		obj.setReturnURL("http://211.23.128.214:5000");
 		obj.setOrderResultURL("http://localhost:9091/TrainMe/studentMoney/checkout");
 		obj.setNeedExtraPaidInfo("N");
