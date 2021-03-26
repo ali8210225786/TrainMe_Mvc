@@ -18,6 +18,7 @@ public class FavoriteInfo {
 	private String area;
 	private Object[] skillType;
 	private Integer price;
+	private String gym;
 	
 	
 	
@@ -28,7 +29,7 @@ public class FavoriteInfo {
 
 
 
-	public FavoriteInfo(Integer id, Integer trId, String name, String profile_image, double ratings, String city, String area) {
+	public FavoriteInfo(Integer id, Integer trId, String name, String profile_image, double ratings, String city, String area, String gym) {
 		super();
 		this.id = id;
 		this.trId = trId;
@@ -37,7 +38,7 @@ public class FavoriteInfo {
 		this.ratings = ratings;
 		this.city = city;
 		this.area = area;
-		
+		this.gym = gym;
 	}
 
 
@@ -47,7 +48,9 @@ public class FavoriteInfo {
 		return new FavoriteInfo(fb.getId(),fb.getTrainerBean_H().getId(), fb.getTrainerBean_H().getName(), fb.getTrainerBean_H().getProfile_image(),
 				ratings,
 				fb.getTrainerBean_H().getGym().getCity().getName(),
-				fb.getTrainerBean_H().getGym().getArea().getName());
+				fb.getTrainerBean_H().getGym().getArea().getName(),
+				fb.getTrainerBean_H().getGym().getName()
+				);
 	}
 
 
@@ -71,6 +74,16 @@ public class FavoriteInfo {
 
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+
+
+	public String getGym() {
+		return gym;
+	}
+
+
+	public void setGym(String gym) {
+		this.gym = gym;
 	}
 	
 	

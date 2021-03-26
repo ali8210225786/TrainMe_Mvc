@@ -104,17 +104,17 @@
 											</div>
 										</div>
 										<div class="tw">
-											<label>授課地點</label> <span
-												x-text="trainerX.city + trainerX.area"></span>
+											<label>課程價格</label> <span x-text="trainerX.price+'  up'"></span>
 										</div>
+										
 									</div>
 									<div class="twbox">
 										<div class="tw">
-											<label>課程類型</label> <span
-												x-text="parseStr(trainerX.skillType)"></span>
+											<label>授課地點</label> <span
+												x-text="trainerX.city + trainerX.area"></span>
 										</div>
 										<div class="tw">
-											<label>課程價格</label> <span x-text="trainerX.price+'  up'"></span>
+											<label>健身房</label> <span ></span>
 										</div>
 									</div>
 								</div>
