@@ -91,12 +91,14 @@
 								</div>
 								<div class="wp_div">
 									<p>
-										點數餘額 : <span> <c:choose>
-												<c:when test="${MoneyBean == null}">
+										點數餘額 : <span> 
+											
+										<c:choose>
+												<c:when test="${TotalAmount == null}">
 													0
 												</c:when>
 												<c:otherwise>
-												${MoneyBean.getTotal_amount()} 	
+												${TotalAmount.getTotal_amount()} 	
 												</c:otherwise>
 
 											</c:choose>
