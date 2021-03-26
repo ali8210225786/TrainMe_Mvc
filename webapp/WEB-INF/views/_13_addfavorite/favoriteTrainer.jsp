@@ -187,7 +187,7 @@
 						return false;
 			},
 			goLook(trId){
-				window.location.href="<c:url value='/trainer_info/" + trId + "?type=search&stId=${LoginOK.id}' />";
+				window.location.href="<c:url value='/trainer_info/" + trId + "?type=favorite&stId=${LoginOK.id}' />";
 					
 			}
 			
