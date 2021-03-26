@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_info.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_account.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css">
+    <link rel="stylesheet" href="<c:url value='/css/style_footer.css' />">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 
@@ -130,6 +131,9 @@
                     </div>
              </div>
         </div>
+        
+        <!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />s
     
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

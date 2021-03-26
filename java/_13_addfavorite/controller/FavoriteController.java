@@ -46,9 +46,6 @@ public class FavoriteController {
 	@PostMapping("/deleteFavorite/{id}")
 	public @ResponseBody String deleteFavorite(@PathVariable("id")Integer id,
 			@RequestParam("tr_id") Integer trId) {
-		System.out.println(id);
-		System.out.println(trId);
-		
 		favoriteService.cancelFavorite(favoriteService.getFavoriteBean(id, trId));
 		Gson gson = new Gson();
 		String json = gson.toJson("ok");
@@ -69,7 +66,7 @@ public class FavoriteController {
 		List<Object> favoriteInfos = new ArrayList<>();
 		for(FavoriteBean fb:favoriteList) {
 			FavoriteInfo info = FavoriteInfo.create(fb);
-			List<SkillTypeBean_H> trainerCoursesSkillType = trainerInfoService.getTrainerSkillType(fb.getTrainerBean_H().getId());
+//			List<SkillTypeBean_H> trainerCoursesSkillType = trainerInfoService.getTrainerSkillType(fb.getTrainerBean_H().getId());
 			Integer cheapPrice = trainerInfoService.getCheapPrice(fb.getTrainerBean_H().getId());
 			info.setPrice(cheapPrice);
 
