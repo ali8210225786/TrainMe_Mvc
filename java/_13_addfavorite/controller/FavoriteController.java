@@ -72,13 +72,7 @@ public class FavoriteController {
 			List<SkillTypeBean_H> trainerCoursesSkillType = trainerInfoService.getTrainerSkillType(fb.getTrainerBean_H().getId());
 			Integer cheapPrice = trainerInfoService.getCheapPrice(fb.getTrainerBean_H().getId());
 			info.setPrice(cheapPrice);
-			List<String> skillTypes = new ArrayList<>();
-			for(SkillTypeBean_H sb : trainerCoursesSkillType) {
-//				System.out.println("=======================> " + sb.getName());
-				skillTypes.add(sb.getName());
-			}
-			
-			info.setSkillType(skillTypes.toArray());
+
 			favoriteInfos.add(info);
 		}
 		Gson gson = new Gson();

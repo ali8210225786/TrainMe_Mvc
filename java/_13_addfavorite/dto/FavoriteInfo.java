@@ -57,14 +57,14 @@ public class FavoriteInfo {
 
 
 
-	public Object[] getSkillType() {
-		return skillType;
-	}
-
-
-	public void setSkillType(Object[] objects) {
-		this.skillType = objects;
-	}
+//	public Object[] getSkillType() {
+//		return skillType;
+//	}
+//
+//
+//	public void setSkillType(Object[] objects) {
+//		this.skillType = objects;
+//	}
 
 
 	public Integer getPrice() {
