@@ -36,7 +36,7 @@ public class MemPointDaoImpl implements MemPointDao{
 	@Override
 	public List <MoneyBean_H> getStudentMoneyDetail(int id) {
 		
-		String hql = "FROM MoneyBean_H WHERE st_id = :stid ORDER BY change_time";
+		String hql = "FROM MoneyBean_H WHERE st_id = :stid ORDER BY change_time DESC";
 		Session session = factory.getCurrentSession();
 		
 		@SuppressWarnings("unchecked")
