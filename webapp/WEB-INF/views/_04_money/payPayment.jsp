@@ -11,6 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${abc.password};
+${cardBean.payPayment};
 </body>
 </html>

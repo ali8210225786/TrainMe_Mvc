@@ -16,6 +16,7 @@ public class CardBean {
 	String email;
 	String address;
 	Integer money;
+	String payPayment;
 	
 	
 	public CardBean() {
@@ -39,6 +40,18 @@ public class CardBean {
 		this.email = email;
 		this.address = address;
 		this.money = money;
+	}
+
+
+
+	public String getPayPayment() {
+		return payPayment;
+	}
+
+
+
+	public void setPayPayment(String payPayment) {
+		this.payPayment = payPayment;
 	}
 
 

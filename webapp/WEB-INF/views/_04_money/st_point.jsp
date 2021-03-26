@@ -129,11 +129,11 @@
 			<div class="balance">
 				<p>
 				<c:choose>
-				<c:when test="${MoneyBean.size()==0}"> 
+				<c:when test="${moneyLast.total_amount==0}"> 
 				<i class="fas fa-coins"></i> 目前餘額 :0 元 </span>
 				</c:when>
 				<c:otherwise>
-					<i class="fas fa-coins"></i> 目前餘額 : <span>${MoneyBean.get((MoneyBean.size()-1)).total_amount}</span>
+					<i class="fas fa-coins"></i> 目前餘額 : <span>${moneyLast.total_amount}</span>
 					點
 					</c:otherwise>
 					</c:choose>

@@ -70,7 +70,7 @@ import mail.service.MailService;
 
 
 @Controller
-@SessionAttributes({ "LoginOK", "MoneyBean", "cityList", "areaList", "st_unreadMessage","abc" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "MoneyBean", "cityList", "areaList", "st_unreadMessage"}) // 此處有LoginOK的識別字串
 public class MoneyController {
 
 	@Autowired
@@ -95,7 +95,9 @@ public class MoneyController {
 	public String studentMoney(Model model, @PathVariable("id") Integer id) {
 		System.out.println("pig =" + id);
 		List<MoneyBean_H> money = memPointService.getStudentMoneyDetail(id);
+		MoneyBean_H moneyLast= memPointService.getStudentMoneyLast(id);
 		model.addAttribute("MoneyBean", money);
+		model.addAttribute("moneyLast", moneyLast);
 		return "/_04_money/st_point";
 	}
 
@@ -112,17 +114,17 @@ public class MoneyController {
 	public String point(Model model,@RequestParam("price") String value) {
 
 		
-		
-		LoginBean a = new LoginBean();
-		ExampleAllInOne e = new ExampleAllInOne();
+		CardBean cardBean=new CardBean();
+		//綠界套件的類別
+		ExampleAllInOne exampleAllInOne = new ExampleAllInOne();
 		ExampleAllInOne.initial();		
 		Integer val = Integer.parseInt(value);
 		
-		String abc = e.genAioCheckOutOneTime(val.toString());
-		System.out.println(abc);	
-		a.setPassword(abc);
-		model.addAttribute("abc", a);
-		return "/_01_register/NewFile";
+		String paymentValue =exampleAllInOne.genAioCheckOutOneTime(val.toString());
+		System.out.println(value);	
+		cardBean.setPayPayment(paymentValue);
+		model.addAttribute("cardBean", cardBean);
+		return "/_04_money/payPayment";
 	
 	}
 
@@ -170,30 +172,11 @@ public class MoneyController {
 		moneyBean_H.setChange_amount(price);
 		memPointService.saveMoney(moneyBean_H);
 		
-//		Collection<Part> parts = request.getParts();
-//		for(Part p : parts) {
-//			String key = p.getName();
-//			String value = request.getParameter(key);
-//			if(key.equals("TradeAmt")) {
-//				price = Integer.parseInt(value);
-//				System.out.println(price);
-//			}
-//			else if(key.equals("TradeDate")) {
-//				try {
-//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//				date = (java.sql.Date) sdf.parse(value);
-//				System.out.println(date);
-//				}catch (ParseException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			else if(key.equals("RtnMsg")) {
-//				RtnMsg = value;
-//				System.out.println(RtnMsg);
-//					}	
-//			
-//			
-//		}
+		//產生儲值成功通知並更新未讀訊息數量
+		MoneyBean_H mb = memPointService.getStudentMoneyLast(sb.getId());
+		messageService.storedValueMsg(mb);
+		Long unreadMessage =  messageService.unreadMessage(sb.getId(), sb.getType());
+		model.addAttribute("st_unreadMessage", unreadMessage);
 		
 		
 		return "redirect:/studentMoney/"+id;
