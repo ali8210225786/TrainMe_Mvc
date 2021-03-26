@@ -5,6 +5,11 @@ import java.util.Hashtable;
 import java.util.Random;
 import java.util.UUID;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import ecpay.payment.integration.AllInOne;
 import ecpay.payment.integration.domain.AioCheckOutALL;
 import ecpay.payment.integration.domain.AioCheckOutATM;
@@ -122,7 +127,7 @@ public class ExampleAllInOne {
 	
 	public static String genAioCheckOutWebATM(){
 		AioCheckOutWebATM obj = new AioCheckOutWebATM();
-		obj.setMerchantTradeNo(getRandomString(20));
+		obj.setMerchantTradeNo("74823H75879R166476");
 		obj.setMerchantTradeDate("2017/01/01 08:05:08");
 		obj.setTotalAmount("500");
 		obj.setTradeDesc("test Description");
@@ -133,20 +138,9 @@ public class ExampleAllInOne {
 		return form;
 	}
 	
-	public static String getRandomString(int length) {
-		String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		Random random = new Random();
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < length; i++) {
-			int number = random.nextInt(62);
-			sb.append(str.charAt(number));
-		}
-		return sb.toString();
-	}
-	
 	public static String genAioCheckOutALL(){
 		AioCheckOutALL obj = new AioCheckOutALL();
-		obj.setMerchantTradeNo(getRandomString(20));
+		obj.setMerchantTradeNo("74823H75879R166486");
 		obj.setMerchantTradeDate("2017/01/01 08:05:23");
 		obj.setTotalAmount("50");
 		obj.setTradeDesc("test Description");
@@ -235,16 +229,18 @@ public class ExampleAllInOne {
 		return form;
 	}
 	
-	public static String genAioCheckOutOneTime(){
+	public static String genAioCheckOutOneTime(String price){
+		UUID uid = UUID.randomUUID();
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
-		obj.setMerchantTradeNo("testCompan5y0008");
+		obj.setMerchantTradeNo(uid.toString().replaceAll("-", "").substring(0, 20));
 		obj.setMerchantTradeDate("2017/01/01 08:05:23");
-		obj.setTotalAmount("50");
+		obj.setTotalAmount(price);
 		obj.setTradeDesc("test Description");
 		obj.setItemName("TestItem");
 		obj.setReturnURL("http://211.23.128.214:5000");
+		obj.setOrderResultURL("http://localhost:9091/TrainMe/studentMoney/checkout");
 		obj.setNeedExtraPaidInfo("N");
-		obj.setRedeem("Y");
+		obj.setRedeem("N");
 		String form = all.aioCheckOut(obj, null);
 		return form;
 	}
