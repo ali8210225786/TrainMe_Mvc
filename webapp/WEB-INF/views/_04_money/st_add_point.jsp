@@ -44,7 +44,7 @@
                                <div class="choose_point">
                     <p>支付2000元</p>
                     <h5>儲值2000點</h5>
-                    <button onclick="alertCookie(2000)" >購買點數</button>
+                    <button onclick="alertCookie(2000)" id="button">購買點數</button>
                 </div>
 
 
@@ -59,7 +59,7 @@
                             <span>20點</span>
                         </div>
                     </div>
-                    <button onclick="alertCookie(3000)" >購買點數</button>
+                    <button onclick="alertCookie(3000)" id="button">購買點數</button>
                 </div>
 
 
@@ -72,7 +72,7 @@
                             <span>50點</span>
                         </div>
                     </div>
-                    <button onclick="alertCookie(5000)" >購買點數</button>
+                    <button onclick="alertCookie(5000)" id="button">購買點數</button>
                 </div>
 
 
@@ -85,7 +85,7 @@
                             <span>70點</span>
                         </div>
                     </div>
-                    <button onclick="alertCookie(7000)" >購買點數</button>
+                    <button onclick="alertCookie(7000)" id="button">購買點數</button>
 
                 </div>
 
@@ -98,7 +98,7 @@
                             <span>100點</span>
                         </div>
                     </div>
-                    <button onclick="alertCookie(10000)" >購買點數</button>
+                    <button onclick="alertCookie(10000)" id="button">購買點數</button>
 
                 </div>
             </div>
@@ -112,17 +112,23 @@
 
     
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     localStorage.clear();
     
     function alertCookie(value){
+    	
+    	window.location.href = "/TrainMe/studentMoney/add?price="+value ;
+
         
-        localStorage.setItem('name',value);
-        // alert(value)
-		window.location.assign("/TrainMe/studentMoney/checkout")
+//         localStorage.setItem('name',value);
+//         alert(value)
+// 		window.location.assign("/TrainMe/studentMoney/checkout")
         
     }
+
+			
+	
     
 </script>
 </html>
