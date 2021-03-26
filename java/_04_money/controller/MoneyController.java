@@ -120,7 +120,7 @@ public class MoneyController {
 		ExampleAllInOne.initial();		
 		Integer val = Integer.parseInt(value);
 		
-		String paymentValue =exampleAllInOne.genAioCheckOutOneTime(val.toString());
+		String paymentValue =exampleAllInOne.genAioCheckOutALL(val.toString());
 		System.out.println(value);	
 		cardBean.setPayPayment(paymentValue);
 		model.addAttribute("cardBean", cardBean);

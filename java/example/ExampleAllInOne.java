@@ -40,7 +40,7 @@ public class ExampleAllInOne {
 //		System.out.println("queryTrade: " + postQueryTrade());
 //		System.out.println("tradeNoAio: " + postTradeNoAio());
 //		System.out.println("fundingReconDetail: " + postFundingReconDetail());
-		System.out.println("aioCheckOutALL: " + genAioCheckOutALL());
+//		System.out.println("aioCheckOutALL: " + genAioCheckOutALL());
 //		System.out.println("aioCheckOutATM: " + genAioCheckOutATM());
 //		System.out.println("aioCheckOutCVS: " + genAioCheckOutCVS());
 //		System.out.println("aioCheckOutBARCODE: " + genAioCheckOutBARCODE());
@@ -138,14 +138,16 @@ public class ExampleAllInOne {
 		return form;
 	}
 	
-	public static String genAioCheckOutALL(){
+	public static String genAioCheckOutALL(String price){
+		UUID uid = UUID.randomUUID();
 		AioCheckOutALL obj = new AioCheckOutALL();
-		obj.setMerchantTradeNo("74823H75879R166486");
+		obj.setMerchantTradeNo(uid.toString().replaceAll("-", "").substring(0, 20));
 		obj.setMerchantTradeDate("2017/01/01 08:05:23");
-		obj.setTotalAmount("50");
+		obj.setTotalAmount(price);
 		obj.setTradeDesc("test Description");
-		obj.setItemName("TestItem");
+		obj.setItemName("儲值點數");
 		obj.setReturnURL("http://211.23.128.214:5000");
+		obj.setOrderResultURL("http://localhost:9091/TrainMe/studentMoney/checkout");
 		obj.setNeedExtraPaidInfo("N");
 		String form = all.aioCheckOut(obj, null);
 		return form;
