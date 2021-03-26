@@ -40,8 +40,6 @@ public class StudentCourseBean_H implements Serializable{
 	private StudentBean_H studentBean_H;
 	private Integer time;
 	@Column(columnDefinition = "INT Default 0")
-	private Integer is_executed;
-	@Column(columnDefinition = "INT Default 0")
 	private Integer is_delete;
 	private String datdiary_content;
 	@Column(columnDefinition = "INT Default 0")
@@ -86,7 +84,6 @@ public class StudentCourseBean_H implements Serializable{
 		this.date = date;
 		this.studentBean_H = studentBean_H;
 		this.time = time;
-		this.is_executed = is_executed;
 		this.is_delete = is_delete;
 		this.datdiary_content = datdiary_content;
 		this.is_rated = is_rated;
@@ -132,15 +129,6 @@ public class StudentCourseBean_H implements Serializable{
 
 	public void setTime(Integer time) {
 		this.time = time;
-	}
-
-
-	public Integer getIs_executed() {
-		return is_executed;
-	}
-
-	public void setIs_executed(Integer is_executed) {
-		this.is_executed = is_executed;
 	}
 
 	public Integer getIs_delete() {
