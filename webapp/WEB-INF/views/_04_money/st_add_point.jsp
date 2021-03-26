@@ -118,7 +118,7 @@
     
     function alertCookie(value){
     	
-    	window.location.href = "/TrainMe/studentMoney/add?price="+value ;
+    	window.location.href = "/TrainMe/studentMoney/add/${LoginOK.id}?price="+value ;
 
         
 //         localStorage.setItem('name',value);

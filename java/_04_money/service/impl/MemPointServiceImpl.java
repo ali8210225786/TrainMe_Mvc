@@ -54,16 +54,16 @@ public class MemPointServiceImpl implements MemPointService {
 //		System.out.println(LoginOK.id);
 		
 		if(moneyBean_H.getChange_amount()==3000) {
-			moneyBean_H.setChange_amount(3030);
+			moneyBean_H.setChange_amount(3020);
 		}
 		if(moneyBean_H.getChange_amount()==5000) {
 			moneyBean_H.setChange_amount(5050);
 		}
 		if(moneyBean_H.getChange_amount()==7000) {
-			moneyBean_H.setChange_amount(7100);
+			moneyBean_H.setChange_amount(7070);
 		}
 		if(moneyBean_H.getChange_amount()==10000) {
-			moneyBean_H.setChange_amount(10200);
+			moneyBean_H.setChange_amount(10100);
 		}
 		int size = dao.getStudentMoneyDetail(moneyBean_H.getStudentBean_H().getId()).size();
 		if(size==0) {

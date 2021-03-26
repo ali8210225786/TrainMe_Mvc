@@ -230,7 +230,7 @@ public class ExampleAllInOne {
 		return form;
 	}
 	
-	public static String genAioCheckOutOneTime(String price){
+	public static String genAioCheckOutOneTime(String price,Integer id){
 		UUID uid = UUID.randomUUID();
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
 		obj.setMerchantTradeNo(uid.toString().replaceAll("-", "").substring(0, 20));
@@ -239,7 +239,7 @@ public class ExampleAllInOne {
 		obj.setTradeDesc("test Description");
 		obj.setItemName("儲值點數");
 		obj.setReturnURL("http://211.23.128.214:5000");
-		obj.setOrderResultURL("http://localhost:9091/TrainMe/studentMoney/checkout");
+		obj.setOrderResultURL("http://localhost:9091/TrainMe/studentMoney/checkout/" +id);
 		obj.setNeedExtraPaidInfo("N");
 		obj.setRedeem("N");
 		String form = all.aioCheckOut(obj, null);

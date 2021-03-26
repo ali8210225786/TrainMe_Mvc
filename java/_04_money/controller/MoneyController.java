@@ -90,6 +90,9 @@ public class MoneyController {
 	
 	@Autowired
 	MessageService messageService;
+	
+	@Autowired
+	MemberService_H memberService;
 
 	@GetMapping("/studentMoney/{id}")
 	public String studentMoney(Model model, @PathVariable("id") Integer id) {
@@ -110,8 +113,8 @@ public class MoneyController {
 	
 	public static AllInOne all;
 	@SuppressWarnings("static-access")
-	@GetMapping("/studentMoney/add")
-	public String point(Model model,@RequestParam("price") String value) {
+	@GetMapping("/studentMoney/add/{id}")
+	public String point(Model model, @PathVariable("id") Integer id,@RequestParam("price") String value) {
 
 		
 		CardBean cardBean=new CardBean();
@@ -120,7 +123,7 @@ public class MoneyController {
 		ExampleAllInOne.initial();		
 		Integer val = Integer.parseInt(value);
 		
-		String paymentValue =exampleAllInOne.genAioCheckOutOneTime(val.toString());
+		String paymentValue =exampleAllInOne.genAioCheckOutOneTime(val.toString(),id);
 		System.out.println(value);	
 		cardBean.setPayPayment(paymentValue);
 		model.addAttribute("cardBean", cardBean);
@@ -148,25 +151,24 @@ public class MoneyController {
 //	}
 
 	@SuppressWarnings("unchecked")
-	@PostMapping("/studentMoney/checkout")
-	public String stRegister(@SessionAttribute("LoginOK") StudentBean_H sb  , Model model,HttpServletRequest request) throws IOException, ServletException {
+	@PostMapping("/studentMoney/checkout/{id}")
+	public String stRegister(Model model,HttpServletRequest request, @PathVariable("id") Integer id) throws IOException, ServletException {
 		
 		System.out.println("進入/studentMoney/checkout");
+		System.out.println("id="+id);
 		Integer price;
 //		java.sql.Date date;
 		String RtnMsg ;
-		
+		StudentBean_H sb=memberDataService.getStudentById(id);
 		price = Integer.parseInt(request.getParameter("TradeAmt"));
 		Date date = new Date();
 		java.sql.Date changeTime = new java.sql.Date(date.getTime());
 		RtnMsg = request.getParameter("RtnMsg");
 		System.out.println(price);
-		
+
 		MoneyBean_H moneyBean_H = new MoneyBean_H();
-//		
+	
 //		StudentBean_H studentBean_H =(StudentBean_H)  session.getAttribute("LoginOK");
-		System.out.println( sb.getId());
-		Integer id=sb.getId();
 		moneyBean_H.setStudentBean_H(sb);
 		moneyBean_H.setChange_time(changeTime);
 		moneyBean_H.setChange_amount(price);

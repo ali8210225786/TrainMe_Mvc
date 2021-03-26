@@ -25,7 +25,7 @@ public class RootAppConfig {
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
         ds.setUser("root");
-        ds.setPassword("root");
+        ds.setPassword("123456");
         try {
             ds.setDriverClass("com.mysql.cj.jdbc.Driver");
         } catch (PropertyVetoException e) {
@@ -49,6 +49,7 @@ public class RootAppConfig {
                     "_12_message.model","_13_addfavorite.model"
                 });
         factory.setHibernateProperties(additionalProperties());   // 進階資訊
+       
         return factory;
     }
     
