@@ -78,9 +78,8 @@ public class TrainerCourseController {
 	}
 
 	@GetMapping("/TimeOff/getClosed/{id}")
-	public @ResponseBody List<String> getTimeOff(@PathVariable("id") Integer id, @RequestParam String dateBegin,
-			@RequestParam String dateEnd) {
-		List<String> timeOff = trainerCourseService.queryTimeOffList(dateBegin, dateEnd, id);
+	public @ResponseBody List<String> getTimeOff(@PathVariable("id") Integer id) {
+		List<String> timeOff = trainerCourseService.queryTimeOffList(id);
 		return timeOff;
 	}
 
