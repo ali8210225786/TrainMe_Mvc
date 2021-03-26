@@ -115,15 +115,15 @@
 												</template>
 												
 												<template x-if="isAllowToSt(message.kind)">
-												<button class="btn_notice" @click="goSrCourse()">課程管理</button>
+												<button class="btn_notice" @click="goStCourse()">課程管理</button>
 												</template>
 												
 												<template x-if="isRejectToSt(message.kind)">
-												<button class="btn_notice" @click="goSrPrint()">我的點數</button>
+												<button class="btn_notice" @click="goStCourse()">課程管理</button>
 												</template>
 												
 												<template x-if="isStPrice(message.kind)">
-												<button class="btn_notice">我的點數</button>
+												<button class="btn_notice" @click="goStPrint()">我的點數</button>
 												</template>
 
 											</div>
@@ -425,7 +425,7 @@
 				window.location.href="<c:url value='/trainerData/${LoginOK.id}' />";
 			},
 			goStInfo(){
-				window.location.href="<c:url value='/student_info/${LoginOK.id}' />";
+				window.location.href="<c:url value='/student_info_edit/${LoginOK.id}' />";
 			},
 			goStData(){
 				window.location.href="<c:url value='/studentData/${LoginOK.id}' />";
@@ -436,7 +436,7 @@
 			goStCourse(){
 				window.location.href="<c:url value='/st_info_lesson/${LoginOK.id}' />";
 			},
-			goStPrice(){
+			goStPrint(){
 				window.location.href="<c:url value='/studentMoney/${LoginOK.id}' />";
 			}
 			
