@@ -106,9 +106,6 @@
 										<div class="tw">
 											<label>課程價格</label> <span x-text="trainerX.price+'  up'"></span>
 										</div>
-										
-									</div>
-									<div class="twbox">
 										<div class="tw">
 											<label>授課地點</label> <span
 												x-text="trainerX.city + trainerX.area"></span>
@@ -116,6 +113,7 @@
 										<div class="tw">
 											<label>健身房</label> <span x-text="trainerX.gym"></span>
 										</div>
+										
 									</div>
 								</div>
 							</div>
