@@ -33,11 +33,13 @@ public class MessageService {
 			TrainerBean_H tb = (TrainerBean_H) mb;
 			msg.setTrainerBean_H(tb);
 			msg.setToType(2);
+			msg.setKind("trPass");
 		}
 		if (mb instanceof StudentBean_H) {
 			StudentBean_H sb = (StudentBean_H) mb;
 			msg.setStudentBean_H(sb);
 			msg.setToType(1);
+			msg.setKind("stPass");
 		}
 		Date now = new Date();
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
@@ -54,6 +56,7 @@ public class MessageService {
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 		msg.setDate(nowDate);
 		msg.setToType(2);
+		msg.setKind("trBook");
 		msg.setTitle("【預約通知】 有筆一新的預約！");
 		msg.setContent("親愛的 " + sc.getTrainerCourseBean_H().getTrainerBean_H().getName() 
 					  +" 教練你好，學員 " + sc.getStudentBean_H().getName() 
@@ -79,6 +82,7 @@ public class MessageService {
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 		msg.setDate(nowDate);
 		msg.setToType(1);
+		msg.setKind("stBook");
 		msg.setTitle("【預約通知】 你剛剛預約了一堂課程！");
 		msg.setContent("親愛的 " + sc.getStudentBean_H().getName() 
 					  +" 你好，你剛剛預約了一堂 "
@@ -109,6 +113,7 @@ public class MessageService {
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 		msg.setDate(nowDate);
 		msg.setToType(2);
+		msg.setKind("cancelToTr");
 		msg.setTitle("【取消課程通知】 有一堂課程被取消");
 		msg.setContent("親愛的 " 
 					  + sc.getTrainerCourseBean_H().getTrainerBean_H().getName() 
@@ -137,6 +142,7 @@ public class MessageService {
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 		msg.setDate(nowDate);
 		msg.setToType(1);
+		msg.setKind("allowToSt");
 		msg.setTitle("【課程通知】 你的預約已經被教練同意囉！");
 		msg.setContent("親愛的 " + sc.getStudentBean_H().getName()
 					  + " 你好，你之前預約在 "
@@ -164,6 +170,7 @@ public class MessageService {
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 		msg.setDate(nowDate);
 		msg.setToType(1);
+		msg.setKind("rejectToSt");
 		msg.setTitle("【課程通知】 你的預約被教練拒絕了！");
 		msg.setContent("親愛的 " + sc.getStudentBean_H().getName()
 					  + " 你好，你之前預約在 "
@@ -192,6 +199,7 @@ public class MessageService {
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 		msg.setDate(nowDate);
 		msg.setToType(1);
+		msg.setKind("stPrice");
 		msg.setTitle("【儲值成功通知】 你剛剛完成了一筆儲值！");
 		msg.setContent("親愛的 " + mb.getStudentBean_H().getName()
 					  +" 你好，你剛剛成功儲值了 "

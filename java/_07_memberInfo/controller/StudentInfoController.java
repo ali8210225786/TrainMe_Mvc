@@ -30,7 +30,7 @@ import _10_studentCourse.model.StudentCourseBean_H;
 import _10_studentCourse.service.StudentCourseService;
 
 @Controller
-@SessionAttributes({ "LoginOK", "MoneyBean", "comingSoonCourse", "waitCourse" }) // 此處有LoginOK的識別字串
+@SessionAttributes({ "LoginOK", "TotalAmount", "comingSoonCourse", "waitCourse" }) // 此處有LoginOK的識別字串
 public class StudentInfoController {
 
 	@Autowired
@@ -64,6 +64,7 @@ public class StudentInfoController {
 		}
 
 		MoneyBean_H moneyBean = memPointService.getStudentMoneyLast(id);
+		System.out.println("moneyBean="+moneyBean);
 		Date now = new Date();
 		java.sql.Date nowDate = new java.sql.Date(now.getTime());
 //		System.out.println("======================1");
@@ -72,7 +73,7 @@ public class StudentInfoController {
 		model.addAttribute("comingSoonCourse", comingSoonCourse);
 		model.addAttribute("waitCourse", waitCourse);
 		model.addAttribute("LoginOK", studentBean);
-		model.addAttribute("MoneyBean", moneyBean);
+		model.addAttribute("TotalAmount", moneyBean);
 		
 		return "/_07_memberInfo/student_info";
 	}

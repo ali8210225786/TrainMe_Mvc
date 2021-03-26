@@ -28,9 +28,11 @@
 .like{
     cursor: pointer;
     font-size: 1.5rem;
-/*     color: red; */
+    color: red;
   }
-
+.change_color{
+    color: #ddd;
+}
 
 .trainer{
     /* border: 1px solid red; */
@@ -61,26 +63,40 @@
     object-fit:cover
 }
 .trainer h6{
-    box-shadow: 0 3px #21d4a7;
-    padding-bottom:5px;
+	text-align:center;
+    position: relative;
+    /* box-shadow: 0 3px #21d4a7; */
+    /* padding-bottom:5px; */
     margin-top: 15px;
     font-size: 1.2rem;
 }
+/* .trainer h6::after{ */
+/*     content: ""; */
+/*     position: absolute; */
+/*     top: 100%; */
+/*     bottom: 0; */
+/*     left:0; */
+/*     right:0; */
+/*     background: #21d4a7; */
+/*     opacity:0.4; */
+/*     width: 60%; */
+/*     height: 5px; */
+/* } */
 
 .trainer_wrap{
     width: 100%;
 }
 .twbox{
     display: flex;
+    flex-direction: column;
     width: 100%;
+    width: 180px;
     margin: 20px 0;
 }
 .tw{
-    width: 100%;
+    width: 200px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+
 }
 .rating{
     display: inline-block;
@@ -88,13 +104,15 @@
 }
 
 .tw label{
+	width: 70px;
     font-weight: 400;
     font-size: 0.9rem;
+    margin-right: 10px;
 }
 .tw span{
+/* 	border: 1px solid red; */
+	width: 95px;
     color: #0ac2a9;
     font-size: 0.9rem;
 }
-.change_color{
-  color: red;
-}
+

@@ -67,8 +67,8 @@
 
 						<!-- 每個教練框 -->
 					<div class="trainer">
-						<a href="javascript:;" @click="goLook(trainerX.trId)"> <!-- 超連結至教練個人頁面的a -->
 								<div class="bgcolor">
+						<a href="javascript:;" @click="goLook(trainerX.trId)"> <!-- 超連結至教練個人頁面的a -->
 									<span class="love" @click="toggle(trainerX.trId)"><i :id="'tr_' + trainerX.trId" class="fas fa-heart like change_color" ></i></span>
 
 									<template x-if="!trainerX.profile_image">
@@ -104,22 +104,20 @@
 											</div>
 										</div>
 										<div class="tw">
+											<label>課程價格</label> <span x-text="trainerX.price+'  up'"></span>
+										</div>
+										<div class="tw">
 											<label>授課地點</label> <span
 												x-text="trainerX.city + trainerX.area"></span>
 										</div>
-									</div>
-									<div class="twbox">
 										<div class="tw">
-											<label>課程類型</label> <span
-												x-text="parseStr(trainerX.skillType)"></span>
+											<label>健身房</label> <span x-text="trainerX.gym"></span>
 										</div>
-										<div class="tw">
-											<label>課程價格</label> <span x-text="trainerX.price+'  up'"></span>
-										</div>
+										
 									</div>
 								</div>
-						</a>
 							</div>
+						</a>
 					</template>
 				</div>
 
@@ -187,7 +185,7 @@
 						return false;
 			},
 			goLook(trId){
-				window.location.href="<c:url value='/trainer_info/" + trId + "?type=search&stId=${LoginOK.id}' />";
+				window.location.href="<c:url value='/trainer_info/" + trId + "?type=favorite&stId=${LoginOK.id}' />";
 					
 			}
 			
