@@ -23,7 +23,7 @@
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
 .container {
-	margin-bottom: 100px;
+	margin-bottom:150px;
 }
 
 .aside ul li:nth-child(2) a {
