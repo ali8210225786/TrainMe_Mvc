@@ -363,6 +363,7 @@ footer{
 								type="video/mp4" id="video_del">
 						</video>
 						<P class="p" style="text-align: center;">- 影片為教練教學展示，僅供學員參考 -</P>
+						<P class="p" style="text-align: center;color:#999;">影片出處：Alo Spa</P>
 
 
 					</c:otherwise>

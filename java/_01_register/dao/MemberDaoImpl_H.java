@@ -313,5 +313,15 @@ public class MemberDaoImpl_H implements MemberDao_H {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public long queryTrainerTotal() {
+
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT COUNT(*) FROM TrainerBean_H";
+		
+		return (long) session.createQuery(hql).getSingleResult();
+
+	}
 
 }

@@ -318,7 +318,7 @@
 				</div>
 
 				<div class="col-lg-3 col-6 text-center">
-					<span data-toggle="counter-up">18</span>
+					<span data-toggle="counter-up">${trainerBean.trainerTotal}</span>
 					<p>教練</p>
 				</div>
 
