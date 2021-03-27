@@ -114,7 +114,8 @@ public class MemPointServiceImpl implements MemPointService {
 			moneyBean_H.setTotal_amount(moneyBean_H.getChange_amount());
 		}else {
 			
-			int total = dao.getStudentMoneyLast(moneyBean_H.getStudentBean_H().getId()).getTotal_amount()+moneyBean_H.getChange_amount();
+			int total = dao.getTrainerMoneyLast(moneyBean_H.getTrainerBean_H().getId()).getTotal_amount()+moneyBean_H.getChange_amount();
+			moneyBean_H.setTotal_amount(total);
 		}
 		return dao.saveMoney(moneyBean_H);
 	}

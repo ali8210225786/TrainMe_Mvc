@@ -116,6 +116,22 @@ public class MemPointDaoImpl implements MemPointDao{
 			String hql2 = "FROM MoneyBean_H WHERE id =" + lastId;
 			return (MoneyBean_H) session.createQuery(hql2).getSingleResult();
 		}
+		//搜尋最新一筆的學員儲值紀錄
+				@Override
+				public MoneyBean_H getTrainerMoneyLast(int trId) {
+					Session session = factory.getCurrentSession();
+					
+					String hql = "SELECT MAX(id) FROM MoneyBean_H WHERE tr_id =:trId";
+					int lastId;
+					try {
+						lastId = (int) session.createQuery(hql).setParameter("trId", trId).getSingleResult();
+					} catch (NullPointerException e) {
+						
+						return null;
+					}
+					String hql2 = "FROM MoneyBean_H WHERE id =" + lastId;
+					return (MoneyBean_H) session.createQuery(hql2).getSingleResult();
+				}
 		
 	//查詢教練本月的入帳點數
 	@SuppressWarnings("unchecked")
