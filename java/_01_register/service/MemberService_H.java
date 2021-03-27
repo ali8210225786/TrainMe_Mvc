@@ -31,6 +31,7 @@ public interface MemberService_H {
 	void delTrainerLicense_H(int id);
 	long queryTrainerTotal();
 	long queryStudentTotal();
+	long queryGymTotal();
 
 
 	

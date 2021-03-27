@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import _03_memberData.model.Area_H;
 import _03_memberData.model.City_H;
@@ -30,7 +31,8 @@ public class GymBean_H {
 	@JoinColumn(name="area_id")
 	private Area_H area;
 	private String address;
-	
+	@Transient
+    public Long gymTotal;
 	
 
 	
@@ -124,6 +126,16 @@ public class GymBean_H {
 
 	public void setArea(Area_H area) {
 		this.area = area;
+	}
+
+
+	public Long getGymTotal() {
+		return gymTotal;
+	}
+
+
+	public void setGymTotal(Long gymTotal) {
+		this.gymTotal = gymTotal;
 	}
 	
 	

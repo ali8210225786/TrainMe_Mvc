@@ -112,6 +112,15 @@ public class StudentCourseDao {
 		Session session = factory.getCurrentSession();
 		session.save(tcb);
 	}
+
+	public long queryCourseTotal() {
+
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT COUNT(*) FROM StudentCourseBean_H where is_allowed = 1 AND is_delete = 0";
+		
+		return (long) session.createQuery(hql).getSingleResult();
+
+	}
 	
 	
 }

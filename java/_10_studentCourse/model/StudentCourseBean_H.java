@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import _01_register.model.StudentBean_H;
 import _04_money.model.MoneyBean_H;
@@ -47,6 +48,9 @@ public class StudentCourseBean_H implements Serializable{
 	
 	@Column(columnDefinition = "INT Default 0")
 	private Integer is_allowed;
+	
+	@Transient
+    public Long studentCourseTotal;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="trainer_course_id")
@@ -193,6 +197,14 @@ public class StudentCourseBean_H implements Serializable{
 
 	public void setRatingsBean_H(RatingsBean_H ratingsBean_H) {
 		this.ratingsBean_H = ratingsBean_H;
+	}
+
+	public Long getStudentCourseTotal() {
+		return studentCourseTotal;
+	}
+
+	public void setStudentCourseTotal(Long studentCourseTotal) {
+		this.studentCourseTotal = studentCourseTotal;
 	}
 	
 	

@@ -43,6 +43,8 @@ import _09_trainerCourse.model.RatingsAvgBean_H;
 import _09_trainerCourse.model.RatingsBean_H;
 import _09_trainerCourse.model.SkillTypeBean_H;
 import _09_trainerCourse.model.TrainerCourseBean_H;
+import _10_studentCourse.model.StudentCourseBean_H;
+import _10_studentCourse.service.StudentCourseService;
 import _12_message.service.MessageService;
 import mail.model.ContactBean;
 import mail.model.SendingEmail;
@@ -81,6 +83,9 @@ public class RegisterController {
 	
 	@Autowired
 	MessageService messageService;
+	
+	@Autowired
+	StudentCourseService studentCourseService;
 
 	@GetMapping("/")
 	public String index(Model model) {
@@ -89,19 +94,28 @@ public class RegisterController {
 //		(可能是因為View元件(index)有要顯示的東西(那3個表單)所以一定要把有的東西都加入model裡)
 		StudentBean_H studentBean = new StudentBean_H();
 		TrainerBean_H trainerBean = new TrainerBean_H();
+		GymBean_H gymBean = new GymBean_H();
 		LoginBean loginBean = new LoginBean();
+		StudentCourseBean_H studentCourseBean = new StudentCourseBean_H();
 		
 		//首頁人氣教練推薦		
 		List<TrainerCourseBean_H> trainerAndCourse = memberDataService.getTrainerAndCourse();
 		Long trainerTotal = memberService.queryTrainerTotal();
 	    Long studentTotal = memberService.queryStudentTotal();
+	    Long gymTotal = memberService.queryGymTotal();
+	    Long StudentCourseTotal = studentCourseService.queryCourseTotal();
 	    trainerBean.setTrainerTotal(trainerTotal);
 	    studentBean.setStudentTotal(studentTotal);
+	    gymBean.setGymTotal(gymTotal);
+	    studentCourseBean.setStudentCourseTotal(StudentCourseTotal);
+	    
 		model.addAttribute("studentBean", studentBean);
 		model.addAttribute("trainerBean", trainerBean);
-		model.addAttribute("loginBean", loginBean);		
+		model.addAttribute("gymBean", gymBean);
+		model.addAttribute("loginBean", loginBean);				
 		model.addAttribute("trainerAndCourse", trainerAndCourse);	
 		model.addAttribute("contactBean" , new ContactBean());
+		model.addAttribute("studentCourseBean" , studentCourseBean);
 
 		return "index";
 	}

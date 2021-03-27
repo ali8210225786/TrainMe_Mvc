@@ -323,12 +323,12 @@
 				</div>
 
 				<div class="col-lg-3 col-6 text-center">
-					<span data-toggle="counter-up">46</span>
+					<span data-toggle="counter-up">${studentCourseBean.studentCourseTotal}</span>
 					<p>媒合課堂數</p>
 				</div>
 
 				<div class="col-lg-3 col-6 text-center">
-					<span data-toggle="counter-up">8</span>
+					<span data-toggle="counter-up">${gymBean.gymTotal}</span>
 					<p>合作健身房/工作室</p>
 				</div>
 

@@ -151,6 +151,11 @@ public class MemberServiceImpl_H implements MemberService_H {
 		return dao.queryStudentTotal();
 	}
 
+	@Transactional
+	@Override
+	public long queryGymTotal() {		
+		return dao.queryGymTotal();
+	}
 
 //	@Override
 //	public StudentBean queryMember(String id) {
