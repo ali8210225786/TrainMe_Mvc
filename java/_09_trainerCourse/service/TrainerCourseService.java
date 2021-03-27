@@ -36,8 +36,8 @@ public class TrainerCourseService {
 		trainerCourseDao.deleteTimeOff(dateBegin, dateEnd, trId);
 	}
 	
-	public List<String> queryTimeOffList(String dateBegin ,String dateEnd,int trId){
-		return trainerCourseDao.queryTimeOffList(dateBegin, dateEnd, trId);
+	public List<String> queryTimeOffList(int trId){
+		return trainerCourseDao.queryTimeOffList(trId);
 	}
 	
 	public List<String> queryBookedList(int trId) {

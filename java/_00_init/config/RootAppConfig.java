@@ -49,6 +49,7 @@ public class RootAppConfig {
                     "_12_message.model","_13_addfavorite.model"
                 });
         factory.setHibernateProperties(additionalProperties());   // 進階資訊
+       
         return factory;
     }
     

@@ -48,11 +48,10 @@ public class TrainerCourseDao {
 	}
 	
 	@SuppressWarnings({ "unchecked", "null" })
-	public List<String> queryTimeOffList(String dateBegin ,String dateEnd,int trId) {
+	public List<String> queryTimeOffList(int trId) {
 		Session session = factory.getCurrentSession();
 		List<String> list = new ArrayList<>();
-		String hql = "FROM TrainerOffBean_H WHERE date BETWEEN '" + dateBegin + "' and '" + dateEnd 
-				+ "' AND tr_id = :mid";
+		String hql = "FROM TrainerOffBean_H WHERE tr_id = :mid";
 		List<TrainerOffBean_H> offTimes = session.createQuery(hql).setParameter("mid", trId).getResultList();
 			
 		for(TrainerOffBean_H offTime : offTimes) {
