@@ -359,13 +359,13 @@
 									enctype="multipart/form-data">
 									<div class="form-row">
 										<div class="col-md-6 form-group">
-											<label for="lname">姓名</label>
-											<form:input type="text" id="name" path="userName"
+											<label for="lname" id="clickName">姓名</label>
+											<form:input type="text" id="ruruName" path="userName"
 												class="form-control" required="required" />
 										</div>
 										<div class="col-md-6 form-group">
 											<label for="email">Email</label>
-											<form:input id="userEmail" path="userEmail"
+											<form:input id="ruruEmail" path="userEmail"
 												class="form-control" type="email" required="required" />
 										</div>
 									</div>
@@ -631,8 +631,14 @@
 			   Show();
 	    </c:if>
         
-        
-        
+	   
+        $('#clickName').click(function(){
+        	console.log('aaa')
+        	$('#ruruEmail').val('aa1234@gmail.com')
+        	$('#subject').val('該如何加入TrainMe')
+        	$('#message').val('我是一家中小型健身房，看到你們的網站真的很棒，如果我想要加入TrainMe，要怎麼做呢??')
+        	$('#ruruName').val('張家豪')
+        })
         
         
 //         // 找到 select 標籤

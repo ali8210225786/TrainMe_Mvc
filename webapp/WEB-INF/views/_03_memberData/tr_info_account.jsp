@@ -93,7 +93,7 @@
 					<div class="setting_box ls">
 						<label for="name">新增證照</label>
 						<!-- <br> -->
-						<p class="label_set">證照名稱：</p>
+						<p class="label_set" id="License">證照名稱：</p>
 						<input type="text" id="lsname" name="" placeholder="請輸入您所擁有的證照名稱" />
 
 						<button type="button" class="btn btn-dark n_btn add_btn"
@@ -365,6 +365,10 @@
 				video.removeChild(video.firstChild);
 			}
 		}
+		
+		$('#License').click(function(){
+			$('#lsname').val('國際B級健身教練證')
+		})
 	</script>
 </body>
 </html>
