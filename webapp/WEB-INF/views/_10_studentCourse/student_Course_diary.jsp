@@ -45,6 +45,23 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
 /* 暫時代替側邊選單點擊變色的功能的CSS */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    min-height: 100%;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+.footer {
+    height: 50px;
+    line-height: 50px;
+    background: rgb(15, 112, 202);
+    margin-top: -50px;
+}
 .aside ul li:nth-child(3) a{
 	color: #21d4a7;
 }
