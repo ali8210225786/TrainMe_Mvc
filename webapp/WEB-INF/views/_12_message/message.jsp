@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>學員-個人資料</title>
+<title>Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -16,16 +16,21 @@
 <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_mail.css' />">
-
+<link rel="stylesheet" href="<c:url value='/css/style_footer.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
-.aside ul li:nth-child(2) a{
+.container {
+	margin-bottom: 100px;
+}
+
+.aside ul li:nth-child(2) a {
 	color: #21d4a7;
 }
-.aside ul li:nth-child(2) a:hover{
+
+.aside ul li:nth-child(2) a:hover {
 	color: #fff;
 }
 </style>
@@ -99,31 +104,31 @@
 										<div class="n_div">
 											<div class="notice_area">
 												<p x-text="message.content"></p>
-												
+
 												<template x-if="isTrPass(message.kind)">
-												<button class="btn_notice" @click="goTrInfo()">個人主頁</button>
-												<button class="btn_notice" @click="goTrData()">帳號設定</button>
+													<button class="btn_notice" @click="goTrInfo()">個人主頁</button>
+													<button class="btn_notice" @click="goTrData()">帳號設定</button>
 												</template>
-												
+
 												<template x-if="isStPass(message.kind)">
-												<button class="btn_notice" @click="goStInfo()">個人資料</button>
-												<button class="btn_notice" @click="goStData()">帳號設定</button>
+													<button class="btn_notice" @click="goStInfo()">個人資料</button>
+													<button class="btn_notice" @click="goStData()">帳號設定</button>
 												</template>
-												
+
 												<template x-if="isTrBook(message.kind)">
-												<button class="btn_notice" @click="goTrCourse()">課程管理</button>
+													<button class="btn_notice" @click="goTrCourse()">課程管理</button>
 												</template>
-												
+
 												<template x-if="isAllowToSt(message.kind)">
-												<button class="btn_notice" @click="goStCourse()">課程管理</button>
+													<button class="btn_notice" @click="goStCourse()">課程管理</button>
 												</template>
-												
+
 												<template x-if="isRejectToSt(message.kind)">
-												<button class="btn_notice" @click="goStCourse()">課程管理</button>
+													<button class="btn_notice" @click="goStCourse()">課程管理</button>
 												</template>
-												
+
 												<template x-if="isStPrice(message.kind)">
-												<button class="btn_notice" @click="goStPrint()">我的點數</button>
+													<button class="btn_notice" @click="goStPrint()">我的點數</button>
 												</template>
 
 											</div>
@@ -278,13 +283,16 @@
 
 
 			</div>
-
 		</div>
+	</div>
+
+	<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
 
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
 
 
 // .mail_area是整個通知的框框

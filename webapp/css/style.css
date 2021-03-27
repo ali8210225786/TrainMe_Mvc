@@ -17,7 +17,7 @@ button:focus {
 
         } */
 
-/* ÁôÂÃinput numberªºÃø¬Ý¤W¤U½bÀY */
+/* ï¿½ï¿½ï¿½ï¿½input numberï¿½ï¿½ï¿½ï¿½ï¿½Ý¤Wï¿½Uï¿½bï¿½Y */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -26,7 +26,7 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* Åýinput©Mtextarea¿é¤Jªº¤º®e¶ZÂ÷Ãä®Ø4px */
+/* ï¿½ï¿½inputï¿½Mtextareaï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½4px */
 input,textarea {
   text-indent: 4px;
 }

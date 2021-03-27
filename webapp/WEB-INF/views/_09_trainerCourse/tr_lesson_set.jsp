@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>教練-課程管理</title>
+<title>我的課程設定-Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -21,17 +21,22 @@
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_tr_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
-
+<link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
-.aside ul li:nth-child(3) a{
+.container {
+	margin-bottom: 100px;
+}
+
+.aside ul li:nth-child(3) a {
 	color: #21d4a7;
 }
-.aside ul li:nth-child(3) a:hover{
+
+.aside ul li:nth-child(3) a:hover {
 	color: #fff;
 }
 
@@ -106,12 +111,14 @@
 								<tbody class="tr_height tr_license tr_lesson">
 
 									<c:if test="${TrainerCourseList.size() > 0}">
-										<c:forEach varStatus="i" begin="0" end="${TrainerCourseList.size()-1}">
+										<c:forEach varStatus="i" begin="0"
+											end="${TrainerCourseList.size()-1}">
 											<tr>
 												<td>${TrainerCourseList.get(i.current).getSkill_typeBean_H().getName()}</td>
 												<td>${TrainerCourseList.get(i.current).getSkillBean_H().getName()}</td>
 												<td>${TrainerCourseList.get(i.current).getPrice()}</td>
-												<td><a class="delect" href="/TrainMe/delectCourse/${LoginOK.id}?trainerCourseId=${TrainerCourseList.get(i.current).getId()}">刪除</a></td>
+												<td><a class="delect"
+													href="/TrainMe/delectCourse/${LoginOK.id}?trainerCourseId=${TrainerCourseList.get(i.current).getId()}">刪除</a></td>
 											</tr>
 
 
@@ -127,11 +134,14 @@
 
 
 
-
-
 				</div>
+
 			</div>
 		</div>
+	</div>
+
+				<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
 </body>
 
 <script

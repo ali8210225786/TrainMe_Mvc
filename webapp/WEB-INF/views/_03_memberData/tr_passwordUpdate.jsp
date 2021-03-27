@@ -7,17 +7,21 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>教練-帳號設定-修改密碼</title>
+<title>Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_info.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_st_account.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css">
+<link rel="stylesheet" href="<c:url value='/css/style_footer.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="../js/jquery-3.5.1.js"></script>
-<!-- 暫時代替側邊選單點擊變色的功能的CSS -->
+
 <style>
+.container {
+	margin-bottom: 100px;
+}
 .aside ul li:nth-child(5) a{
 	color: #21d4a7;
 }
@@ -71,6 +75,8 @@
 		<!-- ============右側網頁======================================================= -->
 		<jsp:include page="/fragment/pw_edit_tr.jsp"/>
 		
+
+		
 <!-- 		<div class="aside"> -->
 <!-- 			<ul> -->
 <!-- 				<li class="mypage_title">我的主頁</li> -->
@@ -112,7 +118,9 @@
 <!-- 			</div> -->
 <!-- 		</div> -->
 	</div>
-
+				<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
+	
 </body>
 <!-- <script> -->
 <!--      document.getElementById("saveBtn").addEventListener("click",function(){ -->

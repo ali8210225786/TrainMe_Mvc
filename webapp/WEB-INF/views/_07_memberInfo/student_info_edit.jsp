@@ -9,10 +9,11 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>學員-個人資料-編輯</title>
+<title>Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet" href="..	/css/style.css">
 <link rel="stylesheet" href="../css/style_st_info.css">
 <link rel="stylesheet" href="../css/style_nav.css">
+<link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
@@ -22,6 +23,9 @@
 }
 .aside ul li:nth-child(1) a:hover{
 	color: #fff;
+}
+.container{
+	margin-bottom:100px;
 }
 </style>
 </head>
@@ -88,6 +92,9 @@
 			</div>
 		</div>
 	</div>
+		<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
+	
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->

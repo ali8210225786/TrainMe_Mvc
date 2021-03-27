@@ -41,7 +41,7 @@ public class FavoriteInfo {
 		this.gym = gym;
 	}
 
-
+//	把FavoriteBean轉成FavoriteInfo(?)/取得FavoriteBean的東西
 	public static FavoriteInfo create(FavoriteBean fb) {
 		Double ratings = fb.getTrainerBean_H().getRatings() == null ? 0.0 : fb.getTrainerBean_H().getRatings();
 		

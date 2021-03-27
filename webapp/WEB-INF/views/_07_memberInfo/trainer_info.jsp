@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>教練主頁</title>
+<title>Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -20,7 +20,7 @@
 <%-- <link rel="stylesheet" href="<c:url value='/css/style_st_info.css' />"> --%>
 <link rel="stylesheet" href="<c:url value='/css/style_timeset.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
-
+<link rel="stylesheet" href="<c:url value='/css/style_footer.css' />">
 <link rel="stylesheet"
 	href="<c:url value='/css/style_trainer_page.css' />">
 <link rel="stylesheet"
@@ -36,6 +36,9 @@
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
 <style type="text/css">
+footer{
+	margin-top:150px;
+}
 .tschedule td {
 	cursor: pointer;
 }
@@ -132,7 +135,7 @@
 				<a href="<c:url value='/favoriteTrainer/${LoginOK.id}' />"><i
 					class="fas fa-chevron-left"> </i> 返回</a>
 			</c:if>
-			
+
 			<c:if test="${type.equals('search')}">
 
 				<c:if test="${LoginOK.type == 1}">
@@ -595,27 +598,30 @@
 					</c:if>
 				</c:forEach>
 			</c:if>
+		</div>
 
-			<!-- 回到最上面 -->
-			<a
-				href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#"
-				id="gotop"> <i class="fa fa-angle-up"></i>
-			</a>
+	</div>
 
+	<!-- 回到最上面 -->
+	<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#"
+		id="gotop"> <i class="fa fa-angle-up"></i>
+	</a>
 
-
-
-			<script
-				src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-			<script
-				src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-				integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-				crossorigin="anonymous"></script>
+	<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
 
 
-			<script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+		crossorigin="anonymous"></script>
+
+
+	<script>
 		
 		$(function() {
 			
