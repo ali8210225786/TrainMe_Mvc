@@ -30,6 +30,7 @@ public interface MemberService_H {
 	List<GymBean_H> getGymList_H();
 	void delTrainerLicense_H(int id);
 	long queryTrainerTotal();
+	long queryStudentTotal();
 
 
 	

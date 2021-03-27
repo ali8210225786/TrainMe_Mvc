@@ -52,5 +52,7 @@ public interface MemberDao_H {
 
 	long queryTrainerTotal();
 
+	long queryStudentTotal();
+
 	
 }

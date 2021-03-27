@@ -85,6 +85,8 @@ public class StudentBean_H extends MemberBean_H {
 	MultipartFile studentImage;
 	@Transient
     public boolean hasError = false;
+	@Transient
+    public Long studentTotal;
 	
 	@OneToMany(mappedBy = "studentBean_H")
 	private Set<MoneyBean_H> moneyBean_H = new LinkedHashSet<>();
@@ -408,6 +410,14 @@ public class StudentBean_H extends MemberBean_H {
 
 	public void setFavoriteBean(Set<FavoriteBean> favoriteBean) {
 		this.favoriteBean = favoriteBean;
+	}
+
+	public Long getStudentTotal() {
+		return studentTotal;
+	}
+
+	public void setStudentTotal(Long studentTotal) {
+		this.studentTotal = studentTotal;
 	}
 	
 	
