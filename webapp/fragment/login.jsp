@@ -339,12 +339,12 @@
 	
 	var fillIn =  document.getElementById('fillIn');
 	fillIn.addEventListener("click",function(){
-	       document.getElementsByClassName('stName')[0].value='李淑芬';
+	       document.getElementsByClassName('stName')[0].value='李小明';
 	       document.getElementsByClassName('stEmail')[0].value='anakzayyy@gmail.com';
 	       document.getElementsByClassName('stPw')[0].value='a12345';
 	       document.getElementsByClassName('stPwCheck')[0].value='a12345';
 	       document.getElementsByClassName('stPhone')[0].value='0986465432';
-	       document.getElementsByClassName('stIdNumber')[0].value='E255884358';
+	       document.getElementsByClassName('stIdNumber')[0].value='E224884358';
 	       document.getElementsByClassName('stBir')[0].value='1993-09-03';
 	});
 	
