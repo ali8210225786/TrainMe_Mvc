@@ -91,7 +91,9 @@ public class TrainerBean_H extends MemberBean_H {
 	@Transient
 	private MultipartFile trainerVideo;
 	@Transient
-    public boolean hasError = false;
+    public boolean hasError = false;	
+	@Transient
+    public Long trainerTotal;
 	
 	@OneToMany(mappedBy = "trainerBean_H")
 	private Set<RatingsBean_H> ratingsBean_H = new LinkedHashSet<>();
@@ -735,7 +737,24 @@ public class TrainerBean_H extends MemberBean_H {
 	public void setFavoriteBean(Set<FavoriteBean> favoriteBean) {
 		this.favoriteBean = favoriteBean;
 	}
-	
+
+
+
+
+	public Long getTrainerTotal() {
+		return trainerTotal;
+	}
+
+
+
+
+	public void setTrainerTotal(Long trainerTotal) {
+		this.trainerTotal = trainerTotal;
+	}
+
+
+
+
 	
 
 

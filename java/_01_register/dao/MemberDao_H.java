@@ -50,5 +50,9 @@ public interface MemberDao_H {
 
 	void delTrainerLicense(int Id);
 
+	long queryTrainerTotal();
+
+	long queryStudentTotal();
+
 	
 }

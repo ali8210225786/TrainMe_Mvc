@@ -138,6 +138,19 @@ public class MemberServiceImpl_H implements MemberService_H {
 	public boolean checkPass(int type, String email) {		
 		return dao.checkPass(type, email);
 	}
+	
+	@Transactional
+	@Override
+	public long queryTrainerTotal() {		
+		return dao.queryTrainerTotal();
+	}
+	
+	@Transactional
+	@Override
+	public long queryStudentTotal() {		
+		return dao.queryStudentTotal();
+	}
+
 
 //	@Override
 //	public StudentBean queryMember(String id) {
