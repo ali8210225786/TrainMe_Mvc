@@ -19,8 +19,9 @@
 <script src="../js/jquery-3.5.1.js"></script>
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
+
 .container{
-	margin-bottom:100px;
+	margin-bottom:200px;
 }
 .aside ul li:nth-child(6) a{
 	color: #21d4a7;

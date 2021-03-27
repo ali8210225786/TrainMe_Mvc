@@ -19,8 +19,8 @@
 <script src="../js/jquery-3.5.1.js"></script>
 
 <style>
-.container {
-	margin-bottom: 100px;
+.container{
+	margin-bottom:200px;
 }
 .aside ul li:nth-child(5) a{
 	color: #21d4a7;
