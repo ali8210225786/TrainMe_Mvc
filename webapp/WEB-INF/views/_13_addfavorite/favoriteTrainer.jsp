@@ -20,9 +20,26 @@
 <link rel="stylesheet"
  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <style>
-.container{
-	margin-bottom:200px;
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
+.container {
+    min-height: 100%;
+    overflow: hidden;
+    padding-bottom: 80px;
+}
+.footer {
+    height: 50px;
+    line-height: 50px;
+    background: rgb(15, 112, 202);
+    margin-top: -50px;
+}
+/* .container{ */
+/* 	margin-bottom:200px; */
+/* } */
 .aside ul li:nth-child(5) a{
  color: #21d4a7;
 }
