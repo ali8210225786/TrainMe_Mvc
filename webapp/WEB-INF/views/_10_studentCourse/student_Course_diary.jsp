@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>學生-上課日誌</title>
+<title>Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet"
@@ -28,6 +28,7 @@
 	href="${pageContext.request.contextPath}/css/style_tr_info.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style_tr_dairy.css">
+<link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="./css/style_st_lesson.css">
@@ -49,6 +50,9 @@
 }
 .aside ul li:nth-child(3) a:hover{
 	color: #fff;
+}
+.container{
+	margin-bottom:100px;
 }
 /* .datdiary_content{ */
 /*     white-space: pre-wrap; */
@@ -229,8 +233,9 @@
 
 		</div>
 	</div>
-	</div>
 
+	<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
 
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">

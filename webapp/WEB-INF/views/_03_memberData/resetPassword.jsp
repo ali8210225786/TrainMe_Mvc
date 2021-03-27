@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>重置密碼</title>
+<title>Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"

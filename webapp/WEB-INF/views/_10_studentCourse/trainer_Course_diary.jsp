@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>教練-上課日誌</title>
+<title>Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet"
@@ -28,6 +28,7 @@
 	href="${pageContext.request.contextPath}/css/style_tr_info.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style_tr_dairy.css">
+<link rel="stylesheet" href="<c:url value='/css/style_footer.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet"
@@ -51,6 +52,9 @@
 	color: #fff;
 }
 
+.container {
+	margin-bottom: 100px;
+}
 /* body { */
 /* 	color: #404E67; */
 /* 	background: #F5F7FA; */
@@ -86,7 +90,9 @@
 /* 	float: right; */
 /* 	height: 30px; */
 /* /* 	font-weight: bold; */
+
  
+
 *
 /
 /* 	font-size: 12px; */
@@ -97,15 +103,21 @@
 /* } */
 
 /* /* .table-title .add-new i { */
+
  
+
 *
 /
 /* /* 	margin-right: 4px; */
+
  
+
 *
 /
 /* /* } */
+
  
+
 *
 /
 
@@ -258,31 +270,28 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="setting_box upload_file">
+							<label style="width: 140px"><h5 id="fillIn2">教練建議</h5>
+								<p id="feedback"></p></label>
+							<textarea name="datdiary_content" id="text" cols="60" rows="15"
+								maxlength="500" placeholder="限500字以內">${CourseMsg.datdiary_content}</textarea>
+
+
+						</div>
+
+						<div class="edit_box e_button">
+							<button class="save">更新</button>
+						</div>
+					</form:form>
 				</div>
-
-
-
-				<div class="setting_box upload_file">
-					<label style="width: 140px"><h5 id="fillIn2">教練建議</h5>
-						<p id="feedback"></p></label>
-					<textarea name="datdiary_content" id="text" cols="60" rows="15"
-						maxlength="500" placeholder="限500字以內">${CourseMsg.datdiary_content}</textarea>
-
-
-				</div>
-
-				<div class="edit_box e_button">
-					<button class="save">更新</button>
-				</div>
-				</form:form>
 			</div>
-
 
 		</div>
 	</div>
-	</div>
 
-
+	<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>教練-帳號設定</title>
+<title>Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet"
@@ -22,10 +22,12 @@
 	href="${pageContext.request.contextPath}/css/style_nav.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" href="<c:url value='/css/style_footer.css' />">
 <%-- <link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />"> --%>
-
-<!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
+.container {
+	margin-bottom: 100px;
+}
 .aside ul li:nth-child(5) a{
 	color: #21d4a7;
 }
@@ -151,10 +153,10 @@
 
 		</div>
 	</div>
-	</div>
 	
 		<!-- footer -->
-<%-- 	<jsp:include page="/fragment/footer.jsp" /> --%>
+	<jsp:include page="/fragment/footer.jsp" />
+	
 
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

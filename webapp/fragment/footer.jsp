@@ -7,7 +7,7 @@
 	<!-- footer -->
 
 	    <footer>
-        <div class="container">
+        <div class="fcontain">
             <div class="footer-item">
                 <div class="title">
                     <div class="circle">

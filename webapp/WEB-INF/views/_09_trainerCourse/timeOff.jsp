@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>教練-課程管理</title>
+<title>管理預約時段-Train Me 健身教練與學員的最佳媒合平台</title>
 <link rel="stylesheet" href="<c:url value='/css/style.css' />">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -19,15 +19,21 @@
 	href="<c:url value='/css/style_st_account.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_timeset.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
+<link rel="stylesheet" href="<c:url value='/css/style_footer.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <!-- 暫時代替側邊選單點擊變色的功能的CSS -->
 <style>
-.aside ul li:nth-child(3) a{
+.container {
+	margin-bottom: 100px;
+}
+
+.aside ul li:nth-child(3) a {
 	color: #21d4a7;
 }
-.aside ul li:nth-child(3) a:hover{
+
+.aside ul li:nth-child(3) a:hover {
 	color: #fff;
 }
 
@@ -74,8 +80,8 @@
 
 		<div class="content" x-data="data()" x-init="init()">
 			<div class="back">
-				<a href="<c:url value='/trainerCourse/${LoginOK.id}' />"><i class="fas fa-chevron-left"></i>
-					返回課程管理</a>
+				<a href="<c:url value='/trainerCourse/${LoginOK.id}' />"><i
+					class="fas fa-chevron-left"></i> 返回課程管理</a>
 			</div>
 			<div class="title">
 				<h3>課程管理 > 管理預約時段</h3>
@@ -127,8 +133,8 @@
 												<div>已預約</div>
 											</template>
 											<template x-if="isClosed(date, hour)">
-											<div>已關閉</div>
-										</template>
+												<div>已關閉</div>
+											</template>
 										</td>
 									</template>
 								</tr>
@@ -136,17 +142,23 @@
 
 						</tbody>
 					</table>
-					
-					            <div class="e_button trls_t_btn">
-						              <button class="save" @click="save">儲存設定</button>
-						        </div>
+
+					<div class="e_button trls_t_btn">
+						<button class="save" @click="save">儲存設定</button>
+					</div>
 				</div>
 
 			</div>
+		</div>
+
+	</div>
+	<!-- footer -->
+	<jsp:include page="/fragment/footer.jsp" />
+
 </body>
 
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
