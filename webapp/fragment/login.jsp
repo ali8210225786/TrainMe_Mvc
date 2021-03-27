@@ -340,7 +340,7 @@
 	var fillIn =  document.getElementById('fillIn');
 	fillIn.addEventListener("click",function(){
 	       document.getElementsByClassName('stName')[0].value='李淑芬';
-	       document.getElementsByClassName('stEmail')[0].value='ali8210225786@gmail.com';
+	       document.getElementsByClassName('stEmail')[0].value='anakzayyy@gmail.com';
 	       document.getElementsByClassName('stPw')[0].value='a12345';
 	       document.getElementsByClassName('stPwCheck')[0].value='a12345';
 	       document.getElementsByClassName('stPhone')[0].value='0986465432';

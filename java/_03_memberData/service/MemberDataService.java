@@ -94,13 +94,13 @@ public class MemberDataService {
 			}
 		}
 		// 首頁要隨機產生六個推薦教練，若是資料庫沒有六筆以上教練資料，就產生當前資料庫的教練資料筆數
-				if (filterRatings.size() < 6) {
+				if (filterRatings.size() < 8) {
 					for (int i = 0; i < filterRatings.size(); i++) {
 						// 將取出的這個元素放到存放亂序結果的集合中
 						result.add(filterRatings.get(i));
 					}
 				} else {
-					for (int i = 0; i < 6; i++) {
+					for (int i = 0; i < 8; i++) {
 						int myRand = random.nextInt(filterRatings.size());
 						// 將取出的這個元素放到存放亂序結果的集合中
 						result.add(filterRatings.get(myRand));
