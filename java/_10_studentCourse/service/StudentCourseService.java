@@ -77,4 +77,8 @@ public class StudentCourseService {
 	public void addTrainerCourse(TrainerCourseBean_H tcb) {
 		studentCourseDao.addTrainerCourse(tcb);
 	}
+	
+	public long queryCourseTotal() {		
+		return studentCourseDao.queryCourseTotal();
+	}
 }

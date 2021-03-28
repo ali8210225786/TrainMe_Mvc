@@ -61,7 +61,7 @@ public class StudentInfoDao {
 		Session session = factory.getCurrentSession();
 		//尋找學員該月份的最後一筆的體重資料(不受年影響)
 		String hql = "SELECT st_weight FROM StudentDataBean_H WHERE st_id = :mId AND data_date IN (SELECT MAX(data_date) FROM StudentDataBean_H\r\n"
-				+ "GROUP BY MONTH(data_date) ) ORDER BY MONTH(data_date)";
+				+ "GROUP BY MONTH(data_date) ) ORDER BY YEAR(data_date),MONTH(data_date)";
 		return session.createQuery(hql).setParameter("mId", id).getResultList();
 	}
 

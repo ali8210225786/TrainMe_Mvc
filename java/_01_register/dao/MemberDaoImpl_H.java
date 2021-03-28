@@ -333,5 +333,15 @@ public class MemberDaoImpl_H implements MemberDao_H {
 		return (long) session.createQuery(hql).getSingleResult();
 
 	}
+	
+	@Override
+	public long queryGymTotal() {
+
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT COUNT(*) FROM GymBean_H";
+		
+		return (long) session.createQuery(hql).getSingleResult();
+
+	}
 
 }
