@@ -38,14 +38,15 @@
 <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
 <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
+
 <%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_nav.css">    --%>
 <link rel="stylesheet"
 	href="<c:url value='/css/style_nav_change.css' />">
 <link rel="stylesheet" href="<c:url value='/css/popup_t1.css' />">
 <link rel="stylesheet"	href="<c:url value='/css/style_carousel_search.css' />">
 <link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
-<%-- <link rel="stylesheet" href="<c:url value='/css/style_hot_trainer' />"> --%>
-
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <style>
 /* 	       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');  */
@@ -184,11 +185,11 @@
 
 
 <div class="hot_tr">
- <span class="hot_trainer">
+ <span class="hot_trainer" data-aos="fade-up">
   <h3>精選人氣教練</h3>
  </span>
 
- <div class="splide">
+ <div class="splide" data-aos="fade-up">
   <div class="splide__track">
    <ul class="splide__list">
     <c:if test="${trainerAndCourse.size() > 0}">
@@ -246,7 +247,7 @@
 
 
 	<!-- ======= About Section ======= -->
-	<section id="about">
+	<section id="about" data-aos="fade-up">
 		<h2 class="title h2">關於我們</h2>
 		<div class="container">
 			<p>TraineMe是由一群熱愛運動的團隊共同打造，讓想健身的人透過平台尋找喜歡的教練，根據自己的需求，選擇適合的課程。健身教練也能透過平台媒合學員，並且能即時開課，展現自己所學。藉由TraineMe讓學員與教練達到互利共享的雙贏空間。</p>
@@ -304,7 +305,7 @@
 	</section>
 	<!-- End About Section -->
 	<!-- ======= Facts Section ======= -->
-	<section id="facts">
+	<section id="facts" data-aos="fade-up">
 		<div class="container">
 			<div class="section-header">
 				<h3 class="section-title">TraineMe Growth</h3>
@@ -338,7 +339,7 @@
 	</section>
 	<!-- End Facts Section -->
 
-	<section id="contact">
+	<section id="contact" data-aos="fade-up">
 		<div class="container">
 			<div>
 				<h3 class="text-center text-uppercase">聯絡我們</h3>
@@ -395,103 +396,15 @@
 									</div>
 								</form:form>
 							</div>
+						</section>
 					</div>
 				</div>
-<!-- 				<div class="row"> -->
-<!-- 					<div class="col-sm-12 col-md-6 col-lg-4 my-1"> -->
-<!-- 						<div class="card border-0"> -->
-<!-- 							<div class="card-body text-center"> -->
-<!-- 								<i class="fas fa-map-marker-alt fa-5x mb-3" aria-hidden="true"></i> -->
-<!-- 								<h4 class="text-uppercase mb-5">辦公室</h4> -->
-<!-- 								<address>台北市大安區忠孝東路三段1號</address> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-sm-12 col-md-6 col-lg-4 my-1"> -->
-<!-- 						<div class="card border-0"> -->
-<!-- 							<div class="card-body text-center"> -->
-<!-- 								<i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i> -->
-<!-- 								<h4 class="text-uppercase mb-5">客服專線</h4> -->
-<!-- 								<address>02-27110908</address> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-sm-12 col-md-6 col-lg-4 my-1"> -->
-<!-- 						<div class="card border-0"> -->
-<!-- 							<div class="card-body text-center"> -->
-<!-- 								<a href="mailto:trainme015@gmail.com" -->
-<!-- 									style="text-decoration: none;"> <i -->
-<!-- 									class="fas fa-envelope fa-5x mb-3" aria-hidden="true"></i> -->
-<!-- 									<h4 class="text-uppercase mb-5">客服信箱</h4> -->
-<!-- 								</a> -->
-<!-- 								<address>寫信聯繫客服</address> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-					<!-- 				<div class="container"> -->
-					<!-- 					<div class="row"> -->
-					<!-- 						<div class="col-sm-12 col-md-12 col-lg-12 my-5"> -->
-					<!-- 							<div class="card border-0"> -->
-					<!-- 								<div class="card-body text-center"> -->
-					<!-- 									<i class="far fa-user-circle fa-5x mb-3" aria-hidden="true"></i> -->
-					<!-- 										<h4 class="text-uppercase mb-5">電子信箱</h4> -->
-					<!-- 									<address> -->
-					<!-- 										請將您的寶貴意見以填寫表單方式送出<br>我們將於工作日由專人以郵件回覆您的問題 -->
-					<!-- 									</address> -->
-					<!-- 								</div> -->
-					<!-- 							</div> -->
-					<!-- 							<section id="contact" class="contact section-bg"> -->
-					<!-- 								<div class="col-lg-12 contact-form-wrap"> -->
-					<%-- 									<form:form action="/TrainMe/contactUs/" method="post" --%>
-					<%-- 										role="form" class="php-email-form" --%>
-					<%-- 										modelAttribute="contactBean" enctype="multipart/form-data"> --%>
-					<!-- 										<div class="form-row"> -->
-					<!-- 											<div class="col-md-6 form-group"> -->
-					<!-- 												<label for="lname">姓名</label> -->
-					<%-- 												<form:input type="text" id="name" path="userName" --%>
-					<%-- 													class="form-control" required="required" /> --%>
-					<!-- 											</div> -->
-					<!-- 											<div class="col-md-6 form-group"> -->
-					<!-- 												<label for="email">Email</label> -->
-					<%-- 												<form:input id="userEmail" path="userEmail" --%>
-					<%-- 													class="form-control" type="email" required="required" /> --%>
-					<!-- 											</div> -->
-					<!-- 										</div> -->
-					<!-- 										<div class="form-group"> -->
-					<!-- 											<label for="q_category">問題類型</label> -->
-					<%-- 											<form:select id="q_category" path="q_category" --%>
-					<%-- 												class="form-control"> --%>
-					<!-- 												<option value="教練相關問題">教練相關問題</option> -->
-					<!-- 												<option value="學員相關問題">學員相關問題</option> -->
-					<!-- 												<option value="儲值點數問題">儲值點數問題</option> -->
-					<!-- 												<option value="其他問題">其他問題</option> -->
-					<%-- 											</form:select> --%>
-					<!-- 										</div> -->
-					<!-- 										<div class="form-group"> -->
-					<!-- 											<label for="subject">請問您遇到了什麼問題?</label> -->
-					<%-- 											<form:input id="subject" path="subject" class="form-control" --%>
-					<%-- 												type="text" required="required" /> --%>
-					<!-- 										</div> -->
-					<!-- 										<div class="form-group"> -->
-					<!-- 											<label for="message">問題描述</label> -->
-					<%-- 											<form:textarea id="message" path="message" --%>
-					<%-- 												class="form-control" rows="8" style="height:200px" --%>
-					<%-- 												required="required" /> --%>
-					<!-- 										</div>								 -->
-					<!-- 										<div class="text-center">									 -->
-					<!-- 											<button type="submit">傳送訊息</button> -->
-					<!-- 										</div> -->
-					<%-- 									</form:form> --%>
-					<!-- 								</div> -->
-					<!-- 						</div> -->
-					<!-- 					</div> -->
 				</div>
+	</div>
+<!-- 	</div> -->
+<!-- 	</div> -->
 	</section>
-	</div>
-	</div>
-	</div>
 	<!-- End Contact Us Section -->
-	</section>
 
 	<!-- footer -->
 	<jsp:include page="/fragment/footer.jsp" />
@@ -537,7 +450,10 @@
 
 
 	<script>
-   
+// 浮現特效
+
+	AOS.init();
+
 
 // 導覽列
 
