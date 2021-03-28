@@ -24,6 +24,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
 <link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 <style>
 footer {
 	margin-top:120px;
@@ -31,6 +33,7 @@ footer {
 </style>
 <script
 	src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
 	<c:if test="${LoginOK == null}">
@@ -109,7 +112,7 @@ footer {
 					end="${trainerCourseAll.size()-1}">
 
 
-					<div class="fb">
+					<div class="fb" data-aos="fade-up">
 
 						<!-- 教練頭像&名稱&評價 -->
 						<div class="mpb">
@@ -248,7 +251,10 @@ footer {
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
 	<script>
-	
+
+	// 浮現特效
+
+	AOS.init();
 
 	//回到最上面
 	/* 按下GoTop按鈕時的事件 */
