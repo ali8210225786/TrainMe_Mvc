@@ -247,9 +247,9 @@
 
 
 	<!-- ======= About Section ======= -->
-	<section id="about" data-aos="fade-up">
-		<h2 class="title h2">關於我們</h2>
-		<div class="container">
+	<section id="about">
+		<h2 class="title h2" data-aos="fade-up">關於我們</h2>
+		<div class="container" data-aos="fade-up">
 			<p>TraineMe是由一群熱愛運動的團隊共同打造，讓想健身的人透過平台尋找喜歡的教練，根據自己的需求，選擇適合的課程。健身教練也能透過平台媒合學員，並且能即時開課，展現自己所學。藉由TraineMe讓學員與教練達到互利共享的雙贏空間。</p>
 			<div class="row about-container">
 
@@ -305,8 +305,8 @@
 	</section>
 	<!-- End About Section -->
 	<!-- ======= Facts Section ======= -->
-	<section id="facts" data-aos="fade-up">
-		<div class="container">
+	<section id="facts">
+		<div class="container" data-aos="fade-up">
 			<div class="section-header">
 				<h3 class="section-title">TraineMe Growth</h3>
 				<p class="section-description">TraineMe平台近期成長</p>
@@ -339,8 +339,8 @@
 	</section>
 	<!-- End Facts Section -->
 
-	<section id="contact" data-aos="fade-up">
-		<div class="container">
+	<section id="contact">
+		<div class="container" data-aos="fade-up">
 			<div>
 				<h3 class="text-center text-uppercase">聯絡我們</h3>
 				<br>
