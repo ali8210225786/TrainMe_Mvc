@@ -61,11 +61,24 @@ header{
 .trpg_wrap h4{
     font-size: 18px;
     font-weight: bold;
-    padding: 10px;
-    box-shadow: 0 3px #21d4a7;
-    padding-bottom:5px;
+    padding: 10px 0px;
+/*     box-shadow: 0 3px #21d4a7; */
+/*     padding-bottom:5px; */
     margin: 15px auto ;
-    width: 100px;
+/*     width: 90px; */
+	display: inline-block;
+    position: relative;
+}
+.trpg_wrap h4:after{
+	content: "";
+	position: absolute;
+	top: 95%;
+	bottom: 0;
+	left:0;
+	right:0;
+	background: #21d4a7;
+	width: 100%;
+	height: 4px;
 }
 .trpg_wrap .title{
     text-align: center;
@@ -171,12 +184,12 @@ header{
 /* 評價星等 */
 .starss {
     position: relative;
-    vertical-align:text-top;
+/*     vertical-align:text-top; */
     display: inline-block;
     color: #ddd; /*背景星星顏色*/
-    overflow: hidden;
+/*     overflow: hidden; */
     font-size: 20px; /*調整字體大小可放大縮小星星*/
-    /* text-shadow: 0px 1px 0 #999; */
+    text-shadow: 0px 0px 3 #eee;
     }
     .full_star {
     width: 30%; /*調整寬度可變更星等*/
@@ -186,6 +199,7 @@ header{
     white-space: nowrap;
     overflow: hidden;
     color: #ffd000; /*前景星星顏色*/
+    font-size: 20px;
     }
 
 /* 健身房 */

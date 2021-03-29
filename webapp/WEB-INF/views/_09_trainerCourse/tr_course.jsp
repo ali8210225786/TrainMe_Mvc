@@ -294,8 +294,9 @@
 
 													${StudentCourse.get(i.current).getTime()}:00 -
 													${StudentCourse.get(i.current).getTime() + 1}:00</td>
-												<td><a href="javascript:" class="studentData"
+												<td><a href="javascript:" class="studentData btn btn-primary" style="color:#fff;"
 													data-id="${StudentCourse.get(i.current).getStudentBean_H().getId()}">查看</a></td>
+											
 											</tr>
 										</c:if>
 									</c:forEach>

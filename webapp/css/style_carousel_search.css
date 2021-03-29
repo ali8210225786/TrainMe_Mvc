@@ -256,12 +256,13 @@
 /*評價星星*/
 .ratings {
 	position: relative;
-	bottom: 30%;
+	bottom: 20%;
 	left: 4%;
 	vertical-align: middle;
 	display: inline-block;
 	color: #b1b1b1;
 	overflow: hidden;
+    font-size: 15px; 
 }
 
 .full-stars {
@@ -271,19 +272,25 @@
 	white-space: nowrap;
 	overflow: hidden;
 	color: #fde16d;
+	vertical-align: middle;
+	font-size: 15px; 
+
+	
 }
 
 .empty-stars:before, .full-stars:before {
 	content: "\2605\2605\2605\2605\2605";
-	font-size: 13pt;
+	font-size: 15px;
 }
 
 .empty-stars:before {
 	-webkit-text-stroke: 1px #848484;
+		font-size: 15px;
 }
 
 .full-stars:before {
 	-webkit-text-stroke: 1px orange;
+		font-size: 15px;
 }
 /* Webkit-text-stroke is not supported on firefox or IE */
 

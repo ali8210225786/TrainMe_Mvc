@@ -477,9 +477,9 @@ footer{
 					<div class="modal-dialog modal-dialog-centered">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">確定要預約此時段嗎？</h5>
+								<h5 class="modal-title" id="exampleModalLabel">確定要預約本時段嗎？</h5>
 							</div>
-							<div class="modal-body" id="courseTime"></div>
+							<div class="modal-body" id="courseTime" style="line-height: 1.3;"></div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">取消</button>
@@ -590,8 +590,7 @@ footer{
 								</div>
 
 								<!-- 留言 -->
-								<div class="sit">
-									<p style="line-height: 1.3;">${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
+								<div class="sit"><p style="line-height: 1.3;">${trainerCourseAndStudentCourseAndRatings.get(i.current).getRatingsBean_H().getComment()}</p>
 								</div>
 
 							</div>
