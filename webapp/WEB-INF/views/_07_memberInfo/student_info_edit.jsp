@@ -156,7 +156,7 @@
 		 
 		 var fillIn =  document.getElementById('fillIn');
 			fillIn.addEventListener("click",function(){
-			       document.getElementById('introduction').value='教練好，我是淑芬，我平常大概每周固定運動兩到三次，最近想開始減脂目標想瘦10公斤，但不知道健身器材要如何使用，再加上也不想去連鎖健身房被推銷，因此加入TrainMe，希望可以在上面找到適合的教練，我一定會很努力認真運動的!!';
+			       document.getElementById('introduction').value='教練好，我是小明，我平常大概每周固定運動兩到三次，最近想開始減脂目標想瘦10公斤，但不知道健身器材要如何使用，再加上也不想去連鎖健身房被推銷，因此加入TrainMe，希望可以在上面找到適合的教練，我一定會很努力認真運動的!!';
 			});
 		 
 		 
