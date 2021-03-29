@@ -173,6 +173,7 @@ public class MoneyController {
 		moneyBean_H.setChange_time(changeTime);
 		moneyBean_H.setChange_amount(price);
 		memPointService.saveMoney(moneyBean_H);
+		model.addAttribute("LoginOK", sb);
 		
 		//產生儲值成功通知並更新未讀訊息數量
 		MoneyBean_H mb = memPointService.getStudentMoneyLast(sb.getId());

@@ -7,7 +7,7 @@
 	<!-- footer -->
 
 	    <footer>
-        <div class="fcontain">
+        <div class="fcontain" data-aos="fade-up">
             <div class="footer-item">
                 <div class="title">
                     <div class="circle">

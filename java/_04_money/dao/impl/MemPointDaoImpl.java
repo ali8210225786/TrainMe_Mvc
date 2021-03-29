@@ -79,7 +79,7 @@ public class MemPointDaoImpl implements MemPointDao{
 		int n = 0;
 		Session session = factory.getCurrentSession();
 //		session.merge (sb);
-//		session.clear();
+		session.clear();
 //		session.evict(session.get(StudentBean_H.class, moneyBean_H.getStudentBean_H().getId()));
 //		session.merge(moneyBean_H.getStudentCourseBean_H().getStudentBean_H());
 		session.save(moneyBean_H);
