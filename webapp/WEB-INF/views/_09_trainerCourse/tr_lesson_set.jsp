@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="<c:url value='/css/style_st_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_tr_lesson.css' />">
 <link rel="stylesheet" href="<c:url value='/css/style_nav.css' />">
-<link rel="stylesheet"	href="<c:url value='/css/style_footer.css' />">
+<link rel="stylesheet" href="<c:url value='/css/style_footer.css' />">
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -84,11 +84,11 @@
 						</c:if>
 					</select>
 
-					<p class="label_set">課程名稱：</p>
+					<p id="courseSet" class="label_set">課程名稱：</p>
 					<input type="text" id="l_name" name="" placeholder="限20字以內"
 						class="lesson_name" oninput="checkWordCount()" />
 
-					<p class="label_set">課程定價：</p>
+					<p id="priceSet" class="label_set">課程定價：</p>
 					<input type="number" min="0" id="l_price" name="" class="short_nb" />
 
 					<button type="button" class="btn btn-dark n_btn add_btn"
@@ -140,7 +140,7 @@
 		</div>
 	</div>
 
-				<!-- footer -->
+	<!-- footer -->
 	<jsp:include page="/fragment/footer.jsp" />
 </body>
 
@@ -193,6 +193,14 @@
 			 l_name.setCustomValidity(""); // be sure to leave this empty!
 		 }
 	}
+	
+	$('#courseSet').click(function(){
+		$('#l_name').val('基礎課程')
+	})
+	
+	$('#priceSet').click(function(){
+		$('#l_price').val('1000')
+	})
 	
 </script>
 </html>

@@ -87,12 +87,12 @@
 						<form:input path='phone' value="${studentBean.phone}" />
 					</div>
 					<div class="setting_box">
-						<label>顯示暱稱</label>
+						<label id="nickName">顯示暱稱</label>
 						<form:input path='nickname' value="${studentBean.nickname}" />
 					</div>
 
 					<div class="setting_box address">
-						<label>地址</label>
+						<label id="userAddress">地址</label>
 						<form:select path='city.id'>
 							<form:option value="-1" label="選擇縣市" />
 							<form:options items="${cityList}" />
@@ -104,7 +104,7 @@
 							<form:options items="${areaList}" />
 						</form:select>
 
-						<input type="text" name="address" placeholder="地址"
+						<input type="text" id="address" name="address" placeholder="地址"
 							value="${studentBean.address}">
 					</div>
 
@@ -230,7 +230,13 @@
             fr.readAsDataURL(file);
             
     }
-             
+    
+    $('#nickName').click(function(){
+    	$('#nickname').val('阿名')
+    })
+     $('#userAddress').click(function(){
+    	 $('#address').val('迪化街100號')
+     })        
     
 </script>
 </body>
