@@ -98,8 +98,9 @@ public class TrainerCourseController {
 	@PostMapping(value ="/TimeOff/update/{id}")
 	public @ResponseBody String updateTimeOff(@PathVariable("id") Integer id, @RequestParam("data") String data) {
 		CloseHour closeHour = (new Gson()).fromJson(data, CloseHour.class);
-//		System.out.println(closeHour);
-
+		System.out.println(closeHour.getDateBegin());
+		System.out.println(closeHour.getDateEnd());
+		
 		trainerCourseService.deleteTimeOff(closeHour.getDateBegin(), closeHour.getDateEnd(), id);
 
 		for (String hour : closeHour.getCloseHour()) {

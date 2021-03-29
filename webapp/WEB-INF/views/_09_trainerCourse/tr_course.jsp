@@ -418,7 +418,7 @@
 
 												$("#profile_image")
 														.html(
-																'<img src="<c:url value="/images/'+data.profile_image +'"  />">');
+																'<img src="/upload/' + data.profile_image +'">');
 												$("#name").text(data.name);
 												$("#nickname").text(
 														data.nickname);

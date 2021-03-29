@@ -240,6 +240,7 @@
         }else {
           this.closed.push(dateHourStr);
         }
+        console.log(this.closed);
       },
       isBooked(date,hour){
         // const dateStr = date.format('YYYY-MM-DD');

@@ -41,8 +41,7 @@ public class TrainerCourseDao {
 		System.out.println(dateBegin);
 		System.out.println(dateEnd);
 		System.out.println(trId);
-		String hql = "DELETE FROM TrainerOffBean_H WHERE date BETWEEN '" + dateBegin + "' and '" + dateEnd +
-					 "' AND tr_id = :mid";
+		String hql = "DELETE FROM TrainerOffBean_H WHERE  tr_id = :mid";
 		
 		session.createQuery(hql).setParameter("mid", trId).executeUpdate();		
 	}
