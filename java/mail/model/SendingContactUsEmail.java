@@ -52,7 +52,7 @@ public class SendingContactUsEmail {
 			message.setSubject("[問題類型:" + " " + q_category + "] " + "[姓名:" + " " + userName + "] " + "[使用者信箱:" + " " + userEmail + "]");
 			
 			// 設定信件內容
-			message.setContent(subject + "\n" + detailMessage, "text/plain; charset=UTF-8");
+			message.setContent("遇到了什麼問題:" + " " + subject + "\n" + "問題描述:" + " " + detailMessage, "text/plain; charset=UTF-8");
 			Transport.send(message);
 			
 			System.out.println("Successfully sent mail");

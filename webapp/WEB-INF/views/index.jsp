@@ -115,7 +115,7 @@
 		<form class="search_trainer"
 			action="<c:url value='/searchTrainerByCondition' />">
 			<li><select name="skillType" class="lesson">
-					<option value="0">請選擇</option>
+					<option value="0">課程種類</option>
 					<c:if test="${skillTypeAll.size() > 0}">
 						<c:forEach varStatus="i" begin="0" end="${skillTypeAll.size()-1}">
 							<option value="${skillTypeAll.get(i.current).getId()}">${skillTypeAll.get(i.current).getName()}</option>

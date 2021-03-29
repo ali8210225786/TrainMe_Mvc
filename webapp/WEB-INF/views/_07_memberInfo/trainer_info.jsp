@@ -809,7 +809,7 @@ footer{
 					      },
 					      isToday(){
 // 					    	  console.log(this.beginDate == today);
-					    	  return this.beginDate == today;					   
+					    	  return this.beginDate <= today;					   
 					      },
 					      lessDate(){
 					    	  this.beginDate = dayjs(this.beginDate).subtract(7,'day').format('YYYY-MM-DD');
@@ -821,7 +821,7 @@ footer{
 					      },
 					      isEnd(){
 					    	  var endDate =  dayjs(today).add(14,'day').format('YYYY-MM-DD');
-					    	  return this.beginDate == endDate;
+					    	  return this.beginDate >= endDate;
 					      },
 					      isTrainer(){
 // 					    	  var logOk = ${empty LoginOK} ? 0 : ${LoginOK.type}
